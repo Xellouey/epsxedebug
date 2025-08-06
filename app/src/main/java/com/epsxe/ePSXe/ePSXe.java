@@ -16,6 +16,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.os.Looper;
 import android.os.Vibrator;
 
@@ -87,6 +89,11 @@ import java.util.Properties;
 
 /* loaded from: classes.dex */
 public class ePSXe extends LicenseCheckActivity implements SensorEventListener {
+
+    private static final boolean SHOW_SAVE_STATE_IN_MENU = false; //true - включить, false - выключить
+    private static final boolean SHOW_LOAD_STATE_IN_MENU = false;
+
+
     private String previousDiscPath = null;
     private int previousDiscSlot = 0;
     private static final int ABOUT_ID = 7;
@@ -171,6 +178,7 @@ public class ePSXe extends LicenseCheckActivity implements SensorEventListener {
 
     /* renamed from: e */
     private libepsxe f153e;
+    private boolean userRequestedExit = false;
     private String gpuPluginName;
     private AlertDialog mchtAlert;
     private ePSXeReadPreferences mePSXeReadPreferences;
@@ -1714,7 +1722,6 @@ public class ePSXe extends LicenseCheckActivity implements SensorEventListener {
 //                SharedPreferences.Editor editor = sharedPreferences.edit();
 //                editor.putString("biosHlePref", "1");
 //                editor.commit();
-
                 // Run game
                 String gameFileName = getCacheDir() + "/Game/Oddworld - Abe's Exoddus (USA) (Disc 1).cue";
                 this.mIsoName.setmIsoName(gameFileName);
@@ -1740,20 +1747,16 @@ public class ePSXe extends LicenseCheckActivity implements SensorEventListener {
                 this.enableChangeOrientation = true;
             }
             this.emu_ui_resume_dialog = 0; //this.mePSXeReadPreferences.getUiresumedialog();
-            if (check_savetmp_snap(this.mIsoName.getmIsoName()) || this.emuStatus == 0) {
-            }
+            // if (check_savetmp_snap(this.mIsoName.getmIsoName()) || this.emuStatus == 0) {}
         }
     }
 
     private void quitEmulation() {
         if (this.emuStatus == 1) {
-            Log.e("epsxe", "onPause previous request to View to save");
             this.mePSXeView.setSaveMode(DeviceUtil.getDevicesWorkaround(this.emu_renderer, this.emu_menu2_gpumtmodeS), this.emu_autosave);
             this.mePSXeSound.exit();
             this.emuStatus = 3;
-            Log.e("epsxe", "onPause previous store saveTmp file");
             savetmp_snapshot(this.mIsoName.getmIsoName(), this.mIsoName.getmIsoSlot(), this.emu_padType);
-            Log.e("epsxe", "onPause previous finish");
             finish();
             return;
         }
@@ -1806,33 +1809,37 @@ public class ePSXe extends LicenseCheckActivity implements SensorEventListener {
         }
     }
 
-    @Override // android.app.Activity
-    protected void onPause() {
-        Log.e("epsxelf", "onPause");
-        super.onPause();
-        if (this.mogaInput != null) {
-            this.mogaInput.onPause();
-        }
-        hidePadHandler.removeCallbacks(hidePadRunnable);
-        if (this.emu_ui_pause_support != 0) {
-            pauseEmulation();
-        } else {
-            quitEmulation();
-        }
+    @Override
+protected void onPause() {
+    Log.e("epsxelf", "onPause");
+    super.onPause();
+    if (this.mogaInput != null) {
+        this.mogaInput.onPause();
     }
+    hidePadHandler.removeCallbacks(hidePadRunnable);
 
-    @Override // android.app.Activity
-    protected void onResume() {
-        Log.e("epsxelf", "onResume");
-        super.onResume();
-        if (this.mogaInput != null) {
-            this.mogaInput.onResume();
-        }
-        runHidePadHandler(hidePadRunnable);
-        if (this.emu_ui_pause_support == 1) {
-            resumeEmulation();
-        }
+    if (!userRequestedExit) {
+        // Вызываем паузу с небольшой задержкой, чтобы избежать дедлока
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                pauseEmulation();
+            }
+        }, 50); // 50 миллисекунд - небольшая, но достаточная задержка
     }
+}
+
+@Override
+protected void onResume() {
+    Log.e("epsxelf", "onResume");
+    super.onResume();
+    if (this.mogaInput != null) {
+        this.mogaInput.onResume();
+    }
+    runHidePadHandler(hidePadRunnable);
+    
+    resumeEmulation();
+}
 
     @Override // android.app.Activity
     protected void onStop() {
@@ -1846,7 +1853,7 @@ public class ePSXe extends LicenseCheckActivity implements SensorEventListener {
     @Override // com.epsxe.ePSXe.LicenseCheckActivity, android.app.Activity
     protected void onDestroy() {
         Log.e("epsxelf", "onDestroy");
-        
+
         // Очистка handler'ов
         if (hidePadHandler != null) {
             hidePadHandler.removeCallbacks(hidePadRunnable);
@@ -1857,32 +1864,32 @@ public class ePSXe extends LicenseCheckActivity implements SensorEventListener {
         if (handlerErr != null) {
             handlerErr.removeCallbacks(runnableErr);
         }
-        
+
         // Очистка view
         if (this.mePSXeView != null) {
             this.mePSXeView.onStop();
             this.mePSXeView = null;
         }
-        
+
         // Очистка звука
         if (this.mePSXeSound != null) {
             this.mePSXeSound.exit();
             this.mePSXeSound = null;
         }
-        
+
         // Очистка эмулятора
         if (this.f153e != null) {
             this.f153e.quit();
             this.f153e = null;
         }
-        
+
         // Очистка bluetooth
         if (this.bluezenabled && this.bluezInput != null) {
             this.bluezenabled = false;
             this.bluezInput.bluezStop();
             this.bluezInput = null;
         }
-        
+
         // Очистка MOGA
         if (this.mogapad != -1) {
             this.mogapad = -1;
@@ -1891,7 +1898,7 @@ public class ePSXe extends LicenseCheckActivity implements SensorEventListener {
                 this.mogaInput = null;
             }
         }
-        
+
         super.onDestroy();
     }
 
@@ -1969,6 +1976,35 @@ public class ePSXe extends LicenseCheckActivity implements SensorEventListener {
             menu.add(0, 8, 0, R.string.menu_quit).setIcon(android.R.drawable.ic_menu_revert);
         }
         return super.onPrepareOptionsMenu(menu);
+    }
+
+    /**
+     * Полный выход из ePSXe. 1) Выгружаем эмулятор 2) Закрываем Activity-стек
+     * 3) Убиваем процесс, чтобы при новом запуске стартовать «с нуля»
+     */
+    private void forceQuitApp() {
+        userRequestedExit = true; // Устанавливаем флаг, что выход инициирован пользователем
+        Toast.makeText(getApplicationContext(), "Выход...", Toast.LENGTH_SHORT).show();
+
+        try {
+            // 1. Корректно останавливаем эмуляцию, если она ещё жива
+            quitEmulation();
+        } catch (Throwable t) {
+            Log.e("epsxelf", "quitEmulation failed during forceQuit", t);
+        }
+
+        // 2. Закрываем текущую и все родственные activity
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            finishAndRemoveTask(); // API 21+: ещё и из «Недавних» удаляет
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            finishAffinity(); // API 16+
+        } else {
+            finish(); // старые версии
+        }
+
+        // 3. Гарантированно завершаем процесс
+        android.os.Process.killProcess(android.os.Process.myPid());
+        System.exit(0);
     }
 
     private void alertdialog_gamefaq() {
@@ -2097,15 +2133,15 @@ public class ePSXe extends LicenseCheckActivity implements SensorEventListener {
             this.mHandler.postDelayed(this.mLaunchTask, 1000L);
             return;
         }
-        
+
         // Полная очистка ресурсов
         if (this.mePSXeSound != null) {
             this.mePSXeSound.exit();
             this.mePSXeSound = null;
         }
-        
+
         this.emuStatus = 0;
-        
+
         if (this.emu_gui == 1) {
             Intent myIntent = new Intent(this, (Class<?>) ePSXe.class);
             myIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -2118,63 +2154,77 @@ public class ePSXe extends LicenseCheckActivity implements SensorEventListener {
                 this.f153e.setSaveMode(1, 0);
             }
         }
-        
+
         if (this.f153e != null && (DeviceUtil.getDevicesWorkaround(this.emu_renderer, this.emu_menu2_gpumtmodeS) == 3 || this.emu_renderer == 2 || this.emu_renderer == 4 || this.emu_renderer == 5)) {
             this.f153e.quit();
             this.f153e = null;
+        }
+    }
 
     private void alertdialog_quitGame_norate() {
-        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-        alertDialog.setTitle(R.string.main_back);
-        alertDialog.setMessage(getString(R.string.main_wantquitgame) + "(" + this.f153e.getCode() + ")?\n" + this.f153e.getGameInfo());
-        alertDialog.setButton(getString(R.string.main_noquitgame), new DialogInterface.OnClickListener() { // from class: com.epsxe.ePSXe.ePSXe.8
-            @Override // android.content.DialogInterface.OnClickListener
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.main_back);
+
+        // Формируем сообщение для диалога
+        String message = getString(R.string.main_wantquitgame);
+        if (this.f153e != null && this.f153e.getCode() != null) {
+            message += " (" + this.f153e.getCode() + ")?\n" + this.f153e.getGameInfo();
+        }
+        builder.setMessage(message);
+
+        // Кнопка "Нет" (Отмена) - ничего не делает, просто закрывает диалог
+        builder.setNegativeButton(getString(R.string.main_noquitgame), new DialogInterface.OnClickListener() {
+            @Override
             public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
             }
         });
-        alertDialog.setButton2(getString(R.string.main_yesquitgame), new DialogInterface.OnClickListener() { // from class: com.epsxe.ePSXe.ePSXe.9
-            @Override // android.content.DialogInterface.OnClickListener
+
+        // Кнопка "Да" (Выход) - вызывает наш надежный метод полного выхода
+        builder.setPositiveButton(getString(R.string.main_yesquitgame), new DialogInterface.OnClickListener() {
+            @Override
             public void onClick(DialogInterface dialog, int which) {
-                ePSXe.this.quitGame_norate();
+                forceQuitApp(); // <--- ВОТ ГЛАВНОЕ ИЗМЕНЕНИЕ
             }
         });
-        alertDialog.setIcon(R.drawable.icon);
+
+        builder.setIcon(R.drawable.icon);
+
+        AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }
 
     /* JADX INFO: Access modifiers changed from: private */
     public void alertdialog_quitGame() {
-        // Полная очистка ресурсов перед выходом
-        if (this.mePSXeSound != null) {
-            this.mePSXeSound.exit();
-            this.mePSXeSound = null;
-        }
-        
-        if (this.f153e != null) {
-            this.f153e.quit();
-            this.f153e = null;
-        }
+        // // Полная очистка ресурсов перед выходом
+        // if (this.mePSXeSound != null) {
+        //     this.mePSXeSound.exit();
+        //     this.mePSXeSound = null;
+        // }
 
-        // Delete saved game
-        File f = new File(ContextCompat.getDataDir(this), "epsxe/sstates/savetmp");
-        if (f.exists()) {
-            f.delete();
-        }
-
-        // Установить статус эмуляции в "не запущен"
-        this.emuStatus = 0;
-        
-        // Полное закрытие Activity
-        finishAndRemoveTask();
-        System.exit(0);
-        long ctime = System.currentTimeMillis() / 1000;
-        if (this.emu_ui_exit_confirm_dialog == 0) {
-            quitGame_norate();
-        } else if (this.stime != 0 && ctime > this.stime + 600 && this.emu_ui_show_rate_dialog == 1) {
-            alertdialog_quitGame_rate();
-        } else {
-            alertdialog_quitGame_norate();
-        }
+        // if (this.f153e != null) {
+        //     this.f153e.quit();
+        //     this.f153e = null;
+        // }
+        // // Delete saved game
+        // File f = new File(ContextCompat.getDataDir(this), "epsxe/sstates/savetmp");
+        // if (f.exists()) {
+        //     f.delete();
+        // }
+        // // Установить статус эмуляции в "не запущен"
+        // this.emuStatus = 0;
+        // // Полное закрытие Activity
+        // finishAndRemoveTask();
+        // System.exit(0);
+        // long ctime = System.currentTimeMillis() / 1000;
+        // if (this.emu_ui_exit_confirm_dialog == 0) {
+        //     quitGame_norate();
+        // } else if (this.stime != 0 && ctime > this.stime + 600 && this.emu_ui_show_rate_dialog == 1) {
+        //     alertdialog_quitGame_rate();
+        // } else {
+        //     alertdialog_quitGame_norate();
+        // }
+        forceQuitApp();
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -2484,15 +2534,16 @@ public class ePSXe extends LicenseCheckActivity implements SensorEventListener {
                         AboutDialog.showHelpDialog(ePSXe.this, ePSXe.this.mePSXeReadPreferences, ePSXe.this.emu_enable_x86, ePSXe.this.emu_enable_cores, ePSXe.this.emu_enable_64bits);
                         break;
                     case 5:
-                        if (ePSXe.this.emuStatus != 0) {
-                            if (ePSXe.this.emuStatus == 1 || ePSXe.this.emuStatus == 2) {
-                                ePSXe.this.alertdialog_quitGame();
-                                break;
-                            }
-                        } else {
-                            ePSXe.this.finish();
-                            break;
-                        }
+                        // if (ePSXe.this.emuStatus != 0) {
+                        //     if (ePSXe.this.emuStatus == 1 || ePSXe.this.emuStatus == 2) {
+                        //         ePSXe.this.alertdialog_quitGame();
+                        //         break;
+                        //     }
+                        // } else {
+                        //     ePSXe.this.finish();
+                        //     break;
+                        // }
+                        forceQuitApp();
                         break;
                 }
             }
@@ -2500,6 +2551,7 @@ public class ePSXe extends LicenseCheckActivity implements SensorEventListener {
     }
 
     private class menuOption implements Comparable<menuOption> {
+
         private String name;
 
         public menuOption(String n) {
@@ -4573,175 +4625,149 @@ public class ePSXe extends LicenseCheckActivity implements SensorEventListener {
                 }
                 break;
             case 5:
-                alertdialog_quitGame();
+                alertdialog_quitGame_norate();
                 break;
         }
     }
+
     private int getDiscNumber(String fileName) {
         java.util.regex.Pattern pattern = java.util.regex.Pattern.compile("(disc|disk|cd)[ _-]?(\\d+)", java.util.regex.Pattern.CASE_INSENSITIVE);
         java.util.regex.Matcher matcher = pattern.matcher(fileName);
         if (matcher.find()) {
             try {
                 return Integer.parseInt(Objects.requireNonNull(matcher.group(2)));
-            } catch (Exception ignore) {}
+            } catch (Exception ignore) {
+            }
         }
         return -1;
     }
+
     private void alertdialog_menu(final Context mCont) {
-        ArrayAdapter<String> adapter;
-        String[] itemsGame;
-        boolean toDisk = hasExactlyTwoDiscsForGame();
         boolean oneDisk = hasExactlyOneDiscsForGame();
-        if (BuildConfig.DEBUG) {
-            if (oneDisk) {
-                itemsGame = new String[]{
-                        getString(R.string.menu_resume_game),
-                        getString(R.string.menu_loadstate),
-                        getString(R.string.menu_savestate),
-                        getString(R.string.fbutton_preferences),
-                        getString(R.string.fbutton_quit)
-                };
-            } else {
-                itemsGame = new String[]{
-                        getString(R.string.menu_resume_game),
-                        getString(R.string.menu_loadstate),
-                        getString(R.string.menu_savestate),
-                        getString(R.string.fbutton_preferences),
-                        getString(R.string.change_disk),
-                        getString(R.string.fbutton_quit)
-                };
+        ArrayList<String> menuItems = new ArrayList<>();
+    
+        if (emuStatus == 1) {
+            menuItems.add(getString(R.string.menu_resume_game));
+            if (SHOW_LOAD_STATE_IN_MENU) {
+                menuItems.add(getString(R.string.menu_loadstate));
             }
+            if (SHOW_SAVE_STATE_IN_MENU) {
+                menuItems.add(getString(R.string.menu_savestate));
+            }
+            menuItems.add(getString(R.string.fbutton_preferences));
+            if (!oneDisk) {
+                menuItems.add(getString(R.string.change_disk));
+            }
+            if (emu_enable_gamefaq == 1) {
+                menuItems.add(getString(R.string.menu_faq));
+            }
+            if (emu_renderer == 2 || emu_renderer == 4 || emu_renderer == 5) {
+                menuItems.add(getString(R.string.menu_tools));
+            }
+            menuItems.add(getString(R.string.fbutton_quit));
+        } else if (emuStatus == 2) {
+            menuItems.add(getString(R.string.menu_framelimit));
+            if (emu_renderer == 2 || emu_renderer == 4 || emu_renderer == 5) {
+                menuItems.add(getString(R.string.menu_tools));
+            }
+            menuItems.add(getString(R.string.fbutton_quit));
         } else {
-            if (oneDisk) {
-                itemsGame = new String[]{
-                        getString(R.string.menu_resume_game),
-                        getString(R.string.menu_loadstate),
-                        getString(R.string.menu_savestate),
-                        getString(R.string.fbutton_preferences),
-                        getString(R.string.fbutton_quit)
-                };
-            } else {
-                itemsGame = new String[]{
-                        getString(R.string.menu_resume_game),
-                        getString(R.string.menu_loadstate),
-                        getString(R.string.menu_savestate),
-                        getString(R.string.fbutton_preferences),
-                        getString(R.string.change_disk),
-                        getString(R.string.fbutton_quit)
-                };
-            }
+            menuItems.add(getString(R.string.menu_runserver));
+            menuItems.add(getString(R.string.menu_runclient));
+            menuItems.add(getString(R.string.menu_gamepadinfo));
+            menuItems.add(getString(R.string.menu_prefinfo));
+            menuItems.add("Reset preferences");
+            menuItems.add("Privacy Policy");
+            menuItems.add(getString(R.string.fbutton_quit));
         }
-        String[] itemsGameFaq = {
-                getString(R.string.menu_resume_game),
-                getString(R.string.menu_loadstate),
-                getString(R.string.menu_savestate),
-                getString(R.string.change_disk),
-                getString(R.string.menu_faq),
-                getString(R.string.fbutton_quit)
-        };
-        String[] itemsGameGL = {
-                getString(R.string.menu_resume_game),
-                getString(R.string.menu_loadstate),
-                getString(R.string.menu_savestate),
-                getString(R.string.change_disk),
-                getString(R.string.menu_tools),
-                getString(R.string.fbutton_quit)
-        };
-        String[] itemsGameFaqGL = {
-                getString(R.string.menu_resume_game),
-                getString(R.string.menu_loadstate),
-                getString(R.string.menu_savestate),
-                getString(R.string.change_disk),
-                getString(R.string.menu_faq),
-                getString(R.string.menu_tools),
-                getString(R.string.fbutton_quit)
-        };
-        String[] itemsBios = {getString(R.string.menu_framelimit), getString(R.string.fbutton_quit)};
-        String[] itemsNetplay = {getString(R.string.menu_framelimit), getString(R.string.fbutton_quit)};
-        String[] itemsNetplayServer = {getString(R.string.menu_framelimit), getString(R.string.menu_loadstate), getString(R.string.menu_savestate), getString(R.string.fbutton_quit)};
-        String[] itemsBiosGL = {getString(R.string.menu_framelimit), getString(R.string.menu_tools), getString(R.string.fbutton_quit)};
-        String[] itemsUI = {getString(R.string.menu_runserver), getString(R.string.menu_runclient), getString(R.string.menu_gamepadinfo), getString(R.string.menu_prefinfo), "Reset preferences", "Privacy Policy", getString(R.string.fbutton_quit)};
+    
+        if (serverMode == 3) {
+            menuItems.clear();
+            menuItems.add(getString(R.string.menu_framelimit));
+            if (SHOW_LOAD_STATE_IN_MENU) {
+                menuItems.add(getString(R.string.menu_loadstate));
+            }
+            if (SHOW_SAVE_STATE_IN_MENU) {
+                menuItems.add(getString(R.string.menu_savestate));
+            }
+            menuItems.add(getString(R.string.fbutton_quit));
+        } else if (serverMode == 4) {
+            menuItems.clear();
+            menuItems.add(getString(R.string.menu_framelimit));
+            menuItems.add(getString(R.string.fbutton_quit));
+        }
+    
         ListView gListView = new ListView(mCont);
-        if (this.emuStatus == 1) {
-            if (this.serverMode == 3) {
-                adapter = new ArrayAdapter<>(mCont, android.R.layout.simple_list_item_1, itemsNetplayServer);
-            } else if (this.serverMode == 4) {
-                adapter = new ArrayAdapter<>(mCont, android.R.layout.simple_list_item_1, itemsNetplay);
-            } else if (this.emu_renderer == 2 || this.emu_renderer == 4 || this.emu_renderer == 5) {
-                if (this.emu_enable_gamefaq == 1) {
-                    adapter = new ArrayAdapter<>(mCont, android.R.layout.simple_list_item_1, itemsGameFaqGL);
-                } else {
-                    adapter = new ArrayAdapter<>(mCont, android.R.layout.simple_list_item_1, itemsGameGL);
-                }
-            } else if (this.emu_enable_gamefaq == 1) {
-                adapter = new ArrayAdapter<>(mCont, android.R.layout.simple_list_item_1, itemsGameFaq);
-            } else {
-                adapter = new ArrayAdapter<>(mCont, android.R.layout.simple_list_item_1, itemsGame);
-            }
-        } else if (this.emuStatus == 2) {
-            if (this.emu_renderer == 2 || this.emu_renderer == 4 || this.emu_renderer == 5) {
-                adapter = new ArrayAdapter<>(mCont, android.R.layout.simple_list_item_1, itemsBiosGL);
-            } else {
-                adapter = new ArrayAdapter<>(mCont, android.R.layout.simple_list_item_1, itemsBios);
-            }
-        } else {
-            adapter = new ArrayAdapter<>(mCont, android.R.layout.simple_list_item_1, itemsUI);
-        }
-        gListView.setAdapter((ListAdapter) adapter);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<>(mCont, android.R.layout.simple_list_item_1, menuItems);
+        gListView.setAdapter(adapter);
+    
+        final AlertDialog menuDialog = new AlertDialog.Builder(mCont).setView(gListView).create();
+    
         gListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> listView, View itemView, int position, long itemId) {
-                String selected = (String) adapter.getItem(position);
-                if (selected.equals(getString(R.string.fbutton_quit))) {
-                    finish();
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String selected = adapter.getItem(position);
+                if (selected == null) {
+                    menuDialog.dismiss();
                     return;
                 }
-                if (selected.equals(getString(R.string.change_disk))) {
+    
+                if (selected.equals(getString(R.string.menu_resume_game))) {
+                    // No action needed, just close the dialog
+                } else if (selected.equals(getString(R.string.fbutton_quit))) {
+                    forceQuitApp();
+                } else if (selected.equals(getString(R.string.menu_loadstate))) {
+                    showSstateDialog(mCont, f153e, 0, sdCardPath, hlebiosrunning);
+                } else if (selected.equals(getString(R.string.menu_savestate))) {
+                    showSstateDialog(mCont, f153e, 1, sdCardPath, hlebiosrunning);
+                } else if (selected.equals(getString(R.string.fbutton_preferences))) {
+                    startActivity(new Intent(ePSXe.this, ePSXePreferences.class));
+                }
+                 else if (selected.equals(getString(R.string.change_disk))) {
                     if (hasExactlyTwoDiscsForGame()) {
-                        ChangediscDialog.autoChangeToNextDiscIfTwo(
-                                mCont,
-                                f153e,
-                                currentPath,
-                                mIsoName
-                        );
-                        DialogUtil.closeDialog(menAlert);
+                        ChangediscDialog.autoChangeToNextDiscIfTwo(mCont, f153e, currentPath, mIsoName);
                         int num = getDiscNumber(mIsoName.getmIsoName());
                         if (num > 0) Toast.makeText(mCont, String.valueOf(num), Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    previousDiscPath = mIsoName.getmIsoName();
-                    previousDiscSlot = mIsoName.getmIsoSlot();
-                    ChangediscDialog.showChangediscDialog(
-                            mCont,
-                            f153e,
-                            currentPath,
-                            mIsoName
-                    );
-                    DialogUtil.closeDialog(menAlert);
-                    return;
-                }
-                if (ePSXe.this.emuStatus == 0) {
-                    ePSXe.this.menu_notrunning(position, mCont);
-                } else if (ePSXe.this.emuStatus == 1) {
-                    if (ePSXe.this.serverMode == 3) {
-                        ePSXe.this.menu_rungamenetserver(position, mCont);
-                    } else if (ePSXe.this.serverMode == 4) {
-                        ePSXe.this.menu_rungamenet(position, mCont);
                     } else {
-                        ePSXe.this.menu_rungame(position, mCont);
+                        previousDiscPath = mIsoName.getmIsoName();
+                        previousDiscSlot = mIsoName.getmIsoSlot();
+                        ChangediscDialog.showChangediscDialog(mCont, f153e, currentPath, mIsoName);
                     }
-                } else if (ePSXe.this.emuStatus == 2) {
-                    ePSXe.this.menu_runbios(position, mCont);
+                } else if (selected.equals(getString(R.string.menu_framelimit))) {
+                    mePSXeView.toggleframelimit();
+                } else if (selected.equals(getString(R.string.menu_tools))) {
+                    alertdialog_menuogl(mCont);
+                } else if (selected.equals(getString(R.string.menu_faq))) {
+                    alertdialog_gamefaq();
+                } else if (selected.equals(getString(R.string.menu_runserver))) {
+                    serverMode = 1;
+                    runIso("___RUNBIOS___", 0);
+                } else if (selected.equals(getString(R.string.menu_runclient))) {
+                    serverMode = 2;
+                    runIso("___RUNBIOS___", 0);
+                } else if (selected.equals(getString(R.string.menu_gamepadinfo))) {
+                    ReportUtil.showReportGamepadDialog(ePSXe.this, mePSXeReadPreferences);
+                } else if (selected.equals(getString(R.string.menu_prefinfo))) {
+                    AboutDialog.showAboutDialog(ePSXe.this);
+                } else if (selected.equals("Reset preferences")) {
+                    ResetPreferencesDialog.showResetPreferendesDialog(ePSXe.this);
+                } else if (selected.equals("Privacy Policy")) {
+                    try {
+                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.epsxe.com/privacy.php"));
+                        startActivity(browserIntent);
+                    } catch (ActivityNotFoundException e) {
+                        Toast.makeText(ePSXe.this, "Cannot open browser", Toast.LENGTH_SHORT).show();
+                    }
                 }
-                DialogUtil.closeDialog(ePSXe.this.menAlert);
+                
+                menuDialog.dismiss();
             }
         });
-        AlertDialog.Builder builder = new AlertDialog.Builder(mCont);
-        builder.setView(gListView);
-        this.menAlert = builder.create();
+    
+        this.menAlert = menuDialog;
         this.menAlert.show();
     }
-
+    
 
     @Override // android.app.Activity
     public void openOptionsMenu() {
@@ -4764,7 +4790,7 @@ public class ePSXe extends LicenseCheckActivity implements SensorEventListener {
         showOptionsMenuDialog(this, this.emu_ui_menu_mode);
     }
 
-    @Override // android.app.Activity, android.view.KeyEvent.Callback
+    @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         InputDevice device;
         int sources = 0;
@@ -4798,8 +4824,18 @@ public class ePSXe extends LicenseCheckActivity implements SensorEventListener {
             keyCode = event.getScanCode();
         }
         int keyval = keyCode | (event.isAltPressed() ? 65536 : 0);
+
+        if (keyval == 4) {
+            if (emuStatus == 1 || emuStatus == 2) {
+                alertdialog_menu(this);
+            } else {
+                forceQuitApp();
+            }
+            return true;
+        }
+
         if (this.emuStatus == 1 || this.emuStatus == 2) {
-            if ((keyval != 4 && keyval != 82) || (16778513 & sources) == 16778513) {
+            if ((keyval != 82) || (16778513 & sources) == 16778513) {
                 for (int p = 0; p < 4; p++) {
                     if (mdev == -1 || mdev == p || this.gamepadmatch == 0) {
                         for (int k = 0; k < 20; k++) {
@@ -4854,24 +4890,11 @@ public class ePSXe extends LicenseCheckActivity implements SensorEventListener {
                     }
                 }
             }
-            if (keyval == 4) {
-                if (this.emu_mouse && event.getSource() == 8194) {
-                    return onMouseEmulationButton(0, 2);
-                }
-                if (this.emu_exit_mapto_menu == 1) {
-                    showOptionsMenuDialog(this, this.emu_ui_menu_mode);
-                } else {
-                    alertdialog_quitGame();
-                }
-                return true;
-            }
-        } else if (this.emu_exit_mapto_menu == 1 && keyval == 4) {
-            if (this.emu_mouse && event.getSource() == 8194) {
-                return onMouseEmulationButton(0, 2);
-            }
+        } else if (this.emu_exit_mapto_menu == 1 && keyval == 82) { // 82 = MENU
             showOptionsMenuDialog(this, this.emu_ui_menu_mode);
             return true;
         }
+
         return super.onKeyDown(keyCode, event);
     }
 
