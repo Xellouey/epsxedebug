@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu>
+    <item
+        xmlns:android="http://schemas.android.com/apk/res/android" 
+        android:icon="@drawable/ic_cloud_upload_white_36dp"
+        android:id="@+id/action_upload"
+        android:title="@string/dropbox_upload"
+        android:showAsAction="ifRoom"/>
+    <item xmlns:android="http://schemas.android.com/apk/res/android"
+        android:icon="@drawable/ic_cloud_download_white_36dp"
+        android:id="@+id/action_download"
+        android:title="@string/dropbox_download"
+        android:showAsAction="ifRoom"/>
+</menu>

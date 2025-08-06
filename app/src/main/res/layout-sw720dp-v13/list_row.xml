@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:orientation="horizontal"
+    android:background="@drawable/list_selector"
+    android:padding="5dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/thumbnail"
+        android:background="@drawable/image_bg"
+        android:padding="3dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5dp"
+        android:layout_alignParentLeft="true">
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="128px"
+            android:layout_height="128px"
+            android:src="@drawable/none"/>
+    </LinearLayout>
+    <TextView
+        android:textSize="15dp"
+        android:typeface="sans"
+        android:textStyle="bold"
+        android:textColor="#040404"
+        android:id="@+id/TextView01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Title"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:layout_alignTop="@+id/thumbnail"/>
+    <TextView
+        android:textSize="10dp"
+        android:textColor="#343434"
+        android:id="@+id/TextView02"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:text="Just gona stand there and ..."
+        android:layout_toRightOf="@+id/thumbnail"
+        android:layout_below="@+id/TextView01"/>
+    <TextView
+        android:textSize="10dp"
+        android:textColor="#343434"
+        android:id="@+id/TextView04"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:text="Just gona stand there and ..."
+        android:layout_toRightOf="@+id/thumbnail"
+        android:layout_below="@+id/TextView02"/>
+    <TextView
+        android:textSize="10dp"
+        android:textColor="#343434"
+        android:id="@+id/TextView05"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:text="Just gona stand there and ..."
+        android:layout_toRightOf="@+id/thumbnail"
+        android:layout_below="@+id/TextView04"/>
+    <TextView
+        android:textSize="10dp"
+        android:textColor="#343434"
+        android:id="@+id/TextView06"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:text="Just gona stand there and ..."
+        android:layout_toRightOf="@+id/thumbnail"
+        android:layout_below="@+id/TextView05"/>
+    <TextView
+        android:textSize="10dp"
+        android:textStyle="bold"
+        android:textColor="#10bcc9"
+        android:gravity="right"
+        android:id="@+id/TextView03"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5dp"
+        android:text="NTSC"
+        android:layout_alignTop="@+id/TextView01"
+        android:layout_alignParentRight="true"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/arrow"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"/>
+</RelativeLayout>

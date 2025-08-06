@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:icon="@drawable/ic_menu_refresh"
+        android:id="@+id/action_rescan"
+        android:title="@string/file_rescan"
+        android:showAsAction="ifRoom"/>
+    <item
+        android:icon="@drawable/ic_menu_gallery"
+        android:id="@+id/action_gamedetails"
+        android:title="@string/file_gamedetails"
+        android:showAsAction="never"/>
+    <item
+        android:icon="@drawable/ic_menu_archive"
+        android:id="@+id/action_filebrowser"
+        android:title="@string/file_browsefiles"
+        android:showAsAction="never"/>
+</menu>

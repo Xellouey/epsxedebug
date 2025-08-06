@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.epsxe.ePSXe">
+
+    <uses-feature
+        android:name="android.hardware.bluetooth"
+        android:required="false"/>
+    <uses-feature
+        android:glEsVersion="0x20000"
+        android:required="false"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="com.android.vending.CHECK_LICENSE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT"/>
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-feature
+        android:name="android.hardware.touchscreen.multitouch"
+        android:required="false"/>
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="false"/>
+    <uses-feature
+        android:name="android.software.leanback"
+        android:required="false"/>
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:xlargeScreens="true"/>
+    <application
+        android:name="com.epsxe.ePSXe.ePSXeApplication"
+        android:label="@string/app_name"
+        android:icon="@drawable/icon"
+        android:hasCode="true"
+        android:hardwareAccelerated="true"
+        android:isGame="true"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:requestLegacyExternalStorage="true">
+        <activity
+            android:theme="@style/MainThemeNoAction"
+            android:label="@string/app_name"
+            android:name="com.epsxe.ePSXe.SplashActivity"
+            android:configChanges="screenSize|orientation|keyboardHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:theme="@style/MainThemeNoAction"
+            android:label="@string/app_name"
+            android:name="com.epsxe.ePSXe.ePSXe"
+            android:configChanges="screenSize|orientation|keyboardHidden">
+        </activity>
+        <activity
+            android:theme="@style/MainThemeNoAction"
+            android:label="@string/app_name"
+            android:name="com.epsxe.ePSXe.ePSXeTvLauncher">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LEANBACK_LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:theme="@style/MainTheme"
+            android:label="@string/filechooser_name"
+            android:name="com.epsxe.ePSXe.FileChooser">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:theme="@style/MainTheme"
+            android:label="@string/filechooser_name"
+            android:name="com.epsxe.ePSXe.gFileChooser">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:theme="@style/MainTheme"
+            android:label="@string/inputlist_name"
+            android:name="com.epsxe.ePSXe.InputList">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:theme="@style/MainTheme"
+            android:label="@string/gamepadlist_name"
+            android:name="com.epsxe.ePSXe.GamepadList">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:theme="@style/MainThemeNoAction"
+            android:label="@string/padeditor_name"
+            android:name="com.epsxe.ePSXe.ePSXePadEditor">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:theme="@style/MainTheme"
+            android:label="@string/set_preferences"
+            android:name="com.epsxe.ePSXe.ePSXePreferences">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:theme="@style/MainTheme"
+            android:label="@string/help"
+            android:name="com.epsxe.ePSXe.ePSXeHelp">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:theme="@style/MainTheme"
+            android:label="@string/help"
+            android:name="com.epsxe.ePSXe.ePSXeTerms">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:theme="@style/MainTheme"
+            android:label="@string/help"
+            android:name="com.epsxe.ePSXe.ePSXeSupport">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:theme="@style/MainTheme"
+            android:label="@string/inputgamepadtest"
+            android:name="com.epsxe.ePSXe.GamepadTest">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:theme="@style/MainTheme"
+            android:label="@string/inputmapping"
+            android:name="com.epsxe.ePSXe.InputMapping">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:label="@string/app_name"
+            android:name="com.epsxe.ePSXe.ePSXeNative"
+            android:launchMode="singleInstance"
+            android:configChanges="screenSize|orientation|keyboardHidden">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="xperia"/>
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:theme="@style/MainTheme"
+            android:label="Dropbox Manager"
+            android:name="com.epsxe.ePSXe.dropbox.DropboxManager">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.dropbox.core.android.AuthActivity"
+            android:launchMode="singleTask"
+            android:configChanges="orientation|keyboard">
+            <intent-filter>
+                <data android:scheme="db-cxvfhfiiayajq4v"/>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:theme="@style/MainTheme"
+            android:label="Gdrive Manager"
+            android:name="com.epsxe.ePSXe.gdrive.GdriveManager">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <meta-data
+            android:name="xperiaplayoptimized_content"
+            android:resource="@drawable/icon"/>
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="2.1"/>
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version"/>
+    </application>
+</manifest>

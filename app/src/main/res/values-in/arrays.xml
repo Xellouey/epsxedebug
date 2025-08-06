@@ -1,0 +1,1015 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="listanalogaxis">
+        <item>AXIS_X</item>
+        <item>AXIS_Y</item>
+        <item>AXIS_PRESSURE</item>
+        <item>AXIS_SIZE</item>
+        <item>AXIS_TOUCH_MAJOR</item>
+        <item>AXIS_TOUCH_MINOR</item>
+        <item>AXIS_TOOL_MAJOR</item>
+        <item>AXIS_TOOL_MINOR</item>
+        <item>AXIS_ORIENTATION</item>
+        <item>AXIS_VSCROLL</item>
+        <item>AXIS_HSCROLL</item>
+        <item>AXIS_Z</item>
+        <item>AXIS_RX</item>
+        <item>AXIS_RY</item>
+        <item>AXIS_RZ</item>
+        <item>AXIS_HAT_X</item>
+        <item>AXIS_HAT_Y</item>
+        <item>AXIS_LTRIGGER</item>
+        <item>AXIS_RTRIGGER</item>
+        <item>AXIS_THROTTLE</item>
+        <item>AXIS_RUDDER</item>
+        <item>AXIS_WHEEL</item>
+        <item>AXIS_GAS</item>
+        <item>AXIS_BRAKE</item>
+        <item>AXIS_DISTANCE</item>
+        <item>AXIS_TILT</item>
+        <item>26</item>
+        <item>27</item>
+        <item>28</item>
+        <item>29</item>
+        <item>30</item>
+        <item>31</item>
+        <item>AXIS_GENERIC_1</item>
+        <item>AXIS_GENERIC_2</item>
+        <item>AXIS_GENERIC_3</item>
+        <item>AXIS_GENERIC_4</item>
+        <item>AXIS_GENERIC_5</item>
+        <item>AXIS_GENERIC_6</item>
+        <item>AXIS_GENERIC_7</item>
+        <item>AXIS_GENERIC_8</item>
+        <item>AXIS_GENERIC_9</item>
+        <item>AXIS_GENERIC_10</item>
+        <item>AXIS_GENERIC_11</item>
+        <item>AXIS_GENERIC_12</item>
+        <item>AXIS_GENERIC_13</item>
+        <item>AXIS_GENERIC_14</item>
+        <item>AXIS_GENERIC_15</item>
+        <item>AXIS_GENERIC_16</item>
+        <item>NONE</item>
+        <item>NATIVE</item>
+    </string-array>
+    <string-array name="listanalogaxisValues">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+        <item>25</item>
+        <item>26</item>
+        <item>27</item>
+        <item>28</item>
+        <item>29</item>
+        <item>30</item>
+        <item>31</item>
+        <item>32</item>
+        <item>33</item>
+        <item>34</item>
+        <item>35</item>
+        <item>36</item>
+        <item>37</item>
+        <item>38</item>
+        <item>39</item>
+        <item>40</item>
+        <item>41</item>
+        <item>42</item>
+        <item>43</item>
+        <item>44</item>
+        <item>45</item>
+        <item>46</item>
+        <item>47</item>
+        <item>48</item>
+        <item>49</item>
+    </string-array>
+    <string-array name="listanalogaxishat">
+        <item>AXIS_HAT</item>
+        <item>AXIS_XY</item>
+    </string-array>
+    <string-array name="listanalogaxishatValues">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="listanalogprofile">
+        <item>Tidak ada/Virtual</item>
+        <item>Xbox 360</item>
+        <item>Xbox 360 Wireless</item>
+        <item>Playstation 3 DS</item>
+        <item>Logitech F310/F510/F710</item>
+        <item>Archos Gamepad</item>
+        <item>Nvidia Shield</item>
+        <item>Ouya Controller</item>
+        <item>Moga Official Driver (Normal/Pro)</item>
+        <item>MSI Chainpus BGP100</item>
+        <item>iPega Wireless HID</item>
+        <item>iCade HID</item>
+        <item>iControlPad</item>
+        <item>Phone Joy</item>
+        <item>Zeemote JS1</item>
+        <item>Moga Mobile (non official)</item>
+        <item>Moga Pro (non official)</item>
+    </string-array>
+    <string-array name="listanalogprofileValues">
+        <item>0</item>
+        <item>1</item>
+        <item>xboxw</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>nvidia</item>
+        <item>ouya</item>
+        <item>moganative</item>
+        <item>bgp100</item>
+        <item>ipega</item>
+        <item>icade</item>
+        <item>icp</item>
+        <item>phonejoy</item>
+        <item>zeemote</item>
+        <item>moga</item>
+        <item>mogapro</item>
+    </string-array>
+    <string-array name="listanalogrange">
+        <item>Kotak</item>
+        <item>Lingkaran</item>
+    </string-array>
+    <string-array name="listanalograngeValues">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="listbiosHle">
+        <item>Nonaktifkan</item>
+        <item>Aktifkan</item>
+        <item>DeteksiAuto</item>
+    </string-array>
+    <string-array name="listbiosHleValues">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+    <string-array name="listcpuCustomFps">
+        <item>Bawaan</item>
+        <item>20</item>
+        <item>30</item>
+        <item>40</item>
+        <item>50</item>
+        <item>60</item>
+        <item>70</item>
+        <item>80</item>
+        <item>90</item>
+        <item>100</item>
+        <item>120</item>
+    </string-array>
+    <string-array name="listcpuCustomFpsValues">
+        <item>0</item>
+        <item>20</item>
+        <item>30</item>
+        <item>40</item>
+        <item>50</item>
+        <item>60</item>
+        <item>70</item>
+        <item>80</item>
+        <item>90</item>
+        <item>100</item>
+        <item>120</item>
+    </string-array>
+    <string-array name="listcpuFrameSkip">
+        <item>Nonaktifkan</item>
+        <item>Aktifkan</item>
+        <item>Aktifkan untuk Resolusi Tinggi</item>
+    </string-array>
+    <string-array name="listcpuFrameSkipValues">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+    <string-array name="listcpuMME">
+        <item>Nonaktifkan</item>
+        <item>DeteksiAuto</item>
+        <item>Paksakan (Tidak Bekerja pada Tegra2)</item>
+    </string-array>
+    <string-array name="listcpuMMEValues">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+    <string-array name="listcpuShowFPS">
+        <item>Nonaktifkan</item>
+        <item>Aktifkan</item>
+    </string-array>
+    <string-array name="listcpuShowFPSValues">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="listcpuoverclock">
+        <item>x1 (Akurat)</item>
+        <item>x1.5</item>
+        <item>x2.0</item>
+        <item>x2.5</item>
+        <item>x3.0</item>
+    </string-array>
+    <string-array name="listcpuoverclockValues">
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>25</item>
+        <item>30</item>
+    </string-array>
+    <string-array name="listdebugInterpreter">
+        <item>Nonaktifkan</item>
+        <item>Aktifkan (sangat lambat)</item>
+    </string-array>
+    <string-array name="listdebugInterpreterValues">
+        <item>1</item>
+        <item>16</item>
+    </string-array>
+    <string-array name="listgpu2dfilter">
+        <item>Nonaktifkan</item>
+        <item>2xsai</item>
+        <item>xBRZ x2</item>
+        <item>xBRZ x3</item>
+        <item>xBRZ x4</item>
+    </string-array>
+    <string-array name="listgpu2dfilterValues">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+    <string-array name="listgpuAccurateMode">
+        <item>Nonaktifkan</item>
+        <item>Aktifkan</item>
+    </string-array>
+    <string-array name="listgpuAccurateModeValues">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="listgpuBrightnessprofile">
+        <item>Bawaan</item>
+        <item>Pencahayaan Rendah</item>
+        <item>Pencahayaan Sedang</item>
+        <item>Pencahayaan Tinggi</item>
+    </string-array>
+    <string-array name="listgpuBrightnessprofileValues">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+    <string-array name="listgpuDmachaincore">
+        <item>Aktifkan dalam sebagian permainan (tercepat)</item>
+        <item>Selalu Aktifkan (lambat namun lebih akurat)</item>
+    </string-array>
+    <string-array name="listgpuDmachaincoreValues">
+        <item>1</item>
+        <item>0</item>
+    </string-array>
+    <string-array name="listgpuMtPref">
+        <item>Tidak Aktif</item>
+        <item>2-Thread</item>
+        <item>2-Thread + efek (lambat)</item>
+        <item>2-Thread + banyak efek (Lebih lambat)</item>
+    </string-array>
+    <string-array name="listgpuMtPrefValues">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+    <string-array name="listgpuNamePref">
+        <item>DeteksiAuto VirtualTexture</item>
+        <item>Nonaktifkan VirtualTexture (Mali-400 dan gpucard lawas)</item>
+        <item>Aktifkan VirtualTexture (Adreno-3XX dan gpucard terbaru)</item>
+    </string-array>
+    <string-array name="listgpuNamePrefValues">
+        <item>2</item>
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="listgpuOverscanbottom">
+        <item>Nonaktifkan</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+    <string-array name="listgpuOverscanbottomValues">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+    <string-array name="listgpuOverscantop">
+        <item>Nonaktifkan</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+    <string-array name="listgpuOverscantopValues">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+    <string-array name="listgpuSoftMtPref">
+        <item>Tidak Aktif (akurat)</item>
+        <item>2-Thread (tercepat pada 2/4-core)</item>
+    </string-array>
+    <string-array name="listgpuSoftMtPrefValues">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="listgpublitskip">
+        <item>Nonaktifkan (halus)</item>
+        <item>Aktifkan (tercepat)</item>
+    </string-array>
+    <string-array name="listgpublitskipValues">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="listgpuiresolution">
+        <item>x1 (Akurat)</item>
+        <item>x2 (Halus/Lambat)</item>
+        <item>x4 (Sangat Halus/Terlambat)</item>
+    </string-array>
+    <string-array name="listgpuiresolutionValues">
+        <item>1</item>
+        <item>2</item>
+        <item>4</item>
+    </string-array>
+    <string-array name="listgpuperspectivecorrection">
+        <item>Aktifkan (Akurat)</item>
+        <item>Nonaktifkan (tercepat)</item>
+    </string-array>
+    <string-array name="listgpuperspectivecorrectionValues">
+        <item>1</item>
+        <item>0</item>
+    </string-array>
+    <string-array name="listgpureduceres">
+        <item>Resolusi Penuh</item>
+        <item>480p</item>
+        <item>600p</item>
+    </string-array>
+    <string-array name="listgpureduceresValues">
+        <item>0</item>
+        <item>480</item>
+        <item>600</item>
+    </string-array>
+    <string-array name="listgpuscanlinesthick">
+        <item>Bawaan</item>
+        <item>1-garis</item>
+        <item>2-garis</item>
+        <item>3-garis</item>
+        <item>4-garis</item>
+    </string-array>
+    <string-array name="listgpuscanlinesthickValues">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+    <string-array name="listgpuscanlinestrans">
+        <item>Nonaktifkan</item>
+        <item>80/100</item>
+        <item>60/100</item>
+        <item>40/100</item>
+        <item>20/100</item>
+        <item>Hitam Penuh</item>
+    </string-array>
+    <string-array name="listgpuscanlinestransValues">
+        <item>255</item>
+        <item>204</item>
+        <item>153</item>
+        <item>102</item>
+        <item>51</item>
+        <item>0</item>
+    </string-array>
+    <string-array name="listgteprecission">
+        <item>64 bit (Akurat)</item>
+        <item>32 bit (tercepat)</item>
+    </string-array>
+    <string-array name="listgteprecissionValues">
+        <item>1</item>
+        <item>0</item>
+    </string-array>
+    <string-array name="listinputAlpha">
+        <item>0/100</item>
+        <item>20/100</item>
+        <item>40/100</item>
+        <item>60/100</item>
+        <item>80/100</item>
+        <item>100/100</item>
+    </string-array>
+    <string-array name="listinputAlphaValues">
+        <item>0</item>
+        <item>20</item>
+        <item>40</item>
+        <item>60</item>
+        <item>80</item>
+        <item>100</item>
+    </string-array>
+    <string-array name="listinputAutofirebutton">
+        <item>L2</item>
+        <item>R2</item>
+        <item>L1</item>
+        <item>R1</item>
+        <item>Segitiga</item>
+        <item>Lingkaran</item>
+        <item>Silang</item>
+        <item>Kotak</item>
+        <item>Select</item>
+        <item>L3</item>
+        <item>R3</item>
+        <item>Start</item>
+        <item>Atas</item>
+        <item>Kanan</item>
+        <item>Bawah</item>
+        <item>Kiri</item>
+    </string-array>
+    <string-array name="listinputAutofirebuttonValues">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+    </string-array>
+    <string-array name="listinputAutofirefreq">
+        <item>Nonaktifkan</item>
+        <item>Setiap 2 gambar</item>
+        <item>Setiap 3 gambar</item>
+        <item>Setiap 4 gambar</item>
+        <item>Setiap 8 gambar</item>
+        <item>Setiap 16 gambar</item>
+        <item>Setiap 32 gambar</item>
+        <item>Setiap 50 gambar</item>
+        <item>Setiap 60 gambar</item>
+    </string-array>
+    <string-array name="listinputAutofirefreqValues">
+        <item>0</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>8</item>
+        <item>16</item>
+        <item>32</item>
+        <item>50</item>
+        <item>60</item>
+    </string-array>
+    <string-array name="listinputBluez">
+        <item>Nonaktifkan</item>
+        <item>Aktifkan</item>
+    </string-array>
+    <string-array name="listinputBluezValues">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="listinputDetectGamepad">
+        <item>Nonaktifkan</item>
+        <item>Aktifkan</item>
+    </string-array>
+    <string-array name="listinputDetectGamepadValues">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="listinputDynamicaction">
+        <item>Nonaktifkan</item>
+        <item>Aktifkan</item>
+    </string-array>
+    <string-array name="listinputDynamicactionValues">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="listinputDynamicpad">
+        <item>Nonaktifkan</item>
+        <item>Aktifkan</item>
+    </string-array>
+    <string-array name="listinputDynamicpadValues">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="listinputExtras">
+        <item>Nonaktifkan</item>
+        <item>MuatKondisi1</item>
+        <item>MuatKondisi2</item>
+        <item>MuatKondisi3</item>
+        <item>MuatKondisi4</item>
+        <item>MuatKondisi5</item>
+        <item>SimpanKondisi1</item>
+        <item>SimpanKondisi2</item>
+        <item>SimpanKondisi3</item>
+        <item>SimpanKondisi4</item>
+        <item>SimpanKondisi5</item>
+        <item>Segitiga/Lingkaran</item>
+        <item>Segitiga/Kotak</item>
+        <item>Kotak/Silang</item>
+        <item>Lingkaran/Silang</item>
+        <item>Segitiga/Silang</item>
+        <item>Kotak/Circle</item>
+        <item>L1/R1</item>
+        <item>L2/R2</item>
+        <item>Framelimit</item>
+        <item>StickyKotak</item>
+        <item>StickySilang</item>
+        <item>StickyLingkaran</item>
+        <item>StickySegitiga</item>
+        <item>StickyL1</item>
+        <item>StickyL2</item>
+        <item>StickyR1</item>
+        <item>StickyR2</item>
+        <item>Menu</item>
+    </string-array>
+    <string-array name="listinputExtrasValues">
+        <item>19</item>
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+        <item>25</item>
+        <item>26</item>
+        <item>27</item>
+        <item>28</item>
+    </string-array>
+    <string-array name="listinputHide">
+        <item>Tampilkan Tombol</item>
+        <item>Sembunyikan Tombol</item>
+    </string-array>
+    <string-array name="listinputHideValues">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="listinputKeyboard">
+        <item>Nonaktifkan</item>
+        <item>Aktifkan</item>
+    </string-array>
+    <string-array name="listinputKeyboardValues">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="listinputPadAcc">
+        <item>Nonaktifkan</item>
+        <item>AXIS_X</item>
+        <item>AXIS_Y</item>
+        <item>AXIS_X_AND_Y</item>
+        <item>AXIS_INV_X</item>
+        <item>AXIS_INV_Y</item>
+        <item>AXIS_INV_X_AND_Y</item>
+        <item>AXIS_INV_REV_X</item>
+        <item>AXIS_INV_REV_Y</item>
+        <item>AXIS_INV_REV_X_AND_Y</item>
+    </string-array>
+    <string-array name="listinputPadAccValues">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+    </string-array>
+    <string-array name="listinputPadMode">
+        <item>Digital (Biasa)</item>
+        <item>DualShock</item>
+        <item>Namco Gun</item>
+        <item>Justifier Gun</item>
+        <item>Mouse (OTG)</item>
+        <item>Putuskan</item>
+    </string-array>
+    <string-array name="listinputPadModeValues">
+        <item>1</item>
+        <item>4</item>
+        <item>3</item>
+        <item>8</item>
+        <item>2</item>
+        <item>0</item>
+    </string-array>
+    <string-array name="listinputPadType">
+        <item>LayarSentuh (Virtual)</item>
+        <item>Tombol Perangkat</item>
+    </string-array>
+    <string-array name="listinputPadTypeValues">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="listinputPaintPadMode">
+        <item>Pure White - Digital</item>
+        <item>Pure White - Analog</item>
+        <item>Amethyst Crystal - Digital</item>
+        <item>Amethyst Crystal - Analog</item>
+        <item>Binchotite - Digital</item>
+        <item>Binchotite - Analog</item>
+        <item>Bold Amethyst - Digital</item>
+        <item>Bold Amethyst - Analog</item>
+        <item>Bold - Digital</item>
+        <item>Bold - Analog</item>
+        <item>Bold Emerald - Digital</item>
+        <item>Bold Emerald - Analog</item>
+        <item>Bold Gold - Digital</item>
+        <item>Bold_Gold - Analog</item>
+        <item>Bold Pink - Digital</item>
+        <item>Bold Pink - Analog</item>
+        <item>Bold Sapphire - Digital</item>
+        <item>Bold Sapphire - Analog</item>
+        <item>Bold Silk - Digital</item>
+        <item>Bold Silk - Analog</item>
+        <item>Bold Turquoise - Digital</item>
+        <item>Bold Turquoise - Analog</item>
+        <item>Emerald Crystal - Digital</item>
+        <item>Emerald Crystal - Analog</item>
+        <item>Gold Crystal - Digital</item>
+        <item>Gold Crystal - Analog</item>
+        <item>Negative Crystal - Digital</item>
+        <item>Negative Crystal - Analog</item>
+        <item>Pink Crystal - Digital</item>
+        <item>Pink Crystal - Analog</item>
+        <item>Sapphire Crystal - Digital</item>
+        <item>Sapphire Crystal - Analog</item>
+        <item>Silk Crystal - Digital</item>
+        <item>Silk Crystal - Analog</item>
+        <item>Snow - Digital</item>
+        <item>Snow - Analog</item>
+        <item>Turquoise Crystal - Digital</item>
+        <item>Turquoise Crystal - Analog</item>
+        <item>Old skin</item>
+        <item>Old skin</item>
+        <item>Buatan</item>
+        <item>Tidak Memilih</item>
+    </string-array>
+    <string-array name="listinputPaintPadModeValues">
+        <item>0</item>
+        <item>1</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+        <item>25</item>
+        <item>26</item>
+        <item>27</item>
+        <item>28</item>
+        <item>29</item>
+        <item>30</item>
+        <item>31</item>
+        <item>32</item>
+        <item>33</item>
+        <item>34</item>
+        <item>35</item>
+        <item>36</item>
+        <item>37</item>
+        <item>38</item>
+        <item>39</item>
+        <item>40</item>
+        <item>41</item>
+        <item>42</item>
+        <item>43</item>
+        <item>44</item>
+        <item>45</item>
+        <item>3</item>
+        <item>5</item>
+        <item>4</item>
+        <item>2</item>
+    </string-array>
+    <string-array name="listinputPlayerMode">
+        <item>1/2 Pemain</item>
+        <item>2 Pemain (mode berbagi)</item>
+        <item>3/4 Pemain (Multitap Port 1)</item>
+        <item>3/4 Pemain (Multitap Port 2)</item>
+    </string-array>
+    <string-array name="listinputPlayerModeValues">
+        <item>1</item>
+        <item>10</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+    <string-array name="listinputVibrate">
+        <item>Nonaktifkan Getaran pada tombol LayarSentuh</item>
+        <item>Aktifkan Getaran pada tombol LayarSentuh</item>
+    </string-array>
+    <string-array name="listinputVibrateValues">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="listinputVibrationPSX">
+        <item>Nonaktifkan</item>
+        <item>Aktifkan</item>
+        <item>Aktifkan Pada Perangkat</item>
+    </string-array>
+    <string-array name="listinputVibrationPSXValues">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+    <string-array name="listinputfilter">
+        <item>Aktifkan</item>
+        <item>Nonaktifkan</item>
+    </string-array>
+    <string-array name="listinputfilterValues">
+        <item>1</item>
+        <item>0</item>
+    </string-array>
+    <string-array name="listmcrFileMode">
+        <item>Berbagi pada semua permainan</item>
+        <item>Satu per Permainan (dipaksakan dalam mode HLE)</item>
+    </string-array>
+    <string-array name="listmcrFileModeValues">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="listmcrStatus">
+        <item>Aktifkan SEMUA MC</item>
+        <item>Hanya MC 1</item>
+        <item>Hanya MC 2</item>
+        <item>Nonaktifkan Semua MC</item>
+    </string-array>
+    <string-array name="listmcrStatusValues">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+    <string-array name="listmiscAutosave">
+        <item>Nonaktifkan</item>
+        <item>Aktifkan</item>
+    </string-array>
+    <string-array name="listmiscAutosaveValues">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="listmiscBrowsermode">
+        <item>Ambil berkas</item>
+        <item>Detil Permainan</item>
+        <item>Daftar Permainan</item>
+    </string-array>
+    <string-array name="listmiscBrowsermodeValues">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+    <string-array name="listmiscbootmode">
+        <item>Tampilkan Logo PSX</item>
+        <item>Jalankan Cepat</item>
+    </string-array>
+    <string-array name="listmiscbootmodeValues">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="listmiscuilanguage">
+        <item>Bahasa Bawaan</item>
+        <item>Inggris</item>
+    </string-array>
+    <string-array name="listmiscuilanguageValues">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="listmiscuimenu">
+        <item>Dialog pada Android 5.0+</item>
+        <item>Menu Android</item>
+        <item>Dialog</item>
+    </string-array>
+    <string-array name="listmiscuimenuValues">
+        <item>2</item>
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="listscreenBlackbands">
+        <item>Pita Asli PSX</item>
+        <item>Sembunyikan pita atas/bawah (gambar mungkin bermasalah)</item>
+    </string-array>
+    <string-array name="listscreenBlackbandsValues">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="listscreenDepth">
+        <item>16 (tercepat)</item>
+        <item>32 (terbaik mdec)</item>
+    </string-array>
+    <string-array name="listscreenDepthValues">
+        <item>16</item>
+        <item>32</item>
+    </string-array>
+    <string-array name="listscreenOrientation">
+        <item>Lanskap</item>
+        <item>Portrait</item>
+        <item>Lanskap Terbalik</item>
+        <item>Setengah Lanskap</item>
+    </string-array>
+    <string-array name="listscreenOrientationValues">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+    <string-array name="listscreenRatio">
+        <item>Bentangkan</item>
+        <item>4:3</item>
+        <item>LayarLebar</item>
+    </string-array>
+    <string-array name="listscreenRatioValues">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+    <string-array name="listscreenVrmode">
+        <item>Nonaktifkan</item>
+        <item>Layar Penuh</item>
+        <item>Layar Sedang</item>
+        <item>Layar Kecil</item>
+    </string-array>
+    <string-array name="listscreenVrmodeValues">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+    <string-array name="listsoundLatency">
+        <item>Normal</item>
+        <item>Rendah</item>
+        <item>Sangat Rendah</item>
+        <item>Terendah (percobaan)</item>
+    </string-array>
+    <string-array name="listsoundLatencyValues">
+        <item>0</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+    <string-array name="listsoundQA">
+        <item>Tanpa Suara (tercepat)</item>
+        <item>Sedikit efek suara (cepat)</item>
+        <item>Efek suara lengkap (lambat)</item>
+    </string-array>
+    <string-array name="listsoundQAValues">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+    <string-array name="listsoundRate">
+        <item>44100 Hz</item>
+        <item>22050 Hz</item>
+    </string-array>
+    <string-array name="listsoundRateValues">
+        <item>44100</item>
+        <item>22050</item>
+    </string-array>
+    <string-array name="listvideoDither">
+        <item>Nonaktifkan (tercepat)</item>
+        <item>Aktifkan (halus)</item>
+        <item>Selalu Aktifkan (sangat halus)</item>
+    </string-array>
+    <string-array name="listvideoDitherValues">
+        <item>0</item>
+        <item>1</item>
+        <item>3</item>
+    </string-array>
+    <string-array name="listvideoFilter">
+        <item>Tidak ada</item>
+        <item>Bilinear (sangat lambat)</item>
+    </string-array>
+    <string-array name="listvideoFilterValues">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="listvideoFilterhw">
+        <item>Nonaktifkan</item>
+        <item>Aktifkan (halus)</item>
+    </string-array>
+    <string-array name="listvideoFilterhwValues">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="listvideoMode">
+        <item>Asli</item>
+        <item>Diperkecil</item>
+        <item>Dibentangkan</item>
+    </string-array>
+    <string-array name="listvideoModeValues">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+    <string-array name="listvideoRate">
+        <item>60/50 FPS</item>
+        <item>30/25 FPS</item>
+    </string-array>
+    <string-array name="listvideoRateValues">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="listvideoRenderer">
+        <item>Perangkat</item>
+        <item>Perangkat + Bayangan</item>
+        <item>Pete OGL2 (Beta)</item>
+        <item>Fast OGL2 Renderer</item>
+        <item>Pengaya OpenGL (halus)</item>
+        <item>Software (usang)</item>
+    </string-array>
+    <string-array name="listvideoRendererValues">
+        <item>1</item>
+        <item>3</item>
+        <item>5</item>
+        <item>4</item>
+        <item>2</item>
+        <item>0</item>
+    </string-array>
+</resources>

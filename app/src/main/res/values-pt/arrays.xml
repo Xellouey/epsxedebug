@@ -1,0 +1,633 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="listanalogaxis">
+        <item>AXIS_X</item>
+        <item>AXIS_Y</item>
+        <item>AXIS_PRESSÃO</item>
+        <item>AXIS_TAMANHO</item>
+        <item>AXIS_TOQUE_MAIOR</item>
+        <item>AXIS_TOQUE_MENOR</item>
+        <item>AXIS_FERRAMENTA_MAIOR</item>
+        <item>AXIS_FERRAMENTA_MENOR</item>
+        <item>AXIS_ORIENTAÇÃO</item>
+        <item>AXIS_SCROLLV</item>
+        <item>AXIS_SCROLLH</item>
+        <item>AXIS_Z</item>
+        <item>AXIS_RX</item>
+        <item>AXIS_RY</item>
+        <item>AXIS_RZ</item>
+        <item>AXIS_HAT_X</item>
+        <item>AXIS_HAT_Y</item>
+        <item>AXIS_GATILHOL</item>
+        <item>AXIS_GATILHOR</item>
+        <item>AXIS_REGULADOR</item>
+        <item>AXIS_LEME</item>
+        <item>AXIS_VOLANTE</item>
+        <item>AXIS_ACELERADOR</item>
+        <item>AXIS_TRAVÃO</item>
+        <item>AXIS_DISTÃNCIA</item>
+        <item>AXIS_INCLINAR</item>
+        <item>26</item>
+        <item>27</item>
+        <item>28</item>
+        <item>29</item>
+        <item>30</item>
+        <item>31</item>
+        <item>AXIS_GENERICO_1</item>
+        <item>AXIS_GENERICO_2</item>
+        <item>AXIS_GENERICO_3</item>
+        <item>AXIS_GENERICO_4</item>
+        <item>AXIS_GENERICO_5</item>
+        <item>AXIS_GENERICO_6</item>
+        <item>AXIS_GENERICO_7</item>
+        <item>AXIS_GENERICO_8</item>
+        <item>AXIS_GENERICO_9</item>
+        <item>AXIS_GENERICO_10</item>
+        <item>AXIS_GENERICO_11</item>
+        <item>AXIS_GENERICO_12</item>
+        <item>AXIS_GENERICO_13</item>
+        <item>AXIS_GENERICO_14</item>
+        <item>AXIS_GENERICO_15</item>
+        <item>AXIS_GENERICO_16</item>
+        <item>NENHUM</item>
+        <item>NATIVO</item>
+    </string-array>
+    <string-array name="listanalogaxisValues">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+        <item>25</item>
+        <item>26</item>
+        <item>27</item>
+        <item>28</item>
+        <item>29</item>
+        <item>30</item>
+        <item>31</item>
+        <item>32</item>
+        <item>33</item>
+        <item>34</item>
+        <item>35</item>
+        <item>36</item>
+        <item>37</item>
+        <item>38</item>
+        <item>39</item>
+        <item>40</item>
+        <item>41</item>
+        <item>42</item>
+        <item>43</item>
+        <item>44</item>
+        <item>45</item>
+        <item>46</item>
+        <item>47</item>
+        <item>48</item>
+        <item>49</item>
+    </string-array>
+    <string-array name="listanalogaxishat">
+        <item>AXIS_HAT</item>
+        <item>AXIS_XY</item>
+    </string-array>
+    <string-array name="listanalogaxishatValues">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="listanalogprofile">
+        <item>Nenhum/Virtual</item>
+        <item>Xbox 360</item>
+        <item>Xbox 360 sem fio</item>
+        <item>Playstation 3 DualShock</item>
+        <item>Logitech F310/F510/F710</item>
+        <item>Gamepad Archos</item>
+        <item>Nvidia Shield</item>
+        <item>Controlador Ouya</item>
+        <item>Controlador oficial Moga (Normal/Pro)</item>
+        <item>MSI Chainpus BGP100</item>
+        <item>iPega sem fio HID</item>
+        <item>iCade HID</item>
+        <item>iControlPad</item>
+        <item>Phone Joy</item>
+        <item>Zeemote JS1</item>
+        <item>Moga Mobile (não oficial)</item>
+        <item>Moga Pro (não oficial)</item>
+    </string-array>
+    <string-array name="listanalogprofileValues">
+        <item>0</item>
+        <item>1</item>
+        <item>xboxw</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>nvidia</item>
+        <item>ouya</item>
+        <item>moganative</item>
+        <item>bgp100</item>
+        <item>ipega</item>
+        <item>icade</item>
+        <item>icp</item>
+        <item>phonejoy</item>
+        <item>zeemote</item>
+        <item>moga</item>
+        <item>mogapro</item>
+    </string-array>
+    <string-array name="listanalogrange">
+        <item>Quadrado</item>
+        <item>Círculo</item>
+    </string-array>
+    <string-array name="listanalograngeValues">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="listcpuFrameSkip">
+        <item>Desativado</item>
+        <item>Ativado</item>
+        <item>Ativado para alta-resolução</item>
+    </string-array>
+    <string-array name="listcpuFrameSkipValues">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+    <string-array name="listcpuMME">
+        <item>Desativado</item>
+        <item>Detecção automática</item>
+        <item>Forçado (Erro em Tegra2)</item>
+    </string-array>
+    <string-array name="listcpuMMEValues">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+    <string-array name="listcpuShowFPS">
+        <item>Desativado</item>
+        <item>Ativado</item>
+    </string-array>
+    <string-array name="listcpuShowFPSValues">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="listgpuAccurateMode">
+        <item>Desativado</item>
+        <item>Activado</item>
+    </string-array>
+    <string-array name="listgpuAccurateModeValues">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="listgpuNamePref">
+        <item>TexturaVirtual detecção automática</item>
+        <item>TexturaVirtual desligado (Mali-400 e GPUs mais antigos)</item>
+        <item>TexturaVirtual ligado (Adreno-3XX e GPUs mais recentes)</item>
+    </string-array>
+    <string-array name="listgpuNamePrefValues">
+        <item>2</item>
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="listinputAlpha">
+        <item>0/100</item>
+        <item>20/100</item>
+        <item>40/100</item>
+        <item>60/100</item>
+        <item>80/100</item>
+        <item>100/100</item>
+    </string-array>
+    <string-array name="listinputAlphaValues">
+        <item>0</item>
+        <item>20</item>
+        <item>40</item>
+        <item>60</item>
+        <item>80</item>
+        <item>100</item>
+    </string-array>
+    <string-array name="listinputBluez">
+        <item>Desativado</item>
+        <item>Ativado</item>
+    </string-array>
+    <string-array name="listinputBluezValues">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="listinputDetectGamepad">
+        <item>Desativado</item>
+        <item>Ativado</item>
+    </string-array>
+    <string-array name="listinputDetectGamepadValues">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="listinputExtras">
+        <item>Desativado</item>
+        <item>Carregar Estado 1</item>
+        <item>Carregar Estado 2</item>
+        <item>Carregar Estado 3</item>
+        <item>Carregar Estado 4</item>
+        <item>Carregar Estado 5</item>
+        <item>Salvar Estado 1</item>
+        <item>Salvar Estado 2</item>
+        <item>Salvar Estado 3</item>
+        <item>Salvar Estado 4</item>
+        <item>Salvar Estado 5</item>
+        <item>Triângulo/Círculo</item>
+        <item>Triângulo/Quadrado</item>
+        <item>Quadrado/Cruz</item>
+        <item>Círculo/Cruz</item>
+        <item>Triângulo/Cruz</item>
+        <item>Quadrado/Círculo</item>
+        <item>L1/R1</item>
+        <item>L2/R2</item>
+        <item>Framelimit</item>
+        <item>StickyQuadrado</item>
+        <item>StickyCruz</item>
+        <item>StickyCirculo</item>
+        <item>StickyTriângulo</item>
+        <item>StickyL1</item>
+        <item>StickyL2</item>
+        <item>StickyR1</item>
+        <item>StickyR2</item>
+        <item>Menu</item>
+    </string-array>
+    <string-array name="listinputExtrasValues">
+        <item>19</item>
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+        <item>25</item>
+        <item>26</item>
+        <item>27</item>
+        <item>28</item>
+    </string-array>
+    <string-array name="listinputHide">
+        <item>Mostrar botões</item>
+        <item>Esconder botões</item>
+    </string-array>
+    <string-array name="listinputHideValues">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="listinputKeyboard">
+        <item>Desativado</item>
+        <item>Ativado</item>
+    </string-array>
+    <string-array name="listinputKeyboardValues">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="listinputPadMode">
+        <item>Digital (apenas)</item>
+        <item>DualShock</item>
+        <item>Pistola Namco</item>
+        <item>Justifier Gun</item>
+        <item>Mouse (OTG)</item>
+        <item>Disconnected</item>
+    </string-array>
+    <string-array name="listinputPadModeValues">
+        <item>1</item>
+        <item>4</item>
+        <item>3</item>
+        <item>8</item>
+        <item>2</item>
+        <item>0</item>
+    </string-array>
+    <string-array name="listinputPadType">
+        <item>Ecrã tátil (Virtual)</item>
+        <item>Botões HardWare</item>
+    </string-array>
+    <string-array name="listinputPadTypeValues">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="listinputPaintPadMode">
+        <item>Pure White - Digital</item>
+        <item>Pure White - Analog</item>
+        <item>Amethyst Crystal - Digital</item>
+        <item>Amethyst Crystal - Analog</item>
+        <item>Binchotite - Digital</item>
+        <item>Binchotite - Analog</item>
+        <item>Bold Amethyst - Digital</item>
+        <item>Bold Amethyst - Analog</item>
+        <item>Bold - Digital</item>
+        <item>Bold - Analog</item>
+        <item>Bold Emerald - Digital</item>
+        <item>Bold Emerald - Analog</item>
+        <item>Bold Gold - Digital</item>
+        <item>Bold_Gold - Analog</item>
+        <item>Bold Pink - Digital</item>
+        <item>Bold Pink - Analog</item>
+        <item>Bold Sapphire - Digital</item>
+        <item>Bold Sapphire - Analog</item>
+        <item>Bold Silk - Digital</item>
+        <item>Bold Silk - Analog</item>
+        <item>Bold Turquoise - Digital</item>
+        <item>Bold Turquoise - Analog</item>
+        <item>Emerald Crystal - Digital</item>
+        <item>Emerald Crystal - Analog</item>
+        <item>Gold Crystal - Digital</item>
+        <item>Gold Crystal - Analog</item>
+        <item>Negative Crystal - Digital</item>
+        <item>Negative Crystal - Analog</item>
+        <item>Pink Crystal - Digital</item>
+        <item>Pink Crystal - Analog</item>
+        <item>Sapphire Crystal - Digital</item>
+        <item>Sapphire Crystal - Analog</item>
+        <item>Silk Crystal - Digital</item>
+        <item>Silk Crystal - Analog</item>
+        <item>Snow - Digital</item>
+        <item>Snow - Analog</item>
+        <item>Turquoise Crystal - Digital</item>
+        <item>Turquoise Crystal - Analog</item>
+        <item>Old skin</item>
+        <item>Old skin</item>
+        <item>Custom</item>
+        <item>Nenhum</item>
+    </string-array>
+    <string-array name="listinputPaintPadModeValues">
+        <item>0</item>
+        <item>1</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+        <item>25</item>
+        <item>26</item>
+        <item>27</item>
+        <item>28</item>
+        <item>29</item>
+        <item>30</item>
+        <item>31</item>
+        <item>32</item>
+        <item>33</item>
+        <item>34</item>
+        <item>35</item>
+        <item>36</item>
+        <item>37</item>
+        <item>38</item>
+        <item>39</item>
+        <item>40</item>
+        <item>41</item>
+        <item>42</item>
+        <item>43</item>
+        <item>44</item>
+        <item>45</item>
+        <item>3</item>
+        <item>5</item>
+        <item>4</item>
+        <item>2</item>
+    </string-array>
+    <string-array name="listinputPlayerMode">
+        <item>1/2 Jogadores</item>
+        <item>2 Jogadores (modo dividido)</item>
+        <item>3/4 Jogadores (Multi-tap Porta 1)</item>
+        <item>3/4 Jogadores (Multi-tap Porta 2)</item>
+    </string-array>
+    <string-array name="listinputPlayerModeValues">
+        <item>1</item>
+        <item>10</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+    <string-array name="listinputVibrate">
+        <item>Desativar vibração nos botões de ecrã tátil</item>
+        <item>Ativar vibração nos botões de ecrã tátil</item>
+    </string-array>
+    <string-array name="listinputVibrateValues">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="listinputVibrationPSX">
+        <item>Desativado</item>
+        <item>Ativado</item>
+        <item>Enabled on device</item>
+    </string-array>
+    <string-array name="listinputVibrationPSXValues">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+    <string-array name="listmcrStatus">
+        <item>Ativar todos os cartões de memória</item>
+        <item>Apenas cartão de memória 1</item>
+        <item>Apenas cartão de memória 2</item>
+        <item>Desativar todos os cartões de memória</item>
+    </string-array>
+    <string-array name="listmcrStatusValues">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+    <string-array name="listmiscAutosave">
+        <item>Desativado</item>
+        <item>Ativado</item>
+    </string-array>
+    <string-array name="listmiscAutosaveValues">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="listmiscBrowsermode">
+        <item>Procurar ficheiros</item>
+        <item>Lista de jogos</item>
+        <item>Game List</item>
+    </string-array>
+    <string-array name="listmiscBrowsermodeValues">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+    <string-array name="listmiscbootmode">
+        <item>Mostrar logotipo PSX</item>
+        <item>Arranque rápido</item>
+    </string-array>
+    <string-array name="listmiscbootmodeValues">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="listmiscuilanguage">
+        <item>Linguagem padrão</item>
+        <item>Inglês</item>
+    </string-array>
+    <string-array name="listmiscuilanguageValues">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="listscreenBlackbands">
+        <item>Bandas PSX reais</item>
+        <item>Remover bandas de topo/fundo (imagem talvez errada)</item>
+    </string-array>
+    <string-array name="listscreenBlackbandsValues">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="listscreenDepth">
+        <item>16 bits (mais rápido)</item>
+        <item>32 bits (melhor MDEC)</item>
+    </string-array>
+    <string-array name="listscreenDepthValues">
+        <item>16</item>
+        <item>32</item>
+    </string-array>
+    <string-array name="listscreenOrientation">
+        <item>Paisagem</item>
+        <item>Retrato</item>
+        <item>Paisagem invertida</item>
+        <item>Metade Paisagem</item>
+    </string-array>
+    <string-array name="listscreenOrientationValues">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+    <string-array name="listscreenRatio">
+        <item>Esticar</item>
+        <item>4:3</item>
+        <item>Widescreen</item>
+    </string-array>
+    <string-array name="listscreenRatioValues">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+    <string-array name="listsoundLatency">
+        <item>Normal</item>
+        <item>Reduzido</item>
+        <item>Muito Reduzido</item>
+        <item>Mais Reduzido (experimental)</item>
+    </string-array>
+    <string-array name="listsoundLatencyValues">
+        <item>0</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+    <string-array name="listsoundQA">
+        <item>Sem som (mais rápido)</item>
+        <item>Efeitos sonoros reduzidos (rápido)</item>
+        <item>Efeitos sonoros completos (lento)</item>
+    </string-array>
+    <string-array name="listsoundQAValues">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+    <string-array name="listsoundRate">
+        <item>44100 Hz</item>
+        <item>22050 Hz</item>
+    </string-array>
+    <string-array name="listsoundRateValues">
+        <item>44100</item>
+        <item>22050</item>
+    </string-array>
+    <string-array name="listvideoDither">
+        <item>Desativado (mais rápido)</item>
+        <item>Ativado (mais suave)</item>
+        <item>Enabled always (smoothest)</item>
+    </string-array>
+    <string-array name="listvideoDitherValues">
+        <item>0</item>
+        <item>1</item>
+        <item>3</item>
+    </string-array>
+    <string-array name="listvideoFilter">
+        <item>Nenhum</item>
+        <item>Bilinear (muito lento)</item>
+    </string-array>
+    <string-array name="listvideoFilterValues">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="listvideoFilterhw">
+        <item>Desativado</item>
+        <item>Ativado (mais suave)</item>
+    </string-array>
+    <string-array name="listvideoFilterhwValues">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="listvideoMode">
+        <item>Original</item>
+        <item>Dimensionado</item>
+        <item>Esticado</item>
+    </string-array>
+    <string-array name="listvideoModeValues">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+    <string-array name="listvideoRate">
+        <item>60/50 FPS</item>
+        <item>30/25 FPS</item>
+    </string-array>
+    <string-array name="listvideoRateValues">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="listvideoRenderer">
+        <item>Hardware</item>
+        <item>Hardware + Shaders</item>
+        <item>Pete OGL2 (Beta)</item>
+        <item>Fast OGL2 Renderer</item>
+        <item>Plugin OpenGL (mais suave)</item>
+        <item>Software (obsoleto)</item>
+    </string-array>
+    <string-array name="listvideoRendererValues">
+        <item>1</item>
+        <item>3</item>
+        <item>5</item>
+        <item>4</item>
+        <item>2</item>
+        <item>0</item>
+    </string-array>
+</resources>

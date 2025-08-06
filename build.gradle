@@ -1,0 +1,23 @@
+buildscript {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+        maven { url "https://jcenter.bintray.com" }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.0.4'
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url "https://jcenter.bintray.com" }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

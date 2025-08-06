@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="circleCrop" format="boolean">
+    </attr>
+
+    <attr name="imageAspectRatio" format="float">
+    </attr>
+    <attr name="scopeUris" format="reference|string">
+    </attr>
+</resources>
