@@ -41,3 +41,6 @@ desktop.ini
 buildSrc/.gradle/
 
 .vscode/
+
+# Game files
+app/src/main/assets/Game/
