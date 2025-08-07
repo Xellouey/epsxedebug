@@ -33,6 +33,7 @@
     <string name="analogrightydesc">Choose Right Stick Y</string>
     <string name="app_name" translatable="false">Herc\'s Adventures</string>
     <string name="application_error">Application error: %1$s</string>
+    <string name="pausing_emulation">Пауза...</string>
     <string name="auth_google_play_services_client_facebook_display_name">Facebook</string>
     <string name="auth_google_play_services_client_google_display_name">Google</string>
     <string name="bios_dialog_info">Back</string>

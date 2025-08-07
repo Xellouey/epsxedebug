@@ -12,7 +12,11 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.net.Uri;
+import android.opengl.GLSurfaceView;
 import android.os.Build;
+import android.app.ProgressDialog;
+import androidx.fragment.app.FragmentActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -20,7 +24,6 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.os.Looper;
 import android.os.Vibrator;
-
 import androidx.core.content.ContextCompat;
 import androidx.core.view.InputDeviceCompat;
 
@@ -88,11 +91,14 @@ import java.util.Objects;
 import java.util.Properties;
 
 /* loaded from: classes.dex */
-public class ePSXe extends LicenseCheckActivity implements SensorEventListener {
+public class ePSXe extends AppCompatActivity implements SettingsDialogFragment.ResumeEmuCallback, SensorEventListener {
 
     private static final boolean SHOW_SAVE_STATE_IN_MENU = false; //true - включить, false - выключить
     private static final boolean SHOW_LOAD_STATE_IN_MENU = false;
 
+    private static final int REQ_PREFS = 0xCAFE;
+    private boolean glReallyPaused = false;
+    private View mainLayout;
 
     private String previousDiscPath = null;
     private int previousDiscSlot = 0;
@@ -265,6 +271,8 @@ public class ePSXe extends LicenseCheckActivity implements SensorEventListener {
     private int emu_acc_mode = 0;
     private int tainted = 0;
     private boolean gprofile = false;
+    private boolean isSwitchingToPreferences = false;
+    private boolean emuReallyPausedForPrefs = false;
     private int[] emu_vibration_state = {0, 0, 0, 0, 0, 0, 0, 0};
     private long stime = 0;
     private int emu_auxvol = 16;
@@ -1233,6 +1241,17 @@ public class ePSXe extends LicenseCheckActivity implements SensorEventListener {
         this.mePSXeView.setlicense(false);
     }
 
+    private boolean getLicenseResult() {
+        // Stub implementation - always return true for now
+        // This would normally check license validation
+        return true;
+    }
+
+    private void checkLicense() {
+        // Stub implementation - license check would go here
+        // For now, just assume license is valid
+    }
+
     public void initJoysticks() {
         String label;
         if (this.osVersion >= 12) {
@@ -1769,22 +1788,18 @@ public class ePSXe extends LicenseCheckActivity implements SensorEventListener {
     }
 
     private void pauseEmulation() {
-        if (this.emuStatus == 1 || this.emuStatus == 2) {
-            Log.e("epsxelf", "onPause pause ePSXe Activity");
-            this.emuStatus = 3;
-            this.mePSXeView.onPause(DeviceUtil.getDevicesWorkaround(this.emu_renderer, this.emu_menu2_gpumtmodeS), this.emu_autosave);
-            this.mePSXeSound.onPause();
-        }
+    if (mePSXeView != null) {
+        mePSXeView.onPause(DeviceUtil.getDevicesWorkaround(this.emu_renderer, this.emu_menu2_gpumtmodeS), this.emu_autosave);
+        glReallyPaused = true;
     }
+}
 
     private void resumeEmulation() {
-        if (this.emuStatus == 3) {
-            Log.e("epsxelf", "onResume resume ePSXe Activity");
-            this.mePSXeView.onResume();
-            this.mePSXeSound.onResume();
-            this.emuStatus = this.emuStatusPrev;
-        }
+    if (glReallyPaused && mePSXeView != null) {
+        mePSXeView.onResume();
+        glReallyPaused = false;
     }
+}
 
     private void stopEmulation() {
         if (this.emuStatus == 3) {
@@ -1810,36 +1825,26 @@ public class ePSXe extends LicenseCheckActivity implements SensorEventListener {
     }
 
     @Override
-protected void onPause() {
-    Log.e("epsxelf", "onPause");
-    super.onPause();
-    if (this.mogaInput != null) {
-        this.mogaInput.onPause();
+    protected void onPause() {
+        super.onPause();
+        Log.e("epsxelf", "onPause");
+        if (this.mogaInput != null) {
+            this.mogaInput.onPause();
+        }
+        hidePadHandler.removeCallbacks(hidePadRunnable);
+        pauseEmulation();
     }
-    hidePadHandler.removeCallbacks(hidePadRunnable);
 
-    if (!userRequestedExit) {
-        // Вызываем паузу с небольшой задержкой, чтобы избежать дедлока
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                pauseEmulation();
-            }
-        }, 50); // 50 миллисекунд - небольшая, но достаточная задержка
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.e("epsxelf", "onResume");
+        resumeEmulation();
+        if (this.mogaInput != null) {
+            this.mogaInput.onResume();
+        }
+        runHidePadHandler(hidePadRunnable);
     }
-}
-
-@Override
-protected void onResume() {
-    Log.e("epsxelf", "onResume");
-    super.onResume();
-    if (this.mogaInput != null) {
-        this.mogaInput.onResume();
-    }
-    runHidePadHandler(hidePadRunnable);
-    
-    resumeEmulation();
-}
 
     @Override // android.app.Activity
     protected void onStop() {
@@ -4645,7 +4650,7 @@ protected void onResume() {
     private void alertdialog_menu(final Context mCont) {
         boolean oneDisk = hasExactlyOneDiscsForGame();
         ArrayList<String> menuItems = new ArrayList<>();
-    
+
         if (emuStatus == 1) {
             menuItems.add(getString(R.string.menu_resume_game));
             if (SHOW_LOAD_STATE_IN_MENU) {
@@ -4680,7 +4685,7 @@ protected void onResume() {
             menuItems.add("Privacy Policy");
             menuItems.add(getString(R.string.fbutton_quit));
         }
-    
+
         if (serverMode == 3) {
             menuItems.clear();
             menuItems.add(getString(R.string.menu_framelimit));
@@ -4696,13 +4701,13 @@ protected void onResume() {
             menuItems.add(getString(R.string.menu_framelimit));
             menuItems.add(getString(R.string.fbutton_quit));
         }
-    
+
         ListView gListView = new ListView(mCont);
         final ArrayAdapter<String> adapter = new ArrayAdapter<>(mCont, android.R.layout.simple_list_item_1, menuItems);
         gListView.setAdapter(adapter);
-    
+
         final AlertDialog menuDialog = new AlertDialog.Builder(mCont).setView(gListView).create();
-    
+
         gListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -4711,7 +4716,7 @@ protected void onResume() {
                     menuDialog.dismiss();
                     return;
                 }
-    
+
                 if (selected.equals(getString(R.string.menu_resume_game))) {
                     // No action needed, just close the dialog
                 } else if (selected.equals(getString(R.string.fbutton_quit))) {
@@ -4721,13 +4726,16 @@ protected void onResume() {
                 } else if (selected.equals(getString(R.string.menu_savestate))) {
                     showSstateDialog(mCont, f153e, 1, sdCardPath, hlebiosrunning);
                 } else if (selected.equals(getString(R.string.fbutton_preferences))) {
-                    startActivity(new Intent(ePSXe.this, ePSXePreferences.class));
-                }
-                 else if (selected.equals(getString(R.string.change_disk))) {
+                    menuDialog.dismiss();
+                    new SettingsDialogFragment().show(getSupportFragmentManager(), "epsxe_settings");
+                    return;
+                } else if (selected.equals(getString(R.string.change_disk))) {
                     if (hasExactlyTwoDiscsForGame()) {
                         ChangediscDialog.autoChangeToNextDiscIfTwo(mCont, f153e, currentPath, mIsoName);
                         int num = getDiscNumber(mIsoName.getmIsoName());
-                        if (num > 0) Toast.makeText(mCont, String.valueOf(num), Toast.LENGTH_SHORT).show();
+                        if (num > 0) {
+                            Toast.makeText(mCont, String.valueOf(num), Toast.LENGTH_SHORT).show();
+                        }
                     } else {
                         previousDiscPath = mIsoName.getmIsoName();
                         previousDiscSlot = mIsoName.getmIsoSlot();
@@ -4759,15 +4767,14 @@ protected void onResume() {
                         Toast.makeText(ePSXe.this, "Cannot open browser", Toast.LENGTH_SHORT).show();
                     }
                 }
-                
+
                 menuDialog.dismiss();
             }
         });
-    
+
         this.menAlert = menuDialog;
         this.menAlert.show();
     }
-    
 
     @Override // android.app.Activity
     public void openOptionsMenu() {
@@ -5156,5 +5163,23 @@ protected void onResume() {
             Log.e("epsxekey", "keycode[" + i + "][" + j + "] = " + this.keycodes[i][j]);
         }
         this.keycodes[i][19] = Integer.parseInt(gamepadData[24]);
+    }
+
+    @Override
+    public void onSettingsOpened() {
+        if (mePSXeView instanceof android.opengl.GLSurfaceView) {
+            ((android.opengl.GLSurfaceView) mePSXeView).queueEvent(() -> {
+                pauseEmulation();
+            });
+        }
+    }
+
+    @Override
+    public void onSettingsClosed() {
+
+    }
+
+    private void openSettingsDialog() {
+        new SettingsDialogFragment().show(getSupportFragmentManager(), "epsxe_settings");
     }
 }
