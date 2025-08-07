@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceScreen
         android:icon="@drawable/bios_icon"
         android:title="@string/biospreferences"
@@ -38,15 +37,15 @@
             android:title="@string/cpufps"
             android:key="cpuShowFPSPref"
             android:summary="@string/cpufpsdesc"/>
-        <androidx.preference.SeekBarPreference
+        <com.epsxe.views.utils.TickSeekBarPreference
             android:max="120"
             android:title="@string/cpucustomfps"
             android:key="cpuCustomFpsPref"
             android:summary="@string/cpucustomfpsdesc"
             android:defaultValue="0"
-            app:min="20"
-            app:seekBarIncrement="10"
-            app:showSeekBarValue="true"/>
+            min="20"
+            step="10"
+            ticklabel="Default"/>
         <ListPreference
             android:entries="@array/listcpuMME"
             android:title="@string/cpumme"
@@ -95,24 +94,24 @@
             android:summary="@string/screenblackbandsdesc"
             android:defaultValue="0"
             android:entryValues="@array/listscreenBlackbandsValues"/>
-        <androidx.preference.SeekBarPreference
+        <com.epsxe.views.utils.DoubleSeekBarPreference
             android:max="10"
-            android:title="@string/gpuscanlinesthick"
+            android:text="@string/gpuunit"
+            android:title="@string/gpuscanlines"
             android:key="gpuScanlinesThickPref"
             android:summary="@string/gpuscanlinesdesc"
             android:defaultValue="0"
-            app:min="1"
-            app:seekBarIncrement="1"
-            app:showSeekBarValue="true"/>
-        <androidx.preference.SeekBarPreference
-            android:max="99"
-            android:title="@string/gpuscanlinestrans"
-            android:key="gpuScanlinesTransPref"
-            android:summary="@string/gpuscanlinesdesc"
-            android:defaultValue="0"
-            app:min="0"
-            app:seekBarIncrement="1"
-            app:showSeekBarValue="true"/>
+            android:dialogMessage="@string/gpuscanlinesthick"
+            defaultValue2="0"
+            dialogMessage2="@string/gpuscanlinestrans"
+            key2="gpuScanlinesTransPref"
+            max2="99"
+            min="1"
+            min2="0"
+            step="1"
+            step2="1"
+            suffix2="%"
+            ticklabel="Disable"/>
         <PreferenceScreen
             android:title="@string/vrpreferences"
             android:key="vrprefereces"
@@ -176,24 +175,18 @@
                 android:summary="@string/gpusoftmtprefdesc"
                 android:defaultValue="0"
                 android:entryValues="@array/listgpuSoftMtPrefValues"/>
-            <androidx.preference.SeekBarPreference
+            <com.epsxe.views.utils.DoubleSeekBarPreference
                 android:max="14"
-                android:title="@string/gpuoverscantopdesc"
+                android:text="@string/gpuunit"
+                android:title="@string/gpuoverscan"
                 android:key="gpuOverscantopPref"
                 android:summary="@string/gpuoverscandesc"
                 android:defaultValue="2"
-                app:min="0"
-                app:seekBarIncrement="1"
-                app:showSeekBarValue="true"/>
-            <androidx.preference.SeekBarPreference
-                android:max="14"
-                android:title="@string/gpuoverscanbottomdesc"
-                android:key="gpuOverscanbottomPref"
-                android:summary="@string/gpuoverscandesc"
-                android:defaultValue="0"
-                app:min="0"
-                app:seekBarIncrement="1"
-                app:showSeekBarValue="true"/>
+                android:dialogMessage="@string/gpuoverscantopdesc"
+                defaultValue2="0"
+                dialogMessage2="@string/gpuoverscanbottomdesc"
+                key2="gpuOverscanbottomPref"
+                max2="14"/>
             <ListPreference
                 android:entries="@array/listgpuBrightnessprofile"
                 android:title="@string/gpubrightnessprofile"
@@ -353,24 +346,24 @@
                     <PreferenceScreen
                         android:title="@string/deadzone"
                         android:key="deadzone1">
-                        <androidx.preference.SeekBarPreference
+                        <com.epsxe.views.utils.TickSeekBarPreference
                             android:max="50"
                             android:title="@string/analogleftdz"
                             android:key="analog1leftdzPref"
                             android:summary="@string/analogleftdzdesc"
                             android:defaultValue="0"
-                            app:min="0"
-                            app:seekBarIncrement="1"
-                            app:showSeekBarValue="true"/>
-                        <androidx.preference.SeekBarPreference
+                            min="0"
+                            step="1"
+                            ticklabel="Default"/>
+                        <com.epsxe.views.utils.TickSeekBarPreference
                             android:max="50"
                             android:title="@string/analogrightdz"
                             android:key="analog1rightdzPref"
                             android:summary="@string/analogrightdzdesc"
                             android:defaultValue="0"
-                            app:min="0"
-                            app:seekBarIncrement="1"
-                            app:showSeekBarValue="true"/>
+                            min="0"
+                            step="1"
+                            ticklabel="Default"/>
                     </PreferenceScreen>
                     <Preference
                         android:title="@string/inputgamepadtest"
@@ -484,24 +477,24 @@
                     <PreferenceScreen
                         android:title="@string/deadzone"
                         android:key="deadzone2">
-                        <androidx.preference.SeekBarPreference
+                        <com.epsxe.views.utils.TickSeekBarPreference
                             android:max="50"
                             android:title="@string/analogleftdz"
                             android:key="analog2leftdzPref"
                             android:summary="@string/analogleftdzdesc"
                             android:defaultValue="0"
-                            app:min="0"
-                            app:seekBarIncrement="1"
-                            app:showSeekBarValue="true"/>
-                        <androidx.preference.SeekBarPreference
+                            min="0"
+                            step="1"
+                            ticklabel="Default"/>
+                        <com.epsxe.views.utils.TickSeekBarPreference
                             android:max="50"
                             android:title="@string/analogrightdz"
                             android:key="analog2rightdzPref"
                             android:summary="@string/analogrightdzdesc"
                             android:defaultValue="0"
-                            app:min="0"
-                            app:seekBarIncrement="1"
-                            app:showSeekBarValue="true"/>
+                            min="0"
+                            step="1"
+                            ticklabel="Default"/>
                     </PreferenceScreen>
                     <Preference
                         android:title="@string/inputgamepadtest"
@@ -594,24 +587,24 @@
                     <PreferenceScreen
                         android:title="@string/deadzone"
                         android:key="deadzone3">
-                        <androidx.preference.SeekBarPreference
+                        <com.epsxe.views.utils.TickSeekBarPreference
                             android:max="50"
                             android:title="@string/analogleftdz"
                             android:key="analog3leftdzPref"
                             android:summary="@string/analogleftdzdesc"
                             android:defaultValue="0"
-                            app:min="0"
-                            app:seekBarIncrement="1"
-                            app:showSeekBarValue="true"/>
-                        <androidx.preference.SeekBarPreference
+                            min="0"
+                            step="1"
+                            ticklabel="Default"/>
+                        <com.epsxe.views.utils.TickSeekBarPreference
                             android:max="50"
                             android:title="@string/analogrightdz"
                             android:key="analog3rightdzPref"
                             android:summary="@string/analogrightdzdesc"
                             android:defaultValue="0"
-                            app:min="0"
-                            app:seekBarIncrement="1"
-                            app:showSeekBarValue="true"/>
+                            min="0"
+                            step="1"
+                            ticklabel="Default"/>
                     </PreferenceScreen>
                     <Preference
                         android:title="@string/inputgamepadtest"
@@ -704,24 +697,24 @@
                     <PreferenceScreen
                         android:title="@string/deadzone"
                         android:key="deadzone4">
-                        <androidx.preference.SeekBarPreference
+                        <com.epsxe.views.utils.TickSeekBarPreference
                             android:max="50"
                             android:title="@string/analogleftdz"
                             android:key="analog4leftdzPref"
                             android:summary="@string/analogleftdzdesc"
                             android:defaultValue="0"
-                            app:min="0"
-                            app:seekBarIncrement="1"
-                            app:showSeekBarValue="true"/>
-                        <androidx.preference.SeekBarPreference
+                            min="0"
+                            step="1"
+                            ticklabel="Default"/>
+                        <com.epsxe.views.utils.TickSeekBarPreference
                             android:max="50"
                             android:title="@string/analogrightdz"
                             android:key="analog4rightdzPref"
                             android:summary="@string/analogrightdzdesc"
                             android:defaultValue="0"
-                            app:min="0"
-                            app:seekBarIncrement="1"
-                            app:showSeekBarValue="true"/>
+                            min="0"
+                            step="1"
+                            ticklabel="Default"/>
                     </PreferenceScreen>
                     <Preference
                         android:title="@string/inputgamepadtest"
@@ -821,15 +814,14 @@
                 android:summary="@string/inputalphadesc"
                 android:defaultValue="40"
                 android:entryValues="@array/listinputAlphaValues"/>
-            <androidx.preference.SeekBarPreference
+            <com.epsxe.views.utils.TickSeekBarPreference
                 android:max="200"
                 android:title="@string/inputmag"
                 android:key="inputMagPref"
                 android:summary="@string/inputmagdesc"
                 android:defaultValue="170"
-                app:min="70"
-                app:seekBarIncrement="10"
-                app:showSeekBarValue="true"/>
+                min="70"
+                step="10"/>
             <ListPreference
                 android:entries="@array/listinputDynamicpad"
                 android:title="@string/inputdynamicpad"
@@ -1076,25 +1068,24 @@
                 android:summary="@string/inputpadaccdesc"
                 android:defaultValue="0"
                 android:entryValues="@array/listinputPadAccValues"/>
-            <androidx.preference.SeekBarPreference
+            <com.epsxe.views.utils.TickSeekBarPreference
                 android:max="100"
                 android:title="@string/inputpadaccdz"
                 android:key="inputPadAccdzPref"
                 android:summary="@string/inputpadaccdzdesc"
                 android:defaultValue="5"
-                app:min="0"
-                app:seekBarIncrement="1"
-                app:showSeekBarValue="true"/>
+                min="0"
+                step="1"/>
         </PreferenceScreen>
-        <androidx.preference.SeekBarPreference
+        <com.epsxe.views.utils.TickSeekBarPreference
             android:max="200"
             android:title="@string/inputmousesen"
             android:key="inputMouseSenPref"
             android:summary="@string/inputmousesendesc"
             android:defaultValue="140"
-            app:min="20"
-            app:seekBarIncrement="20"
-            app:showSeekBarValue="true"/>
+            min="20"
+            step="20"
+            ticklabel="Default"/>
         <PreferenceScreen
             android:title="@string/externalgamepad"
             android:key="externalGamepad"

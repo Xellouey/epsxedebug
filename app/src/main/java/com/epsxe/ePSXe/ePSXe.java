@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.hardware.Sensor;
+import android.content.Intent;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
@@ -91,7 +92,7 @@ import java.util.Objects;
 import java.util.Properties;
 
 /* loaded from: classes.dex */
-public class ePSXe extends AppCompatActivity implements SettingsDialogFragment.ResumeEmuCallback, SensorEventListener {
+public class ePSXe extends LicenseCheckActivity implements SettingsDialogFragment.ResumeEmuCallback, SensorEventListener {
 
     private static final boolean SHOW_SAVE_STATE_IN_MENU = false; //true - включить, false - выключить
     private static final boolean SHOW_LOAD_STATE_IN_MENU = false;
@@ -1241,13 +1242,13 @@ public class ePSXe extends AppCompatActivity implements SettingsDialogFragment.R
         this.mePSXeView.setlicense(false);
     }
 
-    private boolean getLicenseResult() {
+    protected boolean getLicenseResult() {
         // Stub implementation - always return true for now
         // This would normally check license validation
         return true;
     }
 
-    private void checkLicense() {
+    protected void checkLicense() {
         // Stub implementation - license check would go here
         // For now, just assume license is valid
     }
@@ -1826,24 +1827,41 @@ public class ePSXe extends AppCompatActivity implements SettingsDialogFragment.R
 
     @Override
     protected void onPause() {
-        super.onPause();
         Log.e("epsxelf", "onPause");
+        super.onPause();
         if (this.mogaInput != null) {
             this.mogaInput.onPause();
         }
         hidePadHandler.removeCallbacks(hidePadRunnable);
-        pauseEmulation();
+        if (this.emu_ui_pause_support != 0) {
+            pauseEmulation();
+        } else {
+            quitEmulation();
+        }
+    }
+    private void restartToPreferences() {
+        Intent mainMenuIntent = new Intent(getApplicationContext(), ePSXe.class);
+        mainMenuIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+        Intent prefsIntent = new Intent(getApplicationContext(), ePSXePreferences.class);
+
+        startActivities(new Intent[]{mainMenuIntent, prefsIntent});
+
+        android.os.Process.killProcess(android.os.Process.myPid());
+        System.exit(0);
     }
 
     @Override
     protected void onResume() {
-        super.onResume();
         Log.e("epsxelf", "onResume");
-        resumeEmulation();
+        super.onResume();
         if (this.mogaInput != null) {
             this.mogaInput.onResume();
         }
         runHidePadHandler(hidePadRunnable);
+        if (this.emu_ui_pause_support == 1) {
+            resumeEmulation();
+        }
     }
 
     @Override // android.app.Activity
@@ -4727,7 +4745,7 @@ public class ePSXe extends AppCompatActivity implements SettingsDialogFragment.R
                     showSstateDialog(mCont, f153e, 1, sdCardPath, hlebiosrunning);
                 } else if (selected.equals(getString(R.string.fbutton_preferences))) {
                     menuDialog.dismiss();
-                    new SettingsDialogFragment().show(getSupportFragmentManager(), "epsxe_settings");
+                    restartToPreferences();
                     return;
                 } else if (selected.equals(getString(R.string.change_disk))) {
                     if (hasExactlyTwoDiscsForGame()) {
@@ -5167,19 +5185,11 @@ public class ePSXe extends AppCompatActivity implements SettingsDialogFragment.R
 
     @Override
     public void onSettingsOpened() {
-        if (mePSXeView instanceof android.opengl.GLSurfaceView) {
-            ((android.opengl.GLSurfaceView) mePSXeView).queueEvent(() -> {
-                pauseEmulation();
-            });
-        }
+        pauseEmulation();
     }
 
     @Override
     public void onSettingsClosed() {
-
-    }
-
-    private void openSettingsDialog() {
-        new SettingsDialogFragment().show(getSupportFragmentManager(), "epsxe_settings");
+        resumeEmulation();
     }
 }
