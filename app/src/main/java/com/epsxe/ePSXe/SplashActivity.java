@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Process;
 import android.preference.PreferenceManager;
@@ -36,6 +35,11 @@ import java.util.Set;
  */
 
 public class SplashActivity extends Activity {
+    
+    static {
+        Log.d("ePSXeDebug", "=== SplashActivity CLASS LOADED ===");
+    }
+    
     private static final int REQUEST_CODE_EXTERNAL_STORAGE = 1;
 
     String[] permissions = new String[]{
@@ -45,46 +49,91 @@ public class SplashActivity extends Activity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        Log.d("ePSXeDebug", "=== SplashActivity.onCreate() STARTED ===");
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.splash_activity);
+        
+        try {
+            setContentView(R.layout.splash_activity);
+            Log.d("ePSXeDebug", "SplashActivity: Layout set successfully");
+        } catch (Exception e) {
+            Log.e("ePSXeDebug", "SplashActivity: Error setting content view", e);
+            return;
+        }
 
-        if (!BuildConfig.DEBUG || checkStoragePermission()) {
+        Log.d("ePSXeDebug", "SplashActivity: === APP STARTED ===");
+        Log.d("ePSXeDebug", "SplashActivity: Build type: " + (BuildConfig.DEBUG ? "DEBUG" : "RELEASE"));
+        Log.d("ePSXeDebug", "SplashActivity: Package name: " + getPackageName());
+        Log.d("ePSXeDebug", "SplashActivity: Cache dir: " + getCacheDir().getAbsolutePath());
+        
+        if (BuildConfig.DEBUG) {
+            // Debug build: check and request permissions
+            Log.d("ePSXeDebug", "SplashActivity: Debug build - checking external storage permissions");
+            try {
+                if (checkStoragePermission()) {
+                    Log.d("ePSXeDebug", "SplashActivity: Permissions OK, calling doOnCreate()");
+                    doOnCreate();
+                } else {
+                    Log.d("ePSXeDebug", "SplashActivity: Permissions not granted, waiting for user response");
+                }
+            } catch (Exception e) {
+                Log.e("ePSXeDebug", "SplashActivity: Error checking permissions", e);
+                doOnCreate(); // Fallback to internal storage
+            }
+        } else {
+            // Release build: skip permissions, use internal storage only
+            Log.d("ePSXeDebug", "SplashActivity: Release build - using internal storage only");
             doOnCreate();
         }
+        
+        Log.d("ePSXeDebug", "=== SplashActivity.onCreate() FINISHED ===");
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == REQUEST_CODE_EXTERNAL_STORAGE) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                doOnCreate();
-            } else {
-                Toast.makeText(this, R.string.storage_persmission_non_granted, Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
+
 
     private void doOnCreate() {
+        Log.d("ePSXeDebug", "=== SplashActivity.doOnCreate() STARTED ===");
+        
         // Extract game to cache
         TextView loading_progress = findViewById(R.id.loading_progress);
         TextView splash_status = findViewById(R.id.splash_status);
+        
+        if (loading_progress == null) {
+            Log.e("ePSXeDebug", "SplashActivity: loading_progress TextView is null!");
+        }
+        if (splash_status == null) {
+            Log.e("ePSXeDebug", "SplashActivity: splash_status TextView is null!");
+        }
+        
+        Log.d("ePSXeDebug", "SplashActivity: Starting background thread for asset extraction");
         new Thread(() -> {
             android.os.Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
+            Log.d("ePSXeDebug", "SplashActivity: Background thread started");
 
             try {
+                runOnUiThread(() -> {
+                    if (splash_status != null) {
+                        splash_status.setText(R.string.splash_loading);
+                        Log.d("ePSXeDebug", "SplashActivity: Status text updated");
+                    }
+                });
 
-                runOnUiThread(() -> splash_status.setText(R.string.splash_loading));
-
+                Log.d("ePSXeDebug", "SplashActivity: Initializing SD card directories");
                 initSdCard();
 
                 if (!BuildConfig.DEBUG) {
+                    Log.d("ePSXeDebug", "SplashActivity: Release build - loading settings");
                     loadSettings();
+                } else {
+                    Log.d("ePSXeDebug", "SplashActivity: Debug build - skipping settings load");
                 }
 
+                Log.d("ePSXeDebug", "SplashActivity: Getting asset file lists");
                 String[] biosFiles = getAssets().list("bios");
                 String[] gameFiles = getAssets().list("Game");
+                
+                Log.d("ePSXeDebug", "SplashActivity: Found " + (biosFiles != null ? biosFiles.length : 0) + " BIOS files");
+                Log.d("ePSXeDebug", "SplashActivity: Found " + (gameFiles != null ? gameFiles.length : 0) + " game files");
+                
                 int fileNum = 0;
                 for (String biosFile : biosFiles) {
                     File f = new File(getCacheDir() + "/bios/" + biosFile);
@@ -134,13 +183,34 @@ public class SplashActivity extends Activity {
                 }
 
             } catch (Exception e) {
-                throw new RuntimeException(e);
+                Log.e("ePSXeDebug", "SplashActivity: Error during asset extraction", e);
+                runOnUiThread(() -> {
+                    Toast.makeText(SplashActivity.this, "Error loading game files: " + e.getMessage(), 
+                                  Toast.LENGTH_LONG).show();
+                });
+                return; // Don't continue if extraction failed
             }
 
-            startActivity(new Intent(SplashActivity.this, ePSXe.class));
-            finish();
+            Log.d("ePSXeDebug", "SplashActivity: Asset extraction completed successfully");
+            Log.d("ePSXeDebug", "SplashActivity: Starting main ePSXe activity");
+            
+            try {
+                Intent intent = new Intent(SplashActivity.this, ePSXe.class);
+                Log.d("ePSXeDebug", "SplashActivity: Intent created: " + intent.toString());
+                startActivity(intent);
+                Log.d("ePSXeDebug", "SplashActivity: Activity started, finishing splash");
+                finish();
+            } catch (Exception e) {
+                Log.e("ePSXeDebug", "SplashActivity: Error starting main activity", e);
+                runOnUiThread(() -> {
+                    Toast.makeText(SplashActivity.this, "Error starting game: " + e.getMessage(), 
+                                  Toast.LENGTH_LONG).show();
+                });
+            }
 
         }).start();
+        
+        Log.d("ePSXeDebug", "=== SplashActivity.doOnCreate() FINISHED ===");
     }
 
     private void printProgress(TextView loading_progress, int fileNum,
@@ -207,30 +277,96 @@ public class SplashActivity extends Activity {
         super.onResume();
     }
 
+
+
     private boolean checkStoragePermission() {
+        // Only check permissions in debug builds
+        if (!BuildConfig.DEBUG) {
+            Log.d("ePSXeDebug", "SplashActivity: Release build - skipping permission check");
+            return true;
+        }
+        
+        Log.d("ePSXeDebug", "=== SplashActivity: CHECKING PERMISSIONS (DEBUG BUILD) ===");
+        Log.d("ePSXeDebug", "SplashActivity: Android version: " + android.os.Build.VERSION.SDK_INT);
+        
+        // For debug builds, check external storage permissions
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this,
-                    permissions,
-                    REQUEST_CODE_EXTERNAL_STORAGE);
+            Log.d("ePSXeDebug", "SplashActivity: Debug build - requesting storage permissions...");
+            ActivityCompat.requestPermissions(this, permissions, REQUEST_CODE_EXTERNAL_STORAGE);
             return false;
-        } else {
-            return true;
+        }
+        
+        Log.d("ePSXeDebug", "SplashActivity: Debug build - storage permissions already granted!");
+        return true;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        
+        // Only handle permission results in debug builds
+        if (!BuildConfig.DEBUG) {
+            Log.d("ePSXeDebug", "SplashActivity: Release build - ignoring permission result");
+            return;
+        }
+        
+        Log.d("ePSXeDebug", "=== SplashActivity: DEBUG PERMISSION RESULT ===");
+        Log.d("ePSXeDebug", "SplashActivity: Request code: " + requestCode);
+        Log.d("ePSXeDebug", "SplashActivity: Results length: " + grantResults.length);
+        
+        if (requestCode == REQUEST_CODE_EXTERNAL_STORAGE) {
+            for (int i = 0; i < grantResults.length && i < permissions.length; i++) {
+                Log.d("ePSXeDebug", "SplashActivity: Permission " + permissions[i] + ": " + 
+                      (grantResults[i] == PackageManager.PERMISSION_GRANTED ? "GRANTED" : "DENIED"));
+            }
+            
+            // Check if READ_EXTERNAL_STORAGE permission was granted
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Log.d("ePSXeDebug", "SplashActivity: Debug: External storage permission granted!");
+                Toast.makeText(this, "Debug: External storage access enabled", Toast.LENGTH_SHORT).show();
+            } else {
+                Log.d("ePSXeDebug", "SplashActivity: Debug: External storage permission denied");
+                Toast.makeText(this, "Debug: External storage denied, using internal storage", 
+                              Toast.LENGTH_LONG).show();
+            }
+            
+            // Always proceed with doOnCreate() regardless of permission result
+            doOnCreate();
         }
     }
 
     private void initSdCard() {
-        boolean status = true;
+        Log.d("ePSXeDebug", "=== SplashActivity.initSdCard() STARTED ===");
+        
         File extStore = getCacheDir();
+        Log.d("ePSXeDebug", "SplashActivity: Cache directory: " + extStore.getAbsolutePath());
+        
         String gameDirPath = extStore.getAbsolutePath() + "/Game";
         File gameDir = new File(gameDirPath);
+        Log.d("ePSXeDebug", "SplashActivity: Game directory path: " + gameDirPath);
+        
         if (!gameDir.exists()) {
-            status = gameDir.mkdir();
+            Log.d("ePSXeDebug", "SplashActivity: Game directory doesn't exist, creating...");
+            boolean created = gameDir.mkdir();
+            Log.d("ePSXeDebug", "SplashActivity: Game directory created: " + created);
+        } else {
+            Log.d("ePSXeDebug", "SplashActivity: Game directory already exists");
         }
+        
         String biosDirPath = extStore.getAbsolutePath() + "/bios";
         File biosDir = new File(biosDirPath);
+        Log.d("ePSXeDebug", "SplashActivity: BIOS directory path: " + biosDirPath);
+        
         if (!biosDir.exists()) {
-            status = biosDir.mkdir();
+            Log.d("ePSXeDebug", "SplashActivity: BIOS directory doesn't exist, creating...");
+            boolean created = biosDir.mkdir();
+            Log.d("ePSXeDebug", "SplashActivity: BIOS directory created: " + created);
+        } else {
+            Log.d("ePSXeDebug", "SplashActivity: BIOS directory already exists");
         }
+        
+        Log.d("ePSXeDebug", "=== SplashActivity.initSdCard() FINISHED ===");
     }
 }

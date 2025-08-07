@@ -485,9 +485,19 @@ public class ePSXe extends LicenseCheckActivity implements SettingsDialogFragmen
     }
 
     public void runIso(String isoName, int slot) {
-        this.enableChangeOrientation = false;
-        if (this.mePSXeReadPreferences == null) {
-            this.mePSXeReadPreferences = new ePSXeReadPreferences(this);
+        Log.d("ePSXeDebug", "=== ePSXe.runIso() STARTED ===");
+        Log.d("ePSXeDebug", "ePSXe: isoName = " + isoName);
+        Log.d("ePSXeDebug", "ePSXe: slot = " + slot);
+
+        try {
+            this.enableChangeOrientation = false;
+            if (this.mePSXeReadPreferences == null) {
+                this.mePSXeReadPreferences = new ePSXeReadPreferences(this);
+                Log.d("ePSXeDebug", "ePSXe: ePSXeReadPreferences initialized");
+            }
+        } catch (Exception e) {
+            Log.e("ePSXeDebug", "ePSXe: ERROR in runIso initialization", e);
+            throw e;
         }
         if (this.multiplayerStep == 0) {
             if (isoName.equals("___RUNBIOS___")) {
@@ -763,12 +773,19 @@ public class ePSXe extends LicenseCheckActivity implements SettingsDialogFragmen
                     this.mePSXeReadPreferences.setIsoPath(this.currentPath);
                 }
             }
+            Log.d("ePSXeDebug", "ePSXe: Initializing sound...");
             initSound();
+            Log.d("ePSXeDebug", "ePSXe: Checking license...");
             mcheckLicense();
+            Log.d("ePSXeDebug", "ePSXe: Setting screen orientation...");
             initScreenOrientation();
+            Log.d("ePSXeDebug", "ePSXe: Setting content view...");
             setContentView();
+            Log.d("ePSXeDebug", "ePSXe: Setting immersion mode...");
             DeviceUtil.setInmmersionMode(this);
+            Log.d("ePSXeDebug", "ePSXe: Initializing vibration...");
             initVibration();
+            Log.d("ePSXeDebug", "ePSXe: Initializing accelerator...");
             initAccelerator();
             this.stime = System.currentTimeMillis() / 1000;
             this.emuStatus = 1;
@@ -777,6 +794,7 @@ public class ePSXe extends LicenseCheckActivity implements SettingsDialogFragmen
                 this.emuStatus = 2;
                 this.emuStatusPrev = 2;
             }
+            Log.d("ePSXeDebug", "ePSXe: Game initialization completed, emuStatus = " + this.emuStatus);
             if (this.emu_ui_show_msg == 1) {
                 Toast.makeText(this, "Player 1: " + this.analogpaddescString[0] + "\nPlayer 2: " + this.analogpaddescString[1], 1).show();
             }
@@ -1670,6 +1688,7 @@ public class ePSXe extends LicenseCheckActivity implements SettingsDialogFragmen
 
     @Override // android.app.Activity
     public void onCreate(Bundle savedInstanceState) {
+        Log.d("ePSXeDebug", "=== ePSXe.onCreate() STARTED ===");
         super.onCreate(savedInstanceState);
         Log.e("epsxelf", "onCreate");
 
@@ -1709,6 +1728,14 @@ public class ePSXe extends LicenseCheckActivity implements SettingsDialogFragmen
         String param4 = getIntent().getStringExtra("com.epsxe.ePSXe.gui");
         String param5 = getIntent().getStringExtra("com.epsxe.ePSXe.padType");
         String param6 = getIntent().getStringExtra("com.epsxe.ePSXe.servermode");
+
+        Log.d("ePSXeDebug", "ePSXe: Intent extras received:");
+        Log.d("ePSXeDebug", "ePSXe: - isoName: " + param);
+        Log.d("ePSXeDebug", "ePSXe: - snapRestore: " + param2);
+        Log.d("ePSXeDebug", "ePSXe: - isoSlot: " + param3);
+        Log.d("ePSXeDebug", "ePSXe: - gui: " + param4);
+        Log.d("ePSXeDebug", "ePSXe: - padType: " + param5);
+        Log.d("ePSXeDebug", "ePSXe: - servermode: " + param6);
         if (this.emuStatus == 0) {
             int slot = 0;
             if (param != null && param.length() > 0) {
@@ -1730,36 +1757,34 @@ public class ePSXe extends LicenseCheckActivity implements SettingsDialogFragmen
             if (param6 != null && param6.length() > 0) {
                 this.serverMode = Integer.parseInt(param6);
             }
-            if (false) { //Блок с принудительным запуском проигнорирован false
-                // Fix pad type
-                this.emu_padType = 1;
-
-                // Get access to permissions
-                ePSXe.this.isStoragePermissionGranted();
-
-                // Switch to simulated bios
-//                SharedPreferences sharedPreferences = ePSXeApplication.getDefaultSharedPreferences(this);
-//                SharedPreferences.Editor editor = sharedPreferences.edit();
-//                editor.putString("biosHlePref", "1");
-//                editor.commit();
-                // Run game
-                String gameFileName = getCacheDir() + "/Game/Oddworld - Abe's Exoddus (USA) (Disc 1).cue";
-                this.mIsoName.setmIsoName(gameFileName);
-
-                this.snapRestoring = false;
-                slot = 0;
-                this.mIsoName.setmIsoSlot(slot);
-
-                this.emu_gui = 0;
-                this.serverMode = 0;
-
-                runIso(gameFileName, slot);
-            } else if (this.mIsoName.getmIsoName().length() > 0) {
+            // Проверяем, есть ли у нас параметры для запуска игры
+            if (this.mIsoName.getmIsoName().length() > 0) {
+                Log.d("ePSXeDebug", "ePSXe: Found isoName, starting game: " + this.mIsoName.getmIsoName());
                 if (this.mIsoName.getmIsoName().equals("___NETWORK___") && this.serverMode == 2) {
                     GetIPAddressDialog.showGetIPAddressDialog(this, this.f153e, this.serverMode, this.mePSXeReadPreferences.getNetplayServer(), 0, "");
                     return;
                 }
                 runIso(this.mIsoName.getmIsoName(), slot);
+            } else if (!BuildConfig.DEBUG) { 
+                // Только для релизной сборки - если нет параметров игры, открываем меню выбора игры
+                Log.d("ePSXeDebug", "ePSXe: No isoName found, opening file chooser");
+                // Fix pad type
+                this.emu_padType = 1;
+
+                // Get access to permissions
+                if (ePSXe.this.isStoragePermissionGranted() && ePSXe.this.check_bios(0) != -1) {
+                    // Запускаем меню выбора игры напрямую
+                    Log.e("epsxe", "getMiscBrowsermode " + ePSXe.this.mePSXeReadPreferences.getMiscBrowsermode(ePSXe.this.emu_androidtv));
+                    ePSXe.this.emu_browser_mode = ePSXe.this.mePSXeReadPreferences.getMiscBrowsermode(ePSXe.this.emu_androidtv);
+                    Intent myIntent = ePSXe.this.emu_browser_mode == 2 ? new Intent(ePSXe.this, (Class<?>) gFileChooser.class) : new Intent(ePSXe.this, (Class<?>) FileChooser.class);
+                    myIntent.putExtra("com.epsxe.ePSXe.fcMode", "SELECT_ISO");
+                    myIntent.putExtra("com.epsxe.ePSXe.isoPath", ePSXe.this.currentPath);
+                    myIntent.putExtra("com.epsxe.ePSXe.xperiaplay", "" + ePSXe.this.emu_xperiaplay);
+                    myIntent.putExtra("com.epsxe.ePSXe.browserMode", "" + ePSXe.this.emu_browser_mode);
+                    ePSXe.this.startActivity(myIntent);
+                    ePSXe.this.finish();
+                    return;
+                }
             } else {
                 setContentView(R.layout.mainmenu);
                 ListView m_listview = (ListView) findViewById(R.id.list);
@@ -1789,18 +1814,18 @@ public class ePSXe extends LicenseCheckActivity implements SettingsDialogFragmen
     }
 
     private void pauseEmulation() {
-    if (mePSXeView != null) {
-        mePSXeView.onPause(DeviceUtil.getDevicesWorkaround(this.emu_renderer, this.emu_menu2_gpumtmodeS), this.emu_autosave);
-        glReallyPaused = true;
+        if (mePSXeView != null) {
+            mePSXeView.onPause(DeviceUtil.getDevicesWorkaround(this.emu_renderer, this.emu_menu2_gpumtmodeS), this.emu_autosave);
+            glReallyPaused = true;
+        }
     }
-}
 
     private void resumeEmulation() {
-    if (glReallyPaused && mePSXeView != null) {
-        mePSXeView.onResume();
-        glReallyPaused = false;
+        if (glReallyPaused && mePSXeView != null) {
+            mePSXeView.onResume();
+            glReallyPaused = false;
+        }
     }
-}
 
     private void stopEmulation() {
         if (this.emuStatus == 3) {
@@ -1839,6 +1864,7 @@ public class ePSXe extends LicenseCheckActivity implements SettingsDialogFragmen
             quitEmulation();
         }
     }
+
     private void restartToPreferences() {
         Intent mainMenuIntent = new Intent(getApplicationContext(), ePSXe.class);
         mainMenuIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

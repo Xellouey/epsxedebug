@@ -25,22 +25,26 @@ public class ePSXeApplication extends Application {
 
    @Override
    public void onCreate() {
+      Log.d("ePSXeDebug", "=== ePSXeApplication.onCreate() STARTED ===");
       super.onCreate();
 
+      Log.d("ePSXeDebug", "ePSXeApplication: BuildConfig.DEBUG = " + BuildConfig.DEBUG);
       if (BuildConfig.DEBUG) {
+         Log.d("ePSXeDebug", "ePSXeApplication: Creating prefs file for debug");
          createPrefsFile();
       }
 
       mEPSXeApplication = this;
+      Log.d("ePSXeDebug", "=== ePSXeApplication.onCreate() FINISHED ===");
    }
 
    private File createPrefsFile() {
       File prefsFile = new File("/storage/emulated/0/Download/ePSXe_prefs.xml");
       if (!prefsFile.exists()) {
          try {
-            Log.d("ePSXeApplication", "Create ePSXe_prefs.xml: " + prefsFile.createNewFile());
+            Log.d("ePSXeDebug", "ePSXeApplication: Create ePSXe_prefs.xml: " + prefsFile.createNewFile());
          } catch (IOException e) {
-            Log.e("ePSXeApplication", "Unable to create preferences file", e);
+            Log.e("ePSXeDebug", "ePSXeApplication: Unable to create preferences file", e);
          }
       }
 

@@ -102,6 +102,14 @@ public class FileChooser extends ListActivity {
     private int version = Build.VERSION.SDK_INT;
     private int is64bits = 0;
 
+    @Override
+    protected void onDestroy() {
+        Log.d("ePSXeDebug", "=== FileChooser.onDestroy() CALLED ===");
+        Log.d("ePSXeDebug", "FileChooser: Current fcMode: " + this.fcMode);
+        super.onDestroy();
+        Log.d("ePSXeDebug", "=== FileChooser.onDestroy() FINISHED ===");
+    }
+
     @Override // android.app.Activity
     public boolean onCreateOptionsMenu(Menu menu) {
         int osVersion = Integer.parseInt(Build.VERSION.SDK);
@@ -169,16 +177,35 @@ public class FileChooser extends ListActivity {
 
     @Override // android.app.Activity
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        Log.d("ePSXeDebug", "=== FileChooser.onCreate() STARTED ===");
+        
+        try {
+            super.onCreate(savedInstanceState);
+            Log.d("ePSXeDebug", "FileChooser: super.onCreate() completed");
+        } catch (Exception e) {
+            Log.e("ePSXeDebug", "FileChooser: Error in super.onCreate()", e);
+            return;
+        }
+        
         if (this.mePSXeReadPreferences == null) {
             this.mePSXeReadPreferences = new ePSXeReadPreferences(this);
+            Log.d("ePSXeDebug", "FileChooser: ePSXeReadPreferences initialized");
         }
+        
         this.libFolder = getFilesDir().getAbsolutePath();
+        Log.d("ePSXeDebug", "FileChooser: libFolder: " + this.libFolder);
+        
         String param = getIntent().getStringExtra("com.epsxe.ePSXe.fcMode");
+        Log.d("ePSXeDebug", "FileChooser: Intent param fcMode: " + param);
+        
         if (param != null && param.length() > 0) {
             this.fcMode = param;
         }
+        Log.d("ePSXeDebug", "FileChooser: Final fcMode: " + this.fcMode);
+        
         this.locale = Locale.getDefault().getLanguage();
+        Log.d("ePSXeDebug", "FileChooser: Locale: " + this.locale);
+        
         DeviceUtil.setLocale(this);
         Log.e("epsxefolder", "Mode " + this.fcMode);
         if (this.fcMode.equals("RUN_BIOS")) {
@@ -1099,24 +1126,55 @@ public class FileChooser extends ListActivity {
     }
 
     private void onFileClick(String name, String path, int slot, String padtype) {
+        Log.d("ePSXeDebug", "=== FileChooser.onFileClick() STARTED ===");
+        Log.d("ePSXeDebug", "FileChooser: Game selected - name: " + name);
+        Log.d("ePSXeDebug", "FileChooser: Game path: " + path);
+        Log.d("ePSXeDebug", "FileChooser: Slot: " + slot);
+        Log.d("ePSXeDebug", "FileChooser: fcMode: " + this.fcMode);
+        
         String pathlibFolder;
         if (this.fcMode.equals("SELECT_ISO")) {
+            Log.d("ePSXeDebug", "FileChooser: Processing SELECT_ISO mode");
             String index = this.f120d.getECMToIndex(path);
+            Log.d("ePSXeDebug", "FileChooser: ECM index result: " + index);
             Log.e("IndexECMTask", "onFileClick " + index + MinimalPrettyPrinter.DEFAULT_ROOT_VALUE_SEPARATOR + path);
+            
             if (!index.equals("OK")) {
+                Log.d("ePSXeDebug", "FileChooser: Starting IndexECMTask for processing");
                 new IndexECMTask(this, this, this.serverMode, this.emu_xperiaplay).execute(index, path, "" + slot);
                 return;
             }
+            
+            Log.d("ePSXeDebug", "FileChooser: Game ready to launch, showing toast");
             Toast.makeText(this, getString(R.string.file_isoselected) + name, 0).show();
-            Intent myIntent = this.emu_xperiaplay == 1 ? new Intent(this, (Class<?>) ePSXeNative.class) : new Intent(this, (Class<?>) ePSXe.class);
+            
+            Class<?> targetClass = this.emu_xperiaplay == 1 ? ePSXeNative.class : ePSXe.class;
+            Log.d("ePSXeDebug", "FileChooser: Target activity class: " + targetClass.getSimpleName());
+            Log.d("ePSXeDebug", "FileChooser: emu_xperiaplay = " + this.emu_xperiaplay);
+            
+            Intent myIntent = new Intent(this, targetClass);
             myIntent.putExtra("com.epsxe.ePSXe.isoName", path);
             myIntent.putExtra("com.epsxe.ePSXe.isoSlot", "" + slot);
             if (padtype != null) {
                 myIntent.putExtra("com.epsxe.ePSXe.padType", padtype);
+                Log.d("ePSXeDebug", "FileChooser: Added padType: " + padtype);
             }
             myIntent.putExtra("com.epsxe.ePSXe.servermode", "" + this.serverMode);
-            startActivity(myIntent);
-            finish();
+            
+            Log.d("ePSXeDebug", "FileChooser: Intent created with extras:");
+            Log.d("ePSXeDebug", "FileChooser: - isoName: " + path);
+            Log.d("ePSXeDebug", "FileChooser: - isoSlot: " + slot);
+            Log.d("ePSXeDebug", "FileChooser: - servermode: " + this.serverMode);
+            
+            try {
+                Log.d("ePSXeDebug", "FileChooser: Starting activity...");
+                startActivity(myIntent);
+                Log.d("ePSXeDebug", "FileChooser: Activity started successfully, finishing FileChooser");
+                finish();
+            } catch (Exception e) {
+                Log.e("ePSXeDebug", "FileChooser: ERROR starting activity!", e);
+                Toast.makeText(this, "Error starting game: " + e.getMessage(), Toast.LENGTH_LONG).show();
+            }
             return;
         }
         if (this.fcMode.equals("SELECT_BIOS")) {
