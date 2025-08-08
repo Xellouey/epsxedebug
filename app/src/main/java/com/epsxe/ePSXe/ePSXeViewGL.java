@@ -30,6 +30,7 @@ import org.apache.http.HttpStatus;
 
 /* loaded from: classes.dex */
 class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
+
     private boolean useDiagonal = false; // FALSE ЕСЛИ ДИАГОНАЛЬНАЯ АНИМАЦИЯ НЕ ТРЕБУЕТСЯ, TRUE ЕСЛИ ТРЕБУЕТСЯ
     private int lastTouchX = -1;
     private int lastTouchY = -1;
@@ -315,7 +316,7 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
     }
 
     /* JADX WARN: Type inference failed for: r0v10, types: [com.epsxe.ePSXe.ePSXeViewGL$2] */
-    /* JADX WARN: Type inference failed for: r0v11, types: [com.epsxe.ePSXe.ePSXeViewGL$1] */
+ /* JADX WARN: Type inference failed for: r0v11, types: [com.epsxe.ePSXe.ePSXeViewGL$1] */
     @Override // com.epsxe.ePSXe.ePSXeView
     public void setePSXeLib(libepsxe epsxelib, int glVersion, int net) {
         this.osVersion = Integer.parseInt(Build.VERSION.SDK);
@@ -484,7 +485,7 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                 this.emu_split_mode = 1;
             }
         }
-}
+    }
 
     @Override // com.epsxe.ePSXe.ePSXeView
     public void setsplitmode(int spmode) {
@@ -784,6 +785,21 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                 this.virtualPadPos[n][5] = ((this.virtualPadPos[n][3] - this.virtualPadPos[n][1]) / 2) + this.virtualPadPos[n][1];
                 this.virtualPadBit[n] = this.virtualPad[n][5] | 65536;
                 this.virtualPadId[n] = -1;
+                
+                // Смещение для левого стика первого игрока в 2-player режиме
+                if (this.virtualPad[n][0] == 11 && this.virtualPadPos[n][0] < 100) {
+                    this.virtualPadPos[n][0] += 90;
+                    this.virtualPadPos[n][1] -= 100;
+                    this.virtualPadPos[n][2] += 90;
+                    this.virtualPadPos[n][3] -= 100;
+                    this.virtualPadPos[n][4] += 90;
+                    this.virtualPadPos[n][5] -= 100;
+                    
+                    Log.d("TOUCH_INIT", String.format(
+                            "2PLAYER LEFT STICK SHIFTED n=%d pos=[%d,%d]",
+                            n, this.virtualPadPos[n][0], this.virtualPadPos[n][1]
+                    ));
+                }
             }
         }
         for (int n2 = 0; n2 < 20; n2++) {
@@ -934,6 +950,21 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                 }
                 this.virtualPadId[n] = -1;
                 if (n == 20) {
+                    // Применяем смещение для портретного режима (проверяем по virtualPadPort)
+                    if (this.virtualPadPort[n][0] == 11 && this.virtualPadPos[n][0] < 100) {
+                        this.virtualPadPos[n][0] += 90; // смещение вправо
+                        this.virtualPadPos[n][1] -= 100; // смещение вверх
+                        this.virtualPadPos[n][2] += 90; // смещение вправо
+                        this.virtualPadPos[n][3] -= 100; // смещение вверх
+                        this.virtualPadPos[n][4] += 90; // центр X
+                        this.virtualPadPos[n][5] -= 100; // центр Y
+                        
+                        Log.d("TOUCH_INIT", String.format(
+                                "PORTRAIT LEFT STICK SHIFTED n=%d pos=[%d,%d]",
+                                n, this.virtualPadPos[n][0], this.virtualPadPos[n][1]
+                        ));
+                    }
+                    
                     this.analog_values[0][0] = -1;
                     this.analog_values[0][1] = -1;
                 }
@@ -1002,6 +1033,41 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                     iArr2[n] = iArr2[n] | 65536;
                 }
                 this.virtualPadId[n] = -1;
+                // Логируем все элементы для понимания структуры
+                if (n >= 10 && n <= 25) {
+                    Log.d("TOUCH_INIT", String.format(
+                            "Element n=%d virtualPad[n][0]=%d virtualPadPos=[%d,%d,%d,%d]",
+                            n, this.virtualPad[n][0],
+                            this.virtualPadPos[n][0], this.virtualPadPos[n][1],
+                            this.virtualPadPos[n][2], this.virtualPadPos[n][3]
+                    ));
+                }
+
+                if (this.virtualPad[n][0] == 11) { // левый стик имеет индекс 11
+                    Log.d("TOUCH_INIT", String.format(
+                            "LEFT STICK n=%d virtualPad[n][0]=%d virtualPadPos=[%d,%d,%d,%d]",
+                            n, this.virtualPad[n][0],
+                            this.virtualPadPos[n][0], this.virtualPadPos[n][1],
+                            this.virtualPadPos[n][2], this.virtualPadPos[n][3]
+                    ));
+
+                    // Применяем смещение только если координаты еще не смещены
+                    if (this.virtualPadPos[n][0] < 100) { // если X меньше 100, значит еще не смещен
+                        this.virtualPadPos[n][0] += 95; // чуть больше смещение вправо
+                        this.virtualPadPos[n][1] += 105; // смещение ВНИЗ вместо вверх!
+                        this.virtualPadPos[n][2] += 95; // чуть больше смещение вправо
+                        this.virtualPadPos[n][3] += 105; // смещение ВНИЗ вместо вверх!
+                        this.virtualPadPos[n][4] += 95; // центр X
+                        this.virtualPadPos[n][5] += 105; // центр Y ВНИЗ
+                    }
+
+                    Log.d("TOUCH_INIT", String.format(
+                            "LEFT STICK AFTER n=%d virtualPadPos=[%d,%d,%d,%d]",
+                            n, this.virtualPadPos[n][0], this.virtualPadPos[n][1],
+                            this.virtualPadPos[n][2], this.virtualPadPos[n][3]
+                    ));
+                }
+
                 if (n == 20) {
                     this.analog_values[0][0] = ((this.virtualPadPos[n][2] - this.virtualPadPos[n][0]) / 2) + this.virtualPadPos[n][0];
                     this.analog_values[0][1] = this.mHeight - (((this.virtualPadPos[n][3] - this.virtualPadPos[n][1]) / 2) + this.virtualPadPos[n][1]);
@@ -1139,8 +1205,10 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
 
         if (analogStickPointerId == -1 && (action == MotionEvent.ACTION_DOWN || action == MotionEvent.ACTION_POINTER_DOWN)) {
             for (int analogIdx = 20; analogIdx <= 21; analogIdx++) {
-                if (xi >= this.virtualPadPos[analogIdx][0] && xi <= this.virtualPadPos[analogIdx][2] &&
-                        yi >= this.virtualPadPos[analogIdx][1] && yi <= this.virtualPadPos[analogIdx][3]) {
+
+                
+                if (xi >= this.virtualPadPos[analogIdx][0] && xi <= this.virtualPadPos[analogIdx][2]
+                        && yi >= this.virtualPadPos[analogIdx][1] && yi <= this.virtualPadPos[analogIdx][3]) {
                     analogStickPointerId = Id;
                     analogStickIndex = analogIdx;
 
@@ -1221,9 +1289,6 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
         }
         if (action == 1 && this.virtualPadId[Id] != -1) {
             int but = this.virtualPadId[Id];
-
-            // Упрощенная логика: всегда отпускаем кнопку при отпускании пальца
-            // Это исправляет проблему "залипания" кнопок
             if (but < 20 || this.emu_player_mode != 1 || ext == 0) {
                 if ((this.virtualPadBit[but] & 65536) == 65536) {
                     this.f165e.setPadDataUp(this.virtualPadBit[but] & SupportMenu.USER_MASK, 0);
@@ -1341,7 +1406,7 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                 int pressed = this.virtualPadId[Id];
                 if (this.virtualPadId[Id] != -1) {
                     int ind2 = this.virtualPadId[Id];
-                    
+
                     // Упрощенная логика: всегда отпускаем кнопку при отпускании пальца
                     if (ind2 < 20 || this.emu_player_mode != 1) {
                         if ((this.virtualPadBit[ind2] & 65536) == 65536) {
@@ -1752,6 +1817,7 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
     }
 
     private class ePSXeRenderer2 implements GLSurfaceView.Renderer {
+
         SpriteBatch2[] batchLan;
         SpriteBatch2[] batchLanAction;
         SpriteBatch2[] batchLanDpad;
@@ -2006,10 +2072,15 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                                                 for (int p = 0; p < 4; p++) {
                                                     if (ePSXeViewGL.this.isDpadTouchActive && ePSXeViewGL.this.animationButtonIndex != -1) {
                                                         int buttonMapping = -1;
-                                                        if (ePSXeViewGL.this.animationButtonIndex == 12) buttonMapping = 0;
-                                                        else if (ePSXeViewGL.this.animationButtonIndex == 13) buttonMapping = 1;
-                                                        else if (ePSXeViewGL.this.animationButtonIndex == 14) buttonMapping = 2;
-                                                        else if (ePSXeViewGL.this.animationButtonIndex == 15) buttonMapping = 3;
+                                                        if (ePSXeViewGL.this.animationButtonIndex == 12) {
+                                                            buttonMapping = 0;
+                                                        } else if (ePSXeViewGL.this.animationButtonIndex == 13) {
+                                                            buttonMapping = 1;
+                                                        } else if (ePSXeViewGL.this.animationButtonIndex == 14) {
+                                                            buttonMapping = 2;
+                                                        } else if (ePSXeViewGL.this.animationButtonIndex == 15) {
+                                                            buttonMapping = 3;
+                                                        }
 
                                                         if (buttonMapping == p) {
                                                             this.batchLanDpad[p].beginBatch(this.mTexLan);
@@ -2063,7 +2134,41 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                                                 }
                                             }
                                         }
-                                        if (i == 11 || i == 12) {
+                                        if (i == 11) {
+                                            // 1) Центр круга левого стика (виртуальные пиксели):
+                                            float cx_px = (virtualPadPos[20][0] + virtualPadPos[20][2]) * 0.5f;
+                                            float cy_px = (virtualPadPos[20][1] + virtualPadPos[20][3]) * 0.5f;
+
+                                            // 2) Размер круга стика в пикселях — по тому же, что вы рисовали в touch-коде
+                                            //    padSizeScreenLan[mode][26] и [27] — «половина» вашего nub,
+                                            //    умноженная padScreenResize; *2 превращает в полный диаметр.
+                                            float w_px = padSizeScreenLan[mode][26] * padScreenResize[mode][11] * 2.0f;
+                                            float h_px = padSizeScreenLan[mode][27] * padScreenResize[mode][11] * 2.0f;
+
+                                            // 3) Нормализуем центр и размеры в [0..1] для drawSprite
+                                            float x_n = (cx_px - w_px * 0.5f) / (float) mWidth;
+                                            float y_n = (cy_px - h_px * 0.5f) / (float) mHeight;
+                                            float w_n = w_px / (float) mWidth;
+                                            float h_n = h_px / (float) mHeight;
+
+                                            // 4) Логируем, чтобы убедиться, что все в [0..1]
+                                            Log.d("DRAW_NUB", String.format(
+                                                    "i=11 x_n=%.3f y_n=%.3f w_n=%.3f h_n=%.3f",
+                                                    x_n, y_n, w_n, h_n
+                                            ));
+
+                                            // 5) Рисуем nub строго по центру круга
+                                            batchLan[i].beginBatch(mTexLan);
+                                            batchLan[i].drawSprite(
+                                                    x_n, y_n, // левый-нижний угол (нормализовано)
+                                                    w_n, h_n, // размеры (нормализовано)
+                                                    textureRgnLan[i]
+                                            );
+                                            batchLan[i].endBatch();
+
+                                            // 6) Прекращаем старую логику для i==11
+                                            continue;
+                                        } else if (i == 12) {
                                             this.batchLan[i].beginBatch(this.mTexLan);
                                             this.batchLan[i].drawSprite((float) ePSXeViewGL.this.analog_values[0][(i - 11) * 2] / ePSXeViewGL.this.mWidth, (float) ePSXeViewGL.this.analog_values[0][((i - 11) * 2) + 1] / ePSXeViewGL.this.mHeight, ((ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][26] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i]) * 2.0f) / ePSXeViewGL.this.mWidth, ((ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][27] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i]) * 2.0f) / ePSXeViewGL.this.mHeight, this.textureRgnLan[13]);
                                             this.batchLan[i].endBatch();
@@ -2582,33 +2687,33 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                         return;
                     }
                     int[] padCoords2 = {
-                            //x1,  y1,  x2,  y2
-                            2, 1, 224, 225, // Dpad Up, Down, Left, Right - keys
-                            1, 238, 223, 486, // Action keys
-                            253, 8, 309, 52,  // Stop key
-                            372, 4, 433, 56,  // Play key
-                            249, 80, 307, 132, // L1 key
-                            308, 80, 364, 132, // L2 key
-                            308, 144, 364, 196, // R1 key
-                            250, 144, 307, 196, // R2 key
-                            254, 208, 297, 239, // LED1
-                            365, 80, 421, 132, // L3 key
-                            365, 144, 422, 196, // R3 key
-                            289, 289, 511, 511, // Touch pad area
-                            289, 289, 511, 511, // ------"-------
-                            422, 144, 491, 215 // Some ball button
+                        //x1,  y1,  x2,  y2
+                        2, 1, 224, 225, // Dpad Up, Down, Left, Right - keys
+                        1, 238, 223, 486, // Action keys
+                        253, 8, 309, 52, // Stop key
+                        372, 4, 433, 56, // Play key
+                        249, 80, 307, 132, // L1 key
+                        308, 80, 364, 132, // L2 key
+                        308, 144, 364, 196, // R1 key
+                        250, 144, 307, 196, // R2 key
+                        254, 208, 297, 239, // LED1
+                        365, 80, 421, 132, // L3 key
+                        365, 144, 422, 196, // R3 key
+                        289, 289, 511, 511, // Touch pad area
+                        289, 289, 511, 511, // ------"-------
+                        422, 144, 491, 215 // Some ball button
                     };
                     int[] padCoordsAction = {
-                            77, 244, 149, 316, // Action - triangle
-                            146, 328, 218, 400, // Action - circle
-                            77, 412, 149, 484, // Action - x
-                            6, 328, 78, 400  // Action - square
+                        77, 244, 149, 316, // Action - triangle
+                        146, 328, 218, 400, // Action - circle
+                        77, 412, 149, 484, // Action - x
+                        6, 328, 78, 400 // Action - square
                     };
                     int[] padCoordsDpad = {
-                            76, 7, 146, 94,  // Dpad - up
-                            130, 80, 218, 149, // Dpad - right
-                            76, 134, 146, 220, // Dpad - down
-                            4, 80, 92, 149  // Dpad - left
+                        76, 7, 146, 94, // Dpad - up
+                        130, 80, 218, 149, // Dpad - right
+                        76, 134, 146, 220, // Dpad - down
+                        4, 80, 92, 149 // Dpad - left
                     };
                     if (ePSXeViewGL.this.emu_pad_draw_mode[0] == 4) {
                         File f = new File(ePSXeViewGL.this.skinName);
@@ -2757,8 +2862,8 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                     return;
                 }
                 int[] padCoords3 = {
-                        256, 64, 320, 256,
-                        320, 64, 384, 256
+                    256, 64, 320, 256,
+                    320, 64, 384, 256
                 };
                 this.mTexLan = loadTexture(ePSXeViewGL.this.mContext, R.drawable.extra_buttons);
                 for (int i8 = 0; i8 < 2; i8++) {
@@ -2796,6 +2901,7 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
     }
 
     private class ePSXeRenderer implements GLSurfaceView.Renderer {
+
         SpriteBatch[] batchLan;
         SpriteBatch[] batchLanAction;
         SpriteBatch[] batchLanDpad;
@@ -3090,10 +3196,15 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
 
                                                     if (ePSXeViewGL.this.isDpadTouchActive && ePSXeViewGL.this.animationButtonIndex != -1) {
                                                         int buttonMapping = -1;
-                                                        if (ePSXeViewGL.this.animationButtonIndex == 12) buttonMapping = 0;
-                                                        else if (ePSXeViewGL.this.animationButtonIndex == 13) buttonMapping = 1;
-                                                        else if (ePSXeViewGL.this.animationButtonIndex == 14) buttonMapping = 2;
-                                                        else if (ePSXeViewGL.this.animationButtonIndex == 15) buttonMapping = 3;
+                                                        if (ePSXeViewGL.this.animationButtonIndex == 12) {
+                                                            buttonMapping = 0;
+                                                        } else if (ePSXeViewGL.this.animationButtonIndex == 13) {
+                                                            buttonMapping = 1;
+                                                        } else if (ePSXeViewGL.this.animationButtonIndex == 14) {
+                                                            buttonMapping = 2;
+                                                        } else if (ePSXeViewGL.this.animationButtonIndex == 15) {
+                                                            buttonMapping = 3;
+                                                        }
 
                                                         if (buttonMapping == p) {
                                                             this.batchLanDpad[p].beginBatch();
@@ -3165,8 +3276,34 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                                             }
                                         }
                                         if (i == 11 || i == 12) {
+                                            // Оригинальный код с центрированием
+                                            float stickW = ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][26] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i] * 2.0f;
+                                            float stickH = ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][27] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i] * 2.0f;
+
+                                            // Центр круга стика (где должен быть визуальный центр)
+                                            float circleCenterX = ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][i * 2];
+                                            float circleCenterY = ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][i * 2 + 1];
+                                            
+                                            // Текущая позиция стика из analog_values (уже содержит правильные координаты)
+                                            float currentX = ePSXeViewGL.this.analog_values[0][(i - 11) * 2];
+                                            float currentY = ePSXeViewGL.this.analog_values[0][((i - 11) * 2) + 1];
+
+                                            // Базовая позиция стика в покое (из логов)
+                                            float baseX = 337.0f;
+                                            float baseY = 295.0f;
+                                            
+                                            // Вычисляем смещение от базовой позиции
+                                            float offsetX = currentX - baseX;
+                                            float offsetY = currentY - baseY;
+
+                                            // Центрируем стик: центр круга + смещение
+                                            float centeredX = circleCenterX + offsetX;
+                                            float centeredY = circleCenterY + offsetY;
+
+
+
                                             this.batchLan[i].beginBatch();
-                                            this.batchLan[i].drawSprite(ePSXeViewGL.this.analog_values[0][(i - 11) * 2], ePSXeViewGL.this.analog_values[0][((i - 11) * 2) + 1], ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][26] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i] * 2.0f, ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][27] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i] * 2.0f, this.textureRgnLan[13]);
+                                            this.batchLan[i].drawSprite(centeredX, centeredY, stickW, stickH, this.textureRgnLan[13]);
                                             this.batchLan[i].endBatch();
                                         }
                                     }
@@ -3714,33 +3851,33 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                         return;
                     }
                     int[] padCoords2 = {
-                            //x1,  y1,  x2,  y2
-                            2, 1, 224, 225, // Dpad Up, Down, Left, Right - keys
-                            1, 238, 223, 486, // Action keys
-                            253, 8, 309, 52,  // Stop key
-                            372, 4, 433, 56,  // Play key
-                            249, 80, 307, 132, // L1 key
-                            308, 80, 364, 132, // L2 key
-                            308, 144, 364, 196, // R1 key
-                            250, 144, 307, 196, // R2 key
-                            254, 208, 297, 239, // LED1
-                            365, 80, 421, 132, // L3 key
-                            365, 144, 422, 196, // R3 key
-                            289, 289, 511, 511, // Touch pad area
-                            289, 289, 511, 511, // ------"-------
-                            422, 144, 491, 215 // Some ball button
+                        //x1,  y1,  x2,  y2
+                        2, 1, 224, 225, // Dpad Up, Down, Left, Right - keys
+                        1, 238, 223, 486, // Action keys
+                        253, 8, 309, 52, // Stop key
+                        372, 4, 433, 56, // Play key
+                        249, 80, 307, 132, // L1 key
+                        308, 80, 364, 132, // L2 key
+                        308, 144, 364, 196, // R1 key
+                        250, 144, 307, 196, // R2 key
+                        254, 208, 297, 239, // LED1
+                        365, 80, 421, 132, // L3 key
+                        365, 144, 422, 196, // R3 key
+                        289, 289, 511, 511, // Touch pad area
+                        289, 289, 511, 511, // ------"-------
+                        422, 144, 491, 215 // Some ball button
                     };
                     int[] padCoordsAction = {
-                            77, 244, 149, 316, // Action - triangle
-                            146, 328, 218, 400, // Action - circle
-                            77, 412, 149, 484, // Action - x
-                            6, 328, 78, 400  // Action - square
+                        77, 244, 149, 316, // Action - triangle
+                        146, 328, 218, 400, // Action - circle
+                        77, 412, 149, 484, // Action - x
+                        6, 328, 78, 400 // Action - square
                     };
                     int[] padCoordsDpad = {
-                            76, 7, 146, 94,  // Dpad - up
-                            130, 80, 218, 149, // Dpad - right
-                            76, 134, 146, 220, // Dpad - down
-                            4, 80, 92, 149  // Dpad - left
+                        76, 7, 146, 94, // Dpad - up
+                        130, 80, 218, 149, // Dpad - right
+                        76, 134, 146, 220, // Dpad - down
+                        4, 80, 92, 149 // Dpad - left
                     };
                     if (ePSXeViewGL.this.emu_pad_draw_mode[0] == 4) {
                         File f = new File(ePSXeViewGL.this.skinName);
@@ -3919,8 +4056,8 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                     return;
                 }
                 int[] padCoords3 = {
-                        256, 64, 320, 256,
-                        320, 64, 384, 256
+                    256, 64, 320, 256,
+                    320, 64, 384, 256
                 };
                 this.mTexLan = loadTexture(gl, ePSXeViewGL.this.mContext, R.drawable.extra_buttons);
                 for (int i7 = 0; i7 < 2; i7++) {
