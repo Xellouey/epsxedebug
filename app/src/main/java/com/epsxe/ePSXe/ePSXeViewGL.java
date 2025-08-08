@@ -3276,34 +3276,8 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                                             }
                                         }
                                         if (i == 11 || i == 12) {
-                                            // Оригинальный код с центрированием
-                                            float stickW = ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][26] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i] * 2.0f;
-                                            float stickH = ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][27] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i] * 2.0f;
-
-                                            // Центр круга стика (где должен быть визуальный центр)
-                                            float circleCenterX = ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][i * 2];
-                                            float circleCenterY = ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][i * 2 + 1];
-                                            
-                                            // Текущая позиция стика из analog_values (уже содержит правильные координаты)
-                                            float currentX = ePSXeViewGL.this.analog_values[0][(i - 11) * 2];
-                                            float currentY = ePSXeViewGL.this.analog_values[0][((i - 11) * 2) + 1];
-
-                                            // Базовая позиция стика в покое (из логов)
-                                            float baseX = 337.0f;
-                                            float baseY = 295.0f;
-                                            
-                                            // Вычисляем смещение от базовой позиции
-                                            float offsetX = currentX - baseX;
-                                            float offsetY = currentY - baseY;
-
-                                            // Центрируем стик: центр круга + смещение
-                                            float centeredX = circleCenterX + offsetX;
-                                            float centeredY = circleCenterY + offsetY;
-
-
-
                                             this.batchLan[i].beginBatch();
-                                            this.batchLan[i].drawSprite(centeredX, centeredY, stickW, stickH, this.textureRgnLan[13]);
+                                            this.batchLan[i].drawSprite((float) ePSXeViewGL.this.analog_values[0][(i - 11) * 2], (float) ePSXeViewGL.this.analog_values[0][((i - 11) * 2) + 1], ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][26] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i] * 2.0f, ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][27] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i] * 2.0f, this.textureRgnLan[13]);
                                             this.batchLan[i].endBatch();
                                         }
                                     }
