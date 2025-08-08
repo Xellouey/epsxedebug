@@ -624,7 +624,6 @@ public class gFileChooser extends Activity {
                 new IndexECMTask(this, this, this.serverMode, this.emu_xperiaplay).execute(index, path, "" + slot);
                 return;
             }
-            Toast.makeText(this, getString(R.string.file_isoselected) + name, 0).show();
             Intent myIntent = this.emu_xperiaplay == 1 ? new Intent(this, (Class<?>) ePSXeNative.class) : new Intent(this, (Class<?>) ePSXe.class);
             myIntent.putExtra("com.epsxe.ePSXe.isoName", path);
             myIntent.putExtra("com.epsxe.ePSXe.isoSlot", "" + slot);

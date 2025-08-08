@@ -1146,7 +1146,6 @@ public class FileChooser extends ListActivity {
             }
             
             Log.d("ePSXeDebug", "FileChooser: Game ready to launch, showing toast");
-            Toast.makeText(this, getString(R.string.file_isoselected) + name, 0).show();
             
             Class<?> targetClass = this.emu_xperiaplay == 1 ? ePSXeNative.class : ePSXe.class;
             Log.d("ePSXeDebug", "FileChooser: Target activity class: " + targetClass.getSimpleName());

@@ -151,7 +151,6 @@
     <string name="file_games_scanning">Поиск игр в памяти устройства</string>
     <string name="file_gpuselected">Выбран плагин GPU:</string>
     <string name="file_help">Справка</string>
-    <string name="file_isoselected">Загружена игра:</string>
     <string name="file_ksinselected">Выбран скин:</string>
     <string name="file_listgames">Список игр на устройстве</string>
     <string name="file_mcr1selected">Карта памяти #1:</string>

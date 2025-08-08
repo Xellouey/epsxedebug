@@ -94,7 +94,7 @@ import java.util.Properties;
 /* loaded from: classes.dex */
 public class ePSXe extends LicenseCheckActivity implements SettingsDialogFragment.ResumeEmuCallback, SensorEventListener {
 
-    private static final boolean SHOW_SAVE_STATE_IN_MENU = false; //true - включить, false - выключить
+    private static final boolean SHOW_SAVE_STATE_IN_MENU = false;
     private static final boolean SHOW_LOAD_STATE_IN_MENU = false;
 
     private static final int REQ_PREFS = 0xCAFE;
@@ -1146,18 +1146,7 @@ public class ePSXe extends LicenseCheckActivity implements SettingsDialogFragmen
         int analog3 = 1;
         int analog4 = 1;
         if (this.emu_padType != 0) {
-//            if (mode1 == 4 && (this.emu_padType & 6) == 0) {
-//                analog1 = 0;
-//            }
-//            if (mode2 == 4 && (this.emu_padType & 6) == 0) {
-//                analog2 = 0;
-//            }
-//            if (mode3 == 4 && (this.emu_padType & 6) == 0) {
-//                analog3 = 0;
-//            }
-//            if (mode4 == 4 && (this.emu_padType & 6) == 0) {
-//                analog4 = 0;
-//            }
+
             if (mode1 == 3 && (this.emu_padType & 64) == 0) {
                 mode1 = 1;
             }
@@ -1168,12 +1157,7 @@ public class ePSXe extends LicenseCheckActivity implements SettingsDialogFragmen
                 mode1 = 1;
             }
         }
-//        if (isoName.equals("___RUNBIOS___") && mode1 == 4) {
-//            analog1 = 0;
-//        }
-//        if (this.emu_screen_orientation == 1 && mode1 == 4) {
-//            analog1 = 0;
-//        }
+
         if (mode1 == 2 || mode2 == 2) {
             if (Build.VERSION.SDK_INT >= 24) {
                 this.emu_mouse = true;
@@ -1181,7 +1165,6 @@ public class ePSXe extends LicenseCheckActivity implements SettingsDialogFragmen
                 this.emu_mouse_sen /= 100.0f;
                 if (mode1 == 2) {
                     this.emu_menu2_touchscreen = 2;
-//                    this.mePSXeView.setinputpaintpadmode(this.emu_menu2_touchscreen, this.mePSXeReadPreferences.getInputPaintPadMode2());
                     this.mePSXeView.setinputpaintpadmode(0, this.mePSXeReadPreferences.getInputPaintPadMode2());
                 }
             } else {
@@ -1757,34 +1740,31 @@ public class ePSXe extends LicenseCheckActivity implements SettingsDialogFragmen
             if (param6 != null && param6.length() > 0) {
                 this.serverMode = Integer.parseInt(param6);
             }
-            // Проверяем, есть ли у нас параметры для запуска игры
-            if (this.mIsoName.getmIsoName().length() > 0) {
-                Log.d("ePSXeDebug", "ePSXe: Found isoName, starting game: " + this.mIsoName.getmIsoName());
+            if (true) {
+                // Fix pad type
+                this.emu_padType = 1;
+                // Get access to permissions
+                ePSXe.this.isStoragePermissionGranted();
+                // Switch to simulated bios
+//                SharedPreferences sharedPreferences = ePSXeApplication.getDefaultSharedPreferences(this);
+//                SharedPreferences.Editor editor = sharedPreferences.edit();
+//                editor.putString("biosHlePref", "1");
+//                editor.commit();
+                // Run game
+                String gameFileName = getCacheDir() + "/Game/Strider (USA).cue";
+                this.mIsoName.setmIsoName(gameFileName);
+                this.snapRestoring = false;
+                slot = 0;
+                this.mIsoName.setmIsoSlot(slot);
+                this.emu_gui = 0;
+                this.serverMode = 0;
+                runIso(gameFileName, slot);
+            } else if (this.mIsoName.getmIsoName().length() > 0) {
                 if (this.mIsoName.getmIsoName().equals("___NETWORK___") && this.serverMode == 2) {
                     GetIPAddressDialog.showGetIPAddressDialog(this, this.f153e, this.serverMode, this.mePSXeReadPreferences.getNetplayServer(), 0, "");
                     return;
                 }
                 runIso(this.mIsoName.getmIsoName(), slot);
-            } else if (!BuildConfig.DEBUG) { 
-                // Только для релизной сборки - если нет параметров игры, открываем меню выбора игры
-                Log.d("ePSXeDebug", "ePSXe: No isoName found, opening file chooser");
-                // Fix pad type
-                this.emu_padType = 1;
-
-                // Get access to permissions
-                if (ePSXe.this.isStoragePermissionGranted() && ePSXe.this.check_bios(0) != -1) {
-                    // Запускаем меню выбора игры напрямую
-                    Log.e("epsxe", "getMiscBrowsermode " + ePSXe.this.mePSXeReadPreferences.getMiscBrowsermode(ePSXe.this.emu_androidtv));
-                    ePSXe.this.emu_browser_mode = ePSXe.this.mePSXeReadPreferences.getMiscBrowsermode(ePSXe.this.emu_androidtv);
-                    Intent myIntent = ePSXe.this.emu_browser_mode == 2 ? new Intent(ePSXe.this, (Class<?>) gFileChooser.class) : new Intent(ePSXe.this, (Class<?>) FileChooser.class);
-                    myIntent.putExtra("com.epsxe.ePSXe.fcMode", "SELECT_ISO");
-                    myIntent.putExtra("com.epsxe.ePSXe.isoPath", ePSXe.this.currentPath);
-                    myIntent.putExtra("com.epsxe.ePSXe.xperiaplay", "" + ePSXe.this.emu_xperiaplay);
-                    myIntent.putExtra("com.epsxe.ePSXe.browserMode", "" + ePSXe.this.emu_browser_mode);
-                    ePSXe.this.startActivity(myIntent);
-                    ePSXe.this.finish();
-                    return;
-                }
             } else {
                 setContentView(R.layout.mainmenu);
                 ListView m_listview = (ListView) findViewById(R.id.list);
@@ -1792,7 +1772,8 @@ public class ePSXe extends LicenseCheckActivity implements SettingsDialogFragmen
                 this.enableChangeOrientation = true;
             }
             this.emu_ui_resume_dialog = 0; //this.mePSXeReadPreferences.getUiresumedialog();
-            // if (check_savetmp_snap(this.mIsoName.getmIsoName()) || this.emuStatus == 0) {}
+            if (check_savetmp_snap(this.mIsoName.getmIsoName()) || this.emuStatus == 0) {
+            }
         }
     }
 
@@ -1903,7 +1884,6 @@ public class ePSXe extends LicenseCheckActivity implements SettingsDialogFragmen
     protected void onDestroy() {
         Log.e("epsxelf", "onDestroy");
 
-        // Очистка handler'ов
         if (hidePadHandler != null) {
             hidePadHandler.removeCallbacks(hidePadRunnable);
         }
@@ -1914,32 +1894,27 @@ public class ePSXe extends LicenseCheckActivity implements SettingsDialogFragmen
             handlerErr.removeCallbacks(runnableErr);
         }
 
-        // Очистка view
         if (this.mePSXeView != null) {
             this.mePSXeView.onStop();
             this.mePSXeView = null;
         }
 
-        // Очистка звука
         if (this.mePSXeSound != null) {
             this.mePSXeSound.exit();
             this.mePSXeSound = null;
         }
 
-        // Очистка эмулятора
         if (this.f153e != null) {
             this.f153e.quit();
             this.f153e = null;
         }
 
-        // Очистка bluetooth
         if (this.bluezenabled && this.bluezInput != null) {
             this.bluezenabled = false;
             this.bluezInput.bluezStop();
             this.bluezInput = null;
         }
 
-        // Очистка MOGA
         if (this.mogapad != -1) {
             this.mogapad = -1;
             if (this.mogaInput != null) {
@@ -2027,31 +2002,23 @@ public class ePSXe extends LicenseCheckActivity implements SettingsDialogFragmen
         return super.onPrepareOptionsMenu(menu);
     }
 
-    /**
-     * Полный выход из ePSXe. 1) Выгружаем эмулятор 2) Закрываем Activity-стек
-     * 3) Убиваем процесс, чтобы при новом запуске стартовать «с нуля»
-     */
     private void forceQuitApp() {
-        userRequestedExit = true; // Устанавливаем флаг, что выход инициирован пользователем
-        Toast.makeText(getApplicationContext(), "Выход...", Toast.LENGTH_SHORT).show();
+        userRequestedExit = true;
 
         try {
-            // 1. Корректно останавливаем эмуляцию, если она ещё жива
             quitEmulation();
         } catch (Throwable t) {
             Log.e("epsxelf", "quitEmulation failed during forceQuit", t);
         }
 
-        // 2. Закрываем текущую и все родственные activity
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            finishAndRemoveTask(); // API 21+: ещё и из «Недавних» удаляет
+            finishAndRemoveTask();
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             finishAffinity(); // API 16+
         } else {
-            finish(); // старые версии
+            finish();
         }
 
-        // 3. Гарантированно завершаем процесс
         android.os.Process.killProcess(android.os.Process.myPid());
         System.exit(0);
     }
@@ -2183,7 +2150,6 @@ public class ePSXe extends LicenseCheckActivity implements SettingsDialogFragmen
             return;
         }
 
-        // Полная очистка ресурсов
         if (this.mePSXeSound != null) {
             this.mePSXeSound.exit();
             this.mePSXeSound = null;
@@ -2214,14 +2180,12 @@ public class ePSXe extends LicenseCheckActivity implements SettingsDialogFragmen
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.main_back);
 
-        // Формируем сообщение для диалога
         String message = getString(R.string.main_wantquitgame);
         if (this.f153e != null && this.f153e.getCode() != null) {
             message += " (" + this.f153e.getCode() + ")?\n" + this.f153e.getGameInfo();
         }
         builder.setMessage(message);
 
-        // Кнопка "Нет" (Отмена) - ничего не делает, просто закрывает диалог
         builder.setNegativeButton(getString(R.string.main_noquitgame), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -2229,11 +2193,10 @@ public class ePSXe extends LicenseCheckActivity implements SettingsDialogFragmen
             }
         });
 
-        // Кнопка "Да" (Выход) - вызывает наш надежный метод полного выхода
         builder.setPositiveButton(getString(R.string.main_yesquitgame), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                forceQuitApp(); // <--- ВОТ ГЛАВНОЕ ИЗМЕНЕНИЕ
+                forceQuitApp();
             }
         });
 
@@ -2245,34 +2208,6 @@ public class ePSXe extends LicenseCheckActivity implements SettingsDialogFragmen
 
     /* JADX INFO: Access modifiers changed from: private */
     public void alertdialog_quitGame() {
-        // // Полная очистка ресурсов перед выходом
-        // if (this.mePSXeSound != null) {
-        //     this.mePSXeSound.exit();
-        //     this.mePSXeSound = null;
-        // }
-
-        // if (this.f153e != null) {
-        //     this.f153e.quit();
-        //     this.f153e = null;
-        // }
-        // // Delete saved game
-        // File f = new File(ContextCompat.getDataDir(this), "epsxe/sstates/savetmp");
-        // if (f.exists()) {
-        //     f.delete();
-        // }
-        // // Установить статус эмуляции в "не запущен"
-        // this.emuStatus = 0;
-        // // Полное закрытие Activity
-        // finishAndRemoveTask();
-        // System.exit(0);
-        // long ctime = System.currentTimeMillis() / 1000;
-        // if (this.emu_ui_exit_confirm_dialog == 0) {
-        //     quitGame_norate();
-        // } else if (this.stime != 0 && ctime > this.stime + 600 && this.emu_ui_show_rate_dialog == 1) {
-        //     alertdialog_quitGame_rate();
-        // } else {
-        //     alertdialog_quitGame_norate();
-        // }
         forceQuitApp();
     }
 
@@ -2583,15 +2518,6 @@ public class ePSXe extends LicenseCheckActivity implements SettingsDialogFragmen
                         AboutDialog.showHelpDialog(ePSXe.this, ePSXe.this.mePSXeReadPreferences, ePSXe.this.emu_enable_x86, ePSXe.this.emu_enable_cores, ePSXe.this.emu_enable_64bits);
                         break;
                     case 5:
-                        // if (ePSXe.this.emuStatus != 0) {
-                        //     if (ePSXe.this.emuStatus == 1 || ePSXe.this.emuStatus == 2) {
-                        //         ePSXe.this.alertdialog_quitGame();
-                        //         break;
-                        //     }
-                        // } else {
-                        //     ePSXe.this.finish();
-                        //     break;
-                        // }
                         forceQuitApp();
                         break;
                 }
