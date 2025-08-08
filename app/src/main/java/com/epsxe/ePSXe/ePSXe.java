@@ -4703,7 +4703,9 @@ public class ePSXe extends LicenseCheckActivity implements SettingsDialogFragmen
             if (SHOW_SAVE_STATE_IN_MENU) {
                 menuItems.add(getString(R.string.menu_savestate));
             }
-            menuItems.add(getString(R.string.fbutton_preferences));
+            if (BuildConfig.DEBUG) {
+                menuItems.add(getString(R.string.fbutton_preferences));
+            }
             if (!oneDisk) {
                 menuItems.add(getString(R.string.change_disk));
             }
