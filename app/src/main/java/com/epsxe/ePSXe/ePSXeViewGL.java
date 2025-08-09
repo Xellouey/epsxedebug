@@ -192,7 +192,7 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
     public ePSXeViewGL(Context context, ePSXe act, int ry) {
         super(context);
         this.mfps = 60;
-        this.ts_vibration = new int[]{0, 0};
+        this.ts_vibration = new int[] { 0, 0 };
         this.emu_enable_frameskip = 0;
         this.emu_enable_frameskip_tmp = 0;
         this.emu_enable_printfps = 1;
@@ -202,9 +202,9 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
         this.emu_screen_ratio = 0;
         this.emu_screen_vrmode = 0;
         this.emu_screen_vrdistorsion = 1;
-        this.emu_pad_draw_mode = new int[]{1, 1};
-        this.emu_pad_mode = new int[]{1, 1};
-        this.emu_pad_mode_analog = new int[]{0, 0};
+        this.emu_pad_draw_mode = new int[] { 1, 1 };
+        this.emu_pad_mode = new int[] { 1, 1 };
+        this.emu_pad_mode_analog = new int[] { 0, 0 };
         this.emu_portrait_skin = 0;
         this.emu_input_alpha = 0.6f;
         this.emu_gpu_blit_mode = 16;
@@ -213,7 +213,7 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
         this.emu_enable_tv = 1;
         this.overscan_x = 30;
         this.overscan_y = 4;
-        this.emu_pad_type = new int[]{0, 0};
+        this.emu_pad_type = new int[] { 0, 0 };
         this.emu_pad_type_selected = 0;
         this.emu_video_filter = 0;
         this.emu_sound_latency = 0;
@@ -221,7 +221,7 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
         this.emu_volumen = 16;
         this.license = true;
         this.gprofile = false;
-        this.analog_values = new int[][]{new int[]{0, 0, 0, 0}, new int[]{0, 0, 0, 0}};
+        this.analog_values = new int[][] { new int[] { 0, 0, 0, 0 }, new int[] { 0, 0, 0, 0 } };
         this.f166x1 = 0;
         this.f168y1 = 0;
         this.f167x2 = 0;
@@ -229,7 +229,7 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
         this.debugString = "";
         this.debugString2 = "";
         this.skinName = "/sdcard/skin.png";
-        this.stickyButton = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
+        this.stickyButton = new int[] { 0, 0, 0, 0, 0, 0, 0, 0 };
         this.serverMode = 0;
         this.biosmsg = false;
         this.biosVersionAdvise = InputList.KEYCODE_NUMPAD_6;
@@ -241,7 +241,7 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
         this.emu_pad_dynamic = 0;
         this.emu_action_dynamic = 0;
         this.statebuttons = 0;
-        this.psxbuttonval = new int[]{0, 0, 256, 2048, 4, 1, 8, 2, 0, 512, 1024};
+        this.psxbuttonval = new int[] { 0, 0, 256, 2048, 4, 1, 8, 2, 0, 512, 1024 };
         this.buttonMag = 1.7f;
         this.dpadskin = 0;
         this.onPauseMode = 0;
@@ -253,23 +253,171 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
         this.mWidthSaved = 0;
         this.mHeightSaved = 0;
         this.padResize = 1.0f;
-        this.padSizeScreenLan = new float[][]{new float[]{228.0f, 228.0f, 224.0f, 248.0f, 66.0f, 50.0f, 66.0f, 62.0f, 64.0f, 60.0f, 64.0f, 60.0f, 64.0f, 60.0f, 64.0f, 60.0f, 53.0f, 41.0f, 64.0f, 60.0f, 64.0f, 60.0f, 222.0f, 222.0f, 222.0f, 222.0f, 71.0f, 71.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f}, new float[]{228.0f, 228.0f, 224.0f, 248.0f, 66.0f, 50.0f, 66.0f, 62.0f, 64.0f, 60.0f, 64.0f, 60.0f, 64.0f, 60.0f, 64.0f, 60.0f, 53.0f, 41.0f, 64.0f, 60.0f, 64.0f, 60.0f, 222.0f, 222.0f, 222.0f, 222.0f, 71.0f, 71.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f}};
-        this.padOffScreenLan = new float[][]{new float[]{this.padSizeScreenLan[0][0] / 2.0f, this.padSizeScreenLan[0][1] / 2.0f, 800.0f - (this.padSizeScreenLan[0][2] / 2.0f), this.padSizeScreenLan[0][3] / 2.0f, (400.0f - this.padSizeScreenLan[0][4]) - 30.0f, this.padSizeScreenLan[0][5] / 2.0f, 430.0f, this.padSizeScreenLan[0][7] / 2.0f, this.padSizeScreenLan[0][8] / 2.0f, 480.0f - (this.padSizeScreenLan[0][9] / 2.0f), (this.padSizeScreenLan[0][10] / 2.0f) + this.padSizeScreenLan[0][8], 480.0f - (this.padSizeScreenLan[0][11] / 2.0f), 800.0f - (this.padSizeScreenLan[0][12] / 2.0f), 480.0f - (this.padSizeScreenLan[0][13] / 2.0f), (800.0f - (this.padSizeScreenLan[0][14] / 2.0f)) - this.padSizeScreenLan[0][12], 480.0f - (this.padSizeScreenLan[0][15] / 2.0f), 440.0f + this.padSizeScreenLan[0][6], this.padSizeScreenLan[0][17] / 2.0f, (this.padSizeScreenLan[0][18] / 2.0f) + this.padSizeScreenLan[0][10] + this.padSizeScreenLan[0][8], 480.0f - (this.padSizeScreenLan[0][19] / 2.0f), ((800.0f - (this.padSizeScreenLan[0][20] / 2.0f)) - this.padSizeScreenLan[0][12]) - this.padSizeScreenLan[0][14], 480.0f - (this.padSizeScreenLan[0][21] / 2.0f), this.padSizeScreenLan[0][22] / 2.0f, this.padSizeScreenLan[0][23] / 2.0f, 800.0f - (this.padSizeScreenLan[0][24] / 2.0f), this.padSizeScreenLan[0][25] / 2.0f, 0.0f, 0.0f, this.padSizeScreenLan[0][28] / 2.0f, (480.0f - (this.padSizeScreenLan[0][29] / 2.0f)) - (this.padSizeScreenLan[0][10] * 2.0f), (this.padSizeScreenLan[0][30] / 2.0f) + this.padSizeScreenLan[0][28], (480.0f - (this.padSizeScreenLan[0][31] / 2.0f)) - (this.padSizeScreenLan[0][10] * 2.0f), (this.padSizeScreenLan[0][32] / 2.0f) + this.padSizeScreenLan[0][28] + this.padSizeScreenLan[0][30], (480.0f - (this.padSizeScreenLan[0][33] / 2.0f)) - (this.padSizeScreenLan[0][10] * 2.0f), 800.0f - (this.padSizeScreenLan[0][34] / 2.0f), (480.0f - (this.padSizeScreenLan[0][35] / 2.0f)) - (this.padSizeScreenLan[0][10] * 2.0f), (800.0f - (this.padSizeScreenLan[0][36] / 2.0f)) - this.padSizeScreenLan[0][34], (480.0f - (this.padSizeScreenLan[0][37] / 2.0f)) - (this.padSizeScreenLan[0][10] * 2.0f), ((800.0f - (this.padSizeScreenLan[0][38] / 2.0f)) - this.padSizeScreenLan[0][34]) - this.padSizeScreenLan[0][36], (480.0f - (this.padSizeScreenLan[0][39] / 2.0f)) - (this.padSizeScreenLan[0][10] * 2.0f)}, new float[]{400.0f - ((this.padSizeScreenLan[1][0] / 2.0f) * 0.76f), 240.0f, 800.0f - (this.padSizeScreenLan[1][2] / 2.0f), this.padSizeScreenLan[1][3] / 2.0f, (400.0f - this.padSizeScreenLan[1][4]) - 30.0f, this.padSizeScreenLan[1][5] / 2.0f, 430.0f, this.padSizeScreenLan[1][7] / 2.0f, this.padSizeScreenLan[1][8] / 2.0f, 480.0f - (this.padSizeScreenLan[1][9] / 2.0f), (this.padSizeScreenLan[1][10] / 2.0f) + this.padSizeScreenLan[1][8], 480.0f - (this.padSizeScreenLan[1][11] / 2.0f), 800.0f - (this.padSizeScreenLan[1][12] / 2.0f), 480.0f - (this.padSizeScreenLan[1][13] / 2.0f), (800.0f - (this.padSizeScreenLan[1][14] / 2.0f)) - this.padSizeScreenLan[1][12], 480.0f - (this.padSizeScreenLan[1][15] / 2.0f), 440.0f + this.padSizeScreenLan[1][6], this.padSizeScreenLan[1][17] / 2.0f, (this.padSizeScreenLan[1][18] / 2.0f) + this.padSizeScreenLan[1][10] + this.padSizeScreenLan[1][8], 480.0f - (this.padSizeScreenLan[1][19] / 2.0f), ((800.0f - (this.padSizeScreenLan[1][20] / 2.0f)) - this.padSizeScreenLan[1][12]) - this.padSizeScreenLan[1][14], 480.0f - (this.padSizeScreenLan[1][21] / 2.0f), this.padSizeScreenLan[1][22] / 2.0f, this.padSizeScreenLan[1][23] / 2.0f, 400.0f + ((this.padSizeScreenLan[1][24] / 2.0f) * 0.76f), 240.0f, 0.0f, 0.0f, this.padSizeScreenLan[1][28] / 2.0f, (480.0f - (this.padSizeScreenLan[1][29] / 2.0f)) - (this.padSizeScreenLan[1][10] * 2.0f), (this.padSizeScreenLan[1][30] / 2.0f) + this.padSizeScreenLan[1][28], (480.0f - (this.padSizeScreenLan[1][31] / 2.0f)) - (this.padSizeScreenLan[1][10] * 2.0f), (this.padSizeScreenLan[1][32] / 2.0f) + this.padSizeScreenLan[1][28] + this.padSizeScreenLan[1][30], (480.0f - (this.padSizeScreenLan[1][33] / 2.0f)) - (this.padSizeScreenLan[1][10] * 2.0f), 800.0f - (this.padSizeScreenLan[1][34] / 2.0f), (480.0f - (this.padSizeScreenLan[1][35] / 2.0f)) - (this.padSizeScreenLan[1][10] * 2.0f), (800.0f - (this.padSizeScreenLan[1][36] / 2.0f)) - this.padSizeScreenLan[1][34], (480.0f - (this.padSizeScreenLan[1][37] / 2.0f)) - (this.padSizeScreenLan[1][10] * 2.0f), ((800.0f - (this.padSizeScreenLan[1][38] / 2.0f)) - this.padSizeScreenLan[1][34]) - this.padSizeScreenLan[1][36], (480.0f - (this.padSizeScreenLan[1][39] / 2.0f)) - (this.padSizeScreenLan[1][10] * 2.0f)}};
-        this.padScreenStatus = new int[][]{new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0}, new int[]{0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0}};
-        this.padScreenFunc = new int[]{0, 0, 0, 0, 0, 0};
-        this.padScreenExtra = new int[]{19, 19, 19, 19, 19, 19};
-        this.padScreenResize = new float[][]{new float[]{0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f}, new float[]{0.532f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.532f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f}};
+        this.padSizeScreenLan = new float[][] {
+                new float[] { 228.0f, 228.0f, 224.0f, 248.0f, 66.0f, 50.0f, 66.0f, 62.0f, 64.0f, 60.0f, 64.0f, 60.0f,
+                        64.0f, 60.0f, 64.0f, 60.0f, 53.0f, 41.0f, 64.0f, 60.0f, 64.0f, 60.0f, 222.0f, 222.0f, 222.0f,
+                        222.0f, 71.0f, 71.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f,
+                        64.0f, 64.0f },
+                new float[] { 228.0f, 228.0f, 224.0f, 248.0f, 66.0f, 50.0f, 66.0f, 62.0f, 64.0f, 60.0f, 64.0f, 60.0f,
+                        64.0f, 60.0f, 64.0f, 60.0f, 53.0f, 41.0f, 64.0f, 60.0f, 64.0f, 60.0f, 222.0f, 222.0f, 222.0f,
+                        222.0f, 71.0f, 71.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f,
+                        64.0f, 64.0f } };
+        this.padOffScreenLan = new float[][] {
+                new float[] { this.padSizeScreenLan[0][0] / 2.0f, this.padSizeScreenLan[0][1] / 2.0f,
+                        800.0f - (this.padSizeScreenLan[0][2] / 2.0f), this.padSizeScreenLan[0][3] / 2.0f,
+                        (400.0f - this.padSizeScreenLan[0][4]) - 30.0f, this.padSizeScreenLan[0][5] / 2.0f, 430.0f,
+                        this.padSizeScreenLan[0][7] / 2.0f, this.padSizeScreenLan[0][8] / 2.0f,
+                        480.0f - (this.padSizeScreenLan[0][9] / 2.0f),
+                        (this.padSizeScreenLan[0][10] / 2.0f) + this.padSizeScreenLan[0][8],
+                        480.0f - (this.padSizeScreenLan[0][11] / 2.0f), 800.0f - (this.padSizeScreenLan[0][12] / 2.0f),
+                        480.0f - (this.padSizeScreenLan[0][13] / 2.0f),
+                        (800.0f - (this.padSizeScreenLan[0][14] / 2.0f)) - this.padSizeScreenLan[0][12],
+                        480.0f - (this.padSizeScreenLan[0][15] / 2.0f), 440.0f + this.padSizeScreenLan[0][6],
+                        this.padSizeScreenLan[0][17] / 2.0f,
+                        (this.padSizeScreenLan[0][18] / 2.0f)
+                                + this.padSizeScreenLan[0][10] + this.padSizeScreenLan[0][8],
+                        480.0f - (this.padSizeScreenLan[0][19] / 2.0f),
+                        ((800.0f - (this.padSizeScreenLan[0][20] / 2.0f)) - this.padSizeScreenLan[0][12])
+                                - this.padSizeScreenLan[0][14],
+                        480.0f - (this.padSizeScreenLan[0][21] / 2.0f), this.padSizeScreenLan[0][22] / 2.0f,
+                        this.padSizeScreenLan[0][23] / 2.0f, 800.0f - (this.padSizeScreenLan[0][24] / 2.0f),
+                        this.padSizeScreenLan[0][25] / 2.0f, 0.0f, 0.0f, this.padSizeScreenLan[0][28] / 2.0f,
+                        (480.0f - (this.padSizeScreenLan[0][29] / 2.0f)) - (this.padSizeScreenLan[0][10] * 2.0f),
+                        (this.padSizeScreenLan[0][30] / 2.0f) + this.padSizeScreenLan[0][28],
+                        (480.0f - (this.padSizeScreenLan[0][31] / 2.0f)) - (this.padSizeScreenLan[0][10] * 2.0f),
+                        (this.padSizeScreenLan[0][32] / 2.0f) + this.padSizeScreenLan[0][28]
+                                + this.padSizeScreenLan[0][30],
+                        (480.0f - (this.padSizeScreenLan[0][33] / 2.0f)) - (this.padSizeScreenLan[0][10] * 2.0f),
+                        800.0f - (this.padSizeScreenLan[0][34] / 2.0f),
+                        (480.0f - (this.padSizeScreenLan[0][35] / 2.0f)) - (this.padSizeScreenLan[0][10] * 2.0f),
+                        (800.0f - (this.padSizeScreenLan[0][36] / 2.0f)) - this.padSizeScreenLan[0][34],
+                        (480.0f - (this.padSizeScreenLan[0][37] / 2.0f)) - (this.padSizeScreenLan[0][10] * 2.0f),
+                        ((800.0f - (this.padSizeScreenLan[0][38] / 2.0f)) - this.padSizeScreenLan[0][34])
+                                - this.padSizeScreenLan[0][36],
+                        (480.0f - (this.padSizeScreenLan[0][39] / 2.0f)) - (this.padSizeScreenLan[0][10] * 2.0f) },
+                new float[] { 400.0f - ((this.padSizeScreenLan[1][0] / 2.0f) * 0.76f), 240.0f,
+                        800.0f - (this.padSizeScreenLan[1][2] / 2.0f), this.padSizeScreenLan[1][3] / 2.0f,
+                        (400.0f - this.padSizeScreenLan[1][4]) - 30.0f, this.padSizeScreenLan[1][5] / 2.0f, 430.0f,
+                        this.padSizeScreenLan[1][7] / 2.0f, this.padSizeScreenLan[1][8] / 2.0f,
+                        480.0f - (this.padSizeScreenLan[1][9] / 2.0f),
+                        (this.padSizeScreenLan[1][10] / 2.0f) + this.padSizeScreenLan[1][8],
+                        480.0f - (this.padSizeScreenLan[1][11] / 2.0f), 800.0f - (this.padSizeScreenLan[1][12] / 2.0f),
+                        480.0f - (this.padSizeScreenLan[1][13] / 2.0f),
+                        (800.0f - (this.padSizeScreenLan[1][14] / 2.0f)) - this.padSizeScreenLan[1][12],
+                        480.0f - (this.padSizeScreenLan[1][15] / 2.0f), 440.0f + this.padSizeScreenLan[1][6],
+                        this.padSizeScreenLan[1][17] / 2.0f,
+                        (this.padSizeScreenLan[1][18] / 2.0f)
+                                + this.padSizeScreenLan[1][10] + this.padSizeScreenLan[1][8],
+                        480.0f - (this.padSizeScreenLan[1][19] / 2.0f),
+                        ((800.0f - (this.padSizeScreenLan[1][20] / 2.0f)) - this.padSizeScreenLan[1][12])
+                                - this.padSizeScreenLan[1][14],
+                        480.0f - (this.padSizeScreenLan[1][21] / 2.0f), this.padSizeScreenLan[1][22] / 2.0f,
+                        this.padSizeScreenLan[1][23] / 2.0f, 400.0f + ((this.padSizeScreenLan[1][24] / 2.0f) * 0.76f),
+                        240.0f, 0.0f, 0.0f, this.padSizeScreenLan[1][28] / 2.0f,
+                        (480.0f - (this.padSizeScreenLan[1][29] / 2.0f)) - (this.padSizeScreenLan[1][10] * 2.0f),
+                        (this.padSizeScreenLan[1][30] / 2.0f) + this.padSizeScreenLan[1][28],
+                        (480.0f - (this.padSizeScreenLan[1][31] / 2.0f)) - (this.padSizeScreenLan[1][10] * 2.0f),
+                        (this.padSizeScreenLan[1][32] / 2.0f) + this.padSizeScreenLan[1][28]
+                                + this.padSizeScreenLan[1][30],
+                        (480.0f - (this.padSizeScreenLan[1][33] / 2.0f)) - (this.padSizeScreenLan[1][10] * 2.0f),
+                        800.0f - (this.padSizeScreenLan[1][34] / 2.0f),
+                        (480.0f - (this.padSizeScreenLan[1][35] / 2.0f)) - (this.padSizeScreenLan[1][10] * 2.0f),
+                        (800.0f - (this.padSizeScreenLan[1][36] / 2.0f)) - this.padSizeScreenLan[1][34],
+                        (480.0f - (this.padSizeScreenLan[1][37] / 2.0f)) - (this.padSizeScreenLan[1][10] * 2.0f),
+                        ((800.0f - (this.padSizeScreenLan[1][38] / 2.0f)) - this.padSizeScreenLan[1][34])
+                                - this.padSizeScreenLan[1][36],
+                        (480.0f - (this.padSizeScreenLan[1][39] / 2.0f)) - (this.padSizeScreenLan[1][10] * 2.0f) } };
+        this.padScreenStatus = new int[][] { new int[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0 },
+                new int[] { 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0 } };
+        this.padScreenFunc = new int[] { 0, 0, 0, 0, 0, 0 };
+        this.padScreenExtra = new int[] { 19, 19, 19, 19, 19, 19 };
+        this.padScreenResize = new float[][] {
+                new float[] { 0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f,
+                        0.7f, 0.7f, 0.7f, 0.7f, 0.7f },
+                new float[] { 0.532f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.532f, 0.7f,
+                        0.7f, 0.7f, 0.7f, 0.7f, 0.7f, 0.7f } };
         this.padScreenExtraCombo = 0;
-        this.dpadsection = new int[]{15, 15, 19, 19, 14, 14, 18, 18, 13, 17, 17, 12, 12, 16, 16, 15, 15};
-        this.apadsection = new int[]{7, 7, 7, 6, 6, 6, 6, 5, 5, 5, 4, 4, 4, 4, 7, 7, 7};
-        this.padSizeScreenPor = new float[]{480.0f, 400.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f};
-        this.padOffScreenPor = new float[]{240.0f, 200.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 288.0f + (this.padSizeScreenPor[28] / 2.0f), 332.0f - (this.padSizeScreenPor[29] / 2.0f), 352.0f + (this.padSizeScreenPor[30] / 2.0f), 332.0f - (this.padSizeScreenPor[31] / 2.0f), 416.0f + (this.padSizeScreenPor[32] / 2.0f), 332.0f - (this.padSizeScreenPor[33] / 2.0f), 8.0f + (this.padSizeScreenPor[34] / 2.0f), 62.0f - (this.padSizeScreenPor[35] / 2.0f), 72.0f + (this.padSizeScreenPor[36] / 2.0f), 62.0f - (this.padSizeScreenPor[37] / 2.0f), 136.0f + (this.padSizeScreenPor[38] / 2.0f), 62.0f - (this.padSizeScreenPor[39] / 2.0f)};
-        this.padSizeScreenLan2H = new float[]{228.0f, 114.0f, 224.0f, 124.0f, 66.0f, 25.0f, 66.0f, 31.0f, 64.0f, 30.0f, 64.0f, 30.0f, 64.0f, 30.0f, 64.0f, 30.0f};
-        this.padOffScreenLan2H = new float[]{this.padSizeScreenLan2H[0] / 2.0f, this.padSizeScreenLan2H[1] / 2.0f, 800.0f - (this.padSizeScreenLan2H[2] / 2.0f), this.padSizeScreenLan2H[3] / 2.0f, (400.0f - this.padSizeScreenLan2H[4]) - 30.0f, this.padSizeScreenLan2H[5] / 2.0f, 430.0f, this.padSizeScreenLan2H[7] / 2.0f, this.padSizeScreenLan2H[8] / 2.0f, 240.0f - (this.padSizeScreenLan2H[9] / 2.0f), (this.padSizeScreenLan2H[10] / 2.0f) + this.padSizeScreenLan2H[8], 240.0f - (this.padSizeScreenLan2H[11] / 2.0f), 800.0f - (this.padSizeScreenLan2H[12] / 2.0f), 240.0f - (this.padSizeScreenLan2H[13] / 2.0f), (800.0f - (this.padSizeScreenLan2H[14] / 2.0f)) - this.padSizeScreenLan2H[12], 240.0f - (this.padSizeScreenLan2H[15] / 2.0f)};
-        this.padSizeScreenLan2V = new float[]{136.0f, 190.0f, 134.0f, 206.0f, 39.0f, 33.0f, 39.0f, 51.0f, 38.0f, 50.0f, 38.0f, 50.0f, 38.0f, 50.0f, 38.0f, 50.0f};
-        this.padOffScreenLan2V = new float[]{this.padSizeScreenLan2V[0] / 2.0f, this.padSizeScreenLan2V[1] / 2.0f, 480.0f - (this.padSizeScreenLan2V[2] / 2.0f), this.padSizeScreenLan2V[3] / 2.0f, (240.0f - this.padSizeScreenLan2V[4]) - 30.0f, this.padSizeScreenLan2V[5] / 2.0f, 270.0f, this.padSizeScreenLan2V[7] / 2.0f, this.padSizeScreenLan2V[8] / 2.0f, 400.0f - (this.padSizeScreenLan2V[9] / 2.0f), (this.padSizeScreenLan2V[10] / 2.0f) + this.padSizeScreenLan2V[8], 400.0f - (this.padSizeScreenLan2V[11] / 2.0f), 480.0f - (this.padSizeScreenLan2V[12] / 2.0f), 400.0f - (this.padSizeScreenLan2V[13] / 2.0f), (480.0f - (this.padSizeScreenLan2V[14] / 2.0f)) - this.padSizeScreenLan2V[12], 400.0f - (this.padSizeScreenLan2V[15] / 2.0f)};
-        this.virtualPad = new int[][]{new int[]{5, 0, 0, 55, 50, 1}, new int[]{7, 0, 0, 55, 50, 2}, new int[]{4, 0, 0, 55, 50, 4}, new int[]{6, 0, 0, 55, 50, 8}, new int[]{1, 72, 0, InputList.KEYCODE_NUMPAD_8, 80, 16}, new int[]{1, InputList.KEYCODE_F10, 83, 220, InputList.KEYCODE_NUMPAD_RIGHT_PAREN, 32}, new int[]{1, 72, InputList.KEYCODE_VOLUME_MUTE, InputList.KEYCODE_NUMPAD_8, 244, 64}, new int[]{1, 0, 83, 90, InputList.KEYCODE_NUMPAD_RIGHT_PAREN, 128}, new int[]{2, 0, 0, 57, 50, 256}, new int[]{9, 0, 0, 55, 50, 512}, new int[]{10, 0, 0, 55, 50, 1024}, new int[]{3, 0, 0, 59, 50, 2048}, new int[]{0, 74, 0, InputList.KEYCODE_NUMPAD_4, 74, 4096}, new int[]{0, InputList.KEYCODE_NUMPAD_4, 74, 222, InputList.KEYCODE_NUMPAD_4, 8192}, new int[]{0, 74, InputList.KEYCODE_NUMPAD_4, InputList.KEYCODE_NUMPAD_4, 222, 16384}, new int[]{0, 0, 74, 74, InputList.KEYCODE_NUMPAD_4, 32768}, new int[]{0, 0, 0, 74, 74, 36864}, new int[]{0, InputList.KEYCODE_NUMPAD_4, 0, 222, 74, 12288}, new int[]{0, InputList.KEYCODE_NUMPAD_4, InputList.KEYCODE_NUMPAD_4, 222, 222, 24576}, new int[]{0, 0, InputList.KEYCODE_NUMPAD_4, 74, 222, 49152}, new int[]{11, 0, 0, 222, 222, 0}, new int[]{12, 0, 0, 222, 222, 0}, new int[]{8, 0, 0, 53, 41, 0}, new int[]{16, 0, 0, 63, 63, 0}, new int[]{17, 0, 0, 63, 63, 0}, new int[]{18, 0, 0, 63, 63, 0}, new int[]{19, 0, 0, 63, 63, 0}, new int[]{20, 0, 0, 63, 63, 0}, new int[]{21, 0, 0, 63, 63, 0}};
-        this.virtualPadPort = new int[][]{new int[]{0, 0, 10, 68, 58, 4}, new int[]{0, HttpStatus.SC_REQUEST_URI_TOO_LONG, 10, 482, 58, 8}, new int[]{0, 70, 10, InputList.KEYCODE_F8, 58, 1}, new int[]{0, 344, 10, HttpStatus.SC_PRECONDITION_FAILED, 58, 2}, new int[]{0, 324, InputList.KEYCODE_NUMPAD_ENTER, HttpStatus.SC_PAYMENT_REQUIRED, 242, 16}, new int[]{0, HttpStatus.SC_NOT_FOUND, 224, 482, 306, 32}, new int[]{0, 324, HttpStatus.SC_MOVED_TEMPORARILY, HttpStatus.SC_PAYMENT_REQUIRED, HttpStatus.SC_NOT_ACCEPTABLE, 64}, new int[]{0, 248, 224, 326, 306, 128}, new int[]{0, InputList.KEYCODE_ZOOM_IN, 10, 230, 62, 256}, new int[]{-1, 0, 0, 0, 0, 512}, new int[]{-1, 0, 0, 0, 0, 1024}, new int[]{0, 244, 10, 316, 62, 2048}, new int[]{0, 74, 106, InputList.KEYCODE_NUMPAD_4, 180, 4096}, new int[]{0, InputList.KEYCODE_NUMPAD_4, 180, 222, 254, 8192}, new int[]{0, 74, 254, InputList.KEYCODE_NUMPAD_4, 328, 16384}, new int[]{0, 0, 180, 74, 254, 32768}, new int[]{0, 0, 106, 74, 180, 36864}, new int[]{0, InputList.KEYCODE_NUMPAD_4, 106, 222, 180, 12288}, new int[]{0, InputList.KEYCODE_NUMPAD_4, 254, 222, 328, 24576}, new int[]{0, 0, 254, 74, 328, 49152}, new int[]{-1, 0, 0, 222, 222, 0}, new int[]{-1, 0, 0, 222, 222, 0}, new int[]{-1, 0, 0, 53, 41, 0}, new int[]{16, 288, 68, 351, InputList.KEYCODE_F1, 0}, new int[]{17, 352, 68, HttpStatus.SC_UNSUPPORTED_MEDIA_TYPE, InputList.KEYCODE_F1, 0}, new int[]{18, HttpStatus.SC_REQUESTED_RANGE_NOT_SATISFIABLE, 68, 479, InputList.KEYCODE_F1, 0}, new int[]{19, 8, 338, 71, HttpStatus.SC_UNAUTHORIZED, 0}, new int[]{20, 72, 338, InputList.KEYCODE_F5, HttpStatus.SC_UNAUTHORIZED, 0}, new int[]{21, 136, 338, InputList.KEYCODE_BUTTON_12, HttpStatus.SC_UNAUTHORIZED, 0}};
+        this.dpadsection = new int[] { 15, 15, 19, 19, 14, 14, 18, 18, 13, 17, 17, 12, 12, 16, 16, 15, 15 };
+        this.apadsection = new int[] { 7, 7, 7, 6, 6, 6, 6, 5, 5, 5, 4, 4, 4, 4, 7, 7, 7 };
+        this.padSizeScreenPor = new float[] { 480.0f, 400.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
+                0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
+                64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f };
+        this.padOffScreenPor = new float[] { 240.0f, 200.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
+                0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
+                288.0f + (this.padSizeScreenPor[28] / 2.0f), 332.0f - (this.padSizeScreenPor[29] / 2.0f),
+                352.0f + (this.padSizeScreenPor[30] / 2.0f), 332.0f - (this.padSizeScreenPor[31] / 2.0f),
+                416.0f + (this.padSizeScreenPor[32] / 2.0f), 332.0f - (this.padSizeScreenPor[33] / 2.0f),
+                8.0f + (this.padSizeScreenPor[34] / 2.0f), 62.0f - (this.padSizeScreenPor[35] / 2.0f),
+                72.0f + (this.padSizeScreenPor[36] / 2.0f), 62.0f - (this.padSizeScreenPor[37] / 2.0f),
+                136.0f + (this.padSizeScreenPor[38] / 2.0f), 62.0f - (this.padSizeScreenPor[39] / 2.0f) };
+        this.padSizeScreenLan2H = new float[] { 228.0f, 114.0f, 224.0f, 124.0f, 66.0f, 25.0f, 66.0f, 31.0f, 64.0f,
+                30.0f, 64.0f, 30.0f, 64.0f, 30.0f, 64.0f, 30.0f };
+        this.padOffScreenLan2H = new float[] { this.padSizeScreenLan2H[0] / 2.0f, this.padSizeScreenLan2H[1] / 2.0f,
+                800.0f - (this.padSizeScreenLan2H[2] / 2.0f), this.padSizeScreenLan2H[3] / 2.0f,
+                (400.0f - this.padSizeScreenLan2H[4]) - 30.0f, this.padSizeScreenLan2H[5] / 2.0f, 430.0f,
+                this.padSizeScreenLan2H[7] / 2.0f, this.padSizeScreenLan2H[8] / 2.0f,
+                240.0f - (this.padSizeScreenLan2H[9] / 2.0f),
+                (this.padSizeScreenLan2H[10] / 2.0f) + this.padSizeScreenLan2H[8],
+                240.0f - (this.padSizeScreenLan2H[11] / 2.0f), 800.0f - (this.padSizeScreenLan2H[12] / 2.0f),
+                240.0f - (this.padSizeScreenLan2H[13] / 2.0f),
+                (800.0f - (this.padSizeScreenLan2H[14] / 2.0f)) - this.padSizeScreenLan2H[12],
+                240.0f - (this.padSizeScreenLan2H[15] / 2.0f) };
+        this.padSizeScreenLan2V = new float[] { 136.0f, 190.0f, 134.0f, 206.0f, 39.0f, 33.0f, 39.0f, 51.0f, 38.0f,
+                50.0f, 38.0f, 50.0f, 38.0f, 50.0f, 38.0f, 50.0f };
+        this.padOffScreenLan2V = new float[] { this.padSizeScreenLan2V[0] / 2.0f, this.padSizeScreenLan2V[1] / 2.0f,
+                480.0f - (this.padSizeScreenLan2V[2] / 2.0f), this.padSizeScreenLan2V[3] / 2.0f,
+                (240.0f - this.padSizeScreenLan2V[4]) - 30.0f, this.padSizeScreenLan2V[5] / 2.0f, 270.0f,
+                this.padSizeScreenLan2V[7] / 2.0f, this.padSizeScreenLan2V[8] / 2.0f,
+                400.0f - (this.padSizeScreenLan2V[9] / 2.0f),
+                (this.padSizeScreenLan2V[10] / 2.0f) + this.padSizeScreenLan2V[8],
+                400.0f - (this.padSizeScreenLan2V[11] / 2.0f), 480.0f - (this.padSizeScreenLan2V[12] / 2.0f),
+                400.0f - (this.padSizeScreenLan2V[13] / 2.0f),
+                (480.0f - (this.padSizeScreenLan2V[14] / 2.0f)) - this.padSizeScreenLan2V[12],
+                400.0f - (this.padSizeScreenLan2V[15] / 2.0f) };
+        this.virtualPad = new int[][] { new int[] { 5, 0, 0, 55, 50, 1 }, new int[] { 7, 0, 0, 55, 50, 2 },
+                new int[] { 4, 0, 0, 55, 50, 4 }, new int[] { 6, 0, 0, 55, 50, 8 },
+                new int[] { 1, 72, 0, InputList.KEYCODE_NUMPAD_8, 80, 16 },
+                new int[] { 1, InputList.KEYCODE_F10, 83, 220, InputList.KEYCODE_NUMPAD_RIGHT_PAREN, 32 },
+                new int[] { 1, 72, InputList.KEYCODE_VOLUME_MUTE, InputList.KEYCODE_NUMPAD_8, 244, 64 },
+                new int[] { 1, 0, 83, 90, InputList.KEYCODE_NUMPAD_RIGHT_PAREN, 128 },
+                new int[] { 2, 0, 0, 57, 50, 256 }, new int[] { 9, 0, 0, 55, 50, 512 },
+                new int[] { 10, 0, 0, 55, 50, 1024 }, new int[] { 3, 0, 0, 59, 50, 2048 },
+                new int[] { 0, 74, 0, InputList.KEYCODE_NUMPAD_4, 74, 4096 },
+                new int[] { 0, InputList.KEYCODE_NUMPAD_4, 74, 222, InputList.KEYCODE_NUMPAD_4, 8192 },
+                new int[] { 0, 74, InputList.KEYCODE_NUMPAD_4, InputList.KEYCODE_NUMPAD_4, 222, 16384 },
+                new int[] { 0, 0, 74, 74, InputList.KEYCODE_NUMPAD_4, 32768 }, new int[] { 0, 0, 0, 74, 74, 36864 },
+                new int[] { 0, InputList.KEYCODE_NUMPAD_4, 0, 222, 74, 12288 },
+                new int[] { 0, InputList.KEYCODE_NUMPAD_4, InputList.KEYCODE_NUMPAD_4, 222, 222, 24576 },
+                new int[] { 0, 0, InputList.KEYCODE_NUMPAD_4, 74, 222, 49152 }, new int[] { 11, 0, 0, 222, 222, 0 },
+                new int[] { 12, 0, 0, 222, 222, 0 }, new int[] { 8, 0, 0, 53, 41, 0 },
+                new int[] { 16, 0, 0, 63, 63, 0 }, new int[] { 17, 0, 0, 63, 63, 0 }, new int[] { 18, 0, 0, 63, 63, 0 },
+                new int[] { 19, 0, 0, 63, 63, 0 }, new int[] { 20, 0, 0, 63, 63, 0 },
+                new int[] { 21, 0, 0, 63, 63, 0 } };
+        this.virtualPadPort = new int[][] { new int[] { 0, 0, 10, 68, 58, 4 },
+                new int[] { 0, HttpStatus.SC_REQUEST_URI_TOO_LONG, 10, 482, 58, 8 },
+                new int[] { 0, 70, 10, InputList.KEYCODE_F8, 58, 1 },
+                new int[] { 0, 344, 10, HttpStatus.SC_PRECONDITION_FAILED, 58, 2 },
+                new int[] { 0, 324, InputList.KEYCODE_NUMPAD_ENTER, HttpStatus.SC_PAYMENT_REQUIRED, 242, 16 },
+                new int[] { 0, HttpStatus.SC_NOT_FOUND, 224, 482, 306, 32 },
+                new int[] { 0, 324, HttpStatus.SC_MOVED_TEMPORARILY, HttpStatus.SC_PAYMENT_REQUIRED,
+                        HttpStatus.SC_NOT_ACCEPTABLE, 64 },
+                new int[] { 0, 248, 224, 326, 306, 128 }, new int[] { 0, InputList.KEYCODE_ZOOM_IN, 10, 230, 62, 256 },
+                new int[] { -1, 0, 0, 0, 0, 512 }, new int[] { -1, 0, 0, 0, 0, 1024 },
+                new int[] { 0, 244, 10, 316, 62, 2048 },
+                new int[] { 0, 74, 106, InputList.KEYCODE_NUMPAD_4, 180, 4096 },
+                new int[] { 0, InputList.KEYCODE_NUMPAD_4, 180, 222, 254, 8192 },
+                new int[] { 0, 74, 254, InputList.KEYCODE_NUMPAD_4, 328, 16384 },
+                new int[] { 0, 0, 180, 74, 254, 32768 }, new int[] { 0, 0, 106, 74, 180, 36864 },
+                new int[] { 0, InputList.KEYCODE_NUMPAD_4, 106, 222, 180, 12288 },
+                new int[] { 0, InputList.KEYCODE_NUMPAD_4, 254, 222, 328, 24576 },
+                new int[] { 0, 0, 254, 74, 328, 49152 }, new int[] { -1, 0, 0, 222, 222, 0 },
+                new int[] { -1, 0, 0, 222, 222, 0 }, new int[] { -1, 0, 0, 53, 41, 0 },
+                new int[] { 16, 288, 68, 351, InputList.KEYCODE_F1, 0 },
+                new int[] { 17, 352, 68, HttpStatus.SC_UNSUPPORTED_MEDIA_TYPE, InputList.KEYCODE_F1, 0 },
+                new int[] { 18, HttpStatus.SC_REQUESTED_RANGE_NOT_SATISFIABLE, 68, 479, InputList.KEYCODE_F1, 0 },
+                new int[] { 19, 8, 338, 71, HttpStatus.SC_UNAUTHORIZED, 0 },
+                new int[] { 20, 72, 338, InputList.KEYCODE_F5, HttpStatus.SC_UNAUTHORIZED, 0 },
+                new int[] { 21, 136, 338, InputList.KEYCODE_BUTTON_12, HttpStatus.SC_UNAUTHORIZED, 0 } };
         this.virtualPadPos = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, 60, 6);
         this.virtualPadBit = new int[60];
         this.virtualPadId = new int[60];
@@ -314,8 +462,14 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
         this.debugString2 = s;
     }
 
-    /* JADX WARN: Type inference failed for: r0v10, types: [com.epsxe.ePSXe.ePSXeViewGL$2] */
- /* JADX WARN: Type inference failed for: r0v11, types: [com.epsxe.ePSXe.ePSXeViewGL$1] */
+    /*
+     * JADX WARN: Type inference failed for: r0v10, types:
+     * [com.epsxe.ePSXe.ePSXeViewGL$2]
+     */
+    /*
+     * JADX WARN: Type inference failed for: r0v11, types:
+     * [com.epsxe.ePSXe.ePSXeViewGL$1]
+     */
     @Override // com.epsxe.ePSXe.ePSXeView
     public void setePSXeLib(libepsxe epsxelib, int glVersion, int net) {
         this.osVersion = Integer.parseInt(Build.VERSION.SDK);
@@ -426,7 +580,9 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
     public void setscreenratio(int rat) {
         Log.e("epsxeView", "Ratio = " + rat);
         this.emu_screen_ratio = rat;
-        this.f165e.openglresize(this.mWidth, this.mHeight, this.emu_player_mode, this.emu_split_mode, this.emu_screen_ratio, this.emu_screen_orientation, this.emu_screen_vrmode, this.emu_screen_vrdistorsion);
+        this.f165e.openglresize(this.mWidth, this.mHeight, this.emu_player_mode, this.emu_split_mode,
+                this.emu_screen_ratio, this.emu_screen_orientation, this.emu_screen_vrmode,
+                this.emu_screen_vrdistorsion);
     }
 
     @Override // com.epsxe.ePSXe.ePSXeView
@@ -709,14 +865,16 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
 
     @Override // com.epsxe.ePSXe.ePSXeView
     public void setdynamicpad(int dyn) {
-        if ((this.emu_pad_mode[0] == 1 || this.emu_pad_mode[0] == 4) && this.emu_screen_orientation != 1 && this.emu_portrait_skin == 0) {
+        if ((this.emu_pad_mode[0] == 1 || this.emu_pad_mode[0] == 4) && this.emu_screen_orientation != 1
+                && this.emu_portrait_skin == 0) {
             this.emu_pad_dynamic = dyn;
         }
     }
 
     @Override // com.epsxe.ePSXe.ePSXeView
     public void setdynamicaction(int dyn) {
-        if ((this.emu_pad_mode[0] == 1 || this.emu_pad_mode[0] == 4) && this.emu_screen_orientation != 1 && this.emu_portrait_skin == 0) {
+        if ((this.emu_pad_mode[0] == 1 || this.emu_pad_mode[0] == 4) && this.emu_screen_orientation != 1
+                && this.emu_portrait_skin == 0) {
             this.emu_action_dynamic = dyn;
         }
     }
@@ -756,7 +914,8 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
             }
         }
         if (this.emu_action_dynamic == 1) {
-            if (this.emu_pad_mode[this.emu_pad_type_selected] == 1 || this.emu_pad_mode[this.emu_pad_type_selected] == 4) {
+            if (this.emu_pad_mode[this.emu_pad_type_selected] == 1
+                    || this.emu_pad_mode[this.emu_pad_type_selected] == 4) {
                 this.padScreenStatus[this.mode][1] = 0;
             }
         }
@@ -774,17 +933,25 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                 this.virtualPadPos[n][4] = -1;
                 this.virtualPadPos[n][5] = -1;
             } else {
-                int offx = ((int) this.padOffScreenLan[this.mode][this.virtualPad[n][0] * 2]) - (((int) this.padSizeScreenLan[this.mode][this.virtualPad[n][0] * 2]) / 2);
-                int offy = ((int) this.padOffScreenLan[this.mode][(this.virtualPad[n][0] * 2) + 1]) - (((int) this.padSizeScreenLan[this.mode][(this.virtualPad[n][0] * 2) + 1]) / 2);
+                int offx = ((int) this.padOffScreenLan[this.mode][this.virtualPad[n][0] * 2])
+                        - (((int) this.padSizeScreenLan[this.mode][this.virtualPad[n][0] * 2]) / 2);
+                int offy = ((int) this.padOffScreenLan[this.mode][(this.virtualPad[n][0] * 2) + 1])
+                        - (((int) this.padSizeScreenLan[this.mode][(this.virtualPad[n][0] * 2) + 1]) / 2);
                 this.virtualPadPos[n][0] = ((int) (this.virtualPad[n][1] * this.padResize)) + offx;
-                this.virtualPadPos[n][1] = (((((int) (this.virtualPad[n][2] * this.padResize)) + (this.mHeight - ((int) this.padSizeScreenLan[this.mode][(this.virtualPad[n][0] * 2) + 1]))) - offy) / 2) + (this.mHeight / 2);
+                this.virtualPadPos[n][1] = (((((int) (this.virtualPad[n][2] * this.padResize))
+                        + (this.mHeight - ((int) this.padSizeScreenLan[this.mode][(this.virtualPad[n][0] * 2) + 1])))
+                        - offy) / 2) + (this.mHeight / 2);
                 this.virtualPadPos[n][2] = ((int) (this.virtualPad[n][3] * this.padResize)) + offx;
-                this.virtualPadPos[n][3] = (((((int) (this.virtualPad[n][4] * this.padResize)) + (this.mHeight - ((int) this.padSizeScreenLan[this.mode][(this.virtualPad[n][0] * 2) + 1]))) - offy) / 2) + (this.mHeight / 2);
-                this.virtualPadPos[n][4] = ((this.virtualPadPos[n][2] - this.virtualPadPos[n][0]) / 2) + this.virtualPadPos[n][0];
-                this.virtualPadPos[n][5] = ((this.virtualPadPos[n][3] - this.virtualPadPos[n][1]) / 2) + this.virtualPadPos[n][1];
+                this.virtualPadPos[n][3] = (((((int) (this.virtualPad[n][4] * this.padResize))
+                        + (this.mHeight - ((int) this.padSizeScreenLan[this.mode][(this.virtualPad[n][0] * 2) + 1])))
+                        - offy) / 2) + (this.mHeight / 2);
+                this.virtualPadPos[n][4] = ((this.virtualPadPos[n][2] - this.virtualPadPos[n][0]) / 2)
+                        + this.virtualPadPos[n][0];
+                this.virtualPadPos[n][5] = ((this.virtualPadPos[n][3] - this.virtualPadPos[n][1]) / 2)
+                        + this.virtualPadPos[n][1];
                 this.virtualPadBit[n] = this.virtualPad[n][5] | 65536;
                 this.virtualPadId[n] = -1;
-                
+
                 // Смещение для левого стика первого игрока в 2-player режиме
                 if (this.virtualPad[n][0] == 11 && this.virtualPadPos[n][0] < 100) {
                     this.virtualPadPos[n][0] += 90;
@@ -793,11 +960,10 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                     this.virtualPadPos[n][3] -= 100;
                     this.virtualPadPos[n][4] += 90;
                     this.virtualPadPos[n][5] -= 100;
-                    
+
                     Log.d("TOUCH_INIT", String.format(
                             "2PLAYER LEFT STICK SHIFTED n=%d pos=[%d,%d]",
-                            n, this.virtualPadPos[n][0], this.virtualPadPos[n][1]
-                    ));
+                            n, this.virtualPadPos[n][0], this.virtualPadPos[n][1]));
                 }
             }
         }
@@ -812,14 +978,26 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                 this.virtualPadPos[n2 + 20][4] = -1;
                 this.virtualPadPos[n2 + 20][5] = -1;
             } else {
-                int offx2 = ((int) this.padOffScreenLan[this.mode][this.virtualPad[n2][0] * 2]) - (((int) this.padSizeScreenLan[this.mode][this.virtualPad[n2][0] * 2]) / 2);
-                int offy2 = ((int) this.padOffScreenLan[this.mode][(this.virtualPad[n2][0] * 2) + 1]) - (((int) this.padSizeScreenLan[this.mode][(this.virtualPad[n2][0] * 2) + 1]) / 2);
-                this.virtualPadPos[n2 + 20][0] = this.mWidth - (((int) (this.virtualPad[n2][3] * this.padResize)) + offx2);
-                this.virtualPadPos[n2 + 20][1] = (this.mHeight / 2) - (((((int) (this.virtualPad[n2][4] * this.padResize)) + (this.mHeight - ((int) this.padSizeScreenLan[this.mode][(this.virtualPad[n2][0] * 2) + 1]))) - offy2) / 2);
-                this.virtualPadPos[n2 + 20][2] = this.mWidth - (((int) (this.virtualPad[n2][1] * this.padResize)) + offx2);
-                this.virtualPadPos[n2 + 20][3] = (this.mHeight / 2) - (((((int) (this.virtualPad[n2][2] * this.padResize)) + (this.mHeight - ((int) this.padSizeScreenLan[this.mode][(this.virtualPad[n2][0] * 2) + 1]))) - offy2) / 2);
-                this.virtualPadPos[n2 + 20][4] = ((this.virtualPadPos[n2 + 20][2] - this.virtualPadPos[n2 + 20][0]) / 2) + this.virtualPadPos[n2 + 20][0];
-                this.virtualPadPos[n2 + 20][5] = ((this.virtualPadPos[n2 + 20][3] - this.virtualPadPos[n2 + 20][1]) / 2) + this.virtualPadPos[n2 + 20][1];
+                int offx2 = ((int) this.padOffScreenLan[this.mode][this.virtualPad[n2][0] * 2])
+                        - (((int) this.padSizeScreenLan[this.mode][this.virtualPad[n2][0] * 2]) / 2);
+                int offy2 = ((int) this.padOffScreenLan[this.mode][(this.virtualPad[n2][0] * 2) + 1])
+                        - (((int) this.padSizeScreenLan[this.mode][(this.virtualPad[n2][0] * 2) + 1]) / 2);
+                this.virtualPadPos[n2 + 20][0] = this.mWidth
+                        - (((int) (this.virtualPad[n2][3] * this.padResize)) + offx2);
+                this.virtualPadPos[n2 + 20][1] = (this.mHeight / 2)
+                        - (((((int) (this.virtualPad[n2][4] * this.padResize)) + (this.mHeight
+                                - ((int) this.padSizeScreenLan[this.mode][(this.virtualPad[n2][0] * 2) + 1]))) - offy2)
+                                / 2);
+                this.virtualPadPos[n2 + 20][2] = this.mWidth
+                        - (((int) (this.virtualPad[n2][1] * this.padResize)) + offx2);
+                this.virtualPadPos[n2 + 20][3] = (this.mHeight / 2)
+                        - (((((int) (this.virtualPad[n2][2] * this.padResize)) + (this.mHeight
+                                - ((int) this.padSizeScreenLan[this.mode][(this.virtualPad[n2][0] * 2) + 1]))) - offy2)
+                                / 2);
+                this.virtualPadPos[n2 + 20][4] = ((this.virtualPadPos[n2 + 20][2] - this.virtualPadPos[n2 + 20][0]) / 2)
+                        + this.virtualPadPos[n2 + 20][0];
+                this.virtualPadPos[n2 + 20][5] = ((this.virtualPadPos[n2 + 20][3] - this.virtualPadPos[n2 + 20][1]) / 2)
+                        + this.virtualPadPos[n2 + 20][1];
                 this.virtualPadBit[n2 + 20] = this.virtualPad[n2][5];
                 this.virtualPadId[n2 + 20] = -1;
             }
@@ -845,12 +1023,18 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                 this.virtualPadPos[n][4] = -1;
                 this.virtualPadPos[n][5] = -1;
             }
-            int offx = ((int) this.padOffScreenLan[this.mode][this.virtualPad[n][0] * 2]) - (((int) this.padSizeScreenLan[this.mode][this.virtualPad[n][0] * 2]) / 2);
-            int offy = ((int) this.padOffScreenLan[this.mode][(this.virtualPad[n][0] * 2) + 1]) - (((int) this.padSizeScreenLan[this.mode][(this.virtualPad[n][0] * 2) + 1]) / 2);
+            int offx = ((int) this.padOffScreenLan[this.mode][this.virtualPad[n][0] * 2])
+                    - (((int) this.padSizeScreenLan[this.mode][this.virtualPad[n][0] * 2]) / 2);
+            int offy = ((int) this.padOffScreenLan[this.mode][(this.virtualPad[n][0] * 2) + 1])
+                    - (((int) this.padSizeScreenLan[this.mode][(this.virtualPad[n][0] * 2) + 1]) / 2);
             int tmp1 = ((int) (this.virtualPad[n][1] * this.padResize)) + offx;
-            int tmp2 = (((int) (this.virtualPad[n][2] * this.padResize)) + (this.mHeight - ((int) this.padSizeScreenLan[this.mode][(this.virtualPad[n][0] * 2) + 1]))) - offy;
+            int tmp2 = (((int) (this.virtualPad[n][2] * this.padResize))
+                    + (this.mHeight - ((int) this.padSizeScreenLan[this.mode][(this.virtualPad[n][0] * 2) + 1])))
+                    - offy;
             int tmp3 = ((int) (this.virtualPad[n][3] * this.padResize)) + offx;
-            int tmp4 = (((int) (this.virtualPad[n][4] * this.padResize)) + (this.mHeight - ((int) this.padSizeScreenLan[this.mode][(this.virtualPad[n][0] * 2) + 1]))) - offy;
+            int tmp4 = (((int) (this.virtualPad[n][4] * this.padResize))
+                    + (this.mHeight - ((int) this.padSizeScreenLan[this.mode][(this.virtualPad[n][0] * 2) + 1])))
+                    - offy;
             int tmp12 = (this.mHeight * tmp1) / this.mWidth;
             int tmp22 = ((this.mWidth * tmp2) / 2) / this.mHeight;
             int tmp32 = (this.mHeight * tmp3) / this.mWidth;
@@ -859,8 +1043,10 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
             this.virtualPadPos[n][1] = this.mHeight - tmp32;
             this.virtualPadPos[n][2] = (this.mWidth / 2) + tmp42;
             this.virtualPadPos[n][3] = this.mHeight - tmp12;
-            this.virtualPadPos[n][4] = ((this.virtualPadPos[n][2] - this.virtualPadPos[n][0]) / 2) + this.virtualPadPos[n][0];
-            this.virtualPadPos[n][5] = ((this.virtualPadPos[n][3] - this.virtualPadPos[n][1]) / 2) + this.virtualPadPos[n][1];
+            this.virtualPadPos[n][4] = ((this.virtualPadPos[n][2] - this.virtualPadPos[n][0]) / 2)
+                    + this.virtualPadPos[n][0];
+            this.virtualPadPos[n][5] = ((this.virtualPadPos[n][3] - this.virtualPadPos[n][1]) / 2)
+                    + this.virtualPadPos[n][1];
             this.virtualPadBit[n] = this.virtualPad[n][5] | 65536;
             this.virtualPadId[n] = -1;
         }
@@ -875,12 +1061,18 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                 this.virtualPadPos[n2 + 20][4] = -1;
                 this.virtualPadPos[n2 + 20][5] = -1;
             } else {
-                int offx2 = ((int) this.padOffScreenLan[this.mode][this.virtualPad[n2][0] * 2]) - (((int) this.padSizeScreenLan[this.mode][this.virtualPad[n2][0] * 2]) / 2);
-                int offy2 = ((int) this.padOffScreenLan[this.mode][(this.virtualPad[n2][0] * 2) + 1]) - (((int) this.padSizeScreenLan[this.mode][(this.virtualPad[n2][0] * 2) + 1]) / 2);
+                int offx2 = ((int) this.padOffScreenLan[this.mode][this.virtualPad[n2][0] * 2])
+                        - (((int) this.padSizeScreenLan[this.mode][this.virtualPad[n2][0] * 2]) / 2);
+                int offy2 = ((int) this.padOffScreenLan[this.mode][(this.virtualPad[n2][0] * 2) + 1])
+                        - (((int) this.padSizeScreenLan[this.mode][(this.virtualPad[n2][0] * 2) + 1]) / 2);
                 int tmp13 = ((int) (this.virtualPad[n2][1] * this.padResize)) + offx2;
-                int tmp23 = (((int) (this.virtualPad[n2][2] * this.padResize)) + (this.mHeight - ((int) this.padSizeScreenLan[this.mode][(this.virtualPad[n2][0] * 2) + 1]))) - offy2;
+                int tmp23 = (((int) (this.virtualPad[n2][2] * this.padResize))
+                        + (this.mHeight - ((int) this.padSizeScreenLan[this.mode][(this.virtualPad[n2][0] * 2) + 1])))
+                        - offy2;
                 int tmp33 = ((int) (this.virtualPad[n2][3] * this.padResize)) + offx2;
-                int tmp43 = (((int) (this.virtualPad[n2][4] * this.padResize)) + (this.mHeight - ((int) this.padSizeScreenLan[this.mode][(this.virtualPad[n2][0] * 2) + 1]))) - offy2;
+                int tmp43 = (((int) (this.virtualPad[n2][4] * this.padResize))
+                        + (this.mHeight - ((int) this.padSizeScreenLan[this.mode][(this.virtualPad[n2][0] * 2) + 1])))
+                        - offy2;
                 int tmp14 = (this.mHeight * tmp13) / this.mWidth;
                 int tmp24 = ((this.mWidth * tmp23) / 2) / this.mHeight;
                 int tmp34 = (this.mHeight * tmp33) / this.mWidth;
@@ -888,8 +1080,10 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                 this.virtualPadPos[n2 + 20][1] = tmp14;
                 this.virtualPadPos[n2 + 20][2] = (this.mWidth / 2) - tmp24;
                 this.virtualPadPos[n2 + 20][3] = tmp34;
-                this.virtualPadPos[n2 + 20][4] = ((this.virtualPadPos[n2 + 20][2] - this.virtualPadPos[n2 + 20][0]) / 2) + this.virtualPadPos[n2 + 20][0];
-                this.virtualPadPos[n2 + 20][5] = ((this.virtualPadPos[n2 + 20][3] - this.virtualPadPos[n2 + 20][1]) / 2) + this.virtualPadPos[n2 + 20][1];
+                this.virtualPadPos[n2 + 20][4] = ((this.virtualPadPos[n2 + 20][2] - this.virtualPadPos[n2 + 20][0]) / 2)
+                        + this.virtualPadPos[n2 + 20][0];
+                this.virtualPadPos[n2 + 20][5] = ((this.virtualPadPos[n2 + 20][3] - this.virtualPadPos[n2 + 20][1]) / 2)
+                        + this.virtualPadPos[n2 + 20][1];
                 this.virtualPadBit[n2 + 20] = this.virtualPad[n2][5];
                 this.virtualPadId[n2 + 20] = -1;
             }
@@ -940,8 +1134,10 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                 this.virtualPadPos[n][1] = ((this.virtualPadPort[n][2] * (this.mHeight / 2)) / 400) + offy;
                 this.virtualPadPos[n][2] = ((this.virtualPadPort[n][3] * this.mWidth) / 480) + 0;
                 this.virtualPadPos[n][3] = ((this.virtualPadPort[n][4] * (this.mHeight / 2)) / 400) + offy;
-                this.virtualPadPos[n][4] = ((this.virtualPadPos[n][2] - this.virtualPadPos[n][0]) / 2) + this.virtualPadPos[n][0];
-                this.virtualPadPos[n][5] = ((this.virtualPadPos[n][3] - this.virtualPadPos[n][1]) / 2) + this.virtualPadPos[n][1];
+                this.virtualPadPos[n][4] = ((this.virtualPadPos[n][2] - this.virtualPadPos[n][0]) / 2)
+                        + this.virtualPadPos[n][0];
+                this.virtualPadPos[n][5] = ((this.virtualPadPos[n][3] - this.virtualPadPos[n][1]) / 2)
+                        + this.virtualPadPos[n][1];
                 this.virtualPadBit[n] = this.virtualPadPort[n][5];
                 if (this.emu_pad_type_selected == 0) {
                     int[] iArr = this.virtualPadBit;
@@ -957,13 +1153,12 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                         this.virtualPadPos[n][3] -= 100; // смещение вверх
                         this.virtualPadPos[n][4] += 90; // центр X
                         this.virtualPadPos[n][5] -= 100; // центр Y
-                        
+
                         Log.d("TOUCH_INIT", String.format(
                                 "PORTRAIT LEFT STICK SHIFTED n=%d pos=[%d,%d]",
-                                n, this.virtualPadPos[n][0], this.virtualPadPos[n][1]
-                        ));
+                                n, this.virtualPadPos[n][0], this.virtualPadPos[n][1]));
                     }
-                    
+
                     this.analog_values[0][0] = -1;
                     this.analog_values[0][1] = -1;
                 }
@@ -1020,62 +1215,82 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
             } else {
                 // Исправленное вычисление позиций для ландшафтного режима
                 int buttonIndex = this.virtualPad[n][0];
-                
+
                 // Получаем размеры и позицию кнопки
-                float buttonWidth = this.padSizeScreenLan[this.mode][buttonIndex * 2] * this.padScreenResize[this.mode][buttonIndex];
-                float buttonHeight = this.padSizeScreenLan[this.mode][(buttonIndex * 2) + 1] * this.padScreenResize[this.mode][buttonIndex];
-                
+                float buttonWidth = this.padSizeScreenLan[this.mode][buttonIndex * 2]
+                        * this.padScreenResize[this.mode][buttonIndex];
+                float buttonHeight = this.padSizeScreenLan[this.mode][(buttonIndex * 2) + 1]
+                        * this.padScreenResize[this.mode][buttonIndex];
+
                 // Центр кнопки на экране (OpenGL координаты)
                 float centerX = this.padOffScreenLan[this.mode][buttonIndex * 2];
                 float centerY = this.padOffScreenLan[this.mode][(buttonIndex * 2) + 1];
-                
-                // Для D-pad (индекс 0) и Action buttons (индекс 1) используем специальную логику
+
+                // Для D-pad (индекс 0) и Action buttons (индекс 1) используем специальную
+                // логику
                 if (buttonIndex == 0 || buttonIndex == 1) {
-                    // Для D-pad и Action buttons используем исходную логику с коррекцией для правильного центрирования
+                    // Для D-pad и Action buttons используем исходную логику с коррекцией для
+                    // правильного центрирования
                     int offx = ((int) centerX) - ((int) (buttonWidth / 2.0f));
                     int offy = ((int) centerY) - ((int) (buttonHeight / 2.0f));
-                    
-                    // Инвертируем Y координату для touch событий (Android координаты начинаются сверху)
+
+                    // Инвертируем Y координату для touch событий (Android координаты начинаются
+                    // сверху)
                     float touchCenterY = this.mHeight - centerY;
                     int touchOffy = ((int) touchCenterY) - ((int) (buttonHeight / 2.0f));
-                    
-                    this.virtualPadPos[n][0] = ((int) (this.virtualPad[n][1] * this.padResize * this.padScreenResize[this.mode][buttonIndex])) + offx;
-                    this.virtualPadPos[n][1] = ((int) (this.virtualPad[n][2] * this.padResize * this.padScreenResize[this.mode][buttonIndex])) + touchOffy;
-                    this.virtualPadPos[n][2] = ((int) (this.virtualPad[n][3] * this.padResize * this.padScreenResize[this.mode][buttonIndex])) + offx;
-                    this.virtualPadPos[n][3] = ((int) (this.virtualPad[n][4] * this.padResize * this.padScreenResize[this.mode][buttonIndex])) + touchOffy;
-                    this.virtualPadPos[n][4] = ((this.virtualPadPos[n][2] - this.virtualPadPos[n][0]) / 2) + this.virtualPadPos[n][0];
-                    this.virtualPadPos[n][5] = ((this.virtualPadPos[n][3] - this.virtualPadPos[n][1]) / 2) + this.virtualPadPos[n][1];
+
+                    this.virtualPadPos[n][0] = ((int) (this.virtualPad[n][1] * this.padResize
+                            * this.padScreenResize[this.mode][buttonIndex])) + offx;
+                    this.virtualPadPos[n][1] = ((int) (this.virtualPad[n][2] * this.padResize
+                            * this.padScreenResize[this.mode][buttonIndex])) + touchOffy;
+                    this.virtualPadPos[n][2] = ((int) (this.virtualPad[n][3] * this.padResize
+                            * this.padScreenResize[this.mode][buttonIndex])) + offx;
+                    this.virtualPadPos[n][3] = ((int) (this.virtualPad[n][4] * this.padResize
+                            * this.padScreenResize[this.mode][buttonIndex])) + touchOffy;
+                    this.virtualPadPos[n][4] = ((this.virtualPadPos[n][2] - this.virtualPadPos[n][0]) / 2)
+                            + this.virtualPadPos[n][0];
+                    this.virtualPadPos[n][5] = ((this.virtualPadPos[n][3] - this.virtualPadPos[n][1]) / 2)
+                            + this.virtualPadPos[n][1];
                 } else if (buttonIndex == 1) {
                     // Специальная обработка для Action buttons (треугольник, круг, квадрат, икс)
                     int offx = ((int) centerX) - ((int) (buttonWidth / 2.0f));
                     int offy = ((int) centerY) - ((int) (buttonHeight / 2.0f));
-                    
-                    // Инвертируем Y координату для touch событий (Android координаты начинаются сверху)
+
+                    // Инвертируем Y координату для touch событий (Android координаты начинаются
+                    // сверху)
                     float touchCenterY = this.mHeight - centerY;
                     int touchOffy = ((int) touchCenterY) - ((int) (buttonHeight / 2.0f));
-                    
-                    this.virtualPadPos[n][0] = ((int) (this.virtualPad[n][1] * this.padResize * this.padScreenResize[this.mode][buttonIndex])) + offx;
-                    this.virtualPadPos[n][1] = ((int) (this.virtualPad[n][2] * this.padResize * this.padScreenResize[this.mode][buttonIndex])) + touchOffy;
-                    this.virtualPadPos[n][2] = ((int) (this.virtualPad[n][3] * this.padResize * this.padScreenResize[this.mode][buttonIndex])) + offx;
-                    this.virtualPadPos[n][3] = ((int) (this.virtualPad[n][4] * this.padResize * this.padScreenResize[this.mode][buttonIndex])) + touchOffy;
-                    this.virtualPadPos[n][4] = ((this.virtualPadPos[n][2] - this.virtualPadPos[n][0]) / 2) + this.virtualPadPos[n][0];
-                    this.virtualPadPos[n][5] = ((this.virtualPadPos[n][3] - this.virtualPadPos[n][1]) / 2) + this.virtualPadPos[n][1];
+
+                    this.virtualPadPos[n][0] = ((int) (this.virtualPad[n][1] * this.padResize
+                            * this.padScreenResize[this.mode][buttonIndex])) + offx;
+                    this.virtualPadPos[n][1] = ((int) (this.virtualPad[n][2] * this.padResize
+                            * this.padScreenResize[this.mode][buttonIndex])) + touchOffy;
+                    this.virtualPadPos[n][2] = ((int) (this.virtualPad[n][3] * this.padResize
+                            * this.padScreenResize[this.mode][buttonIndex])) + offx;
+                    this.virtualPadPos[n][3] = ((int) (this.virtualPad[n][4] * this.padResize
+                            * this.padScreenResize[this.mode][buttonIndex])) + touchOffy;
+                    this.virtualPadPos[n][4] = ((this.virtualPadPos[n][2] - this.virtualPadPos[n][0]) / 2)
+                            + this.virtualPadPos[n][0];
+                    this.virtualPadPos[n][5] = ((this.virtualPadPos[n][3] - this.virtualPadPos[n][1]) / 2)
+                            + this.virtualPadPos[n][1];
                 } else {
-                    // Для остальных кнопок используем исправленную логику для правильного совпадения touch и визуальных областей
-                    // Инвертируем Y координату для touch событий (Android координаты начинаются сверху)
+                    // Для остальных кнопок используем исправленную логику для правильного
+                    // совпадения touch и визуальных областей
+                    // Инвертируем Y координату для touch событий (Android координаты начинаются
+                    // сверху)
                     float touchCenterY = this.mHeight - centerY;
-                    
+
                     // Вычисляем границы touch области с учетом центрирования и инверсии Y
                     this.virtualPadPos[n][0] = (int) (centerX - (buttonWidth / 2.0f));
                     this.virtualPadPos[n][1] = (int) (touchCenterY - (buttonHeight / 2.0f));
                     this.virtualPadPos[n][2] = (int) (centerX + (buttonWidth / 2.0f));
                     this.virtualPadPos[n][3] = (int) (touchCenterY + (buttonHeight / 2.0f));
-                    
+
                     // Центр touch области должен совпадать с центром визуальной кнопки
                     this.virtualPadPos[n][4] = (int) centerX;
                     this.virtualPadPos[n][5] = (int) touchCenterY;
                 }
-                
+
                 this.virtualPadBit[n] = this.virtualPad[n][5];
                 if (this.emu_pad_type_selected == 0) {
                     int[] iArr2 = this.virtualPadBit;
@@ -1086,8 +1301,11 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                 // Специальная обработка для аналоговых стиков
                 if (n == 20) {
                     if (buttonIndex == 0 || buttonIndex == 1) {
-                        this.analog_values[0][0] = ((this.virtualPadPos[n][2] - this.virtualPadPos[n][0]) / 2) + this.virtualPadPos[n][0];
-                        this.analog_values[0][1] = this.mHeight - (((this.virtualPadPos[n][3] - this.virtualPadPos[n][1]) / 2) + this.virtualPadPos[n][1]);
+                        this.analog_values[0][0] = ((this.virtualPadPos[n][2] - this.virtualPadPos[n][0]) / 2)
+                                + this.virtualPadPos[n][0];
+                        this.analog_values[0][1] = this.mHeight
+                                - (((this.virtualPadPos[n][3] - this.virtualPadPos[n][1]) / 2)
+                                        + this.virtualPadPos[n][1]);
                     } else {
                         this.analog_values[0][0] = (int) centerX;
                         this.analog_values[0][1] = (int) centerY; // Для отрисовки используем OpenGL координаты
@@ -1095,14 +1313,17 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                 }
                 if (n == 21) {
                     if (buttonIndex == 0 || buttonIndex == 1) {
-                        this.analog_values[0][2] = ((this.virtualPadPos[n][2] - this.virtualPadPos[n][0]) / 2) + this.virtualPadPos[n][0];
-                        this.analog_values[0][3] = this.mHeight - (((this.virtualPadPos[n][3] - this.virtualPadPos[n][1]) / 2) + this.virtualPadPos[n][1]);
+                        this.analog_values[0][2] = ((this.virtualPadPos[n][2] - this.virtualPadPos[n][0]) / 2)
+                                + this.virtualPadPos[n][0];
+                        this.analog_values[0][3] = this.mHeight
+                                - (((this.virtualPadPos[n][3] - this.virtualPadPos[n][1]) / 2)
+                                        + this.virtualPadPos[n][1]);
                     } else {
                         this.analog_values[0][2] = (int) centerX;
                         this.analog_values[0][3] = (int) centerY; // Для отрисовки используем OpenGL координаты
                     }
                 }
-                
+
                 // Специальная обработка для отдельных кнопок D-pad (индексы 12-15)
                 if (n >= 12 && n <= 15 && buttonIndex == 0) {
                     // Для отдельных кнопок D-pad используем правильные touch координаты
@@ -1111,7 +1332,7 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                     float dpadCenterY = this.padOffScreenLan[this.mode][1];
                     float dpadWidth = this.padSizeScreenLan[this.mode][0] * this.padScreenResize[this.mode][0];
                     float dpadHeight = this.padSizeScreenLan[this.mode][1] * this.padScreenResize[this.mode][0];
-                    
+
                     // Вычисляем позицию каждой кнопки D-pad относительно центра
                     // Учитываем что в OpenGL Y растет вверх, а в Android touch - вниз
                     float buttonOffsetX = 0, buttonOffsetY = 0;
@@ -1120,7 +1341,7 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                             buttonOffsetX = 0;
                             buttonOffsetY = dpadHeight * 0.25f; // Инвертируем для touch координат
                             break;
-                        case 13: // Right  
+                        case 13: // Right
                             buttonOffsetX = dpadWidth * 0.25f;
                             buttonOffsetY = 0;
                             break;
@@ -1133,15 +1354,15 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                             buttonOffsetY = 0;
                             break;
                     }
-                    
+
                     float buttonCenterX = dpadCenterX + buttonOffsetX;
                     float buttonCenterY = dpadCenterY + buttonOffsetY;
                     float touchCenterY = this.mHeight - buttonCenterY;
-                    
+
                     // Размер каждой кнопки D-pad
                     float dpadButtonWidth = dpadWidth * 0.4f;
                     float dpadButtonHeight = dpadHeight * 0.4f;
-                    
+
                     this.virtualPadPos[n][0] = (int) (buttonCenterX - (dpadButtonWidth / 2.0f));
                     this.virtualPadPos[n][1] = (int) (touchCenterY - (dpadButtonHeight / 2.0f));
                     this.virtualPadPos[n][2] = (int) (buttonCenterX + (dpadButtonWidth / 2.0f));
@@ -1149,15 +1370,16 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                     this.virtualPadPos[n][4] = (int) buttonCenterX;
                     this.virtualPadPos[n][5] = (int) touchCenterY;
                 }
-                
-                // Специальная обработка для отдельных Action кнопок (индексы 4-7: треугольник, круг, икс, квадрат)
+
+                // Специальная обработка для отдельных Action кнопок (индексы 4-7: треугольник,
+                // круг, икс, квадрат)
                 if (n >= 4 && n <= 7 && buttonIndex == 1) {
                     // Получаем центр основного Action блока
                     float actionCenterX = this.padOffScreenLan[this.mode][2];
                     float actionCenterY = this.padOffScreenLan[this.mode][3];
                     float actionWidth = this.padSizeScreenLan[this.mode][2] * this.padScreenResize[this.mode][1];
                     float actionHeight = this.padSizeScreenLan[this.mode][3] * this.padScreenResize[this.mode][1];
-                    
+
                     // Вычисляем позицию каждой Action кнопки относительно центра
                     float buttonOffsetX = 0, buttonOffsetY = 0;
                     switch (n) {
@@ -1178,15 +1400,15 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                             buttonOffsetY = 0;
                             break;
                     }
-                    
+
                     float buttonCenterX = actionCenterX + buttonOffsetX;
                     float buttonCenterY = actionCenterY + buttonOffsetY;
                     float touchCenterY = this.mHeight - buttonCenterY;
-                    
+
                     // Размер каждой Action кнопки
                     float actionButtonWidth = actionWidth * 0.4f;
                     float actionButtonHeight = actionHeight * 0.4f;
-                    
+
                     this.virtualPadPos[n][0] = (int) (buttonCenterX - (actionButtonWidth / 2.0f));
                     this.virtualPadPos[n][1] = (int) (touchCenterY - (actionButtonHeight / 2.0f));
                     this.virtualPadPos[n][2] = (int) (buttonCenterX + (actionButtonWidth / 2.0f));
@@ -1253,10 +1475,12 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
             this.touchButtonIds[i] = -1;
         }
     }
+
     private int analogStickPointerId = -1;
     private int analogStickIndex = -1;
 
-    public int touchscreenevent(long eventTime, int action, int xi, int yi, float pressure, float size, int deviceId, int Id) {
+    public int touchscreenevent(long eventTime, int action, int xi, int yi, float pressure, float size, int deviceId,
+            int Id) {
         int ret = 0;
         int xa;
         int ya;
@@ -1321,18 +1545,21 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
             return 1;
         }
 
-        if (analogStickPointerId == -1 && (action == MotionEvent.ACTION_DOWN || action == MotionEvent.ACTION_POINTER_DOWN)) {
+        if (analogStickPointerId == -1
+                && (action == MotionEvent.ACTION_DOWN || action == MotionEvent.ACTION_POINTER_DOWN)) {
             for (int analogIdx = 20; analogIdx <= 21; analogIdx++) {
 
-                
                 if (xi >= this.virtualPadPos[analogIdx][0] && xi <= this.virtualPadPos[analogIdx][2]
                         && yi >= this.virtualPadPos[analogIdx][1] && yi <= this.virtualPadPos[analogIdx][3]) {
                     analogStickPointerId = Id;
                     analogStickIndex = analogIdx;
 
-                    int centerX = (this.virtualPadPos[analogStickIndex][0] + this.virtualPadPos[analogStickIndex][2]) / 2;
-                    int centerY = (this.virtualPadPos[analogStickIndex][1] + this.virtualPadPos[analogStickIndex][3]) / 2;
-                    int radius = (this.virtualPadPos[analogStickIndex][2] - this.virtualPadPos[analogStickIndex][0]) / 2;
+                    int centerX = (this.virtualPadPos[analogStickIndex][0] + this.virtualPadPos[analogStickIndex][2])
+                            / 2;
+                    int centerY = (this.virtualPadPos[analogStickIndex][1] + this.virtualPadPos[analogStickIndex][3])
+                            / 2;
+                    int radius = (this.virtualPadPos[analogStickIndex][2] - this.virtualPadPos[analogStickIndex][0])
+                            / 2;
                     int dx = xi - centerX;
                     int dy = yi - centerY;
                     double dist = Math.sqrt(dx * dx + dy * dy);
@@ -1386,7 +1613,8 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
             this.isDpadTouchActive = false;
             this.animationButtonIndex = -1;
         }
-        if (this.emu_pad_mode[this.emu_pad_type_selected] == 4 && this.emu_pad_mode_analog[this.emu_pad_type_selected] == 1) {
+        if (this.emu_pad_mode[this.emu_pad_type_selected] == 4
+                && this.emu_pad_mode_analog[this.emu_pad_type_selected] == 1) {
             ext = 2;
         }
         if (this.padScreenExtraCombo == 1) {
@@ -1414,14 +1642,19 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                 } else {
                     this.f165e.setPadDataUp(0, this.virtualPadBit[but] & SupportMenu.USER_MASK);
                 }
-                if (this.emu_pad_dynamic == 1 && but > 11 && but < 20 && (this.emu_pad_mode[this.emu_pad_type_selected] == 1 || (this.emu_pad_mode[this.emu_pad_type_selected] == 4 && this.emu_pad_mode_analog[this.emu_pad_type_selected] == 0))) {
+                if (this.emu_pad_dynamic == 1 && but > 11 && but < 20
+                        && (this.emu_pad_mode[this.emu_pad_type_selected] == 1
+                                || (this.emu_pad_mode[this.emu_pad_type_selected] == 4
+                                        && this.emu_pad_mode_analog[this.emu_pad_type_selected] == 0))) {
                     this.padScreenStatus[this.mode][0] = 0;
                     for (int j = 12; j < 20; j++) {
                         this.virtualPadPos[j][0] = -1;
                         this.virtualPadPos[j][2] = -1;
                     }
                 }
-                if (this.emu_action_dynamic == 1 && but > 3 && but < 8 && (this.emu_pad_mode[this.emu_pad_type_selected] == 1 || this.emu_pad_mode[this.emu_pad_type_selected] == 4)) {
+                if (this.emu_action_dynamic == 1 && but > 3 && but < 8
+                        && (this.emu_pad_mode[this.emu_pad_type_selected] == 1
+                                || this.emu_pad_mode[this.emu_pad_type_selected] == 4)) {
                     this.padScreenStatus[this.mode][1] = 0;
                     for (int j2 = 4; j2 < 8; j2++) {
                         this.virtualPadPos[j2][0] = -1;
@@ -1432,12 +1665,18 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                 int pad = ((this.virtualPadBit[but] >> 16) & 1) ^ 1;
                 this.f165e.setpadanalog(pad, but - 20, 0, 0);
                 if (but == 20) {
-                    this.analog_values[0][0] = ((this.virtualPadPos[but][2] - this.virtualPadPos[but][0]) / 2) + this.virtualPadPos[but][0];
-                    this.analog_values[0][1] = this.mHeight - (((this.virtualPadPos[but][3] - this.virtualPadPos[but][1]) / 2) + this.virtualPadPos[but][1]);
+                    this.analog_values[0][0] = ((this.virtualPadPos[but][2] - this.virtualPadPos[but][0]) / 2)
+                            + this.virtualPadPos[but][0];
+                    this.analog_values[0][1] = this.mHeight
+                            - (((this.virtualPadPos[but][3] - this.virtualPadPos[but][1]) / 2)
+                                    + this.virtualPadPos[but][1]);
                 }
                 if (but == 21) {
-                    this.analog_values[0][2] = ((this.virtualPadPos[but][2] - this.virtualPadPos[but][0]) / 2) + this.virtualPadPos[but][0];
-                    this.analog_values[0][3] = this.mHeight - (((this.virtualPadPos[but][3] - this.virtualPadPos[but][1]) / 2) + this.virtualPadPos[but][1]);
+                    this.analog_values[0][2] = ((this.virtualPadPos[but][2] - this.virtualPadPos[but][0]) / 2)
+                            + this.virtualPadPos[but][0];
+                    this.analog_values[0][3] = this.mHeight
+                            - (((this.virtualPadPos[but][3] - this.virtualPadPos[but][1]) / 2)
+                                    + this.virtualPadPos[but][1]);
                 }
                 if (this.emu_pad_dynamic == 1 && but == 20) {
                     this.padScreenStatus[this.mode][11] = 0;
@@ -1465,12 +1704,15 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
         if (action != 0) {
             return 0;
         }
-        if (this.emu_pad_mode[this.emu_pad_type_selected] == 4 && mov == 0 && xi >= this.virtualPadPos[22][0] && xi <= this.virtualPadPos[22][2] && yi >= (this.virtualPadPos[22][1] - 140) && yi <= (this.virtualPadPos[22][3] + 140)) {
+        if (this.emu_pad_mode[this.emu_pad_type_selected] == 4 && mov == 0 && xi >= this.virtualPadPos[22][0]
+                && xi <= this.virtualPadPos[22][2] && yi >= (this.virtualPadPos[22][1] - 140)
+                && yi <= (this.virtualPadPos[22][3] + 140)) {
             int[] iArr = this.emu_pad_mode_analog;
             int i = this.emu_pad_type_selected;
             iArr[i] = iArr[i] ^ 1;
             this.mode = this.emu_pad_mode_analog[this.emu_pad_type_selected];
-            this.f165e.setpadanalogmode(this.emu_pad_type_selected, this.emu_pad_mode_analog[this.emu_pad_type_selected]);
+            this.f165e.setpadanalogmode(this.emu_pad_type_selected,
+                    this.emu_pad_mode_analog[this.emu_pad_type_selected]);
             clearAllbuttons(ext);
             init_motionevent_1playerLandscape();
             resetDynamicPad();
@@ -1486,7 +1728,9 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
         }
         if (mov == 0 && this.padScreenExtraEnabled == 1 && !this.hidePad) {
             for (int i2 = 0; i2 < 6; i2++) {
-                if (this.padScreenFunc[i2] == 1 && xi >= this.virtualPadPos[i2 + 23][0] && xi <= this.virtualPadPos[i2 + 23][2] && yi >= this.virtualPadPos[i2 + 23][1] && yi <= this.virtualPadPos[i2 + 23][3]) {
+                if (this.padScreenFunc[i2] == 1 && xi >= this.virtualPadPos[i2 + 23][0]
+                        && xi <= this.virtualPadPos[i2 + 23][2] && yi >= this.virtualPadPos[i2 + 23][1]
+                        && yi <= this.virtualPadPos[i2 + 23][3]) {
                     if (this.padScreenExtra[i2] >= 0 && this.padScreenExtra[i2] < 5) {
                         this.f165e.setsslot(this.padScreenExtra[i2]);
                     } else if (this.padScreenExtra[i2] < 10) {
@@ -1520,7 +1764,8 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
         }
         int ind = 0;
         while (ind < nbuttons + ext + ext2) {
-            if (xi >= this.virtualPadPos[ind][0] && xi <= this.virtualPadPos[ind][2] && yi >= this.virtualPadPos[ind][1] && yi <= this.virtualPadPos[ind][3] && action == 0) {
+            if (xi >= this.virtualPadPos[ind][0] && xi <= this.virtualPadPos[ind][2] && yi >= this.virtualPadPos[ind][1]
+                    && yi <= this.virtualPadPos[ind][3] && action == 0) {
                 int pressed = this.virtualPadId[Id];
                 if (this.virtualPadId[Id] != -1) {
                     int ind2 = this.virtualPadId[Id];
@@ -1537,12 +1782,18 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                         int pad2 = ((this.virtualPadBit[ind2] >> 16) & 1) ^ 1;
                         this.f165e.setpadanalog(pad2, ind2 - 20, 0, 0);
                         if (ind2 == 20) {
-                            this.analog_values[0][0] = ((this.virtualPadPos[ind2][2] - this.virtualPadPos[ind2][0]) / 2) + this.virtualPadPos[ind2][0];
-                            this.analog_values[0][1] = this.mHeight - (((this.virtualPadPos[ind2][3] - this.virtualPadPos[ind2][1]) / 2) + this.virtualPadPos[ind2][1]);
+                            this.analog_values[0][0] = ((this.virtualPadPos[ind2][2] - this.virtualPadPos[ind2][0]) / 2)
+                                    + this.virtualPadPos[ind2][0];
+                            this.analog_values[0][1] = this.mHeight
+                                    - (((this.virtualPadPos[ind2][3] - this.virtualPadPos[ind2][1]) / 2)
+                                            + this.virtualPadPos[ind2][1]);
                         }
                         if (ind2 == 21) {
-                            this.analog_values[0][2] = ((this.virtualPadPos[ind2][2] - this.virtualPadPos[ind2][0]) / 2) + this.virtualPadPos[ind2][0];
-                            this.analog_values[0][3] = this.mHeight - (((this.virtualPadPos[ind2][3] - this.virtualPadPos[ind2][1]) / 2) + this.virtualPadPos[ind2][1]);
+                            this.analog_values[0][2] = ((this.virtualPadPos[ind2][2] - this.virtualPadPos[ind2][0]) / 2)
+                                    + this.virtualPadPos[ind2][0];
+                            this.analog_values[0][3] = this.mHeight
+                                    - (((this.virtualPadPos[ind2][3] - this.virtualPadPos[ind2][1]) / 2)
+                                            + this.virtualPadPos[ind2][1]);
                         }
                     } else if (ind2 > 22 && ind2 < 29) {
                         if ((this.virtualPadBit[ind2] & 65536) == 65536) {
@@ -1604,33 +1855,66 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
             ind++;
         }
         if (this.emu_pad_dynamic == 1 && this.virtualPadId[Id] == -1) {
-            if (xi < this.mWidth / 2 && this.emu_pad_mode[this.emu_pad_type_selected] == 4 && this.emu_pad_mode_analog[this.emu_pad_type_selected] == 1) {
+            if (xi < this.mWidth / 2 && this.emu_pad_mode[this.emu_pad_type_selected] == 4
+                    && this.emu_pad_mode_analog[this.emu_pad_type_selected] == 1) {
                 this.padOffScreenLan[this.mode][this.virtualPad[20][0] * 2] = xi;
                 this.padOffScreenLan[this.mode][(this.virtualPad[20][0] * 2) + 1] = this.mHeight - yi;
-                int offx = ((int) this.padOffScreenLan[this.mode][this.virtualPad[20][0] * 2]) - ((int) ((this.padSizeScreenLan[this.mode][this.virtualPad[20][0] * 2] * this.padScreenResize[this.mode][this.virtualPad[20][0]]) / 2.0f));
-                int offy = ((int) this.padOffScreenLan[this.mode][(this.virtualPad[20][0] * 2) + 1]) - ((int) ((this.padSizeScreenLan[this.mode][(this.virtualPad[20][0] * 2) + 1] * this.padScreenResize[this.mode][this.virtualPad[20][0]]) / 2.0f));
-                this.virtualPadPos[20][0] = ((int) (this.virtualPad[20][1] * this.padResize * this.padScreenResize[this.mode][this.virtualPad[20][0]])) + offx;
-                this.virtualPadPos[20][1] = (((int) ((this.virtualPad[20][2] * this.padResize) * this.padScreenResize[this.mode][this.virtualPad[20][0]])) + (this.mHeight - ((int) (this.padSizeScreenLan[this.mode][(this.virtualPad[20][0] * 2) + 1] * this.padScreenResize[this.mode][this.virtualPad[20][0]])))) - offy;
-                this.virtualPadPos[20][2] = ((int) (this.virtualPad[20][3] * this.padResize * this.padScreenResize[this.mode][this.virtualPad[20][0]])) + offx;
-                this.virtualPadPos[20][3] = (((int) ((this.virtualPad[20][4] * this.padResize) * this.padScreenResize[this.mode][this.virtualPad[20][0]])) + (this.mHeight - ((int) (this.padSizeScreenLan[this.mode][(this.virtualPad[20][0] * 2) + 1] * this.padScreenResize[this.mode][this.virtualPad[20][0]])))) - offy;
-                this.analog_values[0][0] = ((this.virtualPadPos[20][2] - this.virtualPadPos[20][0]) / 2) + this.virtualPadPos[20][0];
-                this.analog_values[0][1] = this.mHeight - (((this.virtualPadPos[20][3] - this.virtualPadPos[20][1]) / 2) + this.virtualPadPos[20][1]);
+                int offx = ((int) this.padOffScreenLan[this.mode][this.virtualPad[20][0] * 2])
+                        - ((int) ((this.padSizeScreenLan[this.mode][this.virtualPad[20][0] * 2]
+                                * this.padScreenResize[this.mode][this.virtualPad[20][0]]) / 2.0f));
+                int offy = ((int) this.padOffScreenLan[this.mode][(this.virtualPad[20][0] * 2) + 1])
+                        - ((int) ((this.padSizeScreenLan[this.mode][(this.virtualPad[20][0] * 2) + 1]
+                                * this.padScreenResize[this.mode][this.virtualPad[20][0]]) / 2.0f));
+                this.virtualPadPos[20][0] = ((int) (this.virtualPad[20][1] * this.padResize
+                        * this.padScreenResize[this.mode][this.virtualPad[20][0]])) + offx;
+                this.virtualPadPos[20][1] = (((int) ((this.virtualPad[20][2] * this.padResize)
+                        * this.padScreenResize[this.mode][this.virtualPad[20][0]]))
+                        + (this.mHeight - ((int) (this.padSizeScreenLan[this.mode][(this.virtualPad[20][0] * 2) + 1]
+                                * this.padScreenResize[this.mode][this.virtualPad[20][0]]))))
+                        - offy;
+                this.virtualPadPos[20][2] = ((int) (this.virtualPad[20][3] * this.padResize
+                        * this.padScreenResize[this.mode][this.virtualPad[20][0]])) + offx;
+                this.virtualPadPos[20][3] = (((int) ((this.virtualPad[20][4] * this.padResize)
+                        * this.padScreenResize[this.mode][this.virtualPad[20][0]]))
+                        + (this.mHeight - ((int) (this.padSizeScreenLan[this.mode][(this.virtualPad[20][0] * 2) + 1]
+                                * this.padScreenResize[this.mode][this.virtualPad[20][0]]))))
+                        - offy;
+                this.analog_values[0][0] = ((this.virtualPadPos[20][2] - this.virtualPadPos[20][0]) / 2)
+                        + this.virtualPadPos[20][0];
+                this.analog_values[0][1] = this.mHeight
+                        - (((this.virtualPadPos[20][3] - this.virtualPadPos[20][1]) / 2) + this.virtualPadPos[20][1]);
                 int pad4 = ((this.virtualPadBit[20] >> 16) & 1) ^ 1;
                 this.analog_values[0][0] = xi;
                 this.analog_values[0][1] = this.mHeight - yi;
                 this.f165e.setpadanalog(pad4, 0, -128, -128);
                 this.virtualPadId[Id] = 20;
                 this.padScreenStatus[this.mode][11] = 1;
-            } else if (xi < this.mWidth / 2 && (this.emu_pad_mode[this.emu_pad_type_selected] == 1 || (this.emu_pad_mode[this.emu_pad_type_selected] == 4 && this.emu_pad_mode_analog[this.emu_pad_type_selected] == 0))) {
+            } else if (xi < this.mWidth / 2 && (this.emu_pad_mode[this.emu_pad_type_selected] == 1
+                    || (this.emu_pad_mode[this.emu_pad_type_selected] == 4
+                            && this.emu_pad_mode_analog[this.emu_pad_type_selected] == 0))) {
                 this.padOffScreenLan[this.mode][0] = xi;
                 this.padOffScreenLan[this.mode][1] = this.mHeight - yi;
                 for (int n = 12; n < 20; n++) {
-                    int offx2 = ((int) this.padOffScreenLan[this.mode][this.virtualPad[n][0] * 2]) - ((int) ((this.padSizeScreenLan[this.mode][this.virtualPad[n][0] * 2] * this.padScreenResize[this.mode][this.virtualPad[n][0]]) / 2.0f));
-                    int offy2 = ((int) this.padOffScreenLan[this.mode][(this.virtualPad[n][0] * 2) + 1]) - ((int) ((this.padSizeScreenLan[this.mode][(this.virtualPad[n][0] * 2) + 1] * this.padScreenResize[this.mode][this.virtualPad[n][0]]) / 2.0f));
-                    this.virtualPadPos[n][0] = ((int) (this.virtualPad[n][1] * this.padResize * this.padScreenResize[this.mode][this.virtualPad[n][0]])) + offx2;
-                    this.virtualPadPos[n][1] = (((int) ((this.virtualPad[n][2] * this.padResize) * this.padScreenResize[this.mode][this.virtualPad[n][0]])) + (this.mHeight - ((int) (this.padSizeScreenLan[this.mode][(this.virtualPad[n][0] * 2) + 1] * this.padScreenResize[this.mode][this.virtualPad[n][0]])))) - offy2;
-                    this.virtualPadPos[n][2] = ((int) (this.virtualPad[n][3] * this.padResize * this.padScreenResize[this.mode][this.virtualPad[n][0]])) + offx2;
-                    this.virtualPadPos[n][3] = (((int) ((this.virtualPad[n][4] * this.padResize) * this.padScreenResize[this.mode][this.virtualPad[n][0]])) + (this.mHeight - ((int) (this.padSizeScreenLan[this.mode][(this.virtualPad[n][0] * 2) + 1] * this.padScreenResize[this.mode][this.virtualPad[n][0]])))) - offy2;
+                    int offx2 = ((int) this.padOffScreenLan[this.mode][this.virtualPad[n][0] * 2])
+                            - ((int) ((this.padSizeScreenLan[this.mode][this.virtualPad[n][0] * 2]
+                                    * this.padScreenResize[this.mode][this.virtualPad[n][0]]) / 2.0f));
+                    int offy2 = ((int) this.padOffScreenLan[this.mode][(this.virtualPad[n][0] * 2) + 1])
+                            - ((int) ((this.padSizeScreenLan[this.mode][(this.virtualPad[n][0] * 2) + 1]
+                                    * this.padScreenResize[this.mode][this.virtualPad[n][0]]) / 2.0f));
+                    this.virtualPadPos[n][0] = ((int) (this.virtualPad[n][1] * this.padResize
+                            * this.padScreenResize[this.mode][this.virtualPad[n][0]])) + offx2;
+                    this.virtualPadPos[n][1] = (((int) ((this.virtualPad[n][2] * this.padResize)
+                            * this.padScreenResize[this.mode][this.virtualPad[n][0]]))
+                            + (this.mHeight - ((int) (this.padSizeScreenLan[this.mode][(this.virtualPad[n][0] * 2) + 1]
+                                    * this.padScreenResize[this.mode][this.virtualPad[n][0]]))))
+                            - offy2;
+                    this.virtualPadPos[n][2] = ((int) (this.virtualPad[n][3] * this.padResize
+                            * this.padScreenResize[this.mode][this.virtualPad[n][0]])) + offx2;
+                    this.virtualPadPos[n][3] = (((int) ((this.virtualPad[n][4] * this.padResize)
+                            * this.padScreenResize[this.mode][this.virtualPad[n][0]]))
+                            + (this.mHeight - ((int) (this.padSizeScreenLan[this.mode][(this.virtualPad[n][0] * 2) + 1]
+                                    * this.padScreenResize[this.mode][this.virtualPad[n][0]]))))
+                            - offy2;
                 }
                 this.virtualPadId[Id] = 12;
                 this.padScreenStatus[this.mode][0] = 1;
@@ -1640,23 +1924,42 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
             this.padOffScreenLan[this.mode][2] = xi;
             this.padOffScreenLan[this.mode][3] = this.mHeight - yi;
             for (int n2 = 4; n2 < 8; n2++) {
-                int offx3 = ((int) this.padOffScreenLan[this.mode][this.virtualPad[n2][0] * 2]) - ((int) ((this.padSizeScreenLan[this.mode][this.virtualPad[n2][0] * 2] * this.padScreenResize[this.mode][this.virtualPad[n2][0]]) / 2.0f));
-                int offy3 = ((int) this.padOffScreenLan[this.mode][(this.virtualPad[n2][0] * 2) + 1]) - ((int) ((this.padSizeScreenLan[this.mode][(this.virtualPad[n2][0] * 2) + 1] * this.padScreenResize[this.mode][this.virtualPad[n2][0]]) / 2.0f));
-                this.virtualPadPos[n2][0] = ((int) (this.virtualPad[n2][1] * this.padResize * this.padScreenResize[this.mode][this.virtualPad[n2][0]])) + offx3;
-                this.virtualPadPos[n2][1] = (((int) ((this.virtualPad[n2][2] * this.padResize) * this.padScreenResize[this.mode][this.virtualPad[n2][0]])) + (this.mHeight - ((int) (this.padSizeScreenLan[this.mode][(this.virtualPad[n2][0] * 2) + 1] * this.padScreenResize[this.mode][this.virtualPad[n2][0]])))) - offy3;
-                this.virtualPadPos[n2][2] = ((int) (this.virtualPad[n2][3] * this.padResize * this.padScreenResize[this.mode][this.virtualPad[n2][0]])) + offx3;
-                this.virtualPadPos[n2][3] = (((int) ((this.virtualPad[n2][4] * this.padResize) * this.padScreenResize[this.mode][this.virtualPad[n2][0]])) + (this.mHeight - ((int) (this.padSizeScreenLan[this.mode][(this.virtualPad[n2][0] * 2) + 1] * this.padScreenResize[this.mode][this.virtualPad[n2][0]])))) - offy3;
+                int offx3 = ((int) this.padOffScreenLan[this.mode][this.virtualPad[n2][0] * 2])
+                        - ((int) ((this.padSizeScreenLan[this.mode][this.virtualPad[n2][0] * 2]
+                                * this.padScreenResize[this.mode][this.virtualPad[n2][0]]) / 2.0f));
+                int offy3 = ((int) this.padOffScreenLan[this.mode][(this.virtualPad[n2][0] * 2) + 1])
+                        - ((int) ((this.padSizeScreenLan[this.mode][(this.virtualPad[n2][0] * 2) + 1]
+                                * this.padScreenResize[this.mode][this.virtualPad[n2][0]]) / 2.0f));
+                this.virtualPadPos[n2][0] = ((int) (this.virtualPad[n2][1] * this.padResize
+                        * this.padScreenResize[this.mode][this.virtualPad[n2][0]])) + offx3;
+                this.virtualPadPos[n2][1] = (((int) ((this.virtualPad[n2][2] * this.padResize)
+                        * this.padScreenResize[this.mode][this.virtualPad[n2][0]]))
+                        + (this.mHeight - ((int) (this.padSizeScreenLan[this.mode][(this.virtualPad[n2][0] * 2) + 1]
+                                * this.padScreenResize[this.mode][this.virtualPad[n2][0]]))))
+                        - offy3;
+                this.virtualPadPos[n2][2] = ((int) (this.virtualPad[n2][3] * this.padResize
+                        * this.padScreenResize[this.mode][this.virtualPad[n2][0]])) + offx3;
+                this.virtualPadPos[n2][3] = (((int) ((this.virtualPad[n2][4] * this.padResize)
+                        * this.padScreenResize[this.mode][this.virtualPad[n2][0]]))
+                        + (this.mHeight - ((int) (this.padSizeScreenLan[this.mode][(this.virtualPad[n2][0] * 2) + 1]
+                                * this.padScreenResize[this.mode][this.virtualPad[n2][0]]))))
+                        - offy3;
             }
             this.virtualPadId[Id] = 4;
             this.padScreenStatus[this.mode][1] = 1;
         }
         if (this.emu_action_dynamic == 0 && this.virtualPadId[Id] == -1) {
-            int x1 = (int) (this.padOffScreenLan[this.mode][2] - ((this.padSizeScreenLan[this.mode][2] * this.padScreenResize[this.mode][1]) / 2.0f));
-            int y2 = this.mHeight - ((int) (this.padOffScreenLan[this.mode][3] - ((this.padSizeScreenLan[this.mode][3] * this.padScreenResize[this.mode][1]) / 2.0f)));
+            int x1 = (int) (this.padOffScreenLan[this.mode][2]
+                    - ((this.padSizeScreenLan[this.mode][2] * this.padScreenResize[this.mode][1]) / 2.0f));
+            int y2 = this.mHeight - ((int) (this.padOffScreenLan[this.mode][3]
+                    - ((this.padSizeScreenLan[this.mode][3] * this.padScreenResize[this.mode][1]) / 2.0f)));
             int x2 = x1 + ((int) (this.padSizeScreenLan[this.mode][2] * this.padScreenResize[this.mode][1]));
             int y1 = y2 - ((int) (this.padSizeScreenLan[this.mode][3] * this.padScreenResize[this.mode][1]));
             if (xi >= x1 && xi <= x2 && yi >= y1 && yi <= y2) {
-                int seg = ((int) Math.toDegrees(Math.atan2((this.mHeight - yi) - ((int) this.padOffScreenLan[this.mode][3]), xi - ((int) this.padOffScreenLan[this.mode][2])) / 22.5d)) + 8;
+                int seg = ((int) Math
+                        .toDegrees(Math.atan2((this.mHeight - yi) - ((int) this.padOffScreenLan[this.mode][3]),
+                                xi - ((int) this.padOffScreenLan[this.mode][2])) / 22.5d))
+                        + 8;
                 if (seg > 0 && seg < 17) {
                     int ind22 = this.apadsection[seg];
                     if ((this.virtualPadBit[ind22] & 65536) == 65536) {
@@ -1671,7 +1974,9 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
             }
         }
         if (this.emu_pad_mode[this.emu_pad_type_selected] == 4 || this.emu_pad_mode[this.emu_pad_type_selected] == 1) {
-            if (found == 0 && this.emu_pad_mode[this.emu_pad_type_selected] == 4 && this.emu_pad_mode_analog[this.emu_pad_type_selected] == 1 && (this.virtualPadId[Id] == 20 || this.virtualPadId[Id] == 21)) {
+            if (found == 0 && this.emu_pad_mode[this.emu_pad_type_selected] == 4
+                    && this.emu_pad_mode_analog[this.emu_pad_type_selected] == 1
+                    && (this.virtualPadId[Id] == 20 || this.virtualPadId[Id] == 21)) {
                 int ind23 = this.virtualPadId[Id];
                 int tx2 = this.virtualPadPos[ind23][2] - this.virtualPadPos[ind23][0];
                 int ty2 = this.virtualPadPos[ind23][3] - this.virtualPadPos[ind23][1];
@@ -1696,12 +2001,16 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                 }
                 this.f165e.setpadanalog(pad5, ind23 - 20, xa - 128, ya - 128);
             }
-            if (this.emu_pad_dynamic == 1 && found == 0 && this.virtualPadId[Id] > 11 && this.virtualPadId[Id] < 20 && (this.emu_pad_mode[this.emu_pad_type_selected] == 1 || (this.emu_pad_mode[this.emu_pad_type_selected] == 4 && this.emu_pad_mode_analog[this.emu_pad_type_selected] == 0))) {
+            if (this.emu_pad_dynamic == 1 && found == 0 && this.virtualPadId[Id] > 11 && this.virtualPadId[Id] < 20
+                    && (this.emu_pad_mode[this.emu_pad_type_selected] == 1
+                            || (this.emu_pad_mode[this.emu_pad_type_selected] == 4
+                                    && this.emu_pad_mode_analog[this.emu_pad_type_selected] == 0))) {
                 int xdiff = xi - ((int) this.padOffScreenLan[this.mode][0]);
                 int ydiff = (this.mHeight - yi) - ((int) this.padOffScreenLan[this.mode][1]);
                 int seg2 = ((int) Math.toDegrees(Math.atan2(ydiff, xdiff) / 22.5d)) + 8;
                 int siz = (int) Math.sqrt((xdiff * xdiff) + (ydiff * ydiff));
-                if (siz >= ((int) ((this.padSizeScreenLan[this.mode][0] * this.padScreenResize[this.mode][0]) / 12.0f)) && seg2 > 0 && seg2 < 17) {
+                if (siz >= ((int) ((this.padSizeScreenLan[this.mode][0] * this.padScreenResize[this.mode][0]) / 12.0f))
+                        && seg2 > 0 && seg2 < 17) {
                     int up = this.virtualPadId[Id];
                     int ind24 = this.dpadsection[seg2];
                     if ((this.virtualPadBit[up] & 65536) == 65536) {
@@ -1724,7 +2033,8 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                 int ydiff2 = (this.mHeight - yi) - ((int) this.padOffScreenLan[this.mode][3]);
                 int seg3 = ((int) Math.toDegrees(Math.atan2(ydiff2, xdiff2) / 22.5d)) + 8;
                 int siz2 = (int) Math.sqrt((xdiff2 * xdiff2) + (ydiff2 * ydiff2));
-                if (siz2 >= ((int) ((this.padSizeScreenLan[this.mode][2] * this.padScreenResize[this.mode][1]) / 12.0f)) && seg3 > 0 && seg3 < 17) {
+                if (siz2 >= ((int) ((this.padSizeScreenLan[this.mode][2] * this.padScreenResize[this.mode][1]) / 12.0f))
+                        && seg3 > 0 && seg3 < 17) {
                     int up2 = this.virtualPadId[Id];
                     int ind25 = this.apadsection[seg3];
                     if ((this.virtualPadBit[up2] & 65536) == 65536) {
@@ -1740,7 +2050,8 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                     this.virtualPadId[Id] = ind25;
                 }
             }
-            if (this.virtualPadId[Id] == -1 && found == 0 && this.emu_action_dynamic == 0 && this.emu_pad_dynamic == 0) {
+            if (this.virtualPadId[Id] == -1 && found == 0 && this.emu_action_dynamic == 0
+                    && this.emu_pad_dynamic == 0) {
                 int distance = this.mWidth * 7;
                 int selected = -1;
                 for (int ind3 = 0; ind3 < 20; ind3++) {
@@ -1795,7 +2106,7 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
     }
 
     private void dumpEvent(MotionEvent event) {
-        String[] names = {"DOWN", "UP", "MOVE", "CANCEL", "OUTSIDE", "POINTER_DOWN", "POINTER_UP", "7?", "8?", "9?"};
+        String[] names = { "DOWN", "UP", "MOVE", "CANCEL", "OUTSIDE", "POINTER_DOWN", "POINTER_UP", "7?", "8?", "9?" };
         StringBuilder sb = new StringBuilder();
         int action = event.getAction();
         int actionCode = action & 255;
@@ -1824,7 +2135,10 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
         int vib = 0;
         if (this.emu_pad_type[0] != 1 || this.emu_pad_type[1] != 1) {
             if (actionCode == 5 || actionCode == 6 || actionCode == 1 || actionCode == 0 || actionCode == 2) {
-                vib = (this.emu_pad_mode[0] == 3 || this.emu_pad_mode[0] == 8) ? this.gun.touchscreeneventgun(0L, action, x, y, 0.0f, 0.0f, 0, pointerId, this.f165e, this.emu_pad_mode[0], this.mfps, this.mWidth, this.mHeight, this.emu_pad_type_selected) : 0 + touchscreenevent(0L, action, x, y, 0.0f, 0.0f, 0, pointerId);
+                vib = (this.emu_pad_mode[0] == 3 || this.emu_pad_mode[0] == 8)
+                        ? this.gun.touchscreeneventgun(0L, action, x, y, 0.0f, 0.0f, 0, pointerId, this.f165e,
+                                this.emu_pad_mode[0], this.mfps, this.mWidth, this.mHeight, this.emu_pad_type_selected)
+                        : 0 + touchscreenevent(0L, action, x, y, 0.0f, 0.0f, 0, pointerId);
             }
             if ((this.ts_vibration[0] == 1 && vib == 1) || (this.ts_vibration[1] == 1 && vib == 2)) {
                 try {
@@ -1855,16 +2169,26 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                     || actionCode == MotionEvent.ACTION_DOWN) {
 
                 if (this.emu_pad_mode[0] == 3 || this.emu_pad_mode[0] == 8) {
-                    vib = this.gun.touchscreeneventgun(event.getEventTime(), event.getAction(), (int) event.getX(i), (int) event.getY(i), event.getPressure(i), event.getSize(i), event.getDeviceId(), event.getPointerId(i), this.f165e, this.emu_pad_mode[0], this.mfps, this.mWidth, this.mHeight, this.emu_pad_type_selected);
+                    vib = this.gun.touchscreeneventgun(event.getEventTime(), event.getAction(), (int) event.getX(i),
+                            (int) event.getY(i), event.getPressure(i), event.getSize(i), event.getDeviceId(),
+                            event.getPointerId(i), this.f165e, this.emu_pad_mode[0], this.mfps, this.mWidth,
+                            this.mHeight, this.emu_pad_type_selected);
                 } else {
-                    vib = touchscreenevent(event.getEventTime(), event.getAction(), (int) event.getX(i), (int) event.getY(i), event.getPressure(i), event.getSize(i), event.getDeviceId(), event.getPointerId(i));
+                    vib = touchscreenevent(event.getEventTime(), event.getAction(), (int) event.getX(i),
+                            (int) event.getY(i), event.getPressure(i), event.getSize(i), event.getDeviceId(),
+                            event.getPointerId(i));
                 }
             } else if (actionCode == MotionEvent.ACTION_MOVE) {
                 for (int ind = 0; ind < event.getPointerCount(); ind++) {
                     if (this.emu_pad_mode[0] == 3 || this.emu_pad_mode[0] == 8) {
-                        vib = this.gun.touchscreeneventgun(event.getEventTime(), event.getAction(), (int) event.getX(i), (int) event.getY(i), event.getPressure(i), event.getSize(i), event.getDeviceId(), event.getPointerId(i), this.f165e, this.emu_pad_mode[0], this.mfps, this.mWidth, this.mHeight, this.emu_pad_type_selected);
+                        vib = this.gun.touchscreeneventgun(event.getEventTime(), event.getAction(), (int) event.getX(i),
+                                (int) event.getY(i), event.getPressure(i), event.getSize(i), event.getDeviceId(),
+                                event.getPointerId(i), this.f165e, this.emu_pad_mode[0], this.mfps, this.mWidth,
+                                this.mHeight, this.emu_pad_type_selected);
                     } else {
-                        touchscreenevent(event.getEventTime(), event.getAction(), (int) event.getX(ind), (int) event.getY(ind), event.getPressure(ind), event.getSize(ind), event.getDeviceId(), event.getPointerId(ind));
+                        touchscreenevent(event.getEventTime(), event.getAction(), (int) event.getX(ind),
+                                (int) event.getY(ind), event.getPressure(ind), event.getSize(ind), event.getDeviceId(),
+                                event.getPointerId(ind));
                     }
                 }
             }
@@ -1932,6 +2256,41 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
         int hotSpotX = bitmapIcon.getWidth() / 2;
         int hotSpotY = bitmapIcon.getHeight() / 2;
         return PointerIcon.create(bitmapIcon, hotSpotX, hotSpotY);
+    }
+
+    /**
+     * Вычисляет оптимальный масштаб для виртуальных кнопок в ландшафтном режиме
+     */
+    public void calculateLandscapePadScale() {
+        // Базовые размеры для расчета (оригинальные размеры ePSXe)
+        final float BASE_WIDTH = 800.0f;
+        final float BASE_HEIGHT = 480.0f;
+
+        // Вычисляем коэффициенты масштабирования по осям
+        float scaleX = (float) this.mWidth / BASE_WIDTH;
+        float scaleY = (float) this.mHeight / BASE_HEIGHT;
+
+        // Используем минимальный коэффициент для сохранения пропорций
+        float baseScale = Math.min(scaleX, scaleY);
+
+        // УМЕНЬШАЕМ кнопки в 2 раза - идеальный размер
+        baseScale = baseScale / 2.0f;
+
+        // Ограничиваем масштаб разумными пределами
+        if (baseScale > 1.0f) {
+            baseScale = 1.0f;
+        } else if (baseScale < 0.3f) {
+            baseScale = 0.3f;
+        }
+
+        // Применяем базовый масштаб
+        this.padResize = baseScale;
+
+        // Логирование для отладки
+        Log.d("PadScaling", String.format(
+                "Screen: %dx%d, ScaleX: %.2f, ScaleY: %.2f, FinalScale: %.2f (уменьшено в 3 раза)",
+                this.mWidth, this.mHeight,
+                scaleX, scaleY, this.padResize));
     }
 
     private class ePSXeRenderer2 implements GLSurfaceView.Renderer {
@@ -2003,7 +2362,20 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
             this.sVertexShader = "attribute vec4 a_position;attribute vec2 a_texCoord;varying vec2 v_texCoord;void main(){    gl_Position = a_position;    v_texCoord = a_texCoord;}";
             this.pFragmentShaderOld = "precision mediump float;varying vec2 v_texCoord;uniform sampler2D Frame;uniform float padAlpha;void main(){    gl_FragColor = texture2D(Frame, v_texCoord);    gl_FragColor.a = gl_FragColor.a * padAlpha;}";
             this.pFragmentShader = "precision mediump float;varying vec2 v_texCoord;uniform sampler2D Frame;uniform float padAlpha;void main(){    gl_FragColor = texture2D(Frame, v_texCoord) * padAlpha;}";
-            this.padCoordsExtra = new int[]{0, 0, 64, 64, 64, 0, 128, 64, 128, 0, InputList.KEYCODE_BUTTON_5, 64, InputList.KEYCODE_BUTTON_5, 0, 256, 64, 0, 64, 64, 128, 64, 64, 128, 128, 128, 64, InputList.KEYCODE_BUTTON_5, 128, InputList.KEYCODE_BUTTON_5, 64, 256, 128, 0, 128, 64, InputList.KEYCODE_BUTTON_9, 64, 128, 128, InputList.KEYCODE_BUTTON_9, 128, 128, InputList.KEYCODE_BUTTON_5, InputList.KEYCODE_BUTTON_9, InputList.KEYCODE_BUTTON_5, 128, 256, InputList.KEYCODE_BUTTON_9, 0, InputList.KEYCODE_BUTTON_5, 64, 256, 64, InputList.KEYCODE_BUTTON_5, 128, 256, 128, InputList.KEYCODE_BUTTON_5, InputList.KEYCODE_BUTTON_5, 256, InputList.KEYCODE_BUTTON_5, InputList.KEYCODE_BUTTON_5, 256, 256, 0, 256, 64, 320, 64, 256, 128, 320, 128, 256, InputList.KEYCODE_BUTTON_7, 320, InputList.KEYCODE_BUTTON_5, 256, 256, 320, 0, 320, 64, 384, 64, 320, 128, 384, 128, 320, InputList.KEYCODE_BUTTON_9, 384, InputList.KEYCODE_BUTTON_5, 320, 256, 384, 0, 384, 64, 448, 63, 384, 126, 448, 128, 384, InputList.KEYCODE_BUTTON_9, 448, InputList.KEYCODE_BUTTON_5, 384, 256, 448, 0, 448, 64, 511, 64, 448, 128, 511, 128, 448, InputList.KEYCODE_BUTTON_9, 511, InputList.KEYCODE_BUTTON_5, 448, 256, 511, 256, 0, 320, 64, 320, 0, 384, 64, 384, 0, 448, 64, 448, 0, 511, 64};
+            this.padCoordsExtra = new int[] { 0, 0, 64, 64, 64, 0, 128, 64, 128, 0, InputList.KEYCODE_BUTTON_5, 64,
+                    InputList.KEYCODE_BUTTON_5, 0, 256, 64, 0, 64, 64, 128, 64, 64, 128, 128, 128, 64,
+                    InputList.KEYCODE_BUTTON_5, 128, InputList.KEYCODE_BUTTON_5, 64, 256, 128, 0, 128, 64,
+                    InputList.KEYCODE_BUTTON_9, 64, 128, 128, InputList.KEYCODE_BUTTON_9, 128, 128,
+                    InputList.KEYCODE_BUTTON_5, InputList.KEYCODE_BUTTON_9, InputList.KEYCODE_BUTTON_5, 128, 256,
+                    InputList.KEYCODE_BUTTON_9, 0, InputList.KEYCODE_BUTTON_5, 64, 256, 64, InputList.KEYCODE_BUTTON_5,
+                    128, 256, 128, InputList.KEYCODE_BUTTON_5, InputList.KEYCODE_BUTTON_5, 256,
+                    InputList.KEYCODE_BUTTON_5, InputList.KEYCODE_BUTTON_5, 256, 256, 0, 256, 64, 320, 64, 256, 128,
+                    320, 128, 256, InputList.KEYCODE_BUTTON_7, 320, InputList.KEYCODE_BUTTON_5, 256, 256, 320, 0, 320,
+                    64, 384, 64, 320, 128, 384, 128, 320, InputList.KEYCODE_BUTTON_9, 384, InputList.KEYCODE_BUTTON_5,
+                    320, 256, 384, 0, 384, 64, 448, 63, 384, 126, 448, 128, 384, InputList.KEYCODE_BUTTON_9, 448,
+                    InputList.KEYCODE_BUTTON_5, 384, 256, 448, 0, 448, 64, 511, 64, 448, 128, 511, 128, 448,
+                    InputList.KEYCODE_BUTTON_9, 511, InputList.KEYCODE_BUTTON_5, 448, 256, 511, 256, 0, 320, 64, 320, 0,
+                    384, 64, 384, 0, 448, 64, 448, 0, 511, 64 };
         }
 
         private int newTextureID() {
@@ -2062,9 +2434,15 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
             GLES20.glEnable(3042);
             this.glText.begin(1.0f, 1.0f, 1.0f, 1.0f);
             if (ePSXeViewGL.this.tainted == 1) {
-                this.glText.draw(String.valueOf(ePSXeViewGL.this.f165e.getFPS()) + "/" + ePSXeViewGL.this.mfps + "*", ePSXeViewGL.this.overscan_x + 0, (ePSXeViewGL.this.mHeight - this.glText.getCharHeight()) - ePSXeViewGL.this.overscan_y, ePSXeViewGL.this.mWidth, ePSXeViewGL.this.mHeight);
+                this.glText.draw(String.valueOf(ePSXeViewGL.this.f165e.getFPS()) + "/" + ePSXeViewGL.this.mfps + "*",
+                        ePSXeViewGL.this.overscan_x + 0,
+                        (ePSXeViewGL.this.mHeight - this.glText.getCharHeight()) - ePSXeViewGL.this.overscan_y,
+                        ePSXeViewGL.this.mWidth, ePSXeViewGL.this.mHeight);
             } else {
-                this.glText.draw(String.valueOf(ePSXeViewGL.this.f165e.getFPS()) + "/" + ePSXeViewGL.this.mfps, ePSXeViewGL.this.overscan_x + 0, (ePSXeViewGL.this.mHeight - this.glText.getCharHeight()) - ePSXeViewGL.this.overscan_y, ePSXeViewGL.this.mWidth, ePSXeViewGL.this.mHeight);
+                this.glText.draw(String.valueOf(ePSXeViewGL.this.f165e.getFPS()) + "/" + ePSXeViewGL.this.mfps,
+                        ePSXeViewGL.this.overscan_x + 0,
+                        (ePSXeViewGL.this.mHeight - this.glText.getCharHeight()) - ePSXeViewGL.this.overscan_y,
+                        ePSXeViewGL.this.mWidth, ePSXeViewGL.this.mHeight);
             }
             this.glText.end();
             GLES20.glDisable(3042);
@@ -2073,33 +2451,45 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
         public void drawVolumen(GL10 gl) {
             GLES20.glEnable(3042);
             this.glText.begin(1.0f, 1.0f, 1.0f, 1.0f);
-            this.glText.draw(String.valueOf(ePSXeViewGL.this.emu_volumen) + "/16", ePSXeViewGL.this.mWidth - (this.glText.getCharHeight() * 6.0f), (ePSXeViewGL.this.mHeight - this.glText.getCharHeight()) - ePSXeViewGL.this.overscan_y, ePSXeViewGL.this.mWidth, ePSXeViewGL.this.mHeight);
+            this.glText.draw(String.valueOf(ePSXeViewGL.this.emu_volumen) + "/16",
+                    ePSXeViewGL.this.mWidth - (this.glText.getCharHeight() * 6.0f),
+                    (ePSXeViewGL.this.mHeight - this.glText.getCharHeight()) - ePSXeViewGL.this.overscan_y,
+                    ePSXeViewGL.this.mWidth, ePSXeViewGL.this.mHeight);
             this.glText.end();
             GLES20.glDisable(3042);
         }
 
         public void drawAnalogValues(GL10 gl) {
             this.glText.begin(1.0f, 1.0f, 1.0f, 1.0f);
-            this.glText.draw("lx " + ePSXeViewGL.this.f166x1 + " ly " + ePSXeViewGL.this.f168y1 + " rx " + ePSXeViewGL.this.f167x2 + " ry " + ePSXeViewGL.this.f169y2, 0.0f, ePSXeViewGL.this.mHeight - (this.glText.getCharHeight() * 3.0f), ePSXeViewGL.this.mWidth, ePSXeViewGL.this.mHeight);
+            this.glText.draw(
+                    "lx " + ePSXeViewGL.this.f166x1 + " ly " + ePSXeViewGL.this.f168y1 + " rx "
+                            + ePSXeViewGL.this.f167x2 + " ry " + ePSXeViewGL.this.f169y2,
+                    0.0f, ePSXeViewGL.this.mHeight - (this.glText.getCharHeight() * 3.0f), ePSXeViewGL.this.mWidth,
+                    ePSXeViewGL.this.mHeight);
             this.glText.end();
         }
 
         public void drawDebugString(GL10 gl) {
             this.glText.begin(1.0f, 1.0f, 1.0f, 1.0f);
-            this.glText.draw(ePSXeViewGL.this.debugString, 0.0f, ePSXeViewGL.this.mHeight - (this.glText.getCharHeight() * 3.0f), ePSXeViewGL.this.mWidth, ePSXeViewGL.this.mHeight);
+            this.glText.draw(ePSXeViewGL.this.debugString, 0.0f,
+                    ePSXeViewGL.this.mHeight - (this.glText.getCharHeight() * 3.0f), ePSXeViewGL.this.mWidth,
+                    ePSXeViewGL.this.mHeight);
             this.glText.end();
         }
 
         public void drawDebugString2(GL10 gl) {
             this.glText.begin(1.0f, 1.0f, 1.0f, 1.0f);
-            this.glText.draw(ePSXeViewGL.this.debugString2, 0.0f, ePSXeViewGL.this.mHeight - (this.glText.getCharHeight() * 4.0f), ePSXeViewGL.this.mWidth, ePSXeViewGL.this.mHeight);
+            this.glText.draw(ePSXeViewGL.this.debugString2, 0.0f,
+                    ePSXeViewGL.this.mHeight - (this.glText.getCharHeight() * 4.0f), ePSXeViewGL.this.mWidth,
+                    ePSXeViewGL.this.mHeight);
             this.glText.end();
         }
 
         private void drawLicense(GL10 gl) {
             GLES20.glEnable(3042);
             this.glText.begin(1.0f, 1.0f, 1.0f, 1.0f);
-            this.glText.draw("License not validated yet. Read the documentation.", 60.0f, 0.0f, ePSXeViewGL.this.mWidth, ePSXeViewGL.this.mHeight);
+            this.glText.draw("License not validated yet. Read the documentation.", 60.0f, 0.0f, ePSXeViewGL.this.mWidth,
+                    ePSXeViewGL.this.mHeight);
             this.glText.end();
             GLES20.glDisable(3042);
         }
@@ -2107,7 +2497,8 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
         private void drawBiosMsg(GL10 gl) {
             GLES20.glEnable(3042);
             this.glText.begin(1.0f, 1.0f, 1.0f, 1.0f);
-            this.glText.draw("Using HLE Bios, compatibility and options limited. Read the documentation.", 60.0f, 0.0f, ePSXeViewGL.this.mWidth, ePSXeViewGL.this.mHeight);
+            this.glText.draw("Using HLE Bios, compatibility and options limited. Read the documentation.", 60.0f, 0.0f,
+                    ePSXeViewGL.this.mWidth, ePSXeViewGL.this.mHeight);
             this.glText.end();
             GLES20.glDisable(3042);
         }
@@ -2129,17 +2520,22 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
         @Override // android.opengl.GLSurfaceView.Renderer
         public void onDrawFrame(GL10 gl) {
             if (ePSXeViewGL.this.onPauseMode != 1) {
-                ePSXeViewGL.this.f165e.openglrender(ePSXeViewGL.this.emu_player_mode, ePSXeViewGL.this.emu_screen_orientation, ePSXeViewGL.this.emu_split_mode, ePSXeViewGL.this.emu_screen_ratio, ePSXeViewGL.this.emu_screen_vrmode);
+                ePSXeViewGL.this.f165e.openglrender(ePSXeViewGL.this.emu_player_mode,
+                        ePSXeViewGL.this.emu_screen_orientation, ePSXeViewGL.this.emu_split_mode,
+                        ePSXeViewGL.this.emu_screen_ratio, ePSXeViewGL.this.emu_screen_vrmode);
                 if (ePSXeViewGL.this.onPauseMode != 1) {
                     if (ePSXeViewGL.this.redoPads) {
                         redoPads(gl);
                         ePSXeViewGL.this.redoPads = false;
                     }
                     try {
-                        if (ePSXeViewGL.this.emu_player_mode != 1 || ePSXeViewGL.this.emu_screen_orientation != 1 || ePSXeViewGL.this.emu_portrait_skin != 0) {
-                            if (ePSXeViewGL.this.emu_player_mode != 1 || ePSXeViewGL.this.emu_pad_draw_mode[0] == 2 || ePSXeViewGL.this.emu_pad_mode[0] == 3 || ePSXeViewGL.this.emu_pad_mode[0] == 8) {
+                        if (ePSXeViewGL.this.emu_player_mode != 1 || ePSXeViewGL.this.emu_screen_orientation != 1
+                                || ePSXeViewGL.this.emu_portrait_skin != 0) {
+                            if (ePSXeViewGL.this.emu_player_mode != 1 || ePSXeViewGL.this.emu_pad_draw_mode[0] == 2
+                                    || ePSXeViewGL.this.emu_pad_mode[0] == 3 || ePSXeViewGL.this.emu_pad_mode[0] == 8) {
                                 if (ePSXeViewGL.this.emu_pad_mode[0] == 3 || ePSXeViewGL.this.emu_pad_mode[0] == 8) {
-                                    ePSXeViewGL.this.gun.drawGunGl(this.mTexLan, this.mProgram, this.textureRgnLan, this.batchLan, ePSXeViewGL.this.mWidth, ePSXeViewGL.this.mHeight);
+                                    ePSXeViewGL.this.gun.drawGunGl(this.mTexLan, this.mProgram, this.textureRgnLan,
+                                            this.batchLan, ePSXeViewGL.this.mWidth, ePSXeViewGL.this.mHeight);
                                 }
                             } else {
                                 int st = 0;
@@ -2162,33 +2558,95 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                                     if (ePSXeViewGL.this.padScreenStatus[ePSXeViewGL.this.mode][i] == 1) {
                                         if (i > 1) {
                                             if (i < 11 && i != 8) {
-                                                if ((ePSXeViewGL.this.statebuttons & ePSXeViewGL.this.psxbuttonval[i]) != 0) {
+                                                if ((ePSXeViewGL.this.statebuttons
+                                                        & ePSXeViewGL.this.psxbuttonval[i]) != 0) {
                                                     this.batchLan[i].beginBatch(this.mTexLan);
-                                                    this.batchLan[i].drawSprite(ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2) + 0] / ePSXeViewGL.this.mWidth, ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2) + 1] / ePSXeViewGL.this.mHeight, ((ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2) + 0] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i]) / ePSXeViewGL.this.mWidth) * ePSXeViewGL.this.buttonMag, ((ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2) + 1] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i]) / ePSXeViewGL.this.mHeight) * ePSXeViewGL.this.buttonMag, this.textureRgnLan[i]);
+                                                    this.batchLan[i].drawSprite(
+                                                            ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i
+                                                                    * 2) + 0] / ePSXeViewGL.this.mWidth,
+                                                            ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i
+                                                                    * 2) + 1] / ePSXeViewGL.this.mHeight,
+                                                            ((ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i
+                                                                    * 2) + 0]
+                                                                    * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i])
+                                                                    / ePSXeViewGL.this.mWidth)
+                                                                    * ePSXeViewGL.this.buttonMag,
+                                                            ((ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i
+                                                                    * 2) + 1]
+                                                                    * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i])
+                                                                    / ePSXeViewGL.this.mHeight)
+                                                                    * ePSXeViewGL.this.buttonMag,
+                                                            this.textureRgnLan[i]);
                                                     this.batchLan[i].endBatch();
                                                 } else {
                                                     this.batchLan[i].beginBatch(this.mTexLan);
-                                                    this.batchLan[i].drawSprite(ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2) + 0] / ePSXeViewGL.this.mWidth, ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2) + 1] / ePSXeViewGL.this.mHeight, (ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2) + 0] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i]) / ePSXeViewGL.this.mWidth, (ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2) + 1] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i]) / ePSXeViewGL.this.mHeight, this.textureRgnLan[i]);
+                                                    this.batchLan[i].drawSprite(
+                                                            ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i
+                                                                    * 2) + 0] / ePSXeViewGL.this.mWidth,
+                                                            ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i
+                                                                    * 2) + 1] / ePSXeViewGL.this.mHeight,
+                                                            (ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i
+                                                                    * 2) + 0]
+                                                                    * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i])
+                                                                    / ePSXeViewGL.this.mWidth,
+                                                            (ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i
+                                                                    * 2) + 1]
+                                                                    * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i])
+                                                                    / ePSXeViewGL.this.mHeight,
+                                                            this.textureRgnLan[i]);
                                                     this.batchLan[i].endBatch();
                                                 }
                                             } else {
                                                 this.batchLan[i].beginBatch(this.mTexLan);
-                                                this.batchLan[i].drawSprite(ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2) + 0] / ePSXeViewGL.this.mWidth, ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2) + 1] / ePSXeViewGL.this.mHeight, (ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2) + 0] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i]) / ePSXeViewGL.this.mWidth, (ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2) + 1] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i]) / ePSXeViewGL.this.mHeight, this.textureRgnLan[i]);
+                                                this.batchLan[i].drawSprite(
+                                                        ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2)
+                                                                + 0] / ePSXeViewGL.this.mWidth,
+                                                        ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2)
+                                                                + 1] / ePSXeViewGL.this.mHeight,
+                                                        (ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i
+                                                                * 2) + 0]
+                                                                * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i])
+                                                                / ePSXeViewGL.this.mWidth,
+                                                        (ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i
+                                                                * 2) + 1]
+                                                                * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i])
+                                                                / ePSXeViewGL.this.mHeight,
+                                                        this.textureRgnLan[i]);
                                                 this.batchLan[i].endBatch();
                                             }
                                         } else if (i == 0) {
                                             if (ePSXeViewGL.this.emu_pad_draw_mode[0] == 4) {
                                                 this.batchLan[i].beginBatch(this.mTexLan);
-                                                this.batchLan[i].drawSprite(ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2) + 0] / ePSXeViewGL.this.mWidth, ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2) + 1] / ePSXeViewGL.this.mHeight, (ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2) + 0] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i]) / ePSXeViewGL.this.mWidth, (ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2) + 1] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i]) / ePSXeViewGL.this.mHeight, this.textureRgnLan[i]);
+                                                this.batchLan[i].drawSprite(
+                                                        ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2)
+                                                                + 0] / ePSXeViewGL.this.mWidth,
+                                                        ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2)
+                                                                + 1] / ePSXeViewGL.this.mHeight,
+                                                        (ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i
+                                                                * 2) + 0]
+                                                                * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i])
+                                                                / ePSXeViewGL.this.mWidth,
+                                                        (ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i
+                                                                * 2) + 1]
+                                                                * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i])
+                                                                / ePSXeViewGL.this.mHeight,
+                                                        this.textureRgnLan[i]);
                                                 this.batchLan[i].endBatch();
                                             }
                                             if (ePSXeViewGL.this.dpadskin == 1) {
-                                                float sx = ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2) + 0] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i];
-                                                float sy = ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2) + 1] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i];
-                                                float ox = ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2) + 0] - (sx / 2.0f);
-                                                float oy = ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2) + 1] - (sy / 2.0f);
+                                                float sx = ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i
+                                                        * 2) + 0]
+                                                        * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i];
+                                                float sy = ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i
+                                                        * 2) + 1]
+                                                        * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i];
+                                                float ox = ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i
+                                                        * 2) + 0] - (sx / 2.0f);
+                                                float oy = ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i
+                                                        * 2) + 1] - (sy / 2.0f);
                                                 for (int p = 0; p < 4; p++) {
-                                                    if (ePSXeViewGL.this.isDpadTouchActive && ePSXeViewGL.this.animationButtonIndex != -1) {
+                                                    if (ePSXeViewGL.this.isDpadTouchActive
+                                                            && ePSXeViewGL.this.animationButtonIndex != -1) {
                                                         int buttonMapping = -1;
                                                         if (ePSXeViewGL.this.animationButtonIndex == 12) {
                                                             buttonMapping = 0;
@@ -2202,62 +2660,140 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
 
                                                         if (buttonMapping == p) {
                                                             this.batchLanDpad[p].beginBatch(this.mTexLan);
-                                                            this.batchLanDpad[p].drawSprite(((this.offDpadX[p] * sx) + ox) / ePSXeViewGL.this.mWidth, ((this.offDpadY[p] * sy) + oy) / ePSXeViewGL.this.mHeight, ((this.sizeDpadX[p] * sx) / ePSXeViewGL.this.mWidth) * ePSXeViewGL.this.buttonMag, ((this.sizeDpadY[p] * sy) / ePSXeViewGL.this.mHeight) * ePSXeViewGL.this.buttonMag, this.textureRgnLanDpad[p]);
+                                                            this.batchLanDpad[p].drawSprite(
+                                                                    ((this.offDpadX[p] * sx) + ox)
+                                                                            / ePSXeViewGL.this.mWidth,
+                                                                    ((this.offDpadY[p] * sy) + oy)
+                                                                            / ePSXeViewGL.this.mHeight,
+                                                                    ((this.sizeDpadX[p] * sx) / ePSXeViewGL.this.mWidth)
+                                                                            * ePSXeViewGL.this.buttonMag,
+                                                                    ((this.sizeDpadY[p] * sy)
+                                                                            / ePSXeViewGL.this.mHeight)
+                                                                            * ePSXeViewGL.this.buttonMag,
+                                                                    this.textureRgnLanDpad[p]);
                                                             this.batchLanDpad[p].endBatch();
                                                         } else {
                                                             this.batchLanDpad[p].beginBatch(this.mTexLan);
-                                                            this.batchLanDpad[p].drawSprite(((this.offDpadX[p] * sx) + ox) / ePSXeViewGL.this.mWidth, ((this.offDpadY[p] * sy) + oy) / ePSXeViewGL.this.mHeight, (this.sizeDpadX[p] * sx) / ePSXeViewGL.this.mWidth, (this.sizeDpadY[p] * sy) / ePSXeViewGL.this.mHeight, this.textureRgnLanDpad[p]);
+                                                            this.batchLanDpad[p].drawSprite(
+                                                                    ((this.offDpadX[p] * sx) + ox)
+                                                                            / ePSXeViewGL.this.mWidth,
+                                                                    ((this.offDpadY[p] * sy) + oy)
+                                                                            / ePSXeViewGL.this.mHeight,
+                                                                    (this.sizeDpadX[p] * sx) / ePSXeViewGL.this.mWidth,
+                                                                    (this.sizeDpadY[p] * sy) / ePSXeViewGL.this.mHeight,
+                                                                    this.textureRgnLanDpad[p]);
                                                             this.batchLanDpad[p].endBatch();
                                                         }
                                                     } else {
                                                         if ((ePSXeViewGL.this.statebuttons & (4096 << p)) == 0) {
                                                             if (ePSXeViewGL.this.emu_pad_draw_mode[0] != 4) {
                                                                 this.batchLanDpad[p].beginBatch(this.mTexLan);
-                                                                this.batchLanDpad[p].drawSprite(((this.offDpadX[p] * sx) + ox) / ePSXeViewGL.this.mWidth, ((this.offDpadY[p] * sy) + oy) / ePSXeViewGL.this.mHeight, (this.sizeDpadX[p] * sx) / ePSXeViewGL.this.mWidth, (this.sizeDpadY[p] * sy) / ePSXeViewGL.this.mHeight, this.textureRgnLanDpad[p]);
+                                                                this.batchLanDpad[p].drawSprite(
+                                                                        ((this.offDpadX[p] * sx) + ox)
+                                                                                / ePSXeViewGL.this.mWidth,
+                                                                        ((this.offDpadY[p] * sy) + oy)
+                                                                                / ePSXeViewGL.this.mHeight,
+                                                                        (this.sizeDpadX[p] * sx)
+                                                                                / ePSXeViewGL.this.mWidth,
+                                                                        (this.sizeDpadY[p] * sy)
+                                                                                / ePSXeViewGL.this.mHeight,
+                                                                        this.textureRgnLanDpad[p]);
                                                                 this.batchLanDpad[p].endBatch();
                                                             }
                                                         } else {
                                                             this.batchLanDpad[p].beginBatch(this.mTexLan);
-                                                            this.batchLanDpad[p].drawSprite(((this.offDpadX[p] * sx) + ox) / ePSXeViewGL.this.mWidth, ((this.offDpadY[p] * sy) + oy) / ePSXeViewGL.this.mHeight, ((this.sizeDpadX[p] * sx) / ePSXeViewGL.this.mWidth) * ePSXeViewGL.this.buttonMag, ((this.sizeDpadY[p] * sy) / ePSXeViewGL.this.mHeight) * ePSXeViewGL.this.buttonMag, this.textureRgnLanDpad[p]);
+                                                            this.batchLanDpad[p].drawSprite(
+                                                                    ((this.offDpadX[p] * sx) + ox)
+                                                                            / ePSXeViewGL.this.mWidth,
+                                                                    ((this.offDpadY[p] * sy) + oy)
+                                                                            / ePSXeViewGL.this.mHeight,
+                                                                    ((this.sizeDpadX[p] * sx) / ePSXeViewGL.this.mWidth)
+                                                                            * ePSXeViewGL.this.buttonMag,
+                                                                    ((this.sizeDpadY[p] * sy)
+                                                                            / ePSXeViewGL.this.mHeight)
+                                                                            * ePSXeViewGL.this.buttonMag,
+                                                                    this.textureRgnLanDpad[p]);
                                                             this.batchLanDpad[p].endBatch();
                                                         }
                                                     }
                                                 }
                                             } else {
                                                 this.batchLan[i].beginBatch(this.mTexLan);
-                                                this.batchLan[i].drawSprite(ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2) + 0] / ePSXeViewGL.this.mWidth, ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2) + 1] / ePSXeViewGL.this.mHeight, (ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2) + 0] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i]) / ePSXeViewGL.this.mWidth, (ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2) + 1] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i]) / ePSXeViewGL.this.mHeight, this.textureRgnLan[i]);
+                                                this.batchLan[i].drawSprite(
+                                                        ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2)
+                                                                + 0] / ePSXeViewGL.this.mWidth,
+                                                        ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2)
+                                                                + 1] / ePSXeViewGL.this.mHeight,
+                                                        (ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i
+                                                                * 2) + 0]
+                                                                * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i])
+                                                                / ePSXeViewGL.this.mWidth,
+                                                        (ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i
+                                                                * 2) + 1]
+                                                                * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i])
+                                                                / ePSXeViewGL.this.mHeight,
+                                                        this.textureRgnLan[i]);
                                                 this.batchLan[i].endBatch();
                                             }
                                         } else {
                                             if (ePSXeViewGL.this.emu_pad_draw_mode[0] == 4) {
                                                 this.batchLan[i].beginBatch(this.mTexLan);
-                                                this.batchLan[i].drawSprite(ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2) + 0] / ePSXeViewGL.this.mWidth, ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2) + 1] / ePSXeViewGL.this.mHeight, (ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2) + 0] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i]) / ePSXeViewGL.this.mWidth, (ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2) + 1] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i]) / ePSXeViewGL.this.mHeight, this.textureRgnLan[i]);
+                                                this.batchLan[i].drawSprite(
+                                                        ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2)
+                                                                + 0] / ePSXeViewGL.this.mWidth,
+                                                        ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2)
+                                                                + 1] / ePSXeViewGL.this.mHeight,
+                                                        (ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i
+                                                                * 2) + 0]
+                                                                * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i])
+                                                                / ePSXeViewGL.this.mWidth,
+                                                        (ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i
+                                                                * 2) + 1]
+                                                                * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i])
+                                                                / ePSXeViewGL.this.mHeight,
+                                                        this.textureRgnLan[i]);
                                                 this.batchLan[i].endBatch();
                                             }
-                                            float sx2 = ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2) + 0] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i];
-                                            float sy2 = ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2) + 1] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i];
+                                            float sx2 = ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2)
+                                                    + 0] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i];
+                                            float sy2 = ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2)
+                                                    + 1] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i];
                                             // Исправляем координаты для правильного центрирования action buttons
-                                            float centerX = ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2) + 0];
-                                            float centerY = ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2) + 1];
+                                            float centerX = ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i
+                                                    * 2) + 0];
+                                            float centerY = ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i
+                                                    * 2) + 1];
                                             float ox2 = centerX - (sx2 / 2.0f);
                                             float oy2 = centerY - (sy2 / 2.0f);
-                                            
+
                                             for (int p2 = 0; p2 < 4; p2++) {
                                                 // Вычисляем правильные позиции для каждой action кнопки
                                                 float buttonCenterX = (this.offActionX[p2] * sx2) + ox2;
                                                 float buttonCenterY = (this.offActionY[p2] * sy2) + oy2;
                                                 float buttonWidth = this.sizeActionX[p2] * sx2;
                                                 float buttonHeight = this.sizeActionY[p2] * sy2;
-                                                
+
                                                 if ((ePSXeViewGL.this.statebuttons & (16 << p2)) == 0) {
                                                     if (ePSXeViewGL.this.emu_pad_draw_mode[0] != 4) {
                                                         this.batchLanAction[p2].beginBatch(this.mTexLan);
-                                                        this.batchLanAction[p2].drawSprite(buttonCenterX / ePSXeViewGL.this.mWidth, buttonCenterY / ePSXeViewGL.this.mHeight, buttonWidth / ePSXeViewGL.this.mWidth, buttonHeight / ePSXeViewGL.this.mHeight, this.textureRgnLanAction[p2]);
+                                                        this.batchLanAction[p2].drawSprite(
+                                                                buttonCenterX / ePSXeViewGL.this.mWidth,
+                                                                buttonCenterY / ePSXeViewGL.this.mHeight,
+                                                                buttonWidth / ePSXeViewGL.this.mWidth,
+                                                                buttonHeight / ePSXeViewGL.this.mHeight,
+                                                                this.textureRgnLanAction[p2]);
                                                         this.batchLanAction[p2].endBatch();
                                                     }
                                                 } else {
                                                     this.batchLanAction[p2].beginBatch(this.mTexLan);
-                                                    this.batchLanAction[p2].drawSprite(buttonCenterX / ePSXeViewGL.this.mWidth, buttonCenterY / ePSXeViewGL.this.mHeight, (buttonWidth * ePSXeViewGL.this.buttonMag) / ePSXeViewGL.this.mWidth, (buttonHeight * ePSXeViewGL.this.buttonMag) / ePSXeViewGL.this.mHeight, this.textureRgnLanAction[p2]);
+                                                    this.batchLanAction[p2].drawSprite(
+                                                            buttonCenterX / ePSXeViewGL.this.mWidth,
+                                                            buttonCenterY / ePSXeViewGL.this.mHeight,
+                                                            (buttonWidth * ePSXeViewGL.this.buttonMag)
+                                                                    / ePSXeViewGL.this.mWidth,
+                                                            (buttonHeight * ePSXeViewGL.this.buttonMag)
+                                                                    / ePSXeViewGL.this.mHeight,
+                                                            this.textureRgnLanAction[p2]);
                                                     this.batchLanAction[p2].endBatch();
                                                 }
                                             }
@@ -2267,9 +2803,10 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                                             float cx_px = (virtualPadPos[20][0] + virtualPadPos[20][2]) * 0.5f;
                                             float cy_px = (virtualPadPos[20][1] + virtualPadPos[20][3]) * 0.5f;
 
-                                            // 2) Размер круга стика в пикселях — по тому же, что вы рисовали в touch-коде
-                                            //    padSizeScreenLan[mode][26] и [27] — «половина» вашего nub,
-                                            //    умноженная padScreenResize; *2 превращает в полный диаметр.
+                                            // 2) Размер круга стика в пикселях — по тому же, что вы рисовали в
+                                            // touch-коде
+                                            // padSizeScreenLan[mode][26] и [27] — «половина» вашего nub,
+                                            // умноженная padScreenResize; *2 превращает в полный диаметр.
                                             float w_px = padSizeScreenLan[mode][26] * padScreenResize[mode][11] * 2.0f;
                                             float h_px = padSizeScreenLan[mode][27] * padScreenResize[mode][11] * 2.0f;
 
@@ -2282,23 +2819,32 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                                             // 4) Логируем, чтобы убедиться, что все в [0..1]
                                             Log.d("DRAW_NUB", String.format(
                                                     "i=11 x_n=%.3f y_n=%.3f w_n=%.3f h_n=%.3f",
-                                                    x_n, y_n, w_n, h_n
-                                            ));
+                                                    x_n, y_n, w_n, h_n));
 
                                             // 5) Рисуем nub строго по центру круга
                                             batchLan[i].beginBatch(mTexLan);
                                             batchLan[i].drawSprite(
                                                     x_n, y_n, // левый-нижний угол (нормализовано)
                                                     w_n, h_n, // размеры (нормализовано)
-                                                    textureRgnLan[i]
-                                            );
+                                                    textureRgnLan[i]);
                                             batchLan[i].endBatch();
 
                                             // 6) Прекращаем старую логику для i==11
                                             continue;
                                         } else if (i == 12) {
                                             this.batchLan[i].beginBatch(this.mTexLan);
-                                            this.batchLan[i].drawSprite((float) ePSXeViewGL.this.analog_values[0][(i - 11) * 2] / ePSXeViewGL.this.mWidth, (float) ePSXeViewGL.this.analog_values[0][((i - 11) * 2) + 1] / ePSXeViewGL.this.mHeight, ((ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][26] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i]) * 2.0f) / ePSXeViewGL.this.mWidth, ((ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][27] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i]) * 2.0f) / ePSXeViewGL.this.mHeight, this.textureRgnLan[13]);
+                                            this.batchLan[i].drawSprite(
+                                                    (float) ePSXeViewGL.this.analog_values[0][(i - 11) * 2]
+                                                            / ePSXeViewGL.this.mWidth,
+                                                    (float) ePSXeViewGL.this.analog_values[0][((i - 11) * 2) + 1]
+                                                            / ePSXeViewGL.this.mHeight,
+                                                    ((ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][26]
+                                                            * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i])
+                                                            * 2.0f) / ePSXeViewGL.this.mWidth,
+                                                    ((ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][27]
+                                                            * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i])
+                                                            * 2.0f) / ePSXeViewGL.this.mHeight,
+                                                    this.textureRgnLan[13]);
                                             this.batchLan[i].endBatch();
                                         }
                                     }
@@ -2310,14 +2856,42 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                                 if (ePSXeViewGL.this.padScreenExtraEnabled == 1 && !ePSXeViewGL.this.hidePad) {
                                     for (int i2 = 14; i2 < 20; i2++) {
                                         if (ePSXeViewGL.this.padScreenStatus[ePSXeViewGL.this.mode][i2] == 1) {
-                                            if (ePSXeViewGL.this.padScreenExtra[i2 - 14] >= 20 && ePSXeViewGL.this.stickyButton[ePSXeViewGL.this.padScreenExtra[i2 - 14] - 20] == 1) {
+                                            if (ePSXeViewGL.this.padScreenExtra[i2 - 14] >= 20
+                                                    && ePSXeViewGL.this.stickyButton[ePSXeViewGL.this.padScreenExtra[i2
+                                                            - 14] - 20] == 1) {
                                                 int j = ePSXeViewGL.this.padScreenExtra[i2 - 14];
                                                 this.batchLan[i2].beginBatch(this.mTexExtra);
-                                                this.batchLan[i2].drawSprite(ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i2 * 2) + 0] / ePSXeViewGL.this.mWidth, ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i2 * 2) + 1] / ePSXeViewGL.this.mHeight, (ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i2 * 2) + 0] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i2]) / ePSXeViewGL.this.mWidth, (ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i2 * 2) + 1] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i2]) / ePSXeViewGL.this.mHeight, this.textureRgnLan[j]);
+                                                this.batchLan[i2].drawSprite(
+                                                        ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i2 * 2)
+                                                                + 0] / ePSXeViewGL.this.mWidth,
+                                                        ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i2 * 2)
+                                                                + 1] / ePSXeViewGL.this.mHeight,
+                                                        (ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i2
+                                                                * 2) + 0]
+                                                                * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i2])
+                                                                / ePSXeViewGL.this.mWidth,
+                                                        (ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i2
+                                                                * 2) + 1]
+                                                                * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i2])
+                                                                / ePSXeViewGL.this.mHeight,
+                                                        this.textureRgnLan[j]);
                                                 this.batchLan[i2].endBatch();
                                             } else {
                                                 this.batchLan[i2].beginBatch(this.mTexExtra);
-                                                this.batchLan[i2].drawSprite(ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i2 * 2) + 0] / ePSXeViewGL.this.mWidth, ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i2 * 2) + 1] / ePSXeViewGL.this.mHeight, (ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i2 * 2) + 0] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i2]) / ePSXeViewGL.this.mWidth, (ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i2 * 2) + 1] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i2]) / ePSXeViewGL.this.mHeight, this.textureRgnLan[i2]);
+                                                this.batchLan[i2].drawSprite(
+                                                        ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i2 * 2)
+                                                                + 0] / ePSXeViewGL.this.mWidth,
+                                                        ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i2 * 2)
+                                                                + 1] / ePSXeViewGL.this.mHeight,
+                                                        (ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i2
+                                                                * 2) + 0]
+                                                                * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i2])
+                                                                / ePSXeViewGL.this.mWidth,
+                                                        (ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i2
+                                                                * 2) + 1]
+                                                                * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i2])
+                                                                / ePSXeViewGL.this.mHeight,
+                                                        this.textureRgnLan[i2]);
                                                 this.batchLan[i2].endBatch();
                                             }
                                         }
@@ -2325,20 +2899,45 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                                 }
                                 GLES20.glDisable(3042);
                             }
-                            if (ePSXeViewGL.this.emu_player_mode != 10 || ePSXeViewGL.this.emu_split_mode != 0 || ePSXeViewGL.this.emu_pad_draw_mode[0] == 2) {
-                                if ((ePSXeViewGL.this.emu_player_mode == 10 && ePSXeViewGL.this.emu_pad_draw_mode[0] != 2 && ePSXeViewGL.this.emu_split_mode == 1) || ePSXeViewGL.this.emu_split_mode == 2) {
+                            if (ePSXeViewGL.this.emu_player_mode != 10 || ePSXeViewGL.this.emu_split_mode != 0
+                                    || ePSXeViewGL.this.emu_pad_draw_mode[0] == 2) {
+                                if ((ePSXeViewGL.this.emu_player_mode == 10
+                                        && ePSXeViewGL.this.emu_pad_draw_mode[0] != 2
+                                        && ePSXeViewGL.this.emu_split_mode == 1)
+                                        || ePSXeViewGL.this.emu_split_mode == 2) {
                                     if (!ePSXeViewGL.this.hidePad) {
                                         GLES20.glBindTexture(3553, this.mTexLan);
                                     }
                                     GLES20.glUseProgram(this.mProgram);
                                     for (int i3 = 0; i3 < 8; i3++) {
                                         this.batchLan[i3].beginBatch(this.mTexLan);
-                                        this.batchLan[i3].drawSprite(ePSXeViewGL.this.padOffScreenLan2H[(i3 * 2) + 0] / ePSXeViewGL.this.mWidth, ePSXeViewGL.this.padOffScreenLan2H[(i3 * 2) + 1] / ePSXeViewGL.this.mHeight, ePSXeViewGL.this.padSizeScreenLan2H[(i3 * 2) + 0] / ePSXeViewGL.this.mWidth, ePSXeViewGL.this.padSizeScreenLan2H[(i3 * 2) + 1] / ePSXeViewGL.this.mHeight, this.textureRgnLan[i3]);
+                                        this.batchLan[i3].drawSprite(
+                                                ePSXeViewGL.this.padOffScreenLan2H[(i3 * 2) + 0]
+                                                        / ePSXeViewGL.this.mWidth,
+                                                ePSXeViewGL.this.padOffScreenLan2H[(i3 * 2) + 1]
+                                                        / ePSXeViewGL.this.mHeight,
+                                                ePSXeViewGL.this.padSizeScreenLan2H[(i3 * 2) + 0]
+                                                        / ePSXeViewGL.this.mWidth,
+                                                ePSXeViewGL.this.padSizeScreenLan2H[(i3 * 2) + 1]
+                                                        / ePSXeViewGL.this.mHeight,
+                                                this.textureRgnLan[i3]);
                                         this.batchLan[i3].endBatch();
                                     }
                                     for (int i4 = 0; i4 < 8; i4++) {
                                         this.batchLan[i4].beginBatch(this.mTexLan);
-                                        this.batchLan[i4].drawSpriteSwap((ePSXeViewGL.this.mWidth - ePSXeViewGL.this.padOffScreenLan2H[(i4 * 2) + 0]) / ePSXeViewGL.this.mWidth, ((((float) ePSXeViewGL.this.mHeight / 2) - ePSXeViewGL.this.padOffScreenLan2H[(i4 * 2) + 1]) + ((float) ePSXeViewGL.this.mHeight / 2)) / ePSXeViewGL.this.mHeight, ePSXeViewGL.this.padSizeScreenLan2H[(i4 * 2) + 0] / ePSXeViewGL.this.mWidth, ePSXeViewGL.this.padSizeScreenLan2H[(i4 * 2) + 1] / ePSXeViewGL.this.mHeight, this.textureRgnLan[i4]);
+                                        this.batchLan[i4].drawSpriteSwap(
+                                                (ePSXeViewGL.this.mWidth
+                                                        - ePSXeViewGL.this.padOffScreenLan2H[(i4 * 2) + 0])
+                                                        / ePSXeViewGL.this.mWidth,
+                                                ((((float) ePSXeViewGL.this.mHeight / 2)
+                                                        - ePSXeViewGL.this.padOffScreenLan2H[(i4 * 2) + 1])
+                                                        + ((float) ePSXeViewGL.this.mHeight / 2))
+                                                        / ePSXeViewGL.this.mHeight,
+                                                ePSXeViewGL.this.padSizeScreenLan2H[(i4 * 2) + 0]
+                                                        / ePSXeViewGL.this.mWidth,
+                                                ePSXeViewGL.this.padSizeScreenLan2H[(i4 * 2) + 1]
+                                                        / ePSXeViewGL.this.mHeight,
+                                                this.textureRgnLan[i4]);
                                         this.batchLan[i4].endBatch();
                                     }
                                 }
@@ -2349,12 +2948,27 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                                 GLES20.glUseProgram(this.mProgram);
                                 for (int i5 = 0; i5 < 8; i5++) {
                                     this.batchLan[i5].beginBatch(this.mTexLan);
-                                    this.batchLan[i5].drawSpriteRotate90((ePSXeViewGL.this.mWidth - ePSXeViewGL.this.padOffScreenLan2V[(i5 * 2) + 1]) / ePSXeViewGL.this.mWidth, ePSXeViewGL.this.padOffScreenLan2V[(i5 * 2) + 0] / ePSXeViewGL.this.mHeight, ePSXeViewGL.this.padSizeScreenLan2V[(i5 * 2) + 1] / ePSXeViewGL.this.mWidth, ePSXeViewGL.this.padSizeScreenLan2V[(i5 * 2) + 0] / ePSXeViewGL.this.mHeight, this.textureRgnLan[i5]);
+                                    this.batchLan[i5].drawSpriteRotate90(
+                                            (ePSXeViewGL.this.mWidth - ePSXeViewGL.this.padOffScreenLan2V[(i5 * 2) + 1])
+                                                    / ePSXeViewGL.this.mWidth,
+                                            ePSXeViewGL.this.padOffScreenLan2V[(i5 * 2) + 0] / ePSXeViewGL.this.mHeight,
+                                            ePSXeViewGL.this.padSizeScreenLan2V[(i5 * 2) + 1] / ePSXeViewGL.this.mWidth,
+                                            ePSXeViewGL.this.padSizeScreenLan2V[(i5 * 2) + 0]
+                                                    / ePSXeViewGL.this.mHeight,
+                                            this.textureRgnLan[i5]);
                                     this.batchLan[i5].endBatch();
                                 }
                                 for (int i6 = 0; i6 < 8; i6++) {
                                     this.batchLan[i6].beginBatch(this.mTexLan);
-                                    this.batchLan[i6].drawSpriteRotate270(ePSXeViewGL.this.padOffScreenLan2V[(i6 * 2) + 1] / ePSXeViewGL.this.mWidth, (ePSXeViewGL.this.mHeight - ePSXeViewGL.this.padOffScreenLan2V[(i6 * 2) + 0]) / ePSXeViewGL.this.mHeight, ePSXeViewGL.this.padSizeScreenLan2V[(i6 * 2) + 1] / ePSXeViewGL.this.mWidth, ePSXeViewGL.this.padSizeScreenLan2V[(i6 * 2) + 0] / ePSXeViewGL.this.mHeight, this.textureRgnLan[i6]);
+                                    this.batchLan[i6].drawSpriteRotate270(
+                                            ePSXeViewGL.this.padOffScreenLan2V[(i6 * 2) + 1] / ePSXeViewGL.this.mWidth,
+                                            (ePSXeViewGL.this.mHeight
+                                                    - ePSXeViewGL.this.padOffScreenLan2V[(i6 * 2) + 0])
+                                                    / ePSXeViewGL.this.mHeight,
+                                            ePSXeViewGL.this.padSizeScreenLan2V[(i6 * 2) + 1] / ePSXeViewGL.this.mWidth,
+                                            ePSXeViewGL.this.padSizeScreenLan2V[(i6 * 2) + 0]
+                                                    / ePSXeViewGL.this.mHeight,
+                                            this.textureRgnLan[i6]);
                                     this.batchLan[i6].endBatch();
                                 }
                             }
@@ -2362,7 +2976,11 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                             GLES20.glBindTexture(3553, this.mTexPor);
                             GLES20.glUseProgram(this.mProgram);
                             this.batchPor.beginBatch(this.mTexPor);
-                            this.batchPor.drawSprite(ePSXeViewGL.this.padOffScreenPor[0] / ePSXeViewGL.this.mWidth, ePSXeViewGL.this.padOffScreenPor[1] / ePSXeViewGL.this.mHeight, ePSXeViewGL.this.padSizeScreenPor[0] / ePSXeViewGL.this.mWidth, ePSXeViewGL.this.padSizeScreenPor[1] / ePSXeViewGL.this.mHeight, this.textureRgnPor);
+                            this.batchPor.drawSprite(ePSXeViewGL.this.padOffScreenPor[0] / ePSXeViewGL.this.mWidth,
+                                    ePSXeViewGL.this.padOffScreenPor[1] / ePSXeViewGL.this.mHeight,
+                                    ePSXeViewGL.this.padSizeScreenPor[0] / ePSXeViewGL.this.mWidth,
+                                    ePSXeViewGL.this.padSizeScreenPor[1] / ePSXeViewGL.this.mHeight,
+                                    this.textureRgnPor);
                             this.batchPor.endBatch();
                             if (ePSXeViewGL.this.padScreenExtraEnabled == 1 && !ePSXeViewGL.this.hidePad) {
                                 GLES20.glBindTexture(3553, this.mTexExtra);
@@ -2370,14 +2988,34 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                                 GLES20.glEnable(3042);
                                 for (int i7 = 14; i7 < 20; i7++) {
                                     if (ePSXeViewGL.this.padScreenStatus[ePSXeViewGL.this.mode][i7] == 1) {
-                                        if (ePSXeViewGL.this.padScreenExtra[i7 - 14] >= 20 && ePSXeViewGL.this.stickyButton[ePSXeViewGL.this.padScreenExtra[i7 - 14] - 20] == 1) {
+                                        if (ePSXeViewGL.this.padScreenExtra[i7 - 14] >= 20
+                                                && ePSXeViewGL.this.stickyButton[ePSXeViewGL.this.padScreenExtra[i7
+                                                        - 14] - 20] == 1) {
                                             int j2 = ePSXeViewGL.this.padScreenExtra[i7 - 14];
                                             this.batchLan[i7].beginBatch(this.mTexExtra);
-                                            this.batchLan[i7].drawSprite(ePSXeViewGL.this.padOffScreenPor[(i7 * 2) + 0] / ePSXeViewGL.this.mWidth, ePSXeViewGL.this.padOffScreenPor[(i7 * 2) + 1] / ePSXeViewGL.this.mHeight, ePSXeViewGL.this.padSizeScreenPor[(i7 * 2) + 0] / ePSXeViewGL.this.mWidth, ePSXeViewGL.this.padSizeScreenPor[(i7 * 2) + 1] / ePSXeViewGL.this.mHeight, this.textureRgnLan[j2]);
+                                            this.batchLan[i7].drawSprite(
+                                                    ePSXeViewGL.this.padOffScreenPor[(i7 * 2) + 0]
+                                                            / ePSXeViewGL.this.mWidth,
+                                                    ePSXeViewGL.this.padOffScreenPor[(i7 * 2) + 1]
+                                                            / ePSXeViewGL.this.mHeight,
+                                                    ePSXeViewGL.this.padSizeScreenPor[(i7 * 2) + 0]
+                                                            / ePSXeViewGL.this.mWidth,
+                                                    ePSXeViewGL.this.padSizeScreenPor[(i7 * 2) + 1]
+                                                            / ePSXeViewGL.this.mHeight,
+                                                    this.textureRgnLan[j2]);
                                             this.batchLan[i7].endBatch();
                                         } else {
                                             this.batchLan[i7].beginBatch(this.mTexExtra);
-                                            this.batchLan[i7].drawSprite(ePSXeViewGL.this.padOffScreenPor[(i7 * 2) + 0] / ePSXeViewGL.this.mWidth, ePSXeViewGL.this.padOffScreenPor[(i7 * 2) + 1] / ePSXeViewGL.this.mHeight, ePSXeViewGL.this.padSizeScreenPor[(i7 * 2) + 0] / ePSXeViewGL.this.mWidth, ePSXeViewGL.this.padSizeScreenPor[(i7 * 2) + 1] / ePSXeViewGL.this.mHeight, this.textureRgnLan[i7]);
+                                            this.batchLan[i7].drawSprite(
+                                                    ePSXeViewGL.this.padOffScreenPor[(i7 * 2) + 0]
+                                                            / ePSXeViewGL.this.mWidth,
+                                                    ePSXeViewGL.this.padOffScreenPor[(i7 * 2) + 1]
+                                                            / ePSXeViewGL.this.mHeight,
+                                                    ePSXeViewGL.this.padSizeScreenPor[(i7 * 2) + 0]
+                                                            / ePSXeViewGL.this.mWidth,
+                                                    ePSXeViewGL.this.padSizeScreenPor[(i7 * 2) + 1]
+                                                            / ePSXeViewGL.this.mHeight,
+                                                    this.textureRgnLan[i7]);
                                             this.batchLan[i7].endBatch();
                                         }
                                     }
@@ -2417,71 +3055,320 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
         }
 
         private void resetPad1Values() {
+            // Вычисляем базовое масштабирование только один раз
+            calculateBasePadResize();
+            applyBaseSizesToPads();
+        }
+
+        private void calculateBasePadResize() {
             if (ePSXeViewGL.this.emu_screen_orientation != 1) {
-                if (ePSXeViewGL.this.mWidth <= 600) {
-                    ePSXeViewGL.this.padResize = 0.8f;
-                } else if (ePSXeViewGL.this.mWidth <= 600 || ePSXeViewGL.this.mWidth > 800) {
-                    if (ePSXeViewGL.this.mWidth <= 800 || ePSXeViewGL.this.mWidth > 1280) {
-                        if (ePSXeViewGL.this.mWidth <= 1280 || ePSXeViewGL.this.mWidth > 1500) {
-                            ePSXeViewGL.this.padResize = 1.8f;
-                        } else {
-                            ePSXeViewGL.this.padResize = 1.5f;
-                        }
-                    } else {
-                        ePSXeViewGL.this.padResize = 1.35f;
-                    }
-                } else {
-                    ePSXeViewGL.this.padResize = 1.0f;
-                }
+                // Ландшафтный режим - улучшенное масштабирование
+                calculateLandscapePadScale();
             } else if (ePSXeViewGL.this.emu_portrait_skin == 1) {
+                // Портретный режим - используем существующую логику
                 ePSXeViewGL.this.padResize = ePSXeViewGL.this.mWidth / 562.0f;
+            } else {
+                // Портретный режим без скина
+                ePSXeViewGL.this.padResize = 1.0f;
             }
-            float[][] padSizeScreenLantmp = {new float[]{228.0f, 228.0f, 224.0f, 248.0f, 66.0f, 50.0f, 66.0f, 62.0f, 64.0f, 60.0f, 64.0f, 60.0f, 64.0f, 60.0f, 64.0f, 60.0f, 53.0f, 41.0f, 64.0f, 60.0f, 64.0f, 60.0f, 222.0f, 222.0f, 222.0f, 222.0f, 71.0f, 71.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f}, new float[]{228.0f, 228.0f, 224.0f, 248.0f, 66.0f, 50.0f, 66.0f, 62.0f, 64.0f, 60.0f, 64.0f, 60.0f, 64.0f, 60.0f, 64.0f, 60.0f, 53.0f, 41.0f, 64.0f, 60.0f, 64.0f, 60.0f, 222.0f, 222.0f, 222.0f, 222.0f, 71.0f, 71.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f}};
+        }
+
+        private void applyBaseSizesToPads() {
+            float[][] padSizeScreenLantmp = {
+                    new float[] { 228.0f, 228.0f, 224.0f, 248.0f, 66.0f, 50.0f, 66.0f, 62.0f, 64.0f, 60.0f, 64.0f,
+                            60.0f, 64.0f, 60.0f, 64.0f, 60.0f, 53.0f, 41.0f, 64.0f, 60.0f, 64.0f, 60.0f, 222.0f, 222.0f,
+                            222.0f, 222.0f, 71.0f, 71.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f,
+                            64.0f, 64.0f, 64.0f },
+                    new float[] { 228.0f, 228.0f, 224.0f, 248.0f, 66.0f, 50.0f, 66.0f, 62.0f, 64.0f, 60.0f, 64.0f,
+                            60.0f, 64.0f, 60.0f, 64.0f, 60.0f, 53.0f, 41.0f, 64.0f, 60.0f, 64.0f, 60.0f, 222.0f, 222.0f,
+                            222.0f, 222.0f, 71.0f, 71.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f,
+                            64.0f, 64.0f, 64.0f } };
             for (int i = 0; i < 20; i++) {
-                float sizeMultiplier = (ePSXeViewGL.this.emu_screen_orientation != 1) ? 0.7f : 1.0f; // Уменьшаем в половину для ландшафтного режима
-                ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2) + 0] = padSizeScreenLantmp[ePSXeViewGL.this.mode][(i * 2) + 0] * ePSXeViewGL.this.padResize * sizeMultiplier;
-                ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2) + 1] = padSizeScreenLantmp[ePSXeViewGL.this.mode][(i * 2) + 1] * ePSXeViewGL.this.padResize * sizeMultiplier;
+                ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2)
+                        + 0] = padSizeScreenLantmp[ePSXeViewGL.this.mode][(i * 2) + 0] * ePSXeViewGL.this.padResize;
+                ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2)
+                        + 1] = padSizeScreenLantmp[ePSXeViewGL.this.mode][(i * 2) + 1] * ePSXeViewGL.this.padResize;
             }
             if (ePSXeViewGL.this.emu_screen_orientation == 1) {
                 if (ePSXeViewGL.this.emu_portrait_skin == 1) {
-                    float[][] padOffScreenLantmp = {new float[]{ePSXeViewGL.this.padSizeScreenLan[0][0] / 2.0f, ePSXeViewGL.this.padSizeScreenLan[0][1] / 2.0f, ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][2] / 2.0f), ePSXeViewGL.this.padSizeScreenLan[0][3] / 2.0f, (((float) ePSXeViewGL.this.mWidth / 2) - ePSXeViewGL.this.padSizeScreenLan[0][4]) - 30.0f, ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][5] / 2.0f), ((float) ePSXeViewGL.this.mWidth / 2) + 30, ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][7] / 2.0f), ePSXeViewGL.this.padSizeScreenLan[0][8] / 2.0f, ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][9] / 2.0f), (ePSXeViewGL.this.padSizeScreenLan[0][10] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[0][8], ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][11] / 2.0f), ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][12] / 2.0f), ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][13] / 2.0f), (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][14] / 2.0f)) - ePSXeViewGL.this.padSizeScreenLan[0][12], ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][15] / 2.0f), ((float) ePSXeViewGL.this.mWidth / 2) + 40 + ePSXeViewGL.this.padSizeScreenLan[0][6], ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][17] / 2.0f), (ePSXeViewGL.this.padSizeScreenLan[0][18] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[0][10] + ePSXeViewGL.this.padSizeScreenLan[0][8], ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][19] / 2.0f), ((ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][20] / 2.0f)) - ePSXeViewGL.this.padSizeScreenLan[0][12]) - ePSXeViewGL.this.padSizeScreenLan[0][14], ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][21] / 2.0f), ePSXeViewGL.this.padSizeScreenLan[0][22] / 2.0f, ePSXeViewGL.this.padSizeScreenLan[0][23] / 2.0f, ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][24] / 2.0f), ePSXeViewGL.this.padSizeScreenLan[0][25] / 2.0f, 0.0f, 0.0f, ePSXeViewGL.this.padSizeScreenLan[0][28] / 2.0f, ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[0][29] / 2.0f), (ePSXeViewGL.this.padSizeScreenLan[0][30] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[0][28], ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[0][31] / 2.0f), (ePSXeViewGL.this.padSizeScreenLan[0][32] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[0][28] + ePSXeViewGL.this.padSizeScreenLan[0][30], ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[0][33] / 2.0f), ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][34] / 2.0f), ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[0][35] / 2.0f), (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][36] / 2.0f)) - ePSXeViewGL.this.padSizeScreenLan[0][34], ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[0][37] / 2.0f), ((ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][38] / 2.0f)) - ePSXeViewGL.this.padSizeScreenLan[0][34]) - ePSXeViewGL.this.padSizeScreenLan[0][36], ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[0][39] / 2.0f)}, new float[]{((float) ePSXeViewGL.this.mWidth / 2) - ((ePSXeViewGL.this.padSizeScreenLan[1][0] / 2.0f) * 0.76f), (float) ePSXeViewGL.this.mHeight / 4, ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][2] / 2.0f), ePSXeViewGL.this.padSizeScreenLan[1][3] / 2.0f, (((float) ePSXeViewGL.this.mWidth / 2) - ePSXeViewGL.this.padSizeScreenLan[1][4]) - 30.0f, ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[1][5] / 2.0f), ((float) ePSXeViewGL.this.mWidth / 2) + 30, ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[1][7] / 2.0f), ePSXeViewGL.this.padSizeScreenLan[1][8] / 2.0f, ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[1][9] / 2.0f), (ePSXeViewGL.this.padSizeScreenLan[1][10] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[0][8], ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[1][11] / 2.0f), ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][12] / 2.0f), ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[1][13] / 2.0f), (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][14] / 2.0f)) - ePSXeViewGL.this.padSizeScreenLan[1][12], ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[1][15] / 2.0f), ((float) ePSXeViewGL.this.mWidth / 2) + 40 + ePSXeViewGL.this.padSizeScreenLan[1][6], ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[1][17] / 2.0f), (ePSXeViewGL.this.padSizeScreenLan[1][18] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[1][10] + ePSXeViewGL.this.padSizeScreenLan[1][8], ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[1][19] / 2.0f), ((ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][20] / 2.0f)) - ePSXeViewGL.this.padSizeScreenLan[1][12]) - ePSXeViewGL.this.padSizeScreenLan[1][14], ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[1][21] / 2.0f), ePSXeViewGL.this.padSizeScreenLan[1][22] / 2.0f, ePSXeViewGL.this.padSizeScreenLan[1][23] / 2.0f, ((float) ePSXeViewGL.this.mWidth / 2) + ((ePSXeViewGL.this.padSizeScreenLan[1][24] / 2.0f) * 0.76f), (float) ePSXeViewGL.this.mHeight / 4, 0.0f, 0.0f, ePSXeViewGL.this.padSizeScreenLan[1][28] / 2.0f, ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[1][29] / 2.0f), (ePSXeViewGL.this.padSizeScreenLan[1][30] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[1][28], ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[1][31] / 2.0f), (ePSXeViewGL.this.padSizeScreenLan[1][32] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[1][28] + ePSXeViewGL.this.padSizeScreenLan[1][30], ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[1][33] / 2.0f), ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][34] / 2.0f), ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[1][35] / 2.0f), (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][36] / 2.0f)) - ePSXeViewGL.this.padSizeScreenLan[1][34], ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[1][37] / 2.0f), ((ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][38] / 2.0f)) - ePSXeViewGL.this.padSizeScreenLan[1][34]) - ePSXeViewGL.this.padSizeScreenLan[1][36], ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[1][39] / 2.0f)}};
+                    float[][] padOffScreenLantmp = { new float[] { ePSXeViewGL.this.padSizeScreenLan[0][0] / 2.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[0][1] / 2.0f,
+                            ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][2] / 2.0f),
+                            ePSXeViewGL.this.padSizeScreenLan[0][3] / 2.0f,
+                            (((float) ePSXeViewGL.this.mWidth / 2) - ePSXeViewGL.this.padSizeScreenLan[0][4]) - 30.0f,
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][5] / 2.0f),
+                            ((float) ePSXeViewGL.this.mWidth / 2) + 30,
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][7] / 2.0f),
+                            ePSXeViewGL.this.padSizeScreenLan[0][8] / 2.0f,
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][9] / 2.0f),
+                            (ePSXeViewGL.this.padSizeScreenLan[0][10] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[0][8],
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][11] / 2.0f),
+                            ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][12] / 2.0f),
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][13] / 2.0f),
+                            (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][14] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[0][12],
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][15] / 2.0f),
+                            ((float) ePSXeViewGL.this.mWidth / 2) + 40 + ePSXeViewGL.this.padSizeScreenLan[0][6],
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][17] / 2.0f),
+                            (ePSXeViewGL.this.padSizeScreenLan[0][18] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[0][10]
+                                    + ePSXeViewGL.this.padSizeScreenLan[0][8],
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][19] / 2.0f),
+                            ((ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][20] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[0][12])
+                                    - ePSXeViewGL.this.padSizeScreenLan[0][14],
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][21] / 2.0f),
+                            ePSXeViewGL.this.padSizeScreenLan[0][22] / 2.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[0][23] / 2.0f,
+                            ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][24] / 2.0f),
+                            ePSXeViewGL.this.padSizeScreenLan[0][25] / 2.0f, 0.0f, 0.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[0][28] / 2.0f,
+                            ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[0][29] / 2.0f),
+                            (ePSXeViewGL.this.padSizeScreenLan[0][30] / 2.0f)
+                                    + ePSXeViewGL.this.padSizeScreenLan[0][28],
+                            ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[0][31] / 2.0f),
+                            (ePSXeViewGL.this.padSizeScreenLan[0][32] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[0][28]
+                                    + ePSXeViewGL.this.padSizeScreenLan[0][30],
+                            ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[0][33] / 2.0f),
+                            ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][34] / 2.0f),
+                            ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[0][35] / 2.0f),
+                            (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][36] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[0][34],
+                            ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[0][37] / 2.0f),
+                            ((ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][38] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[0][34])
+                                    - ePSXeViewGL.this.padSizeScreenLan[0][36],
+                            ((float) ePSXeViewGL.this.mHeight / 3)
+                                    - (ePSXeViewGL.this.padSizeScreenLan[0][39] / 2.0f) },
+                            new float[] {
+                                    ((float) ePSXeViewGL.this.mWidth / 2)
+                                            - ((ePSXeViewGL.this.padSizeScreenLan[1][0] / 2.0f) * 0.76f),
+                                    (float) ePSXeViewGL.this.mHeight / 4,
+                                    ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][2] / 2.0f),
+                                    ePSXeViewGL.this.padSizeScreenLan[1][3] / 2.0f,
+                                    (((float) ePSXeViewGL.this.mWidth / 2) - ePSXeViewGL.this.padSizeScreenLan[1][4])
+                                            - 30.0f,
+                                    ((float) ePSXeViewGL.this.mHeight / 2)
+                                            - (ePSXeViewGL.this.padSizeScreenLan[1][5] / 2.0f),
+                                    ((float) ePSXeViewGL.this.mWidth / 2) + 30,
+                                    ((float) ePSXeViewGL.this.mHeight / 2)
+                                            - (ePSXeViewGL.this.padSizeScreenLan[1][7] / 2.0f),
+                                    ePSXeViewGL.this.padSizeScreenLan[1][8] / 2.0f,
+                                    ((float) ePSXeViewGL.this.mHeight / 2)
+                                            - (ePSXeViewGL.this.padSizeScreenLan[1][9] / 2.0f),
+                                    (ePSXeViewGL.this.padSizeScreenLan[1][10] / 2.0f)
+                                            + ePSXeViewGL.this.padSizeScreenLan[0][8],
+                                    ((float) ePSXeViewGL.this.mHeight / 2)
+                                            - (ePSXeViewGL.this.padSizeScreenLan[1][11] / 2.0f),
+                                    ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][12] / 2.0f),
+                                    ((float) ePSXeViewGL.this.mHeight / 2)
+                                            - (ePSXeViewGL.this.padSizeScreenLan[1][13] / 2.0f),
+                                    (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][14] / 2.0f))
+                                            - ePSXeViewGL.this.padSizeScreenLan[1][12],
+                                    ((float) ePSXeViewGL.this.mHeight / 2)
+                                            - (ePSXeViewGL.this.padSizeScreenLan[1][15] / 2.0f),
+                                    ((float) ePSXeViewGL.this.mWidth / 2) + 40
+                                            + ePSXeViewGL.this.padSizeScreenLan[1][6],
+                                    ((float) ePSXeViewGL.this.mHeight / 2)
+                                            - (ePSXeViewGL.this.padSizeScreenLan[1][17] / 2.0f),
+                                    (ePSXeViewGL.this.padSizeScreenLan[1][18] / 2.0f)
+                                            + ePSXeViewGL.this.padSizeScreenLan[1][10]
+                                            + ePSXeViewGL.this.padSizeScreenLan[1][8],
+                                    ((float) ePSXeViewGL.this.mHeight / 2)
+                                            - (ePSXeViewGL.this.padSizeScreenLan[1][19] / 2.0f),
+                                    ((ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][20] / 2.0f))
+                                            - ePSXeViewGL.this.padSizeScreenLan[1][12])
+                                            - ePSXeViewGL.this.padSizeScreenLan[1][14],
+                                    ((float) ePSXeViewGL.this.mHeight / 2)
+                                            - (ePSXeViewGL.this.padSizeScreenLan[1][21] / 2.0f),
+                                    ePSXeViewGL.this.padSizeScreenLan[1][22] / 2.0f,
+                                    ePSXeViewGL.this.padSizeScreenLan[1][23] / 2.0f,
+                                    ((float) ePSXeViewGL.this.mWidth / 2)
+                                            + ((ePSXeViewGL.this.padSizeScreenLan[1][24] / 2.0f) * 0.76f),
+                                    (float) ePSXeViewGL.this.mHeight / 4, 0.0f, 0.0f,
+                                    ePSXeViewGL.this.padSizeScreenLan[1][28] / 2.0f,
+                                    ((float) ePSXeViewGL.this.mHeight / 3)
+                                            - (ePSXeViewGL.this.padSizeScreenLan[1][29] / 2.0f),
+                                    (ePSXeViewGL.this.padSizeScreenLan[1][30] / 2.0f)
+                                            + ePSXeViewGL.this.padSizeScreenLan[1][28],
+                                    ((float) ePSXeViewGL.this.mHeight / 3)
+                                            - (ePSXeViewGL.this.padSizeScreenLan[1][31] / 2.0f),
+                                    (ePSXeViewGL.this.padSizeScreenLan[1][32] / 2.0f)
+                                            + ePSXeViewGL.this.padSizeScreenLan[1][28]
+                                            + ePSXeViewGL.this.padSizeScreenLan[1][30],
+                                    ((float) ePSXeViewGL.this.mHeight / 3)
+                                            - (ePSXeViewGL.this.padSizeScreenLan[1][33] / 2.0f),
+                                    ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][34] / 2.0f),
+                                    ((float) ePSXeViewGL.this.mHeight / 3)
+                                            - (ePSXeViewGL.this.padSizeScreenLan[1][35] / 2.0f),
+                                    (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][36] / 2.0f))
+                                            - ePSXeViewGL.this.padSizeScreenLan[1][34],
+                                    ((float) ePSXeViewGL.this.mHeight / 3)
+                                            - (ePSXeViewGL.this.padSizeScreenLan[1][37] / 2.0f),
+                                    ((ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][38] / 2.0f))
+                                            - ePSXeViewGL.this.padSizeScreenLan[1][34])
+                                            - ePSXeViewGL.this.padSizeScreenLan[1][36],
+                                    ((float) ePSXeViewGL.this.mHeight / 3)
+                                            - (ePSXeViewGL.this.padSizeScreenLan[1][39] / 2.0f) } };
                     for (int i2 = 0; i2 < 20; i2++) {
-                        ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i2 * 2) + 0] = padOffScreenLantmp[ePSXeViewGL.this.mode][(i2 * 2) + 0];
-                        ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i2 * 2) + 1] = padOffScreenLantmp[ePSXeViewGL.this.mode][(i2 * 2) + 1];
+                        ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i2 * 2)
+                                + 0] = padOffScreenLantmp[ePSXeViewGL.this.mode][(i2 * 2) + 0];
+                        ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i2 * 2)
+                                + 1] = padOffScreenLantmp[ePSXeViewGL.this.mode][(i2 * 2) + 1];
                     }
                     return;
                 }
                 return;
             }
-            float[][] padOffScreenLantmp2 = {new float[]{ePSXeViewGL.this.padSizeScreenLan[0][0] / 2.0f, ePSXeViewGL.this.padSizeScreenLan[0][1] / 2.0f, ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][2] / 2.0f), ePSXeViewGL.this.padSizeScreenLan[0][3] / 2.0f, (((float) ePSXeViewGL.this.mWidth / 2) - ePSXeViewGL.this.padSizeScreenLan[0][4]) - 30.0f, ePSXeViewGL.this.padSizeScreenLan[0][5] / 2.0f, ((float) ePSXeViewGL.this.mWidth / 2) + 30, ePSXeViewGL.this.padSizeScreenLan[0][7] / 2.0f, ePSXeViewGL.this.padSizeScreenLan[0][8] / 2.0f, ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][9] / 2.0f), (ePSXeViewGL.this.padSizeScreenLan[0][10] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[0][8], ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][11] / 2.0f), ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][12] / 2.0f), ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][13] / 2.0f), (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][14] / 2.0f)) - ePSXeViewGL.this.padSizeScreenLan[0][12], ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][15] / 2.0f), ((float) ePSXeViewGL.this.mWidth / 2) + 40 + ePSXeViewGL.this.padSizeScreenLan[0][6], ePSXeViewGL.this.padSizeScreenLan[0][17] / 2.0f, (ePSXeViewGL.this.padSizeScreenLan[0][18] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[0][10] + ePSXeViewGL.this.padSizeScreenLan[0][8], ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][19] / 2.0f), ((ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][20] / 2.0f)) - ePSXeViewGL.this.padSizeScreenLan[0][12]) - ePSXeViewGL.this.padSizeScreenLan[0][14], ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][21] / 2.0f), ePSXeViewGL.this.padSizeScreenLan[0][22] / 2.0f, ePSXeViewGL.this.padSizeScreenLan[0][23] / 2.0f, ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][24] / 2.0f), ePSXeViewGL.this.padSizeScreenLan[0][25] / 2.0f, 0.0f, 0.0f, ePSXeViewGL.this.padSizeScreenLan[0][28] / 2.0f, (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][29] / 2.0f)) - (ePSXeViewGL.this.padSizeScreenLan[0][10] * 2.0f), (ePSXeViewGL.this.padSizeScreenLan[0][30] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[0][28], (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][31] / 2.0f)) - (ePSXeViewGL.this.padSizeScreenLan[0][10] * 2.0f), (ePSXeViewGL.this.padSizeScreenLan[0][32] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[0][28] + ePSXeViewGL.this.padSizeScreenLan[0][30], (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][33] / 2.0f)) - (ePSXeViewGL.this.padSizeScreenLan[0][10] * 2.0f), ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][34] / 2.0f), (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][35] / 2.0f)) - (ePSXeViewGL.this.padSizeScreenLan[0][10] * 2.0f), (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][36] / 2.0f)) - ePSXeViewGL.this.padSizeScreenLan[0][34], (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][37] / 2.0f)) - (ePSXeViewGL.this.padSizeScreenLan[0][10] * 2.0f), ((ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][38] / 2.0f)) - ePSXeViewGL.this.padSizeScreenLan[0][34]) - ePSXeViewGL.this.padSizeScreenLan[0][36], (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][39] / 2.0f)) - (ePSXeViewGL.this.padSizeScreenLan[0][10] * 2.0f)}, new float[]{((float) ePSXeViewGL.this.mWidth / 2) - ((ePSXeViewGL.this.padSizeScreenLan[1][0] / 2.0f) * 0.76f), (float) ePSXeViewGL.this.mHeight / 2, ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][2] / 2.0f), ePSXeViewGL.this.padSizeScreenLan[1][3] / 2.0f, (((float) ePSXeViewGL.this.mWidth / 2) - ePSXeViewGL.this.padSizeScreenLan[1][4]) - 30.0f, ePSXeViewGL.this.padSizeScreenLan[1][5] / 2.0f, ((float) ePSXeViewGL.this.mWidth / 2) + 30, ePSXeViewGL.this.padSizeScreenLan[1][7] / 2.0f, ePSXeViewGL.this.padSizeScreenLan[1][8] / 2.0f, ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][9] / 2.0f), (ePSXeViewGL.this.padSizeScreenLan[1][10] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[1][8], ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][11] / 2.0f), ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][12] / 2.0f), ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][13] / 2.0f), (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][14] / 2.0f)) - ePSXeViewGL.this.padSizeScreenLan[1][12], ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][15] / 2.0f), ((float) ePSXeViewGL.this.mWidth / 2) + 40 + ePSXeViewGL.this.padSizeScreenLan[1][6], ePSXeViewGL.this.padSizeScreenLan[1][17] / 2.0f, (ePSXeViewGL.this.padSizeScreenLan[1][18] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[1][10] + ePSXeViewGL.this.padSizeScreenLan[1][8], ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][19] / 2.0f), ((ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][20] / 2.0f)) - ePSXeViewGL.this.padSizeScreenLan[1][12]) - ePSXeViewGL.this.padSizeScreenLan[1][14], ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][21] / 2.0f), ePSXeViewGL.this.padSizeScreenLan[1][22] / 2.0f, ePSXeViewGL.this.padSizeScreenLan[1][23] / 2.0f, ((float) ePSXeViewGL.this.mWidth / 2) + ((ePSXeViewGL.this.padSizeScreenLan[1][24] / 2.0f) * 0.76f), (float) ePSXeViewGL.this.mHeight / 2, 0.0f, 0.0f, ePSXeViewGL.this.padSizeScreenLan[1][28] / 2.0f, (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][29] / 2.0f)) - (ePSXeViewGL.this.padSizeScreenLan[1][10] * 2.0f), (ePSXeViewGL.this.padSizeScreenLan[1][30] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[1][28], (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][31] / 2.0f)) - (ePSXeViewGL.this.padSizeScreenLan[1][10] * 2.0f), (ePSXeViewGL.this.padSizeScreenLan[1][32] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[1][28] + ePSXeViewGL.this.padSizeScreenLan[1][30], (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][33] / 2.0f)) - (ePSXeViewGL.this.padSizeScreenLan[1][10] * 2.0f), ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][34] / 2.0f), (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][35] / 2.0f)) - (ePSXeViewGL.this.padSizeScreenLan[1][10] * 2.0f), (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][36] / 2.0f)) - ePSXeViewGL.this.padSizeScreenLan[1][34], (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][37] / 2.0f)) - (ePSXeViewGL.this.padSizeScreenLan[1][10] * 2.0f), ((ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][38] / 2.0f)) - ePSXeViewGL.this.padSizeScreenLan[1][34]) - ePSXeViewGL.this.padSizeScreenLan[1][36], (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][39] / 2.0f)) - (ePSXeViewGL.this.padSizeScreenLan[1][10] * 2.0f)}};
+            float[][] padOffScreenLantmp2 = {
+                    new float[] { ePSXeViewGL.this.padSizeScreenLan[0][0] / 2.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[0][1] / 2.0f,
+                            ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][2] / 2.0f),
+                            ePSXeViewGL.this.padSizeScreenLan[0][3] / 2.0f,
+                            (((float) ePSXeViewGL.this.mWidth / 2) - ePSXeViewGL.this.padSizeScreenLan[0][4]) - 30.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[0][5] / 2.0f, ((float) ePSXeViewGL.this.mWidth / 2) + 30,
+                            ePSXeViewGL.this.padSizeScreenLan[0][7] / 2.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[0][8] / 2.0f,
+                            ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][9] / 2.0f),
+                            (ePSXeViewGL.this.padSizeScreenLan[0][10] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[0][8],
+                            ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][11] / 2.0f),
+                            ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][12] / 2.0f),
+                            ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][13] / 2.0f),
+                            (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][14] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[0][12],
+                            ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][15] / 2.0f),
+                            ((float) ePSXeViewGL.this.mWidth / 2) + 40 + ePSXeViewGL.this.padSizeScreenLan[0][6],
+                            ePSXeViewGL.this.padSizeScreenLan[0][17] / 2.0f,
+                            (ePSXeViewGL.this.padSizeScreenLan[0][18] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[0][10]
+                                    + ePSXeViewGL.this.padSizeScreenLan[0][8],
+                            ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][19] / 2.0f),
+                            ((ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][20] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[0][12])
+                                    - ePSXeViewGL.this.padSizeScreenLan[0][14],
+                            ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][21] / 2.0f),
+                            ePSXeViewGL.this.padSizeScreenLan[0][22] / 2.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[0][23] / 2.0f,
+                            ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][24] / 2.0f),
+                            ePSXeViewGL.this.padSizeScreenLan[0][25] / 2.0f, 0.0f, 0.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[0][28] / 2.0f,
+                            (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][29] / 2.0f))
+                                    - (ePSXeViewGL.this.padSizeScreenLan[0][10] * 2.0f),
+                            (ePSXeViewGL.this.padSizeScreenLan[0][30] / 2.0f)
+                                    + ePSXeViewGL.this.padSizeScreenLan[0][28],
+                            (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][31] / 2.0f))
+                                    - (ePSXeViewGL.this.padSizeScreenLan[0][10] * 2.0f),
+                            (ePSXeViewGL.this.padSizeScreenLan[0][32] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[0][28]
+                                    + ePSXeViewGL.this.padSizeScreenLan[0][30],
+                            (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][33] / 2.0f))
+                                    - (ePSXeViewGL.this.padSizeScreenLan[0][10] * 2.0f),
+                            ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][34] / 2.0f),
+                            (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][35] / 2.0f))
+                                    - (ePSXeViewGL.this.padSizeScreenLan[0][10] * 2.0f),
+                            (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][36] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[0][34],
+                            (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][37] / 2.0f))
+                                    - (ePSXeViewGL.this.padSizeScreenLan[0][10] * 2.0f),
+                            ((ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][38] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[0][34])
+                                    - ePSXeViewGL.this.padSizeScreenLan[0][36],
+                            (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][39] / 2.0f))
+                                    - (ePSXeViewGL.this.padSizeScreenLan[0][10] * 2.0f) },
+                    new float[] {
+                            ((float) ePSXeViewGL.this.mWidth / 2)
+                                    - ((ePSXeViewGL.this.padSizeScreenLan[1][0] / 2.0f) * 0.76f),
+                            (float) ePSXeViewGL.this.mHeight / 2,
+                            ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][2] / 2.0f),
+                            ePSXeViewGL.this.padSizeScreenLan[1][3] / 2.0f,
+                            (((float) ePSXeViewGL.this.mWidth / 2) - ePSXeViewGL.this.padSizeScreenLan[1][4]) - 30.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[1][5] / 2.0f, ((float) ePSXeViewGL.this.mWidth / 2) + 30,
+                            ePSXeViewGL.this.padSizeScreenLan[1][7] / 2.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[1][8] / 2.0f,
+                            ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][9] / 2.0f),
+                            (ePSXeViewGL.this.padSizeScreenLan[1][10] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[1][8],
+                            ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][11] / 2.0f),
+                            ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][12] / 2.0f),
+                            ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][13] / 2.0f),
+                            (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][14] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[1][12],
+                            ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][15] / 2.0f),
+                            ((float) ePSXeViewGL.this.mWidth / 2) + 40 + ePSXeViewGL.this.padSizeScreenLan[1][6],
+                            ePSXeViewGL.this.padSizeScreenLan[1][17] / 2.0f,
+                            (ePSXeViewGL.this.padSizeScreenLan[1][18] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[1][10]
+                                    + ePSXeViewGL.this.padSizeScreenLan[1][8],
+                            ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][19] / 2.0f),
+                            ((ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][20] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[1][12])
+                                    - ePSXeViewGL.this.padSizeScreenLan[1][14],
+                            ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][21] / 2.0f),
+                            ePSXeViewGL.this.padSizeScreenLan[1][22] / 2.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[1][23] / 2.0f,
+                            ((float) ePSXeViewGL.this.mWidth / 2)
+                                    + ((ePSXeViewGL.this.padSizeScreenLan[1][24] / 2.0f) * 0.76f),
+                            (float) ePSXeViewGL.this.mHeight / 2, 0.0f, 0.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[1][28] / 2.0f,
+                            (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][29] / 2.0f))
+                                    - (ePSXeViewGL.this.padSizeScreenLan[1][10] * 2.0f),
+                            (ePSXeViewGL.this.padSizeScreenLan[1][30] / 2.0f)
+                                    + ePSXeViewGL.this.padSizeScreenLan[1][28],
+                            (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][31] / 2.0f))
+                                    - (ePSXeViewGL.this.padSizeScreenLan[1][10] * 2.0f),
+                            (ePSXeViewGL.this.padSizeScreenLan[1][32] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[1][28]
+                                    + ePSXeViewGL.this.padSizeScreenLan[1][30],
+                            (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][33] / 2.0f))
+                                    - (ePSXeViewGL.this.padSizeScreenLan[1][10] * 2.0f),
+                            ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][34] / 2.0f),
+                            (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][35] / 2.0f))
+                                    - (ePSXeViewGL.this.padSizeScreenLan[1][10] * 2.0f),
+                            (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][36] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[1][34],
+                            (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][37] / 2.0f))
+                                    - (ePSXeViewGL.this.padSizeScreenLan[1][10] * 2.0f),
+                            ((ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][38] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[1][34])
+                                    - ePSXeViewGL.this.padSizeScreenLan[1][36],
+                            (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][39] / 2.0f))
+                                    - (ePSXeViewGL.this.padSizeScreenLan[1][10] * 2.0f) } };
             for (int i3 = 0; i3 < 20; i3++) {
-                ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i3 * 2) + 0] = padOffScreenLantmp2[ePSXeViewGL.this.mode][(i3 * 2) + 0];
-                ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i3 * 2) + 1] = padOffScreenLantmp2[ePSXeViewGL.this.mode][(i3 * 2) + 1];
+                ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i3 * 2)
+                        + 0] = padOffScreenLantmp2[ePSXeViewGL.this.mode][(i3 * 2) + 0];
+                ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i3 * 2)
+                        + 1] = padOffScreenLantmp2[ePSXeViewGL.this.mode][(i3 * 2) + 1];
             }
         }
 
         public void resetPadAllValues() {
-            if (ePSXeViewGL.this.emu_screen_orientation != 1) {
-                if (ePSXeViewGL.this.mWidth <= 600) {
-                    ePSXeViewGL.this.padResize = 0.8f;
-                } else if (ePSXeViewGL.this.mWidth <= 600 || ePSXeViewGL.this.mWidth > 800) {
-                    if (ePSXeViewGL.this.mWidth <= 800 || ePSXeViewGL.this.mWidth > 1280) {
-                        if (ePSXeViewGL.this.mWidth <= 1280 || ePSXeViewGL.this.mWidth > 1500) {
-                            ePSXeViewGL.this.padResize = 1.8f;
-                        } else {
-                            ePSXeViewGL.this.padResize = 1.5f;
-                        }
-                    } else {
-                        ePSXeViewGL.this.padResize = 1.35f;
-                    }
-                } else {
-                    ePSXeViewGL.this.padResize = 1.0f;
-                }
-            } else if (ePSXeViewGL.this.emu_portrait_skin == 1) {
-                ePSXeViewGL.this.padResize = ePSXeViewGL.this.mWidth / 562.0f;
-            }
-            float[] padSizeScreenPortmp = {ePSXeViewGL.this.mWidth, (float) ePSXeViewGL.this.mHeight / 2, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, (ePSXeViewGL.this.mWidth * 64f) / 480, (((float) ePSXeViewGL.this.mHeight / 2) * 64) / 400, (ePSXeViewGL.this.mWidth * 64f) / 480, (((float) ePSXeViewGL.this.mHeight / 2) * 64) / 400, (ePSXeViewGL.this.mWidth * 64f) / 480, (((float) ePSXeViewGL.this.mHeight / 2) * 64) / 400, (ePSXeViewGL.this.mWidth * 64f) / 480, (((float) ePSXeViewGL.this.mHeight / 2) * 64) / 400, (ePSXeViewGL.this.mWidth * 64f) / 480, (((float) ePSXeViewGL.this.mHeight / 2) * 64) / 400, (ePSXeViewGL.this.mWidth * 64f) / 480, (((float) ePSXeViewGL.this.mHeight / 2) * 64) / 400};
-            float[] padOffScreenPortmp = {(float) ePSXeViewGL.this.mWidth / 2, (float) ePSXeViewGL.this.mHeight / 4, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, ((ePSXeViewGL.this.mWidth * 288f) / 480) + (padSizeScreenPortmp[28] / 2.0f), (((float) ePSXeViewGL.this.mHeight / 2) - ((((float) ePSXeViewGL.this.mHeight / 2) * 68) / 400)) - (padSizeScreenPortmp[29] / 2.0f), ((ePSXeViewGL.this.mWidth * 352f) / 480) + (padSizeScreenPortmp[30] / 2.0f), (((float) ePSXeViewGL.this.mHeight / 2) - ((((float) ePSXeViewGL.this.mHeight / 2) * 68) / 400)) - (padSizeScreenPortmp[31] / 2.0f), ((ePSXeViewGL.this.mWidth * HttpStatus.SC_REQUESTED_RANGE_NOT_SATISFIABLE) / 480) + (padSizeScreenPortmp[32] / 2.0f), (((float) ePSXeViewGL.this.mHeight / 2) - ((((float) ePSXeViewGL.this.mHeight / 2) * 68) / 400)) - (padSizeScreenPortmp[33] / 2.0f), ((ePSXeViewGL.this.mWidth * 8f) / 480) + (padSizeScreenPortmp[34] / 2.0f), (((float) ePSXeViewGL.this.mHeight / 2) - ((((float) ePSXeViewGL.this.mHeight / 2) * 338) / 400)) - (padSizeScreenPortmp[35] / 2.0f), ((ePSXeViewGL.this.mWidth * 72f) / 480) + (padSizeScreenPortmp[36] / 2.0f), (((float) ePSXeViewGL.this.mHeight / 2) - ((((float) ePSXeViewGL.this.mHeight / 2) * 338) / 400)) - (padSizeScreenPortmp[37] / 2.0f), ((ePSXeViewGL.this.mWidth * 136f) / 480) + (padSizeScreenPortmp[38] / 2.0f), (((float) ePSXeViewGL.this.mHeight / 2) - ((((float) ePSXeViewGL.this.mHeight / 2) * 338) / 400)) - (padSizeScreenPortmp[39] / 2.0f)};
+            // Используем единую функцию для вычисления базового масштабирования
+            calculateBasePadResize();
+            float[] padSizeScreenPortmp = { ePSXeViewGL.this.mWidth, (float) ePSXeViewGL.this.mHeight / 2, 0.0f, 0.0f,
+                    0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
+                    0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, (ePSXeViewGL.this.mWidth * 64f) / 480,
+                    (((float) ePSXeViewGL.this.mHeight / 2) * 64) / 400, (ePSXeViewGL.this.mWidth * 64f) / 480,
+                    (((float) ePSXeViewGL.this.mHeight / 2) * 64) / 400, (ePSXeViewGL.this.mWidth * 64f) / 480,
+                    (((float) ePSXeViewGL.this.mHeight / 2) * 64) / 400, (ePSXeViewGL.this.mWidth * 64f) / 480,
+                    (((float) ePSXeViewGL.this.mHeight / 2) * 64) / 400, (ePSXeViewGL.this.mWidth * 64f) / 480,
+                    (((float) ePSXeViewGL.this.mHeight / 2) * 64) / 400, (ePSXeViewGL.this.mWidth * 64f) / 480,
+                    (((float) ePSXeViewGL.this.mHeight / 2) * 64) / 400 };
+            float[] padOffScreenPortmp = { (float) ePSXeViewGL.this.mWidth / 2, (float) ePSXeViewGL.this.mHeight / 4,
+                    0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
+                    0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
+                    ((ePSXeViewGL.this.mWidth * 288f) / 480) + (padSizeScreenPortmp[28] / 2.0f),
+                    (((float) ePSXeViewGL.this.mHeight / 2) - ((((float) ePSXeViewGL.this.mHeight / 2) * 68) / 400))
+                            - (padSizeScreenPortmp[29] / 2.0f),
+                    ((ePSXeViewGL.this.mWidth * 352f) / 480) + (padSizeScreenPortmp[30] / 2.0f),
+                    (((float) ePSXeViewGL.this.mHeight / 2) - ((((float) ePSXeViewGL.this.mHeight / 2) * 68) / 400))
+                            - (padSizeScreenPortmp[31] / 2.0f),
+                    ((ePSXeViewGL.this.mWidth * HttpStatus.SC_REQUESTED_RANGE_NOT_SATISFIABLE) / 480)
+                            + (padSizeScreenPortmp[32] / 2.0f),
+                    (((float) ePSXeViewGL.this.mHeight / 2) - ((((float) ePSXeViewGL.this.mHeight / 2) * 68) / 400))
+                            - (padSizeScreenPortmp[33] / 2.0f),
+                    ((ePSXeViewGL.this.mWidth * 8f) / 480) + (padSizeScreenPortmp[34] / 2.0f),
+                    (((float) ePSXeViewGL.this.mHeight / 2) - ((((float) ePSXeViewGL.this.mHeight / 2) * 338) / 400))
+                            - (padSizeScreenPortmp[35] / 2.0f),
+                    ((ePSXeViewGL.this.mWidth * 72f) / 480) + (padSizeScreenPortmp[36] / 2.0f),
+                    (((float) ePSXeViewGL.this.mHeight / 2) - ((((float) ePSXeViewGL.this.mHeight / 2) * 338) / 400))
+                            - (padSizeScreenPortmp[37] / 2.0f),
+                    ((ePSXeViewGL.this.mWidth * 136f) / 480) + (padSizeScreenPortmp[38] / 2.0f),
+                    (((float) ePSXeViewGL.this.mHeight / 2) - ((((float) ePSXeViewGL.this.mHeight / 2) * 338) / 400))
+                            - (padSizeScreenPortmp[39] / 2.0f) };
             for (int i = 0; i < 1; i++) {
                 ePSXeViewGL.this.padSizeScreenPor[(i * 2) + 0] = padSizeScreenPortmp[(i * 2) + 0];
                 ePSXeViewGL.this.padSizeScreenPor[(i * 2) + 1] = padSizeScreenPortmp[(i * 2) + 1];
@@ -2494,27 +3381,371 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                 ePSXeViewGL.this.padOffScreenPor[(i2 * 2) + 0] = padOffScreenPortmp[(i2 * 2) + 0];
                 ePSXeViewGL.this.padOffScreenPor[(i2 * 2) + 1] = padOffScreenPortmp[(i2 * 2) + 1];
             }
-            float[] padSizeScreenLan2Htmp = {228.0f, 114.0f, 224.0f, 124.0f, 66.0f, 25.0f, 66.0f, 31.0f, 64.0f, 30.0f, 64.0f, 30.0f, 64.0f, 30.0f, 64.0f, 30.0f};
+            float[] padSizeScreenLan2Htmp = { 228.0f, 114.0f, 224.0f, 124.0f, 66.0f, 25.0f, 66.0f, 31.0f, 64.0f, 30.0f,
+                    64.0f, 30.0f, 64.0f, 30.0f, 64.0f, 30.0f };
             for (int i3 = 0; i3 < 8; i3++) {
-                ePSXeViewGL.this.padSizeScreenLan2H[(i3 * 2) + 0] = padSizeScreenLan2Htmp[(i3 * 2) + 0] * ePSXeViewGL.this.padResize;
-                ePSXeViewGL.this.padSizeScreenLan2H[(i3 * 2) + 1] = padSizeScreenLan2Htmp[(i3 * 2) + 1] * ePSXeViewGL.this.padResize;
+                ePSXeViewGL.this.padSizeScreenLan2H[(i3 * 2) + 0] = padSizeScreenLan2Htmp[(i3 * 2) + 0]
+                        * ePSXeViewGL.this.padResize;
+                ePSXeViewGL.this.padSizeScreenLan2H[(i3 * 2) + 1] = padSizeScreenLan2Htmp[(i3 * 2) + 1]
+                        * ePSXeViewGL.this.padResize;
             }
-            float[] padOffScreenLan2Htmp = {ePSXeViewGL.this.padSizeScreenLan2H[0] / 2.0f, ePSXeViewGL.this.padSizeScreenLan2H[1] / 2.0f, ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan2H[2] / 2.0f), ePSXeViewGL.this.padSizeScreenLan2H[3] / 2.0f, (((float) ePSXeViewGL.this.mWidth / 2) - ePSXeViewGL.this.padSizeScreenLan2H[4]) - 30.0f, ePSXeViewGL.this.padSizeScreenLan2H[5] / 2.0f, ((float) ePSXeViewGL.this.mWidth / 2) + 30, ePSXeViewGL.this.padSizeScreenLan2H[7] / 2.0f, ePSXeViewGL.this.padSizeScreenLan2H[8] / 2.0f, ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan2H[9] / 2.0f), (ePSXeViewGL.this.padSizeScreenLan2H[10] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan2H[8], ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan2H[11] / 2.0f), ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan2H[12] / 2.0f), ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan2H[13] / 2.0f), (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan2H[14] / 2.0f)) - ePSXeViewGL.this.padSizeScreenLan2H[12], ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan2H[15] / 2.0f)};
+            float[] padOffScreenLan2Htmp = { ePSXeViewGL.this.padSizeScreenLan2H[0] / 2.0f,
+                    ePSXeViewGL.this.padSizeScreenLan2H[1] / 2.0f,
+                    ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan2H[2] / 2.0f),
+                    ePSXeViewGL.this.padSizeScreenLan2H[3] / 2.0f,
+                    (((float) ePSXeViewGL.this.mWidth / 2) - ePSXeViewGL.this.padSizeScreenLan2H[4]) - 30.0f,
+                    ePSXeViewGL.this.padSizeScreenLan2H[5] / 2.0f, ((float) ePSXeViewGL.this.mWidth / 2) + 30,
+                    ePSXeViewGL.this.padSizeScreenLan2H[7] / 2.0f, ePSXeViewGL.this.padSizeScreenLan2H[8] / 2.0f,
+                    ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan2H[9] / 2.0f),
+                    (ePSXeViewGL.this.padSizeScreenLan2H[10] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan2H[8],
+                    ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan2H[11] / 2.0f),
+                    ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan2H[12] / 2.0f),
+                    ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan2H[13] / 2.0f),
+                    (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan2H[14] / 2.0f))
+                            - ePSXeViewGL.this.padSizeScreenLan2H[12],
+                    ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan2H[15] / 2.0f) };
             for (int i4 = 0; i4 < 8; i4++) {
                 ePSXeViewGL.this.padOffScreenLan2H[(i4 * 2) + 0] = padOffScreenLan2Htmp[(i4 * 2) + 0];
                 ePSXeViewGL.this.padOffScreenLan2H[(i4 * 2) + 1] = padOffScreenLan2Htmp[(i4 * 2) + 1];
             }
-            float[] padSizeScreenLan2Vtmp = {(ePSXeViewGL.this.mHeight * 228f) / ePSXeViewGL.this.mWidth, (((float) ePSXeViewGL.this.mWidth / 2) * 228) / ePSXeViewGL.this.mHeight, (ePSXeViewGL.this.mHeight * 224f) / ePSXeViewGL.this.mWidth, (((float) ePSXeViewGL.this.mWidth / 2) * 248) / ePSXeViewGL.this.mHeight, (ePSXeViewGL.this.mHeight * 66f) / ePSXeViewGL.this.mWidth, (((float) ePSXeViewGL.this.mWidth / 2) * 40) / ePSXeViewGL.this.mHeight, (ePSXeViewGL.this.mHeight * 66f) / ePSXeViewGL.this.mWidth, (((float) ePSXeViewGL.this.mWidth / 2) * 62) / ePSXeViewGL.this.mHeight, (ePSXeViewGL.this.mHeight * 64f) / ePSXeViewGL.this.mWidth, (((float) ePSXeViewGL.this.mWidth / 2) * 60) / ePSXeViewGL.this.mHeight, (ePSXeViewGL.this.mHeight * 64f) / ePSXeViewGL.this.mWidth, (((float) ePSXeViewGL.this.mWidth / 2) * 60) / ePSXeViewGL.this.mHeight, (ePSXeViewGL.this.mHeight * 64f) / ePSXeViewGL.this.mWidth, (((float) ePSXeViewGL.this.mWidth / 2) * 60) / ePSXeViewGL.this.mHeight, (ePSXeViewGL.this.mHeight * 64f) / ePSXeViewGL.this.mWidth, (((float) ePSXeViewGL.this.mWidth / 2) * 60) / ePSXeViewGL.this.mHeight};
+            float[] padSizeScreenLan2Vtmp = { (ePSXeViewGL.this.mHeight * 228f) / ePSXeViewGL.this.mWidth,
+                    (((float) ePSXeViewGL.this.mWidth / 2) * 228) / ePSXeViewGL.this.mHeight,
+                    (ePSXeViewGL.this.mHeight * 224f) / ePSXeViewGL.this.mWidth,
+                    (((float) ePSXeViewGL.this.mWidth / 2) * 248) / ePSXeViewGL.this.mHeight,
+                    (ePSXeViewGL.this.mHeight * 66f) / ePSXeViewGL.this.mWidth,
+                    (((float) ePSXeViewGL.this.mWidth / 2) * 40) / ePSXeViewGL.this.mHeight,
+                    (ePSXeViewGL.this.mHeight * 66f) / ePSXeViewGL.this.mWidth,
+                    (((float) ePSXeViewGL.this.mWidth / 2) * 62) / ePSXeViewGL.this.mHeight,
+                    (ePSXeViewGL.this.mHeight * 64f) / ePSXeViewGL.this.mWidth,
+                    (((float) ePSXeViewGL.this.mWidth / 2) * 60) / ePSXeViewGL.this.mHeight,
+                    (ePSXeViewGL.this.mHeight * 64f) / ePSXeViewGL.this.mWidth,
+                    (((float) ePSXeViewGL.this.mWidth / 2) * 60) / ePSXeViewGL.this.mHeight,
+                    (ePSXeViewGL.this.mHeight * 64f) / ePSXeViewGL.this.mWidth,
+                    (((float) ePSXeViewGL.this.mWidth / 2) * 60) / ePSXeViewGL.this.mHeight,
+                    (ePSXeViewGL.this.mHeight * 64f) / ePSXeViewGL.this.mWidth,
+                    (((float) ePSXeViewGL.this.mWidth / 2) * 60) / ePSXeViewGL.this.mHeight };
             for (int i5 = 0; i5 < 8; i5++) {
-                ePSXeViewGL.this.padSizeScreenLan2V[(i5 * 2) + 0] = padSizeScreenLan2Vtmp[(i5 * 2) + 0] * ePSXeViewGL.this.padResize;
-                ePSXeViewGL.this.padSizeScreenLan2V[(i5 * 2) + 1] = padSizeScreenLan2Vtmp[(i5 * 2) + 1] * ePSXeViewGL.this.padResize;
+                ePSXeViewGL.this.padSizeScreenLan2V[(i5 * 2) + 0] = padSizeScreenLan2Vtmp[(i5 * 2) + 0]
+                        * ePSXeViewGL.this.padResize;
+                ePSXeViewGL.this.padSizeScreenLan2V[(i5 * 2) + 1] = padSizeScreenLan2Vtmp[(i5 * 2) + 1]
+                        * ePSXeViewGL.this.padResize;
             }
-            float[] padOffScreenLan2Vtmp = {ePSXeViewGL.this.padSizeScreenLan2V[0] / 2.0f, ePSXeViewGL.this.padSizeScreenLan2V[1] / 2.0f, ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan2V[2] / 2.0f), ePSXeViewGL.this.padSizeScreenLan2V[3] / 2.0f, (((float) ePSXeViewGL.this.mHeight / 2) - ePSXeViewGL.this.padSizeScreenLan2V[4]) - 30.0f, ePSXeViewGL.this.padSizeScreenLan2V[5] / 2.0f, ((float) ePSXeViewGL.this.mHeight / 2) + 30, ePSXeViewGL.this.padSizeScreenLan2V[7] / 2.0f, ePSXeViewGL.this.padSizeScreenLan2V[8] / 2.0f, ((float) ePSXeViewGL.this.mWidth / 2) - (ePSXeViewGL.this.padSizeScreenLan2V[9] / 2.0f), (ePSXeViewGL.this.padSizeScreenLan2V[10] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan2V[8], ((float) ePSXeViewGL.this.mWidth / 2) - (ePSXeViewGL.this.padSizeScreenLan2V[11] / 2.0f), ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan2V[12] / 2.0f), ((float) ePSXeViewGL.this.mWidth / 2) - (ePSXeViewGL.this.padSizeScreenLan2V[13] / 2.0f), (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan2V[14] / 2.0f)) - ePSXeViewGL.this.padSizeScreenLan2V[12], ((float) ePSXeViewGL.this.mWidth / 2) - (ePSXeViewGL.this.padSizeScreenLan2V[15] / 2.0f)};
+            float[] padOffScreenLan2Vtmp = { ePSXeViewGL.this.padSizeScreenLan2V[0] / 2.0f,
+                    ePSXeViewGL.this.padSizeScreenLan2V[1] / 2.0f,
+                    ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan2V[2] / 2.0f),
+                    ePSXeViewGL.this.padSizeScreenLan2V[3] / 2.0f,
+                    (((float) ePSXeViewGL.this.mHeight / 2) - ePSXeViewGL.this.padSizeScreenLan2V[4]) - 30.0f,
+                    ePSXeViewGL.this.padSizeScreenLan2V[5] / 2.0f, ((float) ePSXeViewGL.this.mHeight / 2) + 30,
+                    ePSXeViewGL.this.padSizeScreenLan2V[7] / 2.0f, ePSXeViewGL.this.padSizeScreenLan2V[8] / 2.0f,
+                    ((float) ePSXeViewGL.this.mWidth / 2) - (ePSXeViewGL.this.padSizeScreenLan2V[9] / 2.0f),
+                    (ePSXeViewGL.this.padSizeScreenLan2V[10] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan2V[8],
+                    ((float) ePSXeViewGL.this.mWidth / 2) - (ePSXeViewGL.this.padSizeScreenLan2V[11] / 2.0f),
+                    ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan2V[12] / 2.0f),
+                    ((float) ePSXeViewGL.this.mWidth / 2) - (ePSXeViewGL.this.padSizeScreenLan2V[13] / 2.0f),
+                    (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan2V[14] / 2.0f))
+                            - ePSXeViewGL.this.padSizeScreenLan2V[12],
+                    ((float) ePSXeViewGL.this.mWidth / 2) - (ePSXeViewGL.this.padSizeScreenLan2V[15] / 2.0f) };
             for (int i6 = 0; i6 < 8; i6++) {
                 ePSXeViewGL.this.padOffScreenLan2V[(i6 * 2) + 0] = padOffScreenLan2Vtmp[(i6 * 2) + 0];
                 ePSXeViewGL.this.padOffScreenLan2V[(i6 * 2) + 1] = padOffScreenLan2Vtmp[(i6 * 2) + 1];
             }
             ePSXeViewGL.this.initvirtualPad = 0;
+        }
+
+        /**
+         * Устанавливает базовые размеры кнопок без применения padResize
+         * Используется при загрузке сохраненных настроек
+         */
+        private void setBasePadSizesWithoutResize() {
+            float[][] padSizeScreenLantmp = {
+                    new float[] { 228.0f, 228.0f, 224.0f, 248.0f, 66.0f, 50.0f, 66.0f, 62.0f, 64.0f, 60.0f, 64.0f,
+                            60.0f, 64.0f, 60.0f, 64.0f, 60.0f, 53.0f, 41.0f, 64.0f, 60.0f, 64.0f, 60.0f, 222.0f, 222.0f,
+                            222.0f, 222.0f, 71.0f, 71.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f,
+                            64.0f, 64.0f, 64.0f },
+                    new float[] { 228.0f, 228.0f, 224.0f, 248.0f, 66.0f, 50.0f, 66.0f, 62.0f, 64.0f, 60.0f, 64.0f,
+                            60.0f, 64.0f, 60.0f, 64.0f, 60.0f, 53.0f, 41.0f, 64.0f, 60.0f, 64.0f, 60.0f, 222.0f, 222.0f,
+                            222.0f, 222.0f, 71.0f, 71.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f,
+                            64.0f, 64.0f, 64.0f }
+            };
+
+            // Применяем базовые размеры БЕЗ padResize
+            for (int i = 0; i < 20; i++) {
+                ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2)
+                        + 0] = padSizeScreenLantmp[ePSXeViewGL.this.mode][(i * 2) + 0];
+                ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2)
+                        + 1] = padSizeScreenLantmp[ePSXeViewGL.this.mode][(i * 2) + 1];
+            }
+
+            // Устанавливаем базовые позиции
+            setBasePadPositions();
+        }
+
+        /**
+         * Устанавливает базовые позиции кнопок
+         */
+        private void setBasePadPositions() {
+            if (ePSXeViewGL.this.emu_screen_orientation == 1) {
+                if (ePSXeViewGL.this.emu_portrait_skin == 1) {
+                    setPortraitPadPositions();
+                }
+                return;
+            }
+            setLandscapePadPositions();
+        }
+
+        /**
+         * Устанавливает позиции для портретного режима
+         */
+        private void setPortraitPadPositions() {
+            float[][] padOffScreenLantmp = {
+                    new float[] { ePSXeViewGL.this.padSizeScreenLan[0][0] / 2.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[0][1] / 2.0f,
+                            ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][2] / 2.0f),
+                            ePSXeViewGL.this.padSizeScreenLan[0][3] / 2.0f,
+                            (((float) ePSXeViewGL.this.mWidth / 2) - ePSXeViewGL.this.padSizeScreenLan[0][4]) - 30.0f,
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][5] / 2.0f),
+                            ((float) ePSXeViewGL.this.mWidth / 2) + 30,
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][7] / 2.0f),
+                            ePSXeViewGL.this.padSizeScreenLan[0][8] / 2.0f,
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][9] / 2.0f),
+                            (ePSXeViewGL.this.padSizeScreenLan[0][10] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[0][8],
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][11] / 2.0f),
+                            ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][12] / 2.0f),
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][13] / 2.0f),
+                            (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][14] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[0][12],
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][15] / 2.0f),
+                            ((float) ePSXeViewGL.this.mWidth / 2) + 40 + ePSXeViewGL.this.padSizeScreenLan[0][6],
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][17] / 2.0f),
+                            (ePSXeViewGL.this.padSizeScreenLan[0][18] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[0][10]
+                                    + ePSXeViewGL.this.padSizeScreenLan[0][8],
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][19] / 2.0f),
+                            ((ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][20] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[0][12])
+                                    - ePSXeViewGL.this.padSizeScreenLan[0][14],
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][21] / 2.0f),
+                            ePSXeViewGL.this.padSizeScreenLan[0][22] / 2.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[0][23] / 2.0f,
+                            ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][24] / 2.0f),
+                            ePSXeViewGL.this.padSizeScreenLan[0][25] / 2.0f, 0.0f, 0.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[0][28] / 2.0f,
+                            ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[0][29] / 2.0f),
+                            (ePSXeViewGL.this.padSizeScreenLan[0][30] / 2.0f)
+                                    + ePSXeViewGL.this.padSizeScreenLan[0][28],
+                            ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[0][31] / 2.0f),
+                            (ePSXeViewGL.this.padSizeScreenLan[0][32] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[0][28]
+                                    + ePSXeViewGL.this.padSizeScreenLan[0][30],
+                            ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[0][33] / 2.0f),
+                            ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][34] / 2.0f),
+                            ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[0][35] / 2.0f),
+                            (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][36] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[0][34],
+                            ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[0][37] / 2.0f),
+                            ((ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][38] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[0][34])
+                                    - ePSXeViewGL.this.padSizeScreenLan[0][36],
+                            ((float) ePSXeViewGL.this.mHeight / 3)
+                                    - (ePSXeViewGL.this.padSizeScreenLan[0][39] / 2.0f) },
+                    new float[] {
+                            ((float) ePSXeViewGL.this.mWidth / 2)
+                                    - ((ePSXeViewGL.this.padSizeScreenLan[1][0] / 2.0f) * 0.76f),
+                            (float) ePSXeViewGL.this.mHeight / 4,
+                            ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][2] / 2.0f),
+                            ePSXeViewGL.this.padSizeScreenLan[1][3] / 2.0f,
+                            (((float) ePSXeViewGL.this.mWidth / 2) - ePSXeViewGL.this.padSizeScreenLan[1][4]) - 30.0f,
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[1][5] / 2.0f),
+                            ((float) ePSXeViewGL.this.mWidth / 2) + 30,
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[1][7] / 2.0f),
+                            ePSXeViewGL.this.padSizeScreenLan[1][8] / 2.0f,
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[1][9] / 2.0f),
+                            (ePSXeViewGL.this.padSizeScreenLan[1][10] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[0][8],
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[1][11] / 2.0f),
+                            ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][12] / 2.0f),
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[1][13] / 2.0f),
+                            (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][14] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[1][12],
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[1][15] / 2.0f),
+                            ((float) ePSXeViewGL.this.mWidth / 2) + 40 + ePSXeViewGL.this.padSizeScreenLan[1][6],
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[1][17] / 2.0f),
+                            (ePSXeViewGL.this.padSizeScreenLan[1][18] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[1][10]
+                                    + ePSXeViewGL.this.padSizeScreenLan[1][8],
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[1][19] / 2.0f),
+                            ((ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][20] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[1][12])
+                                    - ePSXeViewGL.this.padSizeScreenLan[1][14],
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[1][21] / 2.0f),
+                            ePSXeViewGL.this.padSizeScreenLan[1][22] / 2.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[1][23] / 2.0f,
+                            ((float) ePSXeViewGL.this.mWidth / 2)
+                                    + ((ePSXeViewGL.this.padSizeScreenLan[1][24] / 2.0f) * 0.76f),
+                            (float) ePSXeViewGL.this.mHeight / 4, 0.0f, 0.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[1][28] / 2.0f,
+                            ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[1][29] / 2.0f),
+                            (ePSXeViewGL.this.padSizeScreenLan[1][30] / 2.0f)
+                                    + ePSXeViewGL.this.padSizeScreenLan[1][28],
+                            ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[1][31] / 2.0f),
+                            (ePSXeViewGL.this.padSizeScreenLan[1][32] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[1][28]
+                                    + ePSXeViewGL.this.padSizeScreenLan[1][30],
+                            ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[1][33] / 2.0f),
+                            ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][34] / 2.0f),
+                            ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[1][35] / 2.0f),
+                            (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][36] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[1][34],
+                            ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[1][37] / 2.0f),
+                            ((ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][38] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[1][34])
+                                    - ePSXeViewGL.this.padSizeScreenLan[1][36],
+                            ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[1][39] / 2.0f) }
+            };
+            for (int i = 0; i < 20; i++) {
+                ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2)
+                        + 0] = padOffScreenLantmp[ePSXeViewGL.this.mode][(i * 2) + 0];
+                ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2)
+                        + 1] = padOffScreenLantmp[ePSXeViewGL.this.mode][(i * 2) + 1];
+            }
+        }
+
+        /**
+         * Устанавливает позиции для ландшафтного режима
+         */
+        private void setLandscapePadPositions() {
+            float[][] padOffScreenLantmp = {
+                    new float[] { ePSXeViewGL.this.padSizeScreenLan[0][0] / 2.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[0][1] / 2.0f,
+                            ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][2] / 2.0f),
+                            ePSXeViewGL.this.padSizeScreenLan[0][3] / 2.0f,
+                            (((float) ePSXeViewGL.this.mWidth / 2) - ePSXeViewGL.this.padSizeScreenLan[0][4]) - 30.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[0][5] / 2.0f, ((float) ePSXeViewGL.this.mWidth / 2) + 30,
+                            ePSXeViewGL.this.padSizeScreenLan[0][7] / 2.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[0][8] / 2.0f,
+                            ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][9] / 2.0f),
+                            (ePSXeViewGL.this.padSizeScreenLan[0][10] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[0][8],
+                            ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][11] / 2.0f),
+                            ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][12] / 2.0f),
+                            ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][13] / 2.0f),
+                            (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][14] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[0][12],
+                            ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][15] / 2.0f),
+                            ((float) ePSXeViewGL.this.mWidth / 2) + 40 + ePSXeViewGL.this.padSizeScreenLan[0][6],
+                            ePSXeViewGL.this.padSizeScreenLan[0][17] / 2.0f,
+                            (ePSXeViewGL.this.padSizeScreenLan[0][18] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[0][10]
+                                    + ePSXeViewGL.this.padSizeScreenLan[0][8],
+                            ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][19] / 2.0f),
+                            ((ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][20] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[0][12])
+                                    - ePSXeViewGL.this.padSizeScreenLan[0][14],
+                            ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][21] / 2.0f),
+                            ePSXeViewGL.this.padSizeScreenLan[0][22] / 2.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[0][23] / 2.0f,
+                            ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][24] / 2.0f),
+                            ePSXeViewGL.this.padSizeScreenLan[0][25] / 2.0f, 0.0f, 0.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[0][28] / 2.0f,
+                            (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][29] / 2.0f))
+                                    - (ePSXeViewGL.this.padSizeScreenLan[0][10] * 2.0f),
+                            (ePSXeViewGL.this.padSizeScreenLan[0][30] / 2.0f)
+                                    + ePSXeViewGL.this.padSizeScreenLan[0][28],
+                            (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][31] / 2.0f))
+                                    - (ePSXeViewGL.this.padSizeScreenLan[0][10] * 2.0f),
+                            (ePSXeViewGL.this.padSizeScreenLan[0][32] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[0][28]
+                                    + ePSXeViewGL.this.padSizeScreenLan[0][30],
+                            (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][33] / 2.0f))
+                                    - (ePSXeViewGL.this.padSizeScreenLan[0][10] * 2.0f),
+                            ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][34] / 2.0f),
+                            (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][35] / 2.0f))
+                                    - (ePSXeViewGL.this.padSizeScreenLan[0][10] * 2.0f),
+                            (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][36] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[0][34],
+                            (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][37] / 2.0f))
+                                    - (ePSXeViewGL.this.padSizeScreenLan[0][10] * 2.0f),
+                            ((ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][38] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[0][34])
+                                    - ePSXeViewGL.this.padSizeScreenLan[0][36],
+                            (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][39] / 2.0f))
+                                    - (ePSXeViewGL.this.padSizeScreenLan[0][10] * 2.0f) },
+                    new float[] {
+                            ((float) ePSXeViewGL.this.mWidth / 2)
+                                    - ((ePSXeViewGL.this.padSizeScreenLan[1][0] / 2.0f) * 0.76f),
+                            (float) ePSXeViewGL.this.mHeight / 2,
+                            ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][2] / 2.0f),
+                            ePSXeViewGL.this.padSizeScreenLan[1][3] / 2.0f,
+                            (((float) ePSXeViewGL.this.mWidth / 2) - ePSXeViewGL.this.padSizeScreenLan[1][4]) - 30.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[1][5] / 2.0f, ((float) ePSXeViewGL.this.mWidth / 2) + 30,
+                            ePSXeViewGL.this.padSizeScreenLan[1][7] / 2.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[1][8] / 2.0f,
+                            ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][9] / 2.0f),
+                            (ePSXeViewGL.this.padSizeScreenLan[1][10] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[1][8],
+                            ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][11] / 2.0f),
+                            ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][12] / 2.0f),
+                            ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][13] / 2.0f),
+                            (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][14] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[1][12],
+                            ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][15] / 2.0f),
+                            ((float) ePSXeViewGL.this.mWidth / 2) + 40 + ePSXeViewGL.this.padSizeScreenLan[1][6],
+                            ePSXeViewGL.this.padSizeScreenLan[1][17] / 2.0f,
+                            (ePSXeViewGL.this.padSizeScreenLan[1][18] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[1][10]
+                                    + ePSXeViewGL.this.padSizeScreenLan[1][8],
+                            ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][19] / 2.0f),
+                            ((ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][20] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[1][12])
+                                    - ePSXeViewGL.this.padSizeScreenLan[1][14],
+                            ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][21] / 2.0f),
+                            ePSXeViewGL.this.padSizeScreenLan[1][22] / 2.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[1][23] / 2.0f,
+                            ((float) ePSXeViewGL.this.mWidth / 2)
+                                    + ((ePSXeViewGL.this.padSizeScreenLan[1][24] / 2.0f) * 0.76f),
+                            (float) ePSXeViewGL.this.mHeight / 2, 0.0f, 0.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[1][28] / 2.0f,
+                            (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][29] / 2.0f))
+                                    - (ePSXeViewGL.this.padSizeScreenLan[1][10] * 2.0f),
+                            (ePSXeViewGL.this.padSizeScreenLan[1][30] / 2.0f)
+                                    + ePSXeViewGL.this.padSizeScreenLan[1][28],
+                            (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][31] / 2.0f))
+                                    - (ePSXeViewGL.this.padSizeScreenLan[1][10] * 2.0f),
+                            (ePSXeViewGL.this.padSizeScreenLan[1][32] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[1][28]
+                                    + ePSXeViewGL.this.padSizeScreenLan[1][30],
+                            (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][33] / 2.0f))
+                                    - (ePSXeViewGL.this.padSizeScreenLan[1][10] * 2.0f),
+                            ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][34] / 2.0f),
+                            (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][35] / 2.0f))
+                                    - (ePSXeViewGL.this.padSizeScreenLan[1][10] * 2.0f),
+                            (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][36] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[1][34],
+                            (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][37] / 2.0f))
+                                    - (ePSXeViewGL.this.padSizeScreenLan[1][10] * 2.0f),
+                            ((ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][38] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[1][34])
+                                    - ePSXeViewGL.this.padSizeScreenLan[1][36],
+                            (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][39] / 2.0f))
+                                    - (ePSXeViewGL.this.padSizeScreenLan[1][10] * 2.0f) }
+            };
+            for (int i = 0; i < 20; i++) {
+                ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2)
+                        + 0] = padOffScreenLantmp[ePSXeViewGL.this.mode][(i * 2) + 0];
+                ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2)
+                        + 1] = padOffScreenLantmp[ePSXeViewGL.this.mode][(i * 2) + 1];
+            }
+        }
+
+        /**
+         * Применяет финальное масштабирование к размерам и позициям после загрузки из
+         * XML
+         */
+        private void applyFinalScalingToPads() {
+            // Применяем padResize к размерам
+            for (int i = 0; i < 20; i++) {
+                ePSXeViewGL.this.padSizeScreenLan[0][(i * 2) + 0] *= ePSXeViewGL.this.padResize;
+                ePSXeViewGL.this.padSizeScreenLan[0][(i * 2) + 1] *= ePSXeViewGL.this.padResize;
+                ePSXeViewGL.this.padSizeScreenLan[1][(i * 2) + 0] *= ePSXeViewGL.this.padResize;
+                ePSXeViewGL.this.padSizeScreenLan[1][(i * 2) + 1] *= ePSXeViewGL.this.padResize;
+            }
+
+            // Применяем padResize к позициям
+            for (int i = 0; i < 20; i++) {
+                ePSXeViewGL.this.padOffScreenLan[0][(i * 2) + 0] *= ePSXeViewGL.this.padResize;
+                ePSXeViewGL.this.padOffScreenLan[0][(i * 2) + 1] *= ePSXeViewGL.this.padResize;
+                ePSXeViewGL.this.padOffScreenLan[1][(i * 2) + 0] *= ePSXeViewGL.this.padResize;
+                ePSXeViewGL.this.padOffScreenLan[1][(i * 2) + 1] *= ePSXeViewGL.this.padResize;
+            }
         }
 
         public void loadExtraButtons() {
@@ -2529,7 +3760,8 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                     ePSXeViewGL.this.padprofile = "";
                 }
                 for (int i = 0; i < 6; i++) {
-                    int val = ePSXeViewGL.this.mePSXeReadPreferences.getPadExtra(ePSXeViewGL.this.padprofile + "inputExtrasPref" + (i + 1));
+                    int val = ePSXeViewGL.this.mePSXeReadPreferences
+                            .getPadExtra(ePSXeViewGL.this.padprofile + "inputExtrasPref" + (i + 1));
                     if (val == 19) {
                         val = -1;
                     }
@@ -2586,16 +3818,26 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
             if (ePSXeViewGL.this.mePSXeReadPreferences == null) {
                 ePSXeViewGL.this.mePSXeReadPreferences = new ePSXeReadPreferences(ePSXeViewGL.this.mContext);
             }
-            if (ePSXeViewGL.this.mePSXeReadPreferences.getPadStatus(ePSXeViewGL.this.padprofile + "Pad1Status1") != -1 && ePSXeViewGL.this.emu_player_mode == 1 && (ePSXeViewGL.this.emu_screen_orientation != 1 || ePSXeViewGL.this.emu_portrait_skin == 1)) {
+            if (ePSXeViewGL.this.mePSXeReadPreferences.getPadStatus(ePSXeViewGL.this.padprofile + "Pad1Status1") != -1
+                    && ePSXeViewGL.this.emu_player_mode == 1
+                    && (ePSXeViewGL.this.emu_screen_orientation != 1 || ePSXeViewGL.this.emu_portrait_skin == 1)) {
                 Log.e("epsxeviewgl", "loading pad info from preferences");
+
+                // Сначала устанавливаем базовые размеры без масштабирования
                 int tmode = ePSXeViewGL.this.mode;
                 ePSXeViewGL.this.mode = 0;
-                resetPad1Values();
+                setBasePadSizesWithoutResize();
                 ePSXeViewGL.this.mode = 1;
-                resetPad1Values();
+                setBasePadSizesWithoutResize();
                 ePSXeViewGL.this.mode = tmode;
-                ePSXeViewGL.this.mWidthSaved = ePSXeViewGL.this.mePSXeReadPreferences.getPadWH(ePSXeViewGL.this.padprofile + "Pad1Width");
-                ePSXeViewGL.this.mHeightSaved = ePSXeViewGL.this.mePSXeReadPreferences.getPadWH(ePSXeViewGL.this.padprofile + "Pad1Height");
+
+                // Получаем сохраненные размеры экрана
+                ePSXeViewGL.this.mWidthSaved = ePSXeViewGL.this.mePSXeReadPreferences
+                        .getPadWH(ePSXeViewGL.this.padprofile + "Pad1Width");
+                ePSXeViewGL.this.mHeightSaved = ePSXeViewGL.this.mePSXeReadPreferences
+                        .getPadWH(ePSXeViewGL.this.padprofile + "Pad1Height");
+
+                // Вычисляем коэффициенты масштабирования для изменения разрешения
                 float resizeX = 1.0f;
                 float resizeY = 1.0f;
                 if (ePSXeViewGL.this.mWidthSaved != 0 && ePSXeViewGL.this.mWidthSaved != ePSXeViewGL.this.mWidth) {
@@ -2605,122 +3847,158 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                     resizeY = (float) ePSXeViewGL.this.mHeight / ePSXeViewGL.this.mHeightSaved;
                 }
                 for (int i = 1; i < 14; i++) {
-                    int val = ePSXeViewGL.this.mePSXeReadPreferences.getPadStatus(ePSXeViewGL.this.padprofile + "Pad1Status" + i);
+                    int val = ePSXeViewGL.this.mePSXeReadPreferences
+                            .getPadStatus(ePSXeViewGL.this.padprofile + "Pad1Status" + i);
                     if (val != -1) {
                         ePSXeViewGL.this.padScreenStatus[0][i - 1] = val;
                     }
                 }
                 for (int i2 = 1; i2 < 14; i2++) {
-                    int val2 = ePSXeViewGL.this.mePSXeReadPreferences.getPadStatus(ePSXeViewGL.this.padprofile + "Pad1StatusAnalog" + i2);
+                    int val2 = ePSXeViewGL.this.mePSXeReadPreferences
+                            .getPadStatus(ePSXeViewGL.this.padprofile + "Pad1StatusAnalog" + i2);
                     if (val2 != -1) {
                         ePSXeViewGL.this.padScreenStatus[1][i2 - 1] = val2;
                     }
                 }
                 for (int i3 = 1; i3 < 14; i3++) {
-                    float x = ePSXeViewGL.this.mePSXeReadPreferences.getPadSize(ePSXeViewGL.this.padprofile + "Pad1SizeX" + i3);
-                    float y = ePSXeViewGL.this.mePSXeReadPreferences.getPadSize(ePSXeViewGL.this.padprofile + "Pad1SizeY" + i3);
+                    float x = ePSXeViewGL.this.mePSXeReadPreferences
+                            .getPadSize(ePSXeViewGL.this.padprofile + "Pad1SizeX" + i3);
+                    float y = ePSXeViewGL.this.mePSXeReadPreferences
+                            .getPadSize(ePSXeViewGL.this.padprofile + "Pad1SizeY" + i3);
                     if (x != -1.0f) {
                         ePSXeViewGL.this.padSizeScreenLan[0][(i3 - 1) * 2] = x;
                         ePSXeViewGL.this.padSizeScreenLan[0][((i3 - 1) * 2) + 1] = y;
                     }
                 }
                 for (int i4 = 14; i4 < 20; i4++) {
-                    float x2 = ePSXeViewGL.this.mePSXeReadPreferences.getPadSize(ePSXeViewGL.this.padprofile + "Pad1SizeX" + i4);
-                    float y2 = ePSXeViewGL.this.mePSXeReadPreferences.getPadSize(ePSXeViewGL.this.padprofile + "Pad1SizeY" + i4);
+                    float x2 = ePSXeViewGL.this.mePSXeReadPreferences
+                            .getPadSize(ePSXeViewGL.this.padprofile + "Pad1SizeX" + i4);
+                    float y2 = ePSXeViewGL.this.mePSXeReadPreferences
+                            .getPadSize(ePSXeViewGL.this.padprofile + "Pad1SizeY" + i4);
                     if (x2 != -1.0f) {
                         ePSXeViewGL.this.padSizeScreenLan[0][i4 * 2] = x2;
                         ePSXeViewGL.this.padSizeScreenLan[0][(i4 * 2) + 1] = y2;
                     }
                 }
                 for (int i5 = 1; i5 < 14; i5++) {
-                    float x3 = ePSXeViewGL.this.mePSXeReadPreferences.getPadSize(ePSXeViewGL.this.padprofile + "Pad1SizeXAnalog" + i5);
-                    float y3 = ePSXeViewGL.this.mePSXeReadPreferences.getPadSize(ePSXeViewGL.this.padprofile + "Pad1SizeYAnalog" + i5);
+                    float x3 = ePSXeViewGL.this.mePSXeReadPreferences
+                            .getPadSize(ePSXeViewGL.this.padprofile + "Pad1SizeXAnalog" + i5);
+                    float y3 = ePSXeViewGL.this.mePSXeReadPreferences
+                            .getPadSize(ePSXeViewGL.this.padprofile + "Pad1SizeYAnalog" + i5);
                     if (x3 != -1.0f) {
                         ePSXeViewGL.this.padSizeScreenLan[1][(i5 - 1) * 2] = x3;
                         ePSXeViewGL.this.padSizeScreenLan[1][((i5 - 1) * 2) + 1] = y3;
                     }
                 }
                 for (int i6 = 14; i6 < 20; i6++) {
-                    float x4 = ePSXeViewGL.this.mePSXeReadPreferences.getPadSize(ePSXeViewGL.this.padprofile + "Pad1SizeXAnalog" + i6);
-                    float y4 = ePSXeViewGL.this.mePSXeReadPreferences.getPadSize(ePSXeViewGL.this.padprofile + "Pad1SizeYAnalog" + i6);
+                    float x4 = ePSXeViewGL.this.mePSXeReadPreferences
+                            .getPadSize(ePSXeViewGL.this.padprofile + "Pad1SizeXAnalog" + i6);
+                    float y4 = ePSXeViewGL.this.mePSXeReadPreferences
+                            .getPadSize(ePSXeViewGL.this.padprofile + "Pad1SizeYAnalog" + i6);
                     if (x4 != -1.0f) {
                         ePSXeViewGL.this.padSizeScreenLan[1][i6 * 2] = x4;
                         ePSXeViewGL.this.padSizeScreenLan[1][(i6 * 2) + 1] = y4;
                     }
                 }
                 for (int i7 = 1; i7 < 14; i7++) {
-                    float x5 = ePSXeViewGL.this.mePSXeReadPreferences.getPadSize(ePSXeViewGL.this.padprofile + "Pad1PosX" + i7);
-                    float y5 = ePSXeViewGL.this.mePSXeReadPreferences.getPadSize(ePSXeViewGL.this.padprofile + "Pad1PosY" + i7);
+                    float x5 = ePSXeViewGL.this.mePSXeReadPreferences
+                            .getPadSize(ePSXeViewGL.this.padprofile + "Pad1PosX" + i7);
+                    float y5 = ePSXeViewGL.this.mePSXeReadPreferences
+                            .getPadSize(ePSXeViewGL.this.padprofile + "Pad1PosY" + i7);
                     if (x5 != -1.0f) {
                         ePSXeViewGL.this.padOffScreenLan[0][(i7 - 1) * 2] = x5;
                         ePSXeViewGL.this.padOffScreenLan[0][((i7 - 1) * 2) + 1] = y5;
                     }
                 }
                 for (int i8 = 14; i8 < 20; i8++) {
-                    float x6 = ePSXeViewGL.this.mePSXeReadPreferences.getPadSize(ePSXeViewGL.this.padprofile + "Pad1PosX" + i8);
-                    float y6 = ePSXeViewGL.this.mePSXeReadPreferences.getPadSize(ePSXeViewGL.this.padprofile + "Pad1PosY" + i8);
+                    float x6 = ePSXeViewGL.this.mePSXeReadPreferences
+                            .getPadSize(ePSXeViewGL.this.padprofile + "Pad1PosX" + i8);
+                    float y6 = ePSXeViewGL.this.mePSXeReadPreferences
+                            .getPadSize(ePSXeViewGL.this.padprofile + "Pad1PosY" + i8);
                     if (x6 != -1.0f) {
                         ePSXeViewGL.this.padOffScreenLan[0][i8 * 2] = x6;
                         ePSXeViewGL.this.padOffScreenLan[0][(i8 * 2) + 1] = y6;
                     }
                 }
                 for (int i9 = 1; i9 < 14; i9++) {
-                    float x7 = ePSXeViewGL.this.mePSXeReadPreferences.getPadSize(ePSXeViewGL.this.padprofile + "Pad1PosXAnalog" + i9);
-                    float y7 = ePSXeViewGL.this.mePSXeReadPreferences.getPadSize(ePSXeViewGL.this.padprofile + "Pad1PosYAnalog" + i9);
+                    float x7 = ePSXeViewGL.this.mePSXeReadPreferences
+                            .getPadSize(ePSXeViewGL.this.padprofile + "Pad1PosXAnalog" + i9);
+                    float y7 = ePSXeViewGL.this.mePSXeReadPreferences
+                            .getPadSize(ePSXeViewGL.this.padprofile + "Pad1PosYAnalog" + i9);
                     if (x7 != -1.0f) {
                         ePSXeViewGL.this.padOffScreenLan[1][(i9 - 1) * 2] = x7;
                         ePSXeViewGL.this.padOffScreenLan[1][((i9 - 1) * 2) + 1] = y7;
                     }
                 }
                 for (int i10 = 14; i10 < 20; i10++) {
-                    float x8 = ePSXeViewGL.this.mePSXeReadPreferences.getPadSize(ePSXeViewGL.this.padprofile + "Pad1PosXAnalog" + i10);
-                    float y8 = ePSXeViewGL.this.mePSXeReadPreferences.getPadSize(ePSXeViewGL.this.padprofile + "Pad1PosYAnalog" + i10);
+                    float x8 = ePSXeViewGL.this.mePSXeReadPreferences
+                            .getPadSize(ePSXeViewGL.this.padprofile + "Pad1PosXAnalog" + i10);
+                    float y8 = ePSXeViewGL.this.mePSXeReadPreferences
+                            .getPadSize(ePSXeViewGL.this.padprofile + "Pad1PosYAnalog" + i10);
                     if (x8 != -1.0f) {
                         ePSXeViewGL.this.padOffScreenLan[1][i10 * 2] = x8;
                         ePSXeViewGL.this.padOffScreenLan[1][(i10 * 2) + 1] = y8;
                     }
                 }
                 for (int i11 = 1; i11 < 14; i11++) {
-                    float val3 = ePSXeViewGL.this.mePSXeReadPreferences.getPadResize(ePSXeViewGL.this.padprofile + "Pad1Resize" + i11);
+                    float val3 = ePSXeViewGL.this.mePSXeReadPreferences
+                            .getPadResize(ePSXeViewGL.this.padprofile + "Pad1Resize" + i11);
                     if (val3 != -1.0f) {
                         ePSXeViewGL.this.padScreenResize[0][i11 - 1] = val3;
                     }
                 }
                 for (int i12 = 14; i12 < 20; i12++) {
-                    float val4 = ePSXeViewGL.this.mePSXeReadPreferences.getPadResize(ePSXeViewGL.this.padprofile + "Pad1Resize" + i12);
+                    float val4 = ePSXeViewGL.this.mePSXeReadPreferences
+                            .getPadResize(ePSXeViewGL.this.padprofile + "Pad1Resize" + i12);
                     if (val4 != -1.0f) {
                         ePSXeViewGL.this.padScreenResize[0][i12] = val4;
                     }
                 }
                 for (int i13 = 1; i13 < 14; i13++) {
-                    float val5 = ePSXeViewGL.this.mePSXeReadPreferences.getPadResize(ePSXeViewGL.this.padprofile + "Pad1ResizeAnalog" + i13);
+                    float val5 = ePSXeViewGL.this.mePSXeReadPreferences
+                            .getPadResize(ePSXeViewGL.this.padprofile + "Pad1ResizeAnalog" + i13);
                     if (val5 != -1.0f) {
                         ePSXeViewGL.this.padScreenResize[1][i13 - 1] = val5;
                     }
                 }
                 for (int i14 = 14; i14 < 20; i14++) {
-                    float val6 = ePSXeViewGL.this.mePSXeReadPreferences.getPadResize(ePSXeViewGL.this.padprofile + "Pad1ResizeAnalog" + i14);
+                    float val6 = ePSXeViewGL.this.mePSXeReadPreferences
+                            .getPadResize(ePSXeViewGL.this.padprofile + "Pad1ResizeAnalog" + i14);
                     if (val6 != -1.0f) {
                         ePSXeViewGL.this.padScreenResize[1][i14] = val6;
                     }
                 }
+                // Применяем коррекцию разрешения к размерам и позициям
                 for (int i15 = 0; i15 < 20; i15++) {
-                    ePSXeViewGL.this.padSizeScreenLan[0][(i15 * 2) + 0] = ePSXeViewGL.this.padSizeScreenLan[0][(i15 * 2) + 0] * resizeX;
-                    ePSXeViewGL.this.padSizeScreenLan[0][(i15 * 2) + 1] = ePSXeViewGL.this.padSizeScreenLan[0][(i15 * 2) + 1] * resizeY;
-                    ePSXeViewGL.this.padSizeScreenLan[1][(i15 * 2) + 0] = ePSXeViewGL.this.padSizeScreenLan[1][(i15 * 2) + 0] * resizeX;
-                    ePSXeViewGL.this.padSizeScreenLan[1][(i15 * 2) + 1] = ePSXeViewGL.this.padSizeScreenLan[1][(i15 * 2) + 1] * resizeY;
+                    ePSXeViewGL.this.padSizeScreenLan[0][(i15 * 2)
+                            + 0] = ePSXeViewGL.this.padSizeScreenLan[0][(i15 * 2) + 0] * resizeX;
+                    ePSXeViewGL.this.padSizeScreenLan[0][(i15 * 2)
+                            + 1] = ePSXeViewGL.this.padSizeScreenLan[0][(i15 * 2) + 1] * resizeY;
+                    ePSXeViewGL.this.padSizeScreenLan[1][(i15 * 2)
+                            + 0] = ePSXeViewGL.this.padSizeScreenLan[1][(i15 * 2) + 0] * resizeX;
+                    ePSXeViewGL.this.padSizeScreenLan[1][(i15 * 2)
+                            + 1] = ePSXeViewGL.this.padSizeScreenLan[1][(i15 * 2) + 1] * resizeY;
                 }
                 for (int i16 = 0; i16 < 20; i16++) {
-                    ePSXeViewGL.this.padOffScreenLan[0][(i16 * 2) + 0] = ePSXeViewGL.this.padOffScreenLan[0][(i16 * 2) + 0] * resizeX;
-                    ePSXeViewGL.this.padOffScreenLan[0][(i16 * 2) + 1] = ePSXeViewGL.this.padOffScreenLan[0][(i16 * 2) + 1] * resizeY;
-                    ePSXeViewGL.this.padOffScreenLan[1][(i16 * 2) + 0] = ePSXeViewGL.this.padOffScreenLan[1][(i16 * 2) + 0] * resizeX;
-                    ePSXeViewGL.this.padOffScreenLan[1][(i16 * 2) + 1] = ePSXeViewGL.this.padOffScreenLan[1][(i16 * 2) + 1] * resizeY;
+                    ePSXeViewGL.this.padOffScreenLan[0][(i16 * 2)
+                            + 0] = ePSXeViewGL.this.padOffScreenLan[0][(i16 * 2) + 0] * resizeX;
+                    ePSXeViewGL.this.padOffScreenLan[0][(i16 * 2)
+                            + 1] = ePSXeViewGL.this.padOffScreenLan[0][(i16 * 2) + 1] * resizeY;
+                    ePSXeViewGL.this.padOffScreenLan[1][(i16 * 2)
+                            + 0] = ePSXeViewGL.this.padOffScreenLan[1][(i16 * 2) + 0] * resizeX;
+                    ePSXeViewGL.this.padOffScreenLan[1][(i16 * 2)
+                            + 1] = ePSXeViewGL.this.padOffScreenLan[1][(i16 * 2) + 1] * resizeY;
                 }
+
+                // Теперь применяем базовое масштабирование для текущего разрешения
+                calculateBasePadResize();
+                applyFinalScalingToPads();
                 loadExtraButtons();
                 loadExtraButtonsTextures(gl);
             } else {
                 Log.e("epsxepadeditor", "setting default pad info");
-                if (ePSXeViewGL.this.emu_player_mode != 1 || ePSXeViewGL.this.emu_screen_orientation != 1 || ePSXeViewGL.this.emu_portrait_skin != 0) {
+                if (ePSXeViewGL.this.emu_player_mode != 1 || ePSXeViewGL.this.emu_screen_orientation != 1
+                        || ePSXeViewGL.this.emu_portrait_skin != 0) {
                     int tmode2 = ePSXeViewGL.this.mode;
                     ePSXeViewGL.this.mode = 0;
                     resetPad1Values();
@@ -2746,7 +4024,8 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                     }
                 }
                 if (ePSXeViewGL.this.emu_pad_mode[0] == 3 || ePSXeViewGL.this.emu_pad_mode[0] == 8) {
-                    ePSXeViewGL.this.gun.initGun(ePSXeViewGL.this.mWidth, ePSXeViewGL.this.mHeight, ePSXeViewGL.this.emu_pad_type_selected);
+                    ePSXeViewGL.this.gun.initGun(ePSXeViewGL.this.mWidth, ePSXeViewGL.this.mHeight,
+                            ePSXeViewGL.this.emu_pad_type_selected);
                 }
             }
         }
@@ -2757,7 +4036,10 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
             if (ePSXeViewGL.this.onPauseMode != 1) {
                 ePSXeViewGL.this.mWidth = width;
                 ePSXeViewGL.this.mHeight = height;
-                ePSXeViewGL.this.f165e.openglresize(width, height, ePSXeViewGL.this.emu_player_mode, ePSXeViewGL.this.emu_split_mode, ePSXeViewGL.this.emu_screen_ratio, ePSXeViewGL.this.emu_screen_orientation, ePSXeViewGL.this.emu_screen_vrmode, ePSXeViewGL.this.emu_screen_vrdistorsion);
+                ePSXeViewGL.this.f165e.openglresize(width, height, ePSXeViewGL.this.emu_player_mode,
+                        ePSXeViewGL.this.emu_split_mode, ePSXeViewGL.this.emu_screen_ratio,
+                        ePSXeViewGL.this.emu_screen_orientation, ePSXeViewGL.this.emu_screen_vrmode,
+                        ePSXeViewGL.this.emu_screen_vrdistorsion);
                 redoPads(gl);
             }
         }
@@ -2780,8 +4062,12 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                     }
                     this.wTexLan[i + 14] = this.padCoordsExtra[(j * 4) + 2] - this.padCoordsExtra[(j * 4) + 0];
                     this.hTexLan[i + 14] = this.padCoordsExtra[(j * 4) + 3] - this.padCoordsExtra[(j * 4) + 1];
-                    this.textureRgnLan[i + 14] = new TextureRegion(this.wTextmp, this.hTextmp, this.padCoordsExtra[(j * 4) + 0], this.padCoordsExtra[(j * 4) + 1], this.wTexLan[i + 14], this.hTexLan[i + 14]);
-                    this.batchLan[i + 14] = new SpriteBatch2(gl, 1, this.mProgram, this.mpadPositionLoc, this.mpadTexCoordLoc, this.mpadFrameLoc, this.mpadAlphaLoc, ePSXeViewGL.this.emu_input_alpha);
+                    this.textureRgnLan[i + 14] = new TextureRegion(this.wTextmp, this.hTextmp,
+                            this.padCoordsExtra[(j * 4) + 0], this.padCoordsExtra[(j * 4) + 1], this.wTexLan[i + 14],
+                            this.hTexLan[i + 14]);
+                    this.batchLan[i + 14] = new SpriteBatch2(gl, 1, this.mProgram, this.mpadPositionLoc,
+                            this.mpadTexCoordLoc, this.mpadFrameLoc, this.mpadAlphaLoc,
+                            ePSXeViewGL.this.emu_input_alpha);
                 }
             }
         }
@@ -2789,9 +4075,12 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
         @Override // android.opengl.GLSurfaceView.Renderer
         public void onSurfaceCreated(GL10 gl, EGLConfig config) {
             Log.e("ePSXeRenderer2", "onSurfaceCreated");
-            ePSXeViewGL.this.f165e.openglinit(ePSXeViewGL.this.emu_screen_vrmode, ePSXeViewGL.this.emu_screen_vrdistorsion);
-            int vertexShader = loadShader(35633, "attribute vec4 a_position;attribute vec2 a_texCoord;varying vec2 v_texCoord;void main(){    gl_Position = a_position;    v_texCoord = a_texCoord;}");
-            int fragmentShader = loadShader(35632, "precision mediump float;varying vec2 v_texCoord;uniform sampler2D Frame;uniform float padAlpha;void main(){    gl_FragColor = texture2D(Frame, v_texCoord) * padAlpha;}");
+            ePSXeViewGL.this.f165e.openglinit(ePSXeViewGL.this.emu_screen_vrmode,
+                    ePSXeViewGL.this.emu_screen_vrdistorsion);
+            int vertexShader = loadShader(35633,
+                    "attribute vec4 a_position;attribute vec2 a_texCoord;varying vec2 v_texCoord;void main(){    gl_Position = a_position;    v_texCoord = a_texCoord;}");
+            int fragmentShader = loadShader(35632,
+                    "precision mediump float;varying vec2 v_texCoord;uniform sampler2D Frame;uniform float padAlpha;void main(){    gl_FragColor = texture2D(Frame, v_texCoord) * padAlpha;}");
             this.mProgram = GLES20.glCreateProgram();
             GLES20.glAttachShader(this.mProgram, vertexShader);
             GLES20.glAttachShader(this.mProgram, fragmentShader);
@@ -2800,49 +4089,54 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
             this.mpadTexCoordLoc = GLES20.glGetAttribLocation(this.mProgram, "a_texCoord");
             this.mpadFrameLoc = GLES20.glGetUniformLocation(this.mProgram, "Frame");
             this.mpadAlphaLoc = GLES20.glGetUniformLocation(this.mProgram, "padAlpha");
-            this.glText = new GLText2(gl, ePSXeViewGL.this.mContext.getAssets(), this.mProgram, this.mpadPositionLoc, this.mpadTexCoordLoc, this.mpadFrameLoc, this.mpadAlphaLoc, 1.0f);
+            this.glText = new GLText2(gl, ePSXeViewGL.this.mContext.getAssets(), this.mProgram, this.mpadPositionLoc,
+                    this.mpadTexCoordLoc, this.mpadFrameLoc, this.mpadAlphaLoc, 1.0f);
             this.glText.load("Roboto-Regular.ttf", 28, 2, 2);
-            if (ePSXeViewGL.this.emu_player_mode != 1 || ePSXeViewGL.this.emu_screen_orientation != 1 || ePSXeViewGL.this.emu_portrait_skin != 0) {
+            if (ePSXeViewGL.this.emu_player_mode != 1 || ePSXeViewGL.this.emu_screen_orientation != 1
+                    || ePSXeViewGL.this.emu_portrait_skin != 0) {
                 if (ePSXeViewGL.this.emu_pad_mode[0] != 3) {
                     if (ePSXeViewGL.this.emu_pad_mode[0] == 8) {
-                        int[] padCoords = {384, 64, 448, 256, 448, 64, 511, 256};
+                        int[] padCoords = { 384, 64, 448, 256, 448, 64, 511, 256 };
                         this.mTexLan = loadTexture(ePSXeViewGL.this.mContext, R.drawable.extra_buttons);
                         for (int i = 0; i < 2; i++) {
                             this.wTexLan[i] = padCoords[(i * 4) + 2] - padCoords[(i * 4) + 0];
                             this.hTexLan[i] = padCoords[(i * 4) + 3] - padCoords[(i * 4) + 1];
-                            this.textureRgnLan[i] = new TextureRegion(this.wTextmp, this.hTextmp, padCoords[(i * 4) + 0], padCoords[(i * 4) + 1], this.wTexLan[i], this.hTexLan[i]);
-                            this.batchLan[i] = new SpriteBatch2(gl, 1, this.mProgram, this.mpadPositionLoc, this.mpadTexCoordLoc, this.mpadFrameLoc, this.mpadAlphaLoc, ePSXeViewGL.this.emu_input_alpha);
+                            this.textureRgnLan[i] = new TextureRegion(this.wTextmp, this.hTextmp,
+                                    padCoords[(i * 4) + 0], padCoords[(i * 4) + 1], this.wTexLan[i], this.hTexLan[i]);
+                            this.batchLan[i] = new SpriteBatch2(gl, 1, this.mProgram, this.mpadPositionLoc,
+                                    this.mpadTexCoordLoc, this.mpadFrameLoc, this.mpadAlphaLoc,
+                                    ePSXeViewGL.this.emu_input_alpha);
                         }
                         return;
                     }
                     int[] padCoords2 = {
-                        //x1,  y1,  x2,  y2
-                        2, 1, 224, 225, // Dpad Up, Down, Left, Right - keys
-                        1, 238, 223, 486, // Action keys
-                        253, 8, 309, 52, // Stop key
-                        372, 4, 433, 56, // Play key
-                        249, 80, 307, 132, // L1 key
-                        308, 80, 364, 132, // L2 key
-                        308, 144, 364, 196, // R1 key
-                        250, 144, 307, 196, // R2 key
-                        254, 208, 297, 239, // LED1
-                        365, 80, 421, 132, // L3 key
-                        365, 144, 422, 196, // R3 key
-                        289, 289, 511, 511, // Touch pad area
-                        289, 289, 511, 511, // ------"-------
-                        422, 144, 491, 215 // Some ball button
+                            // x1, y1, x2, y2
+                            2, 1, 224, 225, // Dpad Up, Down, Left, Right - keys
+                            1, 238, 223, 486, // Action keys
+                            253, 8, 309, 52, // Stop key
+                            372, 4, 433, 56, // Play key
+                            249, 80, 307, 132, // L1 key
+                            308, 80, 364, 132, // L2 key
+                            308, 144, 364, 196, // R1 key
+                            250, 144, 307, 196, // R2 key
+                            254, 208, 297, 239, // LED1
+                            365, 80, 421, 132, // L3 key
+                            365, 144, 422, 196, // R3 key
+                            289, 289, 511, 511, // Touch pad area
+                            289, 289, 511, 511, // ------"-------
+                            422, 144, 491, 215 // Some ball button
                     };
                     int[] padCoordsAction = {
-                        77, 244, 149, 316, // Action - triangle
-                        146, 328, 218, 400, // Action - circle
-                        77, 412, 149, 484, // Action - x
-                        6, 328, 78, 400 // Action - square
+                            77, 244, 149, 316, // Action - triangle
+                            146, 328, 218, 400, // Action - circle
+                            77, 412, 149, 484, // Action - x
+                            6, 328, 78, 400 // Action - square
                     };
                     int[] padCoordsDpad = {
-                        76, 7, 146, 94, // Dpad - up
-                        130, 80, 218, 149, // Dpad - right
-                        76, 134, 146, 220, // Dpad - down
-                        4, 80, 92, 149 // Dpad - left
+                            76, 7, 146, 94, // Dpad - up
+                            130, 80, 218, 149, // Dpad - right
+                            76, 134, 146, 220, // Dpad - down
+                            4, 80, 92, 149 // Dpad - left
                     };
                     if (ePSXeViewGL.this.emu_pad_draw_mode[0] == 4) {
                         File f = new File(ePSXeViewGL.this.skinName);
@@ -2931,34 +4225,62 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                     } else if (ePSXeViewGL.this.emu_pad_draw_mode[0] != 4) {
                         this.mTexLan = loadTexture(ePSXeViewGL.this.mContext, R.drawable.pure_white_digital);
                     }
-                    if ((ePSXeViewGL.this.emu_pad_draw_mode[0] & 1) == 0 || (ePSXeViewGL.this.emu_pad_draw_mode[0] < 10 && ePSXeViewGL.this.emu_pad_draw_mode[0] != 1)) {
+                    if ((ePSXeViewGL.this.emu_pad_draw_mode[0] & 1) == 0 || (ePSXeViewGL.this.emu_pad_draw_mode[0] < 10
+                            && ePSXeViewGL.this.emu_pad_draw_mode[0] != 1)) {
                         ePSXeViewGL.this.dpadskin = 1;
                     }
                     for (int i2 = 0; i2 < 14; i2++) {
                         this.wTexLan[i2] = padCoords2[(i2 * 4) + 2] - padCoords2[(i2 * 4) + 0];
                         this.hTexLan[i2] = padCoords2[(i2 * 4) + 3] - padCoords2[(i2 * 4) + 1];
-                        this.textureRgnLan[i2] = new TextureRegion(this.wTextmp, this.hTextmp, padCoords2[(i2 * 4) + 0], padCoords2[(i2 * 4) + 1], this.wTexLan[i2], this.hTexLan[i2]);
-                        this.batchLan[i2] = new SpriteBatch2(gl, 1, this.mProgram, this.mpadPositionLoc, this.mpadTexCoordLoc, this.mpadFrameLoc, this.mpadAlphaLoc, ePSXeViewGL.this.emu_input_alpha);
+                        this.textureRgnLan[i2] = new TextureRegion(this.wTextmp, this.hTextmp, padCoords2[(i2 * 4) + 0],
+                                padCoords2[(i2 * 4) + 1], this.wTexLan[i2], this.hTexLan[i2]);
+                        this.batchLan[i2] = new SpriteBatch2(gl, 1, this.mProgram, this.mpadPositionLoc,
+                                this.mpadTexCoordLoc, this.mpadFrameLoc, this.mpadAlphaLoc,
+                                ePSXeViewGL.this.emu_input_alpha);
                     }
                     for (int i3 = 0; i3 < 4; i3++) {
                         this.wTexLanAction[i3] = padCoordsAction[(i3 * 4) + 2] - padCoordsAction[(i3 * 4) + 0];
                         this.hTexLanAction[i3] = padCoordsAction[(i3 * 4) + 3] - padCoordsAction[(i3 * 4) + 1];
-                        this.textureRgnLanAction[i3] = new TextureRegion(this.wTextmp, this.hTextmp, padCoordsAction[(i3 * 4) + 0], padCoordsAction[(i3 * 4) + 1], this.wTexLanAction[i3], this.hTexLanAction[i3]);
-                        this.batchLanAction[i3] = new SpriteBatch2(gl, 1, this.mProgram, this.mpadPositionLoc, this.mpadTexCoordLoc, this.mpadFrameLoc, this.mpadAlphaLoc, ePSXeViewGL.this.emu_input_alpha);
-                        this.sizeActionX[i3] = (float) ((padCoordsAction[(i3 * 4) + 2] - padCoords2[4]) - (padCoordsAction[(i3 * 4) + 0] - padCoords2[4])) / (padCoords2[6] - padCoords2[4]);
-                        this.sizeActionY[i3] = (float) ((padCoordsAction[(i3 * 4) + 3] - padCoords2[5]) - (padCoordsAction[(i3 * 4) + 1] - padCoords2[5])) / (padCoords2[7] - padCoords2[5]);
-                        this.offActionX[i3] = (float) ((padCoordsAction[(i3 * 4) + 0] - padCoords2[4]) + (((padCoordsAction[(i3 * 4) + 2] - padCoords2[4]) - (padCoordsAction[(i3 * 4) + 0] - padCoords2[4])) / 2)) / (padCoords2[6] - padCoords2[4]);
-                        this.offActionY[i3] = 1.0f - ((float) ((padCoordsAction[(i3 * 4) + 1] - padCoords2[5]) + (((padCoordsAction[(i3 * 4) + 3] - padCoords2[5]) - (padCoordsAction[(i3 * 4) + 1] - padCoords2[5])) / 2)) / (padCoords2[7] - padCoords2[5]));
+                        this.textureRgnLanAction[i3] = new TextureRegion(this.wTextmp, this.hTextmp,
+                                padCoordsAction[(i3 * 4) + 0], padCoordsAction[(i3 * 4) + 1], this.wTexLanAction[i3],
+                                this.hTexLanAction[i3]);
+                        this.batchLanAction[i3] = new SpriteBatch2(gl, 1, this.mProgram, this.mpadPositionLoc,
+                                this.mpadTexCoordLoc, this.mpadFrameLoc, this.mpadAlphaLoc,
+                                ePSXeViewGL.this.emu_input_alpha);
+                        this.sizeActionX[i3] = (float) ((padCoordsAction[(i3 * 4) + 2] - padCoords2[4])
+                                - (padCoordsAction[(i3 * 4) + 0] - padCoords2[4])) / (padCoords2[6] - padCoords2[4]);
+                        this.sizeActionY[i3] = (float) ((padCoordsAction[(i3 * 4) + 3] - padCoords2[5])
+                                - (padCoordsAction[(i3 * 4) + 1] - padCoords2[5])) / (padCoords2[7] - padCoords2[5]);
+                        this.offActionX[i3] = (float) ((padCoordsAction[(i3 * 4) + 0] - padCoords2[4])
+                                + (((padCoordsAction[(i3 * 4) + 2] - padCoords2[4])
+                                        - (padCoordsAction[(i3 * 4) + 0] - padCoords2[4])) / 2))
+                                / (padCoords2[6] - padCoords2[4]);
+                        this.offActionY[i3] = 1.0f - ((float) ((padCoordsAction[(i3 * 4) + 1] - padCoords2[5])
+                                + (((padCoordsAction[(i3 * 4) + 3] - padCoords2[5])
+                                        - (padCoordsAction[(i3 * 4) + 1] - padCoords2[5])) / 2))
+                                / (padCoords2[7] - padCoords2[5]));
                     }
                     for (int i4 = 0; i4 < 4; i4++) {
                         this.wTexLanDpad[i4] = padCoordsDpad[(i4 * 4) + 2] - padCoordsDpad[(i4 * 4) + 0];
                         this.hTexLanDpad[i4] = padCoordsDpad[(i4 * 4) + 3] - padCoordsDpad[(i4 * 4) + 1];
-                        this.textureRgnLanDpad[i4] = new TextureRegion(this.wTextmp, this.hTextmp, padCoordsDpad[(i4 * 4) + 0], padCoordsDpad[(i4 * 4) + 1], this.wTexLanDpad[i4], this.hTexLanDpad[i4]);
-                        this.batchLanDpad[i4] = new SpriteBatch2(gl, 1, this.mProgram, this.mpadPositionLoc, this.mpadTexCoordLoc, this.mpadFrameLoc, this.mpadAlphaLoc, ePSXeViewGL.this.emu_input_alpha);
-                        this.sizeDpadX[i4] = (float) ((padCoordsDpad[(i4 * 4) + 2] - padCoords2[0]) - (padCoordsDpad[(i4 * 4) + 0] - padCoords2[0])) / (padCoords2[2] - padCoords2[0]);
-                        this.sizeDpadY[i4] = (float) ((padCoordsDpad[(i4 * 4) + 3] - padCoords2[1]) - (padCoordsDpad[(i4 * 4) + 1] - padCoords2[1])) / (padCoords2[3] - padCoords2[1]);
-                        this.offDpadX[i4] = (float) ((padCoordsDpad[(i4 * 4) + 0] - padCoords2[0]) + (((padCoordsDpad[(i4 * 4) + 2] - padCoords2[0]) - (padCoordsDpad[(i4 * 4) + 0] - padCoords2[0])) / 2)) / (padCoords2[2] - padCoords2[0]);
-                        this.offDpadY[i4] = 1.0f - ((float) ((padCoordsDpad[(i4 * 4) + 1] - padCoords2[1]) + (((padCoordsDpad[(i4 * 4) + 3] - padCoords2[1]) - (padCoordsDpad[(i4 * 4) + 1] - padCoords2[1])) / 2)) / (padCoords2[3] - padCoords2[1]));
+                        this.textureRgnLanDpad[i4] = new TextureRegion(this.wTextmp, this.hTextmp,
+                                padCoordsDpad[(i4 * 4) + 0], padCoordsDpad[(i4 * 4) + 1], this.wTexLanDpad[i4],
+                                this.hTexLanDpad[i4]);
+                        this.batchLanDpad[i4] = new SpriteBatch2(gl, 1, this.mProgram, this.mpadPositionLoc,
+                                this.mpadTexCoordLoc, this.mpadFrameLoc, this.mpadAlphaLoc,
+                                ePSXeViewGL.this.emu_input_alpha);
+                        this.sizeDpadX[i4] = (float) ((padCoordsDpad[(i4 * 4) + 2] - padCoords2[0])
+                                - (padCoordsDpad[(i4 * 4) + 0] - padCoords2[0])) / (padCoords2[2] - padCoords2[0]);
+                        this.sizeDpadY[i4] = (float) ((padCoordsDpad[(i4 * 4) + 3] - padCoords2[1])
+                                - (padCoordsDpad[(i4 * 4) + 1] - padCoords2[1])) / (padCoords2[3] - padCoords2[1]);
+                        this.offDpadX[i4] = (float) ((padCoordsDpad[(i4 * 4) + 0] - padCoords2[0])
+                                + (((padCoordsDpad[(i4 * 4) + 2] - padCoords2[0])
+                                        - (padCoordsDpad[(i4 * 4) + 0] - padCoords2[0])) / 2))
+                                / (padCoords2[2] - padCoords2[0]);
+                        this.offDpadY[i4] = 1.0f - ((float) ((padCoordsDpad[(i4 * 4) + 1] - padCoords2[1])
+                                + (((padCoordsDpad[(i4 * 4) + 3] - padCoords2[1])
+                                        - (padCoordsDpad[(i4 * 4) + 1] - padCoords2[1])) / 2))
+                                / (padCoords2[3] - padCoords2[1]));
                     }
                     loadExtraButtons();
                     this.mTexExtra = loadTexture(ePSXeViewGL.this.mContext, R.drawable.extra_buttons);
@@ -2970,45 +4292,62 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                             }
                             this.wTexLan[i5 + 14] = this.padCoordsExtra[(j * 4) + 2] - this.padCoordsExtra[(j * 4) + 0];
                             this.hTexLan[i5 + 14] = this.padCoordsExtra[(j * 4) + 3] - this.padCoordsExtra[(j * 4) + 1];
-                            this.textureRgnLan[i5 + 14] = new TextureRegion(this.wTextmp, this.hTextmp, this.padCoordsExtra[(j * 4) + 0], this.padCoordsExtra[(j * 4) + 1], this.wTexLan[i5 + 14], this.hTexLan[i5 + 14]);
-                            this.batchLan[i5 + 14] = new SpriteBatch2(gl, 1, this.mProgram, this.mpadPositionLoc, this.mpadTexCoordLoc, this.mpadFrameLoc, this.mpadAlphaLoc, ePSXeViewGL.this.emu_input_alpha);
+                            this.textureRgnLan[i5 + 14] = new TextureRegion(this.wTextmp, this.hTextmp,
+                                    this.padCoordsExtra[(j * 4) + 0], this.padCoordsExtra[(j * 4) + 1],
+                                    this.wTexLan[i5 + 14], this.hTexLan[i5 + 14]);
+                            this.batchLan[i5 + 14] = new SpriteBatch2(gl, 1, this.mProgram, this.mpadPositionLoc,
+                                    this.mpadTexCoordLoc, this.mpadFrameLoc, this.mpadAlphaLoc,
+                                    ePSXeViewGL.this.emu_input_alpha);
                         }
                     }
                     for (int i6 = 0; i6 < 4; i6++) {
                         int j2 = i6 + 24;
                         this.wTexLan[i6 + 20] = this.padCoordsExtra[(j2 * 4) + 2] - this.padCoordsExtra[(j2 * 4) + 0];
                         this.hTexLan[i6 + 20] = this.padCoordsExtra[(j2 * 4) + 3] - this.padCoordsExtra[(j2 * 4) + 1];
-                        this.textureRgnLan[i6 + 20] = new TextureRegion(this.wTextmp, this.hTextmp, this.padCoordsExtra[(j2 * 4) + 0], this.padCoordsExtra[(j2 * 4) + 1], this.wTexLan[i6 + 20], this.hTexLan[i6 + 20]);
-                        this.batchLan[i6 + 20] = new SpriteBatch2(gl, 1, this.mProgram, this.mpadPositionLoc, this.mpadTexCoordLoc, this.mpadFrameLoc, this.mpadAlphaLoc, ePSXeViewGL.this.emu_input_alpha);
+                        this.textureRgnLan[i6 + 20] = new TextureRegion(this.wTextmp, this.hTextmp,
+                                this.padCoordsExtra[(j2 * 4) + 0], this.padCoordsExtra[(j2 * 4) + 1],
+                                this.wTexLan[i6 + 20], this.hTexLan[i6 + 20]);
+                        this.batchLan[i6 + 20] = new SpriteBatch2(gl, 1, this.mProgram, this.mpadPositionLoc,
+                                this.mpadTexCoordLoc, this.mpadFrameLoc, this.mpadAlphaLoc,
+                                ePSXeViewGL.this.emu_input_alpha);
                     }
                     for (int i7 = 0; i7 < 4; i7++) {
                         int j3 = i7 + 32;
                         this.wTexLan[i7 + 24] = this.padCoordsExtra[(j3 * 4) + 2] - this.padCoordsExtra[(j3 * 4) + 0];
                         this.hTexLan[i7 + 24] = this.padCoordsExtra[(j3 * 4) + 3] - this.padCoordsExtra[(j3 * 4) + 1];
-                        this.textureRgnLan[i7 + 24] = new TextureRegion(this.wTextmp, this.hTextmp, this.padCoordsExtra[(j3 * 4) + 0], this.padCoordsExtra[(j3 * 4) + 1], this.wTexLan[i7 + 24], this.hTexLan[i7 + 24]);
-                        this.batchLan[i7 + 24] = new SpriteBatch2(gl, 1, this.mProgram, this.mpadPositionLoc, this.mpadTexCoordLoc, this.mpadFrameLoc, this.mpadAlphaLoc, ePSXeViewGL.this.emu_input_alpha);
+                        this.textureRgnLan[i7 + 24] = new TextureRegion(this.wTextmp, this.hTextmp,
+                                this.padCoordsExtra[(j3 * 4) + 0], this.padCoordsExtra[(j3 * 4) + 1],
+                                this.wTexLan[i7 + 24], this.hTexLan[i7 + 24]);
+                        this.batchLan[i7 + 24] = new SpriteBatch2(gl, 1, this.mProgram, this.mpadPositionLoc,
+                                this.mpadTexCoordLoc, this.mpadFrameLoc, this.mpadAlphaLoc,
+                                ePSXeViewGL.this.emu_input_alpha);
                     }
                     return;
                 }
                 int[] padCoords3 = {
-                    256, 64, 320, 256,
-                    320, 64, 384, 256
+                        256, 64, 320, 256,
+                        320, 64, 384, 256
                 };
                 this.mTexLan = loadTexture(ePSXeViewGL.this.mContext, R.drawable.extra_buttons);
                 for (int i8 = 0; i8 < 2; i8++) {
                     this.wTexLan[i8] = padCoords3[(i8 * 4) + 2] - padCoords3[(i8 * 4) + 0];
                     this.hTexLan[i8] = padCoords3[(i8 * 4) + 3] - padCoords3[(i8 * 4) + 1];
-                    this.textureRgnLan[i8] = new TextureRegion(this.wTextmp, this.hTextmp, padCoords3[(i8 * 4) + 0], padCoords3[(i8 * 4) + 1], this.wTexLan[i8], this.hTexLan[i8]);
-                    this.batchLan[i8] = new SpriteBatch2(gl, 1, this.mProgram, this.mpadPositionLoc, this.mpadTexCoordLoc, this.mpadFrameLoc, this.mpadAlphaLoc, ePSXeViewGL.this.emu_input_alpha);
+                    this.textureRgnLan[i8] = new TextureRegion(this.wTextmp, this.hTextmp, padCoords3[(i8 * 4) + 0],
+                            padCoords3[(i8 * 4) + 1], this.wTexLan[i8], this.hTexLan[i8]);
+                    this.batchLan[i8] = new SpriteBatch2(gl, 1, this.mProgram, this.mpadPositionLoc,
+                            this.mpadTexCoordLoc, this.mpadFrameLoc, this.mpadAlphaLoc,
+                            ePSXeViewGL.this.emu_input_alpha);
                 }
                 return;
             }
-            int[] padCoords4 = {0, 0, 480, 400};
+            int[] padCoords4 = { 0, 0, 480, 400 };
             this.mTexPor = loadTexture(ePSXeViewGL.this.mContext, R.drawable.portraitpad);
             this.wTexPor = padCoords4[2] - padCoords4[0];
             this.hTexPor = padCoords4[3] - padCoords4[1];
-            this.textureRgnPor = new TextureRegion(this.wTextmp, this.hTextmp, padCoords4[0], padCoords4[1], this.wTexPor, this.hTexPor);
-            this.batchPor = new SpriteBatch2(gl, 1, this.mProgram, this.mpadPositionLoc, this.mpadTexCoordLoc, this.mpadFrameLoc, this.mpadAlphaLoc, 1.0f);
+            this.textureRgnPor = new TextureRegion(this.wTextmp, this.hTextmp, padCoords4[0], padCoords4[1],
+                    this.wTexPor, this.hTexPor);
+            this.batchPor = new SpriteBatch2(gl, 1, this.mProgram, this.mpadPositionLoc, this.mpadTexCoordLoc,
+                    this.mpadFrameLoc, this.mpadAlphaLoc, 1.0f);
             loadExtraButtons();
             this.mTexExtra = loadTexture(ePSXeViewGL.this.mContext, R.drawable.extra_buttons);
             loadExtraButtonsTextures(gl);
@@ -3016,15 +4355,21 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                 int j4 = i9 + 24;
                 this.wTexLan[i9 + 20] = this.padCoordsExtra[(j4 * 4) + 2] - this.padCoordsExtra[(j4 * 4) + 0];
                 this.hTexLan[i9 + 20] = this.padCoordsExtra[(j4 * 4) + 3] - this.padCoordsExtra[(j4 * 4) + 1];
-                this.textureRgnLan[i9 + 20] = new TextureRegion(this.wTextmp, this.hTextmp, this.padCoordsExtra[(j4 * 4) + 0], this.padCoordsExtra[(j4 * 4) + 1], this.wTexLan[i9 + 20], this.hTexLan[i9 + 20]);
-                this.batchLan[i9 + 20] = new SpriteBatch2(gl, 1, this.mProgram, this.mpadPositionLoc, this.mpadTexCoordLoc, this.mpadFrameLoc, this.mpadAlphaLoc, ePSXeViewGL.this.emu_input_alpha);
+                this.textureRgnLan[i9 + 20] = new TextureRegion(this.wTextmp, this.hTextmp,
+                        this.padCoordsExtra[(j4 * 4) + 0], this.padCoordsExtra[(j4 * 4) + 1], this.wTexLan[i9 + 20],
+                        this.hTexLan[i9 + 20]);
+                this.batchLan[i9 + 20] = new SpriteBatch2(gl, 1, this.mProgram, this.mpadPositionLoc,
+                        this.mpadTexCoordLoc, this.mpadFrameLoc, this.mpadAlphaLoc, ePSXeViewGL.this.emu_input_alpha);
             }
             for (int i10 = 0; i10 < 4; i10++) {
                 int j5 = i10 + 32;
                 this.wTexLan[i10 + 24] = this.padCoordsExtra[(j5 * 4) + 2] - this.padCoordsExtra[(j5 * 4) + 0];
                 this.hTexLan[i10 + 24] = this.padCoordsExtra[(j5 * 4) + 3] - this.padCoordsExtra[(j5 * 4) + 1];
-                this.textureRgnLan[i10 + 24] = new TextureRegion(this.wTextmp, this.hTextmp, this.padCoordsExtra[(j5 * 4) + 0], this.padCoordsExtra[(j5 * 4) + 1], this.wTexLan[i10 + 24], this.hTexLan[i10 + 24]);
-                this.batchLan[i10 + 24] = new SpriteBatch2(gl, 1, this.mProgram, this.mpadPositionLoc, this.mpadTexCoordLoc, this.mpadFrameLoc, this.mpadAlphaLoc, ePSXeViewGL.this.emu_input_alpha);
+                this.textureRgnLan[i10 + 24] = new TextureRegion(this.wTextmp, this.hTextmp,
+                        this.padCoordsExtra[(j5 * 4) + 0], this.padCoordsExtra[(j5 * 4) + 1], this.wTexLan[i10 + 24],
+                        this.hTexLan[i10 + 24]);
+                this.batchLan[i10 + 24] = new SpriteBatch2(gl, 1, this.mProgram, this.mpadPositionLoc,
+                        this.mpadTexCoordLoc, this.mpadFrameLoc, this.mpadAlphaLoc, ePSXeViewGL.this.emu_input_alpha);
             }
         }
     }
@@ -3087,7 +4432,20 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
             this.sizeDpadY = new float[4];
             this.offDpadX = new float[4];
             this.offDpadY = new float[4];
-            this.padCoordsExtra = new int[]{0, 0, 64, 64, 64, 0, 128, 64, 128, 0, InputList.KEYCODE_BUTTON_5, 64, InputList.KEYCODE_BUTTON_5, 0, 256, 64, 0, 64, 64, 128, 64, 64, 128, 128, 128, 64, InputList.KEYCODE_BUTTON_5, 128, InputList.KEYCODE_BUTTON_5, 64, 256, 128, 0, 128, 64, InputList.KEYCODE_BUTTON_9, 64, 128, 128, InputList.KEYCODE_BUTTON_9, 128, 128, InputList.KEYCODE_BUTTON_5, InputList.KEYCODE_BUTTON_9, InputList.KEYCODE_BUTTON_5, 128, 256, InputList.KEYCODE_BUTTON_9, 0, InputList.KEYCODE_BUTTON_5, 64, 256, 64, InputList.KEYCODE_BUTTON_5, 128, 256, 128, InputList.KEYCODE_BUTTON_5, InputList.KEYCODE_BUTTON_5, 256, InputList.KEYCODE_BUTTON_5, InputList.KEYCODE_BUTTON_5, 256, 256, 0, 256, 64, 320, 64, 256, 128, 320, 128, 256, InputList.KEYCODE_BUTTON_7, 320, InputList.KEYCODE_BUTTON_5, 256, 256, 320, 0, 320, 64, 384, 64, 320, 128, 384, 128, 320, InputList.KEYCODE_BUTTON_9, 384, InputList.KEYCODE_BUTTON_5, 320, 256, 384, 0, 384, 64, 448, 63, 384, 126, 448, 128, 384, InputList.KEYCODE_BUTTON_9, 448, InputList.KEYCODE_BUTTON_5, 384, 256, 448, 0, 448, 64, 511, 64, 448, 128, 511, 128, 448, InputList.KEYCODE_BUTTON_9, 511, InputList.KEYCODE_BUTTON_5, 448, 256, 511, 256, 0, 320, 64, 320, 0, 384, 64, 384, 0, 448, 64, 448, 0, 511, 64};
+            this.padCoordsExtra = new int[] { 0, 0, 64, 64, 64, 0, 128, 64, 128, 0, InputList.KEYCODE_BUTTON_5, 64,
+                    InputList.KEYCODE_BUTTON_5, 0, 256, 64, 0, 64, 64, 128, 64, 64, 128, 128, 128, 64,
+                    InputList.KEYCODE_BUTTON_5, 128, InputList.KEYCODE_BUTTON_5, 64, 256, 128, 0, 128, 64,
+                    InputList.KEYCODE_BUTTON_9, 64, 128, 128, InputList.KEYCODE_BUTTON_9, 128, 128,
+                    InputList.KEYCODE_BUTTON_5, InputList.KEYCODE_BUTTON_9, InputList.KEYCODE_BUTTON_5, 128, 256,
+                    InputList.KEYCODE_BUTTON_9, 0, InputList.KEYCODE_BUTTON_5, 64, 256, 64, InputList.KEYCODE_BUTTON_5,
+                    128, 256, 128, InputList.KEYCODE_BUTTON_5, InputList.KEYCODE_BUTTON_5, 256,
+                    InputList.KEYCODE_BUTTON_5, InputList.KEYCODE_BUTTON_5, 256, 256, 0, 256, 64, 320, 64, 256, 128,
+                    320, 128, 256, InputList.KEYCODE_BUTTON_7, 320, InputList.KEYCODE_BUTTON_5, 256, 256, 320, 0, 320,
+                    64, 384, 64, 320, 128, 384, 128, 320, InputList.KEYCODE_BUTTON_9, 384, InputList.KEYCODE_BUTTON_5,
+                    320, 256, 384, 0, 384, 64, 448, 63, 384, 126, 448, 128, 384, InputList.KEYCODE_BUTTON_9, 448,
+                    InputList.KEYCODE_BUTTON_5, 384, 256, 448, 0, 448, 64, 511, 64, 448, 128, 511, 128, 448,
+                    InputList.KEYCODE_BUTTON_9, 511, InputList.KEYCODE_BUTTON_5, 448, 256, 511, 256, 0, 320, 64, 320, 0,
+                    384, 64, 384, 0, 448, 64, 448, 0, 511, 64 };
         }
 
         private int newTextureID(GL10 gl) {
@@ -3148,9 +4506,13 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
             gl.glBlendFunc(770, 771);
             this.glText.begin(1.0f, 0.8f, 0.8f, 0.8f);
             if (ePSXeViewGL.this.tainted == 1) {
-                this.glText.draw(String.valueOf(ePSXeViewGL.this.f165e.getFPS()) + "/" + ePSXeViewGL.this.mfps + "*", ePSXeViewGL.this.overscan_x + 0, (ePSXeViewGL.this.mHeight - this.glText.getCharHeight()) - ePSXeViewGL.this.overscan_y);
+                this.glText.draw(String.valueOf(ePSXeViewGL.this.f165e.getFPS()) + "/" + ePSXeViewGL.this.mfps + "*",
+                        ePSXeViewGL.this.overscan_x + 0,
+                        (ePSXeViewGL.this.mHeight - this.glText.getCharHeight()) - ePSXeViewGL.this.overscan_y);
             } else {
-                this.glText.draw(String.valueOf(ePSXeViewGL.this.f165e.getFPS()) + "/" + ePSXeViewGL.this.mfps, ePSXeViewGL.this.overscan_x + 0, (ePSXeViewGL.this.mHeight - this.glText.getCharHeight()) - ePSXeViewGL.this.overscan_y);
+                this.glText.draw(String.valueOf(ePSXeViewGL.this.f165e.getFPS()) + "/" + ePSXeViewGL.this.mfps,
+                        ePSXeViewGL.this.overscan_x + 0,
+                        (ePSXeViewGL.this.mHeight - this.glText.getCharHeight()) - ePSXeViewGL.this.overscan_y);
             }
             this.glText.end();
             gl.glDisable(3042);
@@ -3163,9 +4525,13 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
             gl.glBlendFunc(770, 771);
             this.glText.begin(1.0f, 0.8f, 0.8f, 0.8f);
             if (ePSXeViewGL.this.tainted == 1) {
-                this.glText.draw(String.valueOf(ePSXeViewGL.this.f165e.getFPS()) + "/" + ePSXeViewGL.this.mfps + "*", ePSXeViewGL.this.overscan_x + 0, (ePSXeViewGL.this.mHeight - this.glText.getCharHeight()) - ePSXeViewGL.this.overscan_y);
+                this.glText.draw(String.valueOf(ePSXeViewGL.this.f165e.getFPS()) + "/" + ePSXeViewGL.this.mfps + "*",
+                        ePSXeViewGL.this.overscan_x + 0,
+                        (ePSXeViewGL.this.mHeight - this.glText.getCharHeight()) - ePSXeViewGL.this.overscan_y);
             } else {
-                this.glText.draw(String.valueOf(ePSXeViewGL.this.emu_volumen) + "/16", ePSXeViewGL.this.mWidth - (this.glText.getCharHeight() * 6.0f), (ePSXeViewGL.this.mHeight - this.glText.getCharHeight()) - ePSXeViewGL.this.overscan_y);
+                this.glText.draw(String.valueOf(ePSXeViewGL.this.emu_volumen) + "/16",
+                        ePSXeViewGL.this.mWidth - (this.glText.getCharHeight() * 6.0f),
+                        (ePSXeViewGL.this.mHeight - this.glText.getCharHeight()) - ePSXeViewGL.this.overscan_y);
             }
             this.glText.end();
             gl.glDisable(3042);
@@ -3177,7 +4543,10 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
             gl.glEnable(3042);
             gl.glBlendFunc(770, 771);
             this.glText.begin(1.0f, 1.0f, 1.0f, 1.0f);
-            this.glText.draw("lx " + ePSXeViewGL.this.f166x1 + " ly " + ePSXeViewGL.this.f168y1 + " rx " + ePSXeViewGL.this.f167x2 + " ry " + ePSXeViewGL.this.f169y2, 0.0f, ePSXeViewGL.this.mHeight - (this.glText.getCharHeight() * 3.0f));
+            this.glText.draw(
+                    "lx " + ePSXeViewGL.this.f166x1 + " ly " + ePSXeViewGL.this.f168y1 + " rx "
+                            + ePSXeViewGL.this.f167x2 + " ry " + ePSXeViewGL.this.f169y2,
+                    0.0f, ePSXeViewGL.this.mHeight - (this.glText.getCharHeight() * 3.0f));
             this.glText.end();
             gl.glDisable(3042);
             gl.glDisable(3553);
@@ -3188,7 +4557,8 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
             gl.glEnable(3042);
             gl.glBlendFunc(770, 771);
             this.glText.begin(1.0f, 1.0f, 1.0f, 1.0f);
-            this.glText.draw(ePSXeViewGL.this.debugString, 0.0f, ePSXeViewGL.this.mHeight - (this.glText.getCharHeight() * 3.0f));
+            this.glText.draw(ePSXeViewGL.this.debugString, 0.0f,
+                    ePSXeViewGL.this.mHeight - (this.glText.getCharHeight() * 3.0f));
             this.glText.end();
             gl.glDisable(3042);
             gl.glDisable(3553);
@@ -3199,7 +4569,8 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
             gl.glEnable(3042);
             gl.glBlendFunc(770, 771);
             this.glText.begin(1.0f, 1.0f, 1.0f, 1.0f);
-            this.glText.draw(ePSXeViewGL.this.debugString2, 0.0f, ePSXeViewGL.this.mHeight - (this.glText.getCharHeight() * 4.0f));
+            this.glText.draw(ePSXeViewGL.this.debugString2, 0.0f,
+                    ePSXeViewGL.this.mHeight - (this.glText.getCharHeight() * 4.0f));
             this.glText.end();
             gl.glDisable(3042);
             gl.glDisable(3553);
@@ -3258,14 +4629,20 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                     ePSXeViewGL.this.redoPads = false;
                 }
                 if (ePSXeViewGL.this.serverMode != 2) {
-                    ePSXeViewGL.this.f165e.openglrender(ePSXeViewGL.this.emu_player_mode, ePSXeViewGL.this.emu_screen_orientation, ePSXeViewGL.this.emu_split_mode, ePSXeViewGL.this.emu_screen_ratio, ePSXeViewGL.this.emu_screen_vrmode);
+                    ePSXeViewGL.this.f165e.openglrender(ePSXeViewGL.this.emu_player_mode,
+                            ePSXeViewGL.this.emu_screen_orientation, ePSXeViewGL.this.emu_split_mode,
+                            ePSXeViewGL.this.emu_screen_ratio, ePSXeViewGL.this.emu_screen_vrmode);
                 }
                 if (ePSXeViewGL.this.onPauseMode != 1) {
                     if (ePSXeViewGL.this.emu_screen_vrmode == 0) {
-                        if (ePSXeViewGL.this.emu_player_mode != 1 || ePSXeViewGL.this.emu_screen_orientation != 1 || ePSXeViewGL.this.emu_portrait_skin != 0) {
-                            if (ePSXeViewGL.this.emu_player_mode != 1 || ePSXeViewGL.this.emu_pad_draw_mode[0] == 2 || ePSXeViewGL.this.emu_pad_mode[0] == 3 || ePSXeViewGL.this.emu_pad_mode[0] == 8) {
+                        if (ePSXeViewGL.this.emu_player_mode != 1 || ePSXeViewGL.this.emu_screen_orientation != 1
+                                || ePSXeViewGL.this.emu_portrait_skin != 0) {
+                            if (ePSXeViewGL.this.emu_player_mode != 1 || ePSXeViewGL.this.emu_pad_draw_mode[0] == 2
+                                    || ePSXeViewGL.this.emu_pad_mode[0] == 3 || ePSXeViewGL.this.emu_pad_mode[0] == 8) {
                                 if (ePSXeViewGL.this.emu_pad_mode[0] == 3 || ePSXeViewGL.this.emu_pad_mode[0] == 8) {
-                                    ePSXeViewGL.this.gun.drawGunGl(gl, this.mTexLan, this.textureRgnLan, this.batchLan, ePSXeViewGL.this.mWidth, ePSXeViewGL.this.mHeight, ePSXeViewGL.this.emu_input_alpha);
+                                    ePSXeViewGL.this.gun.drawGunGl(gl, this.mTexLan, this.textureRgnLan, this.batchLan,
+                                            ePSXeViewGL.this.mWidth, ePSXeViewGL.this.mHeight,
+                                            ePSXeViewGL.this.emu_input_alpha);
                                 }
                             } else {
                                 int st = 0;
@@ -3290,42 +4667,94 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                                     if (ePSXeViewGL.this.padScreenStatus[ePSXeViewGL.this.mode][i] == 1) {
                                         if (i > 1) {
                                             if (i < 11 && i != 8) {
-                                                if ((ePSXeViewGL.this.statebuttons & ePSXeViewGL.this.psxbuttonval[i]) != 0) {
+                                                if ((ePSXeViewGL.this.statebuttons
+                                                        & ePSXeViewGL.this.psxbuttonval[i]) != 0) {
                                                     this.batchLan[i].beginBatch();
-                                                    // Исправленная отрисовка нажатых кнопок для OpenGL 1.0 - используем оригинальные координаты с увеличением
-                                                    this.batchLan[i].drawSprite(ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2) + 0], ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2) + 1], ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2) + 0] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i] * ePSXeViewGL.this.buttonMag, ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2) + 1] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i] * ePSXeViewGL.this.buttonMag, this.textureRgnLan[i]);
+                                                    // Исправленная отрисовка нажатых кнопок для OpenGL 1.0 - используем
+                                                    // оригинальные координаты с увеличением
+                                                    this.batchLan[i].drawSprite(
+                                                            ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i
+                                                                    * 2) + 0],
+                                                            ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i
+                                                                    * 2) + 1],
+                                                            ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i
+                                                                    * 2) + 0]
+                                                                    * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i]
+                                                                    * ePSXeViewGL.this.buttonMag,
+                                                            ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i
+                                                                    * 2) + 1]
+                                                                    * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i]
+                                                                    * ePSXeViewGL.this.buttonMag,
+                                                            this.textureRgnLan[i]);
                                                     this.batchLan[i].endBatch();
                                                 } else {
                                                     this.batchLan[i].beginBatch();
-                                                    // Исправленная отрисовка кнопок для OpenGL 1.0 - используем оригинальные координаты
-                                                    this.batchLan[i].drawSprite(ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2) + 0], ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2) + 1], ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2) + 0] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i], ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2) + 1] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i], this.textureRgnLan[i]);
+                                                    // Исправленная отрисовка кнопок для OpenGL 1.0 - используем
+                                                    // оригинальные координаты
+                                                    this.batchLan[i].drawSprite(
+                                                            ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i
+                                                                    * 2) + 0],
+                                                            ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i
+                                                                    * 2) + 1],
+                                                            ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i
+                                                                    * 2) + 0]
+                                                                    * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i],
+                                                            ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i
+                                                                    * 2) + 1]
+                                                                    * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i],
+                                                            this.textureRgnLan[i]);
                                                     this.batchLan[i].endBatch();
                                                 }
                                             } else {
                                                 this.batchLan[i].beginBatch();
-                                                this.batchLan[i].drawSprite(ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2) + 0], ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2) + 1], ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2) + 0] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i], ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2) + 1] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i], this.textureRgnLan[i]);
+                                                this.batchLan[i].drawSprite(
+                                                        ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2)
+                                                                + 0],
+                                                        ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2)
+                                                                + 1],
+                                                        ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2)
+                                                                + 0]
+                                                                * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i],
+                                                        ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2)
+                                                                + 1]
+                                                                * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i],
+                                                        this.textureRgnLan[i]);
                                                 this.batchLan[i].endBatch();
                                             }
                                         } else if (i == 0) {
-                                            // Drawing DPAD - исправленная отрисовка для правильного совпадения с touch областями
+                                            // Drawing DPAD - исправленная отрисовка для правильного совпадения с touch
+                                            // областями
                                             if (ePSXeViewGL.this.emu_pad_draw_mode[0] == 4) {
                                                 this.batchLan[i].beginBatch();
                                                 this.batchLan[i].drawSprite(
-                                                        ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2) + 0], ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2) + 1],
-                                                        ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2) + 0] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i],
-                                                        ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2) + 1] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i],
+                                                        ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2)
+                                                                + 0],
+                                                        ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2)
+                                                                + 1],
+                                                        ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2)
+                                                                + 0]
+                                                                * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i],
+                                                        ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2)
+                                                                + 1]
+                                                                * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i],
                                                         this.textureRgnLan[i]);
                                                 this.batchLan[i].endBatch();
                                             }
                                             if (ePSXeViewGL.this.dpadskin == 1) {
-                                                float sx = ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2) + 0] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i];
-                                                float sy = ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2) + 1] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i];
+                                                float sx = ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i
+                                                        * 2) + 0]
+                                                        * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i];
+                                                float sy = ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i
+                                                        * 2) + 1]
+                                                        * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i];
                                                 // Исправляем координаты для правильного центрирования d-pad
-                                                float centerX = ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2) + 0];
-                                                float centerY = ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2) + 1];
+                                                float centerX = ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i
+                                                        * 2) + 0];
+                                                float centerY = ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i
+                                                        * 2) + 1];
                                                 float ox = centerX - (sx / 2.0f);
                                                 float oy = centerY - (sy / 2.0f);
-                                                
+
                                                 for (int p = 0; p < 4; p++) {
                                                     // Вычисляем правильные позиции для каждой кнопки d-pad
                                                     // Используем исходную логику с правильными смещениями
@@ -3334,7 +4763,8 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                                                     float buttonWidth = this.sizeDpadX[p] * sx;
                                                     float buttonHeight = this.sizeDpadY[p] * sy;
 
-                                                    if (ePSXeViewGL.this.isDpadTouchActive && ePSXeViewGL.this.animationButtonIndex != -1) {
+                                                    if (ePSXeViewGL.this.isDpadTouchActive
+                                                            && ePSXeViewGL.this.animationButtonIndex != -1) {
                                                         int buttonMapping = -1;
                                                         if (ePSXeViewGL.this.animationButtonIndex == 12) {
                                                             buttonMapping = 0;
@@ -3350,7 +4780,8 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                                                             this.batchLanDpad[p].beginBatch();
                                                             this.batchLanDpad[p].drawSprite(
                                                                     buttonCenterX, buttonCenterY,
-                                                                    buttonWidth * ePSXeViewGL.this.buttonMag, buttonHeight * ePSXeViewGL.this.buttonMag,
+                                                                    buttonWidth * ePSXeViewGL.this.buttonMag,
+                                                                    buttonHeight * ePSXeViewGL.this.buttonMag,
                                                                     this.textureRgnLanDpad[p]);
                                                             this.batchLanDpad[p].endBatch();
                                                         } else {
@@ -3375,7 +4806,8 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                                                             this.batchLanDpad[p].beginBatch();
                                                             this.batchLanDpad[p].drawSprite(
                                                                     buttonCenterX, buttonCenterY,
-                                                                    buttonWidth * ePSXeViewGL.this.buttonMag, buttonHeight * ePSXeViewGL.this.buttonMag,
+                                                                    buttonWidth * ePSXeViewGL.this.buttonMag,
+                                                                    buttonHeight * ePSXeViewGL.this.buttonMag,
                                                                     this.textureRgnLanDpad[p]);
                                                             this.batchLanDpad[p].endBatch();
                                                         }
@@ -3384,9 +4816,16 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                                             } else {
                                                 this.batchLan[i].beginBatch();
                                                 this.batchLan[i].drawSprite(
-                                                        ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2) + 0], ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2) + 1],
-                                                        ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2) + 0] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i],
-                                                        ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2) + 1] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i],
+                                                        ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2)
+                                                                + 0],
+                                                        ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2)
+                                                                + 1],
+                                                        ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2)
+                                                                + 0]
+                                                                * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i],
+                                                        ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2)
+                                                                + 1]
+                                                                * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i],
                                                         this.textureRgnLan[i]);
                                                 this.batchLan[i].endBatch();
                                             }
@@ -3394,41 +4833,71 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                                             // Drawing ACTION KEYS
                                             if (ePSXeViewGL.this.emu_pad_draw_mode[0] == 4) {
                                                 this.batchLan[i].beginBatch();
-                                                this.batchLan[i].drawSprite(ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2) + 0], ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2) + 1], ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2) + 0] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i], ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2) + 1] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i], this.textureRgnLan[i]);
+                                                this.batchLan[i].drawSprite(
+                                                        ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2)
+                                                                + 0],
+                                                        ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2)
+                                                                + 1],
+                                                        ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2)
+                                                                + 0]
+                                                                * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i],
+                                                        ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2)
+                                                                + 1]
+                                                                * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i],
+                                                        this.textureRgnLan[i]);
                                                 this.batchLan[i].endBatch();
                                             }
-                                            float sx2 = ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2) + 0] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i];
-                                            float sy2 = ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2) + 1] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i];
+                                            float sx2 = ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2)
+                                                    + 0] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i];
+                                            float sy2 = ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2)
+                                                    + 1] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i];
                                             // Исправляем координаты для правильного центрирования action buttons
-                                            float centerX = ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2) + 0];
-                                            float centerY = ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2) + 1];
+                                            float centerX = ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i
+                                                    * 2) + 0];
+                                            float centerY = ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i
+                                                    * 2) + 1];
                                             float ox2 = centerX - (sx2 / 2.0f);
                                             float oy2 = centerY - (sy2 / 2.0f);
-                                            
+
                                             for (int p2 = 0; p2 < 4; p2++) {
                                                 // Вычисляем правильные позиции для каждой action кнопки
                                                 float buttonCenterX = (this.offActionX[p2] * sx2) + ox2;
                                                 float buttonCenterY = (this.offActionY[p2] * sy2) + oy2;
                                                 float buttonWidth = this.sizeActionX[p2] * sx2;
                                                 float buttonHeight = this.sizeActionY[p2] * sy2;
-                                                
+
                                                 if ((ePSXeViewGL.this.statebuttons & (16 << p2)) == 0) {
                                                     if (ePSXeViewGL.this.emu_pad_draw_mode[0] != 4) {
                                                         this.batchLanAction[p2].beginBatch();
-                                                        this.batchLanAction[p2].drawSprite(buttonCenterX, buttonCenterY, buttonWidth, buttonHeight, this.textureRgnLanAction[p2]);
+                                                        this.batchLanAction[p2].drawSprite(buttonCenterX, buttonCenterY,
+                                                                buttonWidth, buttonHeight,
+                                                                this.textureRgnLanAction[p2]);
                                                         this.batchLanAction[p2].endBatch();
                                                     }
                                                 } else {
                                                     this.batchLanAction[p2].beginBatch();
-                                                    this.batchLanAction[p2].drawSprite(buttonCenterX, buttonCenterY, buttonWidth * ePSXeViewGL.this.buttonMag, buttonHeight * ePSXeViewGL.this.buttonMag, this.textureRgnLanAction[p2]);
+                                                    this.batchLanAction[p2].drawSprite(buttonCenterX, buttonCenterY,
+                                                            buttonWidth * ePSXeViewGL.this.buttonMag,
+                                                            buttonHeight * ePSXeViewGL.this.buttonMag,
+                                                            this.textureRgnLanAction[p2]);
                                                     this.batchLanAction[p2].endBatch();
                                                 }
                                             }
                                         }
                                         if (i == 11 || i == 12) {
                                             this.batchLan[i].beginBatch();
-                                            // Исправленная отрисовка аналоговых стиков для OpenGL 1.0 - используем оригинальные координаты
-                            this.batchLan[i].drawSprite((float) ePSXeViewGL.this.analog_values[0][(i - 11) * 2], (float) ePSXeViewGL.this.analog_values[0][((i - 11) * 2) + 1], ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][26] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i] * 2.0f, ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][27] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i] * 2.0f, this.textureRgnLan[13]);
+                                            // Исправленная отрисовка аналоговых стиков для OpenGL 1.0 - используем
+                                            // оригинальные координаты
+                                            this.batchLan[i].drawSprite(
+                                                    (float) ePSXeViewGL.this.analog_values[0][(i - 11) * 2],
+                                                    (float) ePSXeViewGL.this.analog_values[0][((i - 11) * 2) + 1],
+                                                    ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][26]
+                                                            * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i]
+                                                            * 2.0f,
+                                                    ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][27]
+                                                            * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i]
+                                                            * 2.0f,
+                                                    this.textureRgnLan[13]);
                                             this.batchLan[i].endBatch();
                                         }
                                     }
@@ -3437,14 +4906,38 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                                     gl.glBindTexture(3553, this.mTexExtra);
                                     for (int i2 = 14; i2 < 20; i2++) {
                                         if ((ePSXeViewGL.this.padScreenStatus[ePSXeViewGL.this.mode][i2] & 2) != 2) {
-                                            if (ePSXeViewGL.this.padScreenExtra[i2 - 14] >= 20 && ePSXeViewGL.this.stickyButton[ePSXeViewGL.this.padScreenExtra[i2 - 14] - 20] == 1) {
+                                            if (ePSXeViewGL.this.padScreenExtra[i2 - 14] >= 20
+                                                    && ePSXeViewGL.this.stickyButton[ePSXeViewGL.this.padScreenExtra[i2
+                                                            - 14] - 20] == 1) {
                                                 int j = ePSXeViewGL.this.padScreenExtra[i2 - 14];
                                                 this.batchLan[i2].beginBatch();
-                                                this.batchLan[i2].drawSprite(ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i2 * 2) + 0], ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i2 * 2) + 1], ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i2 * 2) + 0] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i2], ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i2 * 2) + 1] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i2], this.textureRgnLan[j]);
+                                                this.batchLan[i2].drawSprite(
+                                                        ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i2 * 2)
+                                                                + 0],
+                                                        ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i2 * 2)
+                                                                + 1],
+                                                        ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i2
+                                                                * 2) + 0]
+                                                                * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i2],
+                                                        ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i2
+                                                                * 2) + 1]
+                                                                * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i2],
+                                                        this.textureRgnLan[j]);
                                                 this.batchLan[i2].endBatch();
                                             } else {
                                                 this.batchLan[i2].beginBatch();
-                                                this.batchLan[i2].drawSprite(ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i2 * 2) + 0], ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i2 * 2) + 1], ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i2 * 2) + 0] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i2], ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i2 * 2) + 1] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i2], this.textureRgnLan[i2]);
+                                                this.batchLan[i2].drawSprite(
+                                                        ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i2 * 2)
+                                                                + 0],
+                                                        ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i2 * 2)
+                                                                + 1],
+                                                        ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i2
+                                                                * 2) + 0]
+                                                                * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i2],
+                                                        ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i2
+                                                                * 2) + 1]
+                                                                * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i2],
+                                                        this.textureRgnLan[i2]);
                                                 this.batchLan[i2].endBatch();
                                             }
                                         }
@@ -3453,8 +4946,12 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                                 gl.glDisable(3042);
                                 gl.glDisable(3553);
                             }
-                            if (ePSXeViewGL.this.emu_player_mode != 10 || ePSXeViewGL.this.emu_split_mode != 0 || ePSXeViewGL.this.emu_pad_draw_mode[0] == 2) {
-                                if ((ePSXeViewGL.this.emu_player_mode == 10 && ePSXeViewGL.this.emu_pad_draw_mode[0] != 2 && ePSXeViewGL.this.emu_split_mode == 1) || ePSXeViewGL.this.emu_split_mode == 2) {
+                            if (ePSXeViewGL.this.emu_player_mode != 10 || ePSXeViewGL.this.emu_split_mode != 0
+                                    || ePSXeViewGL.this.emu_pad_draw_mode[0] == 2) {
+                                if ((ePSXeViewGL.this.emu_player_mode == 10
+                                        && ePSXeViewGL.this.emu_pad_draw_mode[0] != 2
+                                        && ePSXeViewGL.this.emu_split_mode == 1)
+                                        || ePSXeViewGL.this.emu_split_mode == 2) {
                                     gl.glEnable(3553);
                                     gl.glEnable(3042);
                                     gl.glBlendFunc(770, 771);
@@ -3464,7 +4961,11 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                                     }
                                     for (int i3 = 0; i3 < 8; i3++) {
                                         this.batchLan[i3].beginBatch();
-                                        this.batchLan[i3].drawSprite(ePSXeViewGL.this.padOffScreenLan2H[(i3 * 2) + 0], ePSXeViewGL.this.padOffScreenLan2H[(i3 * 2) + 1], ePSXeViewGL.this.padSizeScreenLan2H[(i3 * 2) + 0], ePSXeViewGL.this.padSizeScreenLan2H[(i3 * 2) + 1], this.textureRgnLan[i3]);
+                                        this.batchLan[i3].drawSprite(ePSXeViewGL.this.padOffScreenLan2H[(i3 * 2) + 0],
+                                                ePSXeViewGL.this.padOffScreenLan2H[(i3 * 2) + 1],
+                                                ePSXeViewGL.this.padSizeScreenLan2H[(i3 * 2) + 0],
+                                                ePSXeViewGL.this.padSizeScreenLan2H[(i3 * 2) + 1],
+                                                this.textureRgnLan[i3]);
                                         this.batchLan[i3].endBatch();
                                     }
                                     gl.glDisable(3042);
@@ -3478,7 +4979,15 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                                     }
                                     for (int i4 = 0; i4 < 8; i4++) {
                                         this.batchLan[i4].beginBatch();
-                                        this.batchLan[i4].drawSpriteSwap(ePSXeViewGL.this.mWidth - ePSXeViewGL.this.padOffScreenLan2H[(i4 * 2) + 0], (((float) ePSXeViewGL.this.mHeight / 2) - ePSXeViewGL.this.padOffScreenLan2H[(i4 * 2) + 1]) + ((float) ePSXeViewGL.this.mHeight / 2), ePSXeViewGL.this.padSizeScreenLan2H[(i4 * 2) + 0], ePSXeViewGL.this.padSizeScreenLan2H[(i4 * 2) + 1], this.textureRgnLan[i4]);
+                                        this.batchLan[i4].drawSpriteSwap(
+                                                ePSXeViewGL.this.mWidth
+                                                        - ePSXeViewGL.this.padOffScreenLan2H[(i4 * 2) + 0],
+                                                (((float) ePSXeViewGL.this.mHeight / 2)
+                                                        - ePSXeViewGL.this.padOffScreenLan2H[(i4 * 2) + 1])
+                                                        + ((float) ePSXeViewGL.this.mHeight / 2),
+                                                ePSXeViewGL.this.padSizeScreenLan2H[(i4 * 2) + 0],
+                                                ePSXeViewGL.this.padSizeScreenLan2H[(i4 * 2) + 1],
+                                                this.textureRgnLan[i4]);
                                         this.batchLan[i4].endBatch();
                                     }
                                     gl.glDisable(3042);
@@ -3497,7 +5006,10 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                                 }
                                 for (int i5 = 0; i5 < 8; i5++) {
                                     this.batchLan[i5].beginBatch();
-                                    this.batchLan[i5].drawSprite(ePSXeViewGL.this.padOffScreenLan2V[(i5 * 2) + 0], ePSXeViewGL.this.padOffScreenLan2V[(i5 * 2) + 1], ePSXeViewGL.this.padSizeScreenLan2V[(i5 * 2) + 0], ePSXeViewGL.this.padSizeScreenLan2V[(i5 * 2) + 1], this.textureRgnLan[i5]);
+                                    this.batchLan[i5].drawSprite(ePSXeViewGL.this.padOffScreenLan2V[(i5 * 2) + 0],
+                                            ePSXeViewGL.this.padOffScreenLan2V[(i5 * 2) + 1],
+                                            ePSXeViewGL.this.padSizeScreenLan2V[(i5 * 2) + 0],
+                                            ePSXeViewGL.this.padSizeScreenLan2V[(i5 * 2) + 1], this.textureRgnLan[i5]);
                                     this.batchLan[i5].endBatch();
                                 }
                                 gl.glDisable(3042);
@@ -3515,7 +5027,10 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                                 }
                                 for (int i6 = 0; i6 < 8; i6++) {
                                     this.batchLan[i6].beginBatch();
-                                    this.batchLan[i6].drawSprite(ePSXeViewGL.this.padOffScreenLan2V[(i6 * 2) + 0], ePSXeViewGL.this.padOffScreenLan2V[(i6 * 2) + 1], ePSXeViewGL.this.padSizeScreenLan2V[(i6 * 2) + 0], ePSXeViewGL.this.padSizeScreenLan2V[(i6 * 2) + 1], this.textureRgnLan[i6]);
+                                    this.batchLan[i6].drawSprite(ePSXeViewGL.this.padOffScreenLan2V[(i6 * 2) + 0],
+                                            ePSXeViewGL.this.padOffScreenLan2V[(i6 * 2) + 1],
+                                            ePSXeViewGL.this.padSizeScreenLan2V[(i6 * 2) + 0],
+                                            ePSXeViewGL.this.padSizeScreenLan2V[(i6 * 2) + 1], this.textureRgnLan[i6]);
                                     this.batchLan[i6].endBatch();
                                 }
                                 gl.glDisable(3042);
@@ -3526,7 +5041,9 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                             gl.glEnable(3553);
                             gl.glEnableClientState(32884);
                             this.batchPor.beginBatch(this.mTexPor);
-                            this.batchPor.drawSprite(ePSXeViewGL.this.padOffScreenPor[0], ePSXeViewGL.this.padOffScreenPor[1], ePSXeViewGL.this.padSizeScreenPor[0], ePSXeViewGL.this.padSizeScreenPor[1], this.textureRgnPor);
+                            this.batchPor.drawSprite(ePSXeViewGL.this.padOffScreenPor[0],
+                                    ePSXeViewGL.this.padOffScreenPor[1], ePSXeViewGL.this.padSizeScreenPor[0],
+                                    ePSXeViewGL.this.padSizeScreenPor[1], this.textureRgnPor);
                             this.batchPor.endBatch();
                             gl.glDisableClientState(32884);
                             if (ePSXeViewGL.this.padScreenExtraEnabled == 1 && !ePSXeViewGL.this.hidePad) {
@@ -3535,14 +5052,24 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                                 gl.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
                                 for (int i7 = 14; i7 < 20; i7++) {
                                     if ((ePSXeViewGL.this.padScreenStatus[ePSXeViewGL.this.mode][i7] & 2) != 2) {
-                                        if (ePSXeViewGL.this.padScreenExtra[i7 - 14] >= 20 && ePSXeViewGL.this.stickyButton[ePSXeViewGL.this.padScreenExtra[i7 - 14] - 20] == 1) {
+                                        if (ePSXeViewGL.this.padScreenExtra[i7 - 14] >= 20
+                                                && ePSXeViewGL.this.stickyButton[ePSXeViewGL.this.padScreenExtra[i7
+                                                        - 14] - 20] == 1) {
                                             int j2 = ePSXeViewGL.this.padScreenExtra[i7 - 14];
                                             this.batchLan[i7].beginBatch(this.mTexExtra);
-                                            this.batchLan[i7].drawSprite(ePSXeViewGL.this.padOffScreenPor[(i7 * 2) + 0], ePSXeViewGL.this.padOffScreenPor[(i7 * 2) + 1], ePSXeViewGL.this.padSizeScreenPor[(i7 * 2) + 0], ePSXeViewGL.this.padSizeScreenPor[(i7 * 2) + 1], this.textureRgnLan[j2]);
+                                            this.batchLan[i7].drawSprite(ePSXeViewGL.this.padOffScreenPor[(i7 * 2) + 0],
+                                                    ePSXeViewGL.this.padOffScreenPor[(i7 * 2) + 1],
+                                                    ePSXeViewGL.this.padSizeScreenPor[(i7 * 2) + 0],
+                                                    ePSXeViewGL.this.padSizeScreenPor[(i7 * 2) + 1],
+                                                    this.textureRgnLan[j2]);
                                             this.batchLan[i7].endBatch();
                                         } else {
                                             this.batchLan[i7].beginBatch(this.mTexExtra);
-                                            this.batchLan[i7].drawSprite(ePSXeViewGL.this.padOffScreenPor[(i7 * 2) + 0], ePSXeViewGL.this.padOffScreenPor[(i7 * 2) + 1], ePSXeViewGL.this.padSizeScreenPor[(i7 * 2) + 0], ePSXeViewGL.this.padSizeScreenPor[(i7 * 2) + 1], this.textureRgnLan[i7]);
+                                            this.batchLan[i7].drawSprite(ePSXeViewGL.this.padOffScreenPor[(i7 * 2) + 0],
+                                                    ePSXeViewGL.this.padOffScreenPor[(i7 * 2) + 1],
+                                                    ePSXeViewGL.this.padSizeScreenPor[(i7 * 2) + 0],
+                                                    ePSXeViewGL.this.padSizeScreenPor[(i7 * 2) + 1],
+                                                    this.textureRgnLan[i7]);
                                             this.batchLan[i7].endBatch();
                                         }
                                     }
@@ -3582,71 +5109,346 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
         }
 
         public void resetPad1Values() {
+            // Используем единую функцию для вычисления базового масштабирования
+            calculateBasePadResize();
+            applyBaseSizesToPads();
+        }
+
+        private void calculateBasePadResize() {
             if (ePSXeViewGL.this.emu_screen_orientation != 1) {
-                if (ePSXeViewGL.this.mWidth <= 600) {
-                    ePSXeViewGL.this.padResize = 0.8f;
-                } else if (ePSXeViewGL.this.mWidth <= 600 || ePSXeViewGL.this.mWidth > 800) {
-                    if (ePSXeViewGL.this.mWidth <= 800 || ePSXeViewGL.this.mWidth > 1280) {
-                        if (ePSXeViewGL.this.mWidth <= 1280 || ePSXeViewGL.this.mWidth > 1500) {
-                            ePSXeViewGL.this.padResize = 1.8f;
-                        } else {
-                            ePSXeViewGL.this.padResize = 1.5f;
-                        }
-                    } else {
-                        ePSXeViewGL.this.padResize = 1.35f;
-                    }
-                } else {
+                // Ландшафтный режим - простое масштабирование с уменьшением в 3 раза
+                float baseWidth = 800.0f;
+                float scaleX = (float) ePSXeViewGL.this.mWidth / baseWidth;
+                float scaleY = (float) ePSXeViewGL.this.mHeight / 480.0f;
+                ePSXeViewGL.this.padResize = Math.min(scaleX, scaleY);
+
+                // УМЕНЬШАЕМ кнопки в 2 раза - идеальный размер
+                ePSXeViewGL.this.padResize = ePSXeViewGL.this.padResize / 2.0f;
+
+                // Ограничиваем разумными пределами
+                if (ePSXeViewGL.this.padResize > 1.0f) {
                     ePSXeViewGL.this.padResize = 1.0f;
+                } else if (ePSXeViewGL.this.padResize < 0.3f) {
+                    ePSXeViewGL.this.padResize = 0.3f;
                 }
             } else if (ePSXeViewGL.this.emu_portrait_skin == 1) {
-                ePSXeViewGL.this.padResize = ePSXeViewGL.this.mWidth / 562.0f;
+                // Портретный режим - также уменьшаем в 2 раза
+                ePSXeViewGL.this.padResize = (ePSXeViewGL.this.mWidth / 562.0f) / 2.0f;
+            } else {
+                // Портретный режим без скина - уменьшаем в 2 раза
+                ePSXeViewGL.this.padResize = 1.0f / 2.0f;
             }
-            float[][] padSizeScreenLantmp = {new float[]{228.0f, 228.0f, 224.0f, 248.0f, 66.0f, 50.0f, 66.0f, 62.0f, 64.0f, 60.0f, 64.0f, 60.0f, 64.0f, 60.0f, 64.0f, 60.0f, 53.0f, 41.0f, 64.0f, 60.0f, 64.0f, 60.0f, 222.0f, 222.0f, 222.0f, 222.0f, 71.0f, 71.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f}, new float[]{228.0f, 228.0f, 224.0f, 248.0f, 66.0f, 50.0f, 66.0f, 62.0f, 64.0f, 60.0f, 64.0f, 60.0f, 64.0f, 60.0f, 64.0f, 60.0f, 53.0f, 41.0f, 64.0f, 60.0f, 64.0f, 60.0f, 222.0f, 222.0f, 222.0f, 222.0f, 71.0f, 71.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f}};
+        }
+
+        private void applyBaseSizesToPads() {
+            float[][] padSizeScreenLantmp = {
+                    new float[] { 228.0f, 228.0f, 224.0f, 248.0f, 66.0f, 50.0f, 66.0f, 62.0f, 64.0f, 60.0f, 64.0f,
+                            60.0f, 64.0f, 60.0f, 64.0f, 60.0f, 53.0f, 41.0f, 64.0f, 60.0f, 64.0f, 60.0f, 222.0f, 222.0f,
+                            222.0f, 222.0f, 71.0f, 71.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f,
+                            64.0f, 64.0f, 64.0f },
+                    new float[] { 228.0f, 228.0f, 224.0f, 248.0f, 66.0f, 50.0f, 66.0f, 62.0f, 64.0f, 60.0f, 64.0f,
+                            60.0f, 64.0f, 60.0f, 64.0f, 60.0f, 53.0f, 41.0f, 64.0f, 60.0f, 64.0f, 60.0f, 222.0f, 222.0f,
+                            222.0f, 222.0f, 71.0f, 71.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f,
+                            64.0f, 64.0f, 64.0f } };
             for (int i = 0; i < 20; i++) {
-                float sizeMultiplier = (ePSXeViewGL.this.emu_screen_orientation != 1) ? 0.7f : 1.0f; // Уменьшаем в половину для ландшафтного режима
-                ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2) + 0] = padSizeScreenLantmp[ePSXeViewGL.this.mode][(i * 2) + 0] * ePSXeViewGL.this.padResize * sizeMultiplier;
-                ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2) + 1] = padSizeScreenLantmp[ePSXeViewGL.this.mode][(i * 2) + 1] * ePSXeViewGL.this.padResize * sizeMultiplier;
+                ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2)
+                        + 0] = padSizeScreenLantmp[ePSXeViewGL.this.mode][(i * 2) + 0] * ePSXeViewGL.this.padResize;
+                ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2)
+                        + 1] = padSizeScreenLantmp[ePSXeViewGL.this.mode][(i * 2) + 1] * ePSXeViewGL.this.padResize;
             }
             if (ePSXeViewGL.this.emu_screen_orientation == 1) {
                 if (ePSXeViewGL.this.emu_portrait_skin == 1) {
-                    float[][] padOffScreenLantmp = {new float[]{ePSXeViewGL.this.padSizeScreenLan[0][0] / 2.0f, ePSXeViewGL.this.padSizeScreenLan[0][1] / 2.0f, ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][2] / 2.0f), ePSXeViewGL.this.padSizeScreenLan[0][3] / 2.0f, (((float) ePSXeViewGL.this.mWidth / 2) - ePSXeViewGL.this.padSizeScreenLan[0][4]) - 30.0f, ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][5] / 2.0f), ((float) ePSXeViewGL.this.mWidth / 2) + 30, ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][7] / 2.0f), ePSXeViewGL.this.padSizeScreenLan[0][8] / 2.0f, ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][9] / 2.0f), (ePSXeViewGL.this.padSizeScreenLan[0][10] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[0][8], ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][11] / 2.0f), ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][12] / 2.0f), ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][13] / 2.0f), (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][14] / 2.0f)) - ePSXeViewGL.this.padSizeScreenLan[0][12], ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][15] / 2.0f), ((float) ePSXeViewGL.this.mWidth / 2) + 40 + ePSXeViewGL.this.padSizeScreenLan[0][6], ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][17] / 2.0f), (ePSXeViewGL.this.padSizeScreenLan[0][18] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[0][10] + ePSXeViewGL.this.padSizeScreenLan[0][8], ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][19] / 2.0f), ((ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][20] / 2.0f)) - ePSXeViewGL.this.padSizeScreenLan[0][12]) - ePSXeViewGL.this.padSizeScreenLan[0][14], ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][21] / 2.0f), ePSXeViewGL.this.padSizeScreenLan[0][22] / 2.0f, ePSXeViewGL.this.padSizeScreenLan[0][23] / 2.0f, ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][24] / 2.0f), ePSXeViewGL.this.padSizeScreenLan[0][25] / 2.0f, 0.0f, 0.0f, ePSXeViewGL.this.padSizeScreenLan[0][28] / 2.0f, ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[0][29] / 2.0f), (ePSXeViewGL.this.padSizeScreenLan[0][30] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[0][28], ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[0][31] / 2.0f), (ePSXeViewGL.this.padSizeScreenLan[0][32] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[0][28] + ePSXeViewGL.this.padSizeScreenLan[0][30], ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[0][33] / 2.0f), ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][34] / 2.0f), ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[0][35] / 2.0f), (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][36] / 2.0f)) - ePSXeViewGL.this.padSizeScreenLan[0][34], ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[0][37] / 2.0f), ((ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][38] / 2.0f)) - ePSXeViewGL.this.padSizeScreenLan[0][34]) - ePSXeViewGL.this.padSizeScreenLan[0][36], ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[0][39] / 2.0f)}, new float[]{((float) ePSXeViewGL.this.mWidth / 2) - ((ePSXeViewGL.this.padSizeScreenLan[1][0] / 2.0f) * 0.76f), (float) ePSXeViewGL.this.mHeight / 4, ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][2] / 2.0f), ePSXeViewGL.this.padSizeScreenLan[1][3] / 2.0f, (((float) ePSXeViewGL.this.mWidth / 2) - ePSXeViewGL.this.padSizeScreenLan[1][4]) - 30.0f, ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[1][5] / 2.0f), ((float) ePSXeViewGL.this.mWidth / 2) + 30, ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[1][7] / 2.0f), ePSXeViewGL.this.padSizeScreenLan[1][8] / 2.0f, ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[1][9] / 2.0f), (ePSXeViewGL.this.padSizeScreenLan[1][10] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[0][8], ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[1][11] / 2.0f), ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][12] / 2.0f), ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[1][13] / 2.0f), (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][14] / 2.0f)) - ePSXeViewGL.this.padSizeScreenLan[1][12], ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[1][15] / 2.0f), ((float) ePSXeViewGL.this.mWidth / 2) + 40 + ePSXeViewGL.this.padSizeScreenLan[1][6], ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[1][17] / 2.0f), (ePSXeViewGL.this.padSizeScreenLan[1][18] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[1][10] + ePSXeViewGL.this.padSizeScreenLan[1][8], ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[1][19] / 2.0f), ((ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][20] / 2.0f)) - ePSXeViewGL.this.padSizeScreenLan[1][12]) - ePSXeViewGL.this.padSizeScreenLan[1][14], ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[1][21] / 2.0f), ePSXeViewGL.this.padSizeScreenLan[1][22] / 2.0f, ePSXeViewGL.this.padSizeScreenLan[1][23] / 2.0f, ((float) ePSXeViewGL.this.mWidth / 2) + ((ePSXeViewGL.this.padSizeScreenLan[1][24] / 2.0f) * 0.76f), (float) ePSXeViewGL.this.mHeight / 4, 0.0f, 0.0f, ePSXeViewGL.this.padSizeScreenLan[1][28] / 2.0f, ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[1][29] / 2.0f), (ePSXeViewGL.this.padSizeScreenLan[1][30] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[1][28], ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[1][31] / 2.0f), (ePSXeViewGL.this.padSizeScreenLan[1][32] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[1][28] + ePSXeViewGL.this.padSizeScreenLan[1][30], ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[1][33] / 2.0f), ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][34] / 2.0f), ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[1][35] / 2.0f), (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][36] / 2.0f)) - ePSXeViewGL.this.padSizeScreenLan[1][34], ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[1][37] / 2.0f), ((ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][38] / 2.0f)) - ePSXeViewGL.this.padSizeScreenLan[1][34]) - ePSXeViewGL.this.padSizeScreenLan[1][36], ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[1][39] / 2.0f)}};
+                    float[][] padOffScreenLantmp = { new float[] { ePSXeViewGL.this.padSizeScreenLan[0][0] / 2.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[0][1] / 2.0f,
+                            ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][2] / 2.0f),
+                            ePSXeViewGL.this.padSizeScreenLan[0][3] / 2.0f,
+                            (((float) ePSXeViewGL.this.mWidth / 2) - ePSXeViewGL.this.padSizeScreenLan[0][4]) - 30.0f,
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][5] / 2.0f),
+                            ((float) ePSXeViewGL.this.mWidth / 2) + 30,
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][7] / 2.0f),
+                            ePSXeViewGL.this.padSizeScreenLan[0][8] / 2.0f,
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][9] / 2.0f),
+                            (ePSXeViewGL.this.padSizeScreenLan[0][10] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[0][8],
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][11] / 2.0f),
+                            ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][12] / 2.0f),
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][13] / 2.0f),
+                            (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][14] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[0][12],
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][15] / 2.0f),
+                            ((float) ePSXeViewGL.this.mWidth / 2) + 40 + ePSXeViewGL.this.padSizeScreenLan[0][6],
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][17] / 2.0f),
+                            (ePSXeViewGL.this.padSizeScreenLan[0][18] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[0][10]
+                                    + ePSXeViewGL.this.padSizeScreenLan[0][8],
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][19] / 2.0f),
+                            ((ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][20] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[0][12])
+                                    - ePSXeViewGL.this.padSizeScreenLan[0][14],
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][21] / 2.0f),
+                            ePSXeViewGL.this.padSizeScreenLan[0][22] / 2.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[0][23] / 2.0f,
+                            ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][24] / 2.0f),
+                            ePSXeViewGL.this.padSizeScreenLan[0][25] / 2.0f, 0.0f, 0.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[0][28] / 2.0f,
+                            ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[0][29] / 2.0f),
+                            (ePSXeViewGL.this.padSizeScreenLan[0][30] / 2.0f)
+                                    + ePSXeViewGL.this.padSizeScreenLan[0][28],
+                            ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[0][31] / 2.0f),
+                            (ePSXeViewGL.this.padSizeScreenLan[0][32] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[0][28]
+                                    + ePSXeViewGL.this.padSizeScreenLan[0][30],
+                            ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[0][33] / 2.0f),
+                            ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][34] / 2.0f),
+                            ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[0][35] / 2.0f),
+                            (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][36] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[0][34],
+                            ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[0][37] / 2.0f),
+                            ((ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][38] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[0][34])
+                                    - ePSXeViewGL.this.padSizeScreenLan[0][36],
+                            ((float) ePSXeViewGL.this.mHeight / 3)
+                                    - (ePSXeViewGL.this.padSizeScreenLan[0][39] / 2.0f) },
+                            new float[] {
+                                    ((float) ePSXeViewGL.this.mWidth / 2)
+                                            - ((ePSXeViewGL.this.padSizeScreenLan[1][0] / 2.0f) * 0.76f),
+                                    (float) ePSXeViewGL.this.mHeight / 4,
+                                    ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][2] / 2.0f),
+                                    ePSXeViewGL.this.padSizeScreenLan[1][3] / 2.0f,
+                                    (((float) ePSXeViewGL.this.mWidth / 2) - ePSXeViewGL.this.padSizeScreenLan[1][4])
+                                            - 30.0f,
+                                    ((float) ePSXeViewGL.this.mHeight / 2)
+                                            - (ePSXeViewGL.this.padSizeScreenLan[1][5] / 2.0f),
+                                    ((float) ePSXeViewGL.this.mWidth / 2) + 30,
+                                    ((float) ePSXeViewGL.this.mHeight / 2)
+                                            - (ePSXeViewGL.this.padSizeScreenLan[1][7] / 2.0f),
+                                    ePSXeViewGL.this.padSizeScreenLan[1][8] / 2.0f,
+                                    ((float) ePSXeViewGL.this.mHeight / 2)
+                                            - (ePSXeViewGL.this.padSizeScreenLan[1][9] / 2.0f),
+                                    (ePSXeViewGL.this.padSizeScreenLan[1][10] / 2.0f)
+                                            + ePSXeViewGL.this.padSizeScreenLan[0][8],
+                                    ((float) ePSXeViewGL.this.mHeight / 2)
+                                            - (ePSXeViewGL.this.padSizeScreenLan[1][11] / 2.0f),
+                                    ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][12] / 2.0f),
+                                    ((float) ePSXeViewGL.this.mHeight / 2)
+                                            - (ePSXeViewGL.this.padSizeScreenLan[1][13] / 2.0f),
+                                    (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][14] / 2.0f))
+                                            - ePSXeViewGL.this.padSizeScreenLan[1][12],
+                                    ((float) ePSXeViewGL.this.mHeight / 2)
+                                            - (ePSXeViewGL.this.padSizeScreenLan[1][15] / 2.0f),
+                                    ((float) ePSXeViewGL.this.mWidth / 2) + 40
+                                            + ePSXeViewGL.this.padSizeScreenLan[1][6],
+                                    ((float) ePSXeViewGL.this.mHeight / 2)
+                                            - (ePSXeViewGL.this.padSizeScreenLan[1][17] / 2.0f),
+                                    (ePSXeViewGL.this.padSizeScreenLan[1][18] / 2.0f)
+                                            + ePSXeViewGL.this.padSizeScreenLan[1][10]
+                                            + ePSXeViewGL.this.padSizeScreenLan[1][8],
+                                    ((float) ePSXeViewGL.this.mHeight / 2)
+                                            - (ePSXeViewGL.this.padSizeScreenLan[1][19] / 2.0f),
+                                    ((ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][20] / 2.0f))
+                                            - ePSXeViewGL.this.padSizeScreenLan[1][12])
+                                            - ePSXeViewGL.this.padSizeScreenLan[1][14],
+                                    ((float) ePSXeViewGL.this.mHeight / 2)
+                                            - (ePSXeViewGL.this.padSizeScreenLan[1][21] / 2.0f),
+                                    ePSXeViewGL.this.padSizeScreenLan[1][22] / 2.0f,
+                                    ePSXeViewGL.this.padSizeScreenLan[1][23] / 2.0f,
+                                    ((float) ePSXeViewGL.this.mWidth / 2)
+                                            + ((ePSXeViewGL.this.padSizeScreenLan[1][24] / 2.0f) * 0.76f),
+                                    (float) ePSXeViewGL.this.mHeight / 4, 0.0f, 0.0f,
+                                    ePSXeViewGL.this.padSizeScreenLan[1][28] / 2.0f,
+                                    ((float) ePSXeViewGL.this.mHeight / 3)
+                                            - (ePSXeViewGL.this.padSizeScreenLan[1][29] / 2.0f),
+                                    (ePSXeViewGL.this.padSizeScreenLan[1][30] / 2.0f)
+                                            + ePSXeViewGL.this.padSizeScreenLan[1][28],
+                                    ((float) ePSXeViewGL.this.mHeight / 3)
+                                            - (ePSXeViewGL.this.padSizeScreenLan[1][31] / 2.0f),
+                                    (ePSXeViewGL.this.padSizeScreenLan[1][32] / 2.0f)
+                                            + ePSXeViewGL.this.padSizeScreenLan[1][28]
+                                            + ePSXeViewGL.this.padSizeScreenLan[1][30],
+                                    ((float) ePSXeViewGL.this.mHeight / 3)
+                                            - (ePSXeViewGL.this.padSizeScreenLan[1][33] / 2.0f),
+                                    ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][34] / 2.0f),
+                                    ((float) ePSXeViewGL.this.mHeight / 3)
+                                            - (ePSXeViewGL.this.padSizeScreenLan[1][35] / 2.0f),
+                                    (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][36] / 2.0f))
+                                            - ePSXeViewGL.this.padSizeScreenLan[1][34],
+                                    ((float) ePSXeViewGL.this.mHeight / 3)
+                                            - (ePSXeViewGL.this.padSizeScreenLan[1][37] / 2.0f),
+                                    ((ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][38] / 2.0f))
+                                            - ePSXeViewGL.this.padSizeScreenLan[1][34])
+                                            - ePSXeViewGL.this.padSizeScreenLan[1][36],
+                                    ((float) ePSXeViewGL.this.mHeight / 3)
+                                            - (ePSXeViewGL.this.padSizeScreenLan[1][39] / 2.0f) } };
                     for (int i2 = 0; i2 < 20; i2++) {
-                        ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i2 * 2) + 0] = padOffScreenLantmp[ePSXeViewGL.this.mode][(i2 * 2) + 0];
-                        ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i2 * 2) + 1] = padOffScreenLantmp[ePSXeViewGL.this.mode][(i2 * 2) + 1];
+                        ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i2 * 2)
+                                + 0] = padOffScreenLantmp[ePSXeViewGL.this.mode][(i2 * 2) + 0];
+                        ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i2 * 2)
+                                + 1] = padOffScreenLantmp[ePSXeViewGL.this.mode][(i2 * 2) + 1];
                     }
                     return;
                 }
                 return;
             }
-            float[][] padOffScreenLantmp2 = {new float[]{ePSXeViewGL.this.padSizeScreenLan[0][0] / 2.0f, ePSXeViewGL.this.padSizeScreenLan[0][1] / 2.0f, ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][2] / 2.0f), ePSXeViewGL.this.padSizeScreenLan[0][3] / 2.0f, (((float) ePSXeViewGL.this.mWidth / 2) - ePSXeViewGL.this.padSizeScreenLan[0][4]) - 30.0f, ePSXeViewGL.this.padSizeScreenLan[0][5] / 2.0f, ((float) ePSXeViewGL.this.mWidth / 2) + 30, ePSXeViewGL.this.padSizeScreenLan[0][7] / 2.0f, ePSXeViewGL.this.padSizeScreenLan[0][8] / 2.0f, ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][9] / 2.0f), (ePSXeViewGL.this.padSizeScreenLan[0][10] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[0][8], ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][11] / 2.0f), ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][12] / 2.0f), ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][13] / 2.0f), (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][14] / 2.0f)) - ePSXeViewGL.this.padSizeScreenLan[0][12], ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][15] / 2.0f), ((float) ePSXeViewGL.this.mWidth / 2) + 40 + ePSXeViewGL.this.padSizeScreenLan[0][6], ePSXeViewGL.this.padSizeScreenLan[0][17] / 2.0f, (ePSXeViewGL.this.padSizeScreenLan[0][18] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[0][10] + ePSXeViewGL.this.padSizeScreenLan[0][8], ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][19] / 2.0f), ((ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][20] / 2.0f)) - ePSXeViewGL.this.padSizeScreenLan[0][12]) - ePSXeViewGL.this.padSizeScreenLan[0][14], ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][21] / 2.0f), ePSXeViewGL.this.padSizeScreenLan[0][22] / 2.0f, ePSXeViewGL.this.padSizeScreenLan[0][23] / 2.0f, ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][24] / 2.0f), ePSXeViewGL.this.padSizeScreenLan[0][25] / 2.0f, 0.0f, 0.0f, ePSXeViewGL.this.padSizeScreenLan[0][28] / 2.0f, (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][29] / 2.0f)) - (ePSXeViewGL.this.padSizeScreenLan[0][10] * 2.0f), (ePSXeViewGL.this.padSizeScreenLan[0][30] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[0][28], (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][31] / 2.0f)) - (ePSXeViewGL.this.padSizeScreenLan[0][10] * 2.0f), (ePSXeViewGL.this.padSizeScreenLan[0][32] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[0][28] + ePSXeViewGL.this.padSizeScreenLan[0][30], (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][33] / 2.0f)) - (ePSXeViewGL.this.padSizeScreenLan[0][10] * 2.0f), ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][34] / 2.0f), (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][35] / 2.0f)) - (ePSXeViewGL.this.padSizeScreenLan[0][10] * 2.0f), (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][36] / 2.0f)) - ePSXeViewGL.this.padSizeScreenLan[0][34], (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][37] / 2.0f)) - (ePSXeViewGL.this.padSizeScreenLan[0][10] * 2.0f), ((ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][38] / 2.0f)) - ePSXeViewGL.this.padSizeScreenLan[0][34]) - ePSXeViewGL.this.padSizeScreenLan[0][36], (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][39] / 2.0f)) - (ePSXeViewGL.this.padSizeScreenLan[0][10] * 2.0f)}, new float[]{((float) ePSXeViewGL.this.mWidth / 2) - ((ePSXeViewGL.this.padSizeScreenLan[1][0] / 2.0f) * 0.76f), (float) ePSXeViewGL.this.mHeight / 2, ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][2] / 2.0f), ePSXeViewGL.this.padSizeScreenLan[1][3] / 2.0f, (((float) ePSXeViewGL.this.mWidth / 2) - ePSXeViewGL.this.padSizeScreenLan[1][4]) - 30.0f, ePSXeViewGL.this.padSizeScreenLan[1][5] / 2.0f, ((float) ePSXeViewGL.this.mWidth / 2) + 30, ePSXeViewGL.this.padSizeScreenLan[1][7] / 2.0f, ePSXeViewGL.this.padSizeScreenLan[1][8] / 2.0f, ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][9] / 2.0f), (ePSXeViewGL.this.padSizeScreenLan[1][10] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[1][8], ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][11] / 2.0f), ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][12] / 2.0f), ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][13] / 2.0f), (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][14] / 2.0f)) - ePSXeViewGL.this.padSizeScreenLan[1][12], ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][15] / 2.0f), ((float) ePSXeViewGL.this.mWidth / 2) + 40 + ePSXeViewGL.this.padSizeScreenLan[1][6], ePSXeViewGL.this.padSizeScreenLan[1][17] / 2.0f, (ePSXeViewGL.this.padSizeScreenLan[1][18] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[1][10] + ePSXeViewGL.this.padSizeScreenLan[1][8], ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][19] / 2.0f), ((ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][20] / 2.0f)) - ePSXeViewGL.this.padSizeScreenLan[1][12]) - ePSXeViewGL.this.padSizeScreenLan[1][14], ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][21] / 2.0f), ePSXeViewGL.this.padSizeScreenLan[1][22] / 2.0f, ePSXeViewGL.this.padSizeScreenLan[1][23] / 2.0f, ((float) ePSXeViewGL.this.mWidth / 2) + ((ePSXeViewGL.this.padSizeScreenLan[1][24] / 2.0f) * 0.76f), (float) ePSXeViewGL.this.mHeight / 2, 0.0f, 0.0f, ePSXeViewGL.this.padSizeScreenLan[1][28] / 2.0f, (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][29] / 2.0f)) - (ePSXeViewGL.this.padSizeScreenLan[1][10] * 2.0f), (ePSXeViewGL.this.padSizeScreenLan[1][30] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[1][28], (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][31] / 2.0f)) - (ePSXeViewGL.this.padSizeScreenLan[1][10] * 2.0f), (ePSXeViewGL.this.padSizeScreenLan[1][32] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[1][28] + ePSXeViewGL.this.padSizeScreenLan[1][30], (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][33] / 2.0f)) - (ePSXeViewGL.this.padSizeScreenLan[1][10] * 2.0f), ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][34] / 2.0f), (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][35] / 2.0f)) - (ePSXeViewGL.this.padSizeScreenLan[1][10] * 2.0f), (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][36] / 2.0f)) - ePSXeViewGL.this.padSizeScreenLan[1][34], (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][37] / 2.0f)) - (ePSXeViewGL.this.padSizeScreenLan[1][10] * 2.0f), ((ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][38] / 2.0f)) - ePSXeViewGL.this.padSizeScreenLan[1][34]) - ePSXeViewGL.this.padSizeScreenLan[1][36], (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][39] / 2.0f)) - (ePSXeViewGL.this.padSizeScreenLan[1][10] * 2.0f)}};
+            float[][] padOffScreenLantmp2 = {
+                    new float[] { ePSXeViewGL.this.padSizeScreenLan[0][0] / 2.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[0][1] / 2.0f,
+                            ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][2] / 2.0f),
+                            ePSXeViewGL.this.padSizeScreenLan[0][3] / 2.0f,
+                            (((float) ePSXeViewGL.this.mWidth / 2) - ePSXeViewGL.this.padSizeScreenLan[0][4]) - 30.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[0][5] / 2.0f, ((float) ePSXeViewGL.this.mWidth / 2) + 30,
+                            ePSXeViewGL.this.padSizeScreenLan[0][7] / 2.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[0][8] / 2.0f,
+                            ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][9] / 2.0f),
+                            (ePSXeViewGL.this.padSizeScreenLan[0][10] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[0][8],
+                            ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][11] / 2.0f),
+                            ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][12] / 2.0f),
+                            ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][13] / 2.0f),
+                            (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][14] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[0][12],
+                            ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][15] / 2.0f),
+                            ((float) ePSXeViewGL.this.mWidth / 2) + 40 + ePSXeViewGL.this.padSizeScreenLan[0][6],
+                            ePSXeViewGL.this.padSizeScreenLan[0][17] / 2.0f,
+                            (ePSXeViewGL.this.padSizeScreenLan[0][18] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[0][10]
+                                    + ePSXeViewGL.this.padSizeScreenLan[0][8],
+                            ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][19] / 2.0f),
+                            ((ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][20] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[0][12])
+                                    - ePSXeViewGL.this.padSizeScreenLan[0][14],
+                            ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][21] / 2.0f),
+                            ePSXeViewGL.this.padSizeScreenLan[0][22] / 2.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[0][23] / 2.0f,
+                            ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][24] / 2.0f),
+                            ePSXeViewGL.this.padSizeScreenLan[0][25] / 2.0f, 0.0f, 0.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[0][28] / 2.0f,
+                            (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][29] / 2.0f))
+                                    - (ePSXeViewGL.this.padSizeScreenLan[0][10] * 2.0f),
+                            (ePSXeViewGL.this.padSizeScreenLan[0][30] / 2.0f)
+                                    + ePSXeViewGL.this.padSizeScreenLan[0][28],
+                            (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][31] / 2.0f))
+                                    - (ePSXeViewGL.this.padSizeScreenLan[0][10] * 2.0f),
+                            (ePSXeViewGL.this.padSizeScreenLan[0][32] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[0][28]
+                                    + ePSXeViewGL.this.padSizeScreenLan[0][30],
+                            (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][33] / 2.0f))
+                                    - (ePSXeViewGL.this.padSizeScreenLan[0][10] * 2.0f),
+                            ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][34] / 2.0f),
+                            (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][35] / 2.0f))
+                                    - (ePSXeViewGL.this.padSizeScreenLan[0][10] * 2.0f),
+                            (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][36] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[0][34],
+                            (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][37] / 2.0f))
+                                    - (ePSXeViewGL.this.padSizeScreenLan[0][10] * 2.0f),
+                            ((ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][38] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[0][34])
+                                    - ePSXeViewGL.this.padSizeScreenLan[0][36],
+                            (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][39] / 2.0f))
+                                    - (ePSXeViewGL.this.padSizeScreenLan[0][10] * 2.0f) },
+                    new float[] {
+                            ((float) ePSXeViewGL.this.mWidth / 2)
+                                    - ((ePSXeViewGL.this.padSizeScreenLan[1][0] / 2.0f) * 0.76f),
+                            (float) ePSXeViewGL.this.mHeight / 2,
+                            ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][2] / 2.0f),
+                            ePSXeViewGL.this.padSizeScreenLan[1][3] / 2.0f,
+                            (((float) ePSXeViewGL.this.mWidth / 2) - ePSXeViewGL.this.padSizeScreenLan[1][4]) - 30.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[1][5] / 2.0f, ((float) ePSXeViewGL.this.mWidth / 2) + 30,
+                            ePSXeViewGL.this.padSizeScreenLan[1][7] / 2.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[1][8] / 2.0f,
+                            ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][9] / 2.0f),
+                            (ePSXeViewGL.this.padSizeScreenLan[1][10] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[1][8],
+                            ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][11] / 2.0f),
+                            ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][12] / 2.0f),
+                            ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][13] / 2.0f),
+                            (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][14] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[1][12],
+                            ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][15] / 2.0f),
+                            ((float) ePSXeViewGL.this.mWidth / 2) + 40 + ePSXeViewGL.this.padSizeScreenLan[1][6],
+                            ePSXeViewGL.this.padSizeScreenLan[1][17] / 2.0f,
+                            (ePSXeViewGL.this.padSizeScreenLan[1][18] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[1][10]
+                                    + ePSXeViewGL.this.padSizeScreenLan[1][8],
+                            ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][19] / 2.0f),
+                            ((ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][20] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[1][12])
+                                    - ePSXeViewGL.this.padSizeScreenLan[1][14],
+                            ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][21] / 2.0f),
+                            ePSXeViewGL.this.padSizeScreenLan[1][22] / 2.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[1][23] / 2.0f,
+                            ((float) ePSXeViewGL.this.mWidth / 2)
+                                    + ((ePSXeViewGL.this.padSizeScreenLan[1][24] / 2.0f) * 0.76f),
+                            (float) ePSXeViewGL.this.mHeight / 2, 0.0f, 0.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[1][28] / 2.0f,
+                            (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][29] / 2.0f))
+                                    - (ePSXeViewGL.this.padSizeScreenLan[1][10] * 2.0f),
+                            (ePSXeViewGL.this.padSizeScreenLan[1][30] / 2.0f)
+                                    + ePSXeViewGL.this.padSizeScreenLan[1][28],
+                            (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][31] / 2.0f))
+                                    - (ePSXeViewGL.this.padSizeScreenLan[1][10] * 2.0f),
+                            (ePSXeViewGL.this.padSizeScreenLan[1][32] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[1][28]
+                                    + ePSXeViewGL.this.padSizeScreenLan[1][30],
+                            (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][33] / 2.0f))
+                                    - (ePSXeViewGL.this.padSizeScreenLan[1][10] * 2.0f),
+                            ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][34] / 2.0f),
+                            (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][35] / 2.0f))
+                                    - (ePSXeViewGL.this.padSizeScreenLan[1][10] * 2.0f),
+                            (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][36] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[1][34],
+                            (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][37] / 2.0f))
+                                    - (ePSXeViewGL.this.padSizeScreenLan[1][10] * 2.0f),
+                            ((ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][38] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[1][34])
+                                    - ePSXeViewGL.this.padSizeScreenLan[1][36],
+                            (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][39] / 2.0f))
+                                    - (ePSXeViewGL.this.padSizeScreenLan[1][10] * 2.0f) } };
             for (int i3 = 0; i3 < 20; i3++) {
-                ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i3 * 2) + 0] = padOffScreenLantmp2[ePSXeViewGL.this.mode][(i3 * 2) + 0];
-                ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i3 * 2) + 1] = padOffScreenLantmp2[ePSXeViewGL.this.mode][(i3 * 2) + 1];
+                ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i3 * 2)
+                        + 0] = padOffScreenLantmp2[ePSXeViewGL.this.mode][(i3 * 2) + 0];
+                ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i3 * 2)
+                        + 1] = padOffScreenLantmp2[ePSXeViewGL.this.mode][(i3 * 2) + 1];
             }
         }
 
         public void resetPadAllValues() {
             if (ePSXeViewGL.this.emu_screen_orientation != 1) {
-                if (ePSXeViewGL.this.mWidth <= 600) {
-                    ePSXeViewGL.this.padResize = 0.8f;
-                } else if (ePSXeViewGL.this.mWidth <= 600 || ePSXeViewGL.this.mWidth > 800) {
-                    if (ePSXeViewGL.this.mWidth <= 800 || ePSXeViewGL.this.mWidth > 1280) {
-                        if (ePSXeViewGL.this.mWidth <= 1280 || ePSXeViewGL.this.mWidth > 1500) {
-                            ePSXeViewGL.this.padResize = 1.8f;
-                        } else {
-                            ePSXeViewGL.this.padResize = 1.5f;
-                        }
-                    } else {
-                        ePSXeViewGL.this.padResize = 1.35f;
-                    }
-                } else {
+                float baseWidth = 800.0f;
+                ePSXeViewGL.this.padResize = ePSXeViewGL.this.mWidth / baseWidth;
+                
+                // УМЕНЬШАЕМ кнопки в 2 раза - идеальный размер
+                ePSXeViewGL.this.padResize = ePSXeViewGL.this.padResize / 2.0f;
+                
+                if (ePSXeViewGL.this.padResize < 0.3f) {
+                    ePSXeViewGL.this.padResize = 0.3f;
+                } else if (ePSXeViewGL.this.padResize > 1.0f) {
                     ePSXeViewGL.this.padResize = 1.0f;
                 }
             } else if (ePSXeViewGL.this.emu_portrait_skin == 1) {
-                ePSXeViewGL.this.padResize = ePSXeViewGL.this.mWidth / 562.0f;
+                ePSXeViewGL.this.padResize = (ePSXeViewGL.this.mWidth / 562.0f) / 2.0f;
             }
-            float[] padSizeScreenPortmp = {ePSXeViewGL.this.mWidth, ePSXeViewGL.this.mHeight / 2f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, (ePSXeViewGL.this.mWidth * 64f) / 480, ((ePSXeViewGL.this.mHeight / 2f) * 64) / 400, (ePSXeViewGL.this.mWidth * 64f) / 480, ((ePSXeViewGL.this.mHeight / 2f) * 64) / 400, (ePSXeViewGL.this.mWidth * 64f) / 480, ((ePSXeViewGL.this.mHeight / 2f) * 64) / 400, (ePSXeViewGL.this.mWidth * 64f) / 480, ((ePSXeViewGL.this.mHeight / 2f) * 64) / 400, (ePSXeViewGL.this.mWidth * 64f) / 480, ((ePSXeViewGL.this.mHeight / 2f) * 64) / 400, (ePSXeViewGL.this.mWidth * 64f) / 480, ((ePSXeViewGL.this.mHeight / 2f) * 64) / 400};
-            float[] padOffScreenPortmp = {ePSXeViewGL.this.mWidth / 2f, ePSXeViewGL.this.mHeight / 4f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, ((ePSXeViewGL.this.mWidth * 288f) / 480) + (padSizeScreenPortmp[28] / 2.0f), ((ePSXeViewGL.this.mHeight / 2f) - (((ePSXeViewGL.this.mHeight / 2f) * 68) / 400)) - (padSizeScreenPortmp[29] / 2.0f), ((ePSXeViewGL.this.mWidth * 352f) / 480) + (padSizeScreenPortmp[30] / 2.0f), ((ePSXeViewGL.this.mHeight / 2f) - (((ePSXeViewGL.this.mHeight / 2f) * 68) / 400)) - (padSizeScreenPortmp[31] / 2.0f), ((ePSXeViewGL.this.mWidth * HttpStatus.SC_REQUESTED_RANGE_NOT_SATISFIABLE) / 480) + (padSizeScreenPortmp[32] / 2.0f), ((ePSXeViewGL.this.mHeight / 2f) - (((ePSXeViewGL.this.mHeight / 2f) * 68) / 400)) - (padSizeScreenPortmp[33] / 2.0f), ((ePSXeViewGL.this.mWidth * 8f) / 480) + (padSizeScreenPortmp[34] / 2.0f), ((ePSXeViewGL.this.mHeight / 2f) - (((ePSXeViewGL.this.mHeight / 2f) * 338) / 400)) - (padSizeScreenPortmp[35] / 2.0f), ((ePSXeViewGL.this.mWidth * 72f) / 480) + (padSizeScreenPortmp[36] / 2.0f), ((ePSXeViewGL.this.mHeight / 2f) - (((ePSXeViewGL.this.mHeight / 2f) * 338) / 400)) - (padSizeScreenPortmp[37] / 2.0f), ((ePSXeViewGL.this.mWidth * 136f) / 480) + (padSizeScreenPortmp[38] / 2.0f), ((ePSXeViewGL.this.mHeight / 2f) - (((ePSXeViewGL.this.mHeight / 2f) * 338) / 400)) - (padSizeScreenPortmp[39] / 2.0f)};
+            float[] padSizeScreenPortmp = { ePSXeViewGL.this.mWidth, ePSXeViewGL.this.mHeight / 2f, 0.0f, 0.0f, 0.0f,
+                    0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
+                    0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, (ePSXeViewGL.this.mWidth * 64f) / 480,
+                    ((ePSXeViewGL.this.mHeight / 2f) * 64) / 400, (ePSXeViewGL.this.mWidth * 64f) / 480,
+                    ((ePSXeViewGL.this.mHeight / 2f) * 64) / 400, (ePSXeViewGL.this.mWidth * 64f) / 480,
+                    ((ePSXeViewGL.this.mHeight / 2f) * 64) / 400, (ePSXeViewGL.this.mWidth * 64f) / 480,
+                    ((ePSXeViewGL.this.mHeight / 2f) * 64) / 400, (ePSXeViewGL.this.mWidth * 64f) / 480,
+                    ((ePSXeViewGL.this.mHeight / 2f) * 64) / 400, (ePSXeViewGL.this.mWidth * 64f) / 480,
+                    ((ePSXeViewGL.this.mHeight / 2f) * 64) / 400 };
+            float[] padOffScreenPortmp = { ePSXeViewGL.this.mWidth / 2f, ePSXeViewGL.this.mHeight / 4f, 0.0f, 0.0f,
+                    0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
+                    0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
+                    ((ePSXeViewGL.this.mWidth * 288f) / 480) + (padSizeScreenPortmp[28] / 2.0f),
+                    ((ePSXeViewGL.this.mHeight / 2f) - (((ePSXeViewGL.this.mHeight / 2f) * 68) / 400))
+                            - (padSizeScreenPortmp[29] / 2.0f),
+                    ((ePSXeViewGL.this.mWidth * 352f) / 480) + (padSizeScreenPortmp[30] / 2.0f),
+                    ((ePSXeViewGL.this.mHeight / 2f) - (((ePSXeViewGL.this.mHeight / 2f) * 68) / 400))
+                            - (padSizeScreenPortmp[31] / 2.0f),
+                    ((ePSXeViewGL.this.mWidth * HttpStatus.SC_REQUESTED_RANGE_NOT_SATISFIABLE) / 480)
+                            + (padSizeScreenPortmp[32] / 2.0f),
+                    ((ePSXeViewGL.this.mHeight / 2f) - (((ePSXeViewGL.this.mHeight / 2f) * 68) / 400))
+                            - (padSizeScreenPortmp[33] / 2.0f),
+                    ((ePSXeViewGL.this.mWidth * 8f) / 480) + (padSizeScreenPortmp[34] / 2.0f),
+                    ((ePSXeViewGL.this.mHeight / 2f) - (((ePSXeViewGL.this.mHeight / 2f) * 338) / 400))
+                            - (padSizeScreenPortmp[35] / 2.0f),
+                    ((ePSXeViewGL.this.mWidth * 72f) / 480) + (padSizeScreenPortmp[36] / 2.0f),
+                    ((ePSXeViewGL.this.mHeight / 2f) - (((ePSXeViewGL.this.mHeight / 2f) * 338) / 400))
+                            - (padSizeScreenPortmp[37] / 2.0f),
+                    ((ePSXeViewGL.this.mWidth * 136f) / 480) + (padSizeScreenPortmp[38] / 2.0f),
+                    ((ePSXeViewGL.this.mHeight / 2f) - (((ePSXeViewGL.this.mHeight / 2f) * 338) / 400))
+                            - (padSizeScreenPortmp[39] / 2.0f) };
             for (int i = 0; i < 1; i++) {
                 ePSXeViewGL.this.padSizeScreenPor[i * 2] = padSizeScreenPortmp[i * 2];
                 ePSXeViewGL.this.padSizeScreenPor[(i * 2) + 1] = padSizeScreenPortmp[(i * 2) + 1];
@@ -3659,27 +5461,371 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                 ePSXeViewGL.this.padOffScreenPor[i2 * 2] = padOffScreenPortmp[i2 * 2];
                 ePSXeViewGL.this.padOffScreenPor[(i2 * 2) + 1] = padOffScreenPortmp[(i2 * 2) + 1];
             }
-            float[] padSizeScreenLan2Htmp = {228.0f, 114.0f, 224.0f, 124.0f, 66.0f, 25.0f, 66.0f, 31.0f, 64.0f, 30.0f, 64.0f, 30.0f, 64.0f, 30.0f, 64.0f, 30.0f};
+            float[] padSizeScreenLan2Htmp = { 228.0f, 114.0f, 224.0f, 124.0f, 66.0f, 25.0f, 66.0f, 31.0f, 64.0f, 30.0f,
+                    64.0f, 30.0f, 64.0f, 30.0f, 64.0f, 30.0f };
             for (int i3 = 0; i3 < 8; i3++) {
-                ePSXeViewGL.this.padSizeScreenLan2H[i3 * 2] = padSizeScreenLan2Htmp[i3 * 2] * ePSXeViewGL.this.padResize;
-                ePSXeViewGL.this.padSizeScreenLan2H[(i3 * 2) + 1] = padSizeScreenLan2Htmp[(i3 * 2) + 1] * ePSXeViewGL.this.padResize;
+                ePSXeViewGL.this.padSizeScreenLan2H[i3 * 2] = padSizeScreenLan2Htmp[i3 * 2]
+                        * ePSXeViewGL.this.padResize;
+                ePSXeViewGL.this.padSizeScreenLan2H[(i3 * 2) + 1] = padSizeScreenLan2Htmp[(i3 * 2) + 1]
+                        * ePSXeViewGL.this.padResize;
             }
-            float[] padOffScreenLan2Htmp = {ePSXeViewGL.this.padSizeScreenLan2H[0] / 2.0f, ePSXeViewGL.this.padSizeScreenLan2H[1] / 2.0f, ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan2H[2] / 2.0f), ePSXeViewGL.this.padSizeScreenLan2H[3] / 2.0f, ((ePSXeViewGL.this.mWidth / 2f) - ePSXeViewGL.this.padSizeScreenLan2H[4]) - 30.0f, ePSXeViewGL.this.padSizeScreenLan2H[5] / 2.0f, (ePSXeViewGL.this.mWidth / 2f) + 30, ePSXeViewGL.this.padSizeScreenLan2H[7] / 2.0f, ePSXeViewGL.this.padSizeScreenLan2H[8] / 2.0f, (ePSXeViewGL.this.mHeight / 2f) - (ePSXeViewGL.this.padSizeScreenLan2H[9] / 2.0f), (ePSXeViewGL.this.padSizeScreenLan2H[10] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan2H[8], (ePSXeViewGL.this.mHeight / 2f) - (ePSXeViewGL.this.padSizeScreenLan2H[11] / 2.0f), ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan2H[12] / 2.0f), (ePSXeViewGL.this.mHeight / 2f) - (ePSXeViewGL.this.padSizeScreenLan2H[13] / 2.0f), (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan2H[14] / 2.0f)) - ePSXeViewGL.this.padSizeScreenLan2H[12], (ePSXeViewGL.this.mHeight / 2f) - (ePSXeViewGL.this.padSizeScreenLan2H[15] / 2.0f)};
+            float[] padOffScreenLan2Htmp = { ePSXeViewGL.this.padSizeScreenLan2H[0] / 2.0f,
+                    ePSXeViewGL.this.padSizeScreenLan2H[1] / 2.0f,
+                    ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan2H[2] / 2.0f),
+                    ePSXeViewGL.this.padSizeScreenLan2H[3] / 2.0f,
+                    ((ePSXeViewGL.this.mWidth / 2f) - ePSXeViewGL.this.padSizeScreenLan2H[4]) - 30.0f,
+                    ePSXeViewGL.this.padSizeScreenLan2H[5] / 2.0f, (ePSXeViewGL.this.mWidth / 2f) + 30,
+                    ePSXeViewGL.this.padSizeScreenLan2H[7] / 2.0f, ePSXeViewGL.this.padSizeScreenLan2H[8] / 2.0f,
+                    (ePSXeViewGL.this.mHeight / 2f) - (ePSXeViewGL.this.padSizeScreenLan2H[9] / 2.0f),
+                    (ePSXeViewGL.this.padSizeScreenLan2H[10] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan2H[8],
+                    (ePSXeViewGL.this.mHeight / 2f) - (ePSXeViewGL.this.padSizeScreenLan2H[11] / 2.0f),
+                    ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan2H[12] / 2.0f),
+                    (ePSXeViewGL.this.mHeight / 2f) - (ePSXeViewGL.this.padSizeScreenLan2H[13] / 2.0f),
+                    (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan2H[14] / 2.0f))
+                            - ePSXeViewGL.this.padSizeScreenLan2H[12],
+                    (ePSXeViewGL.this.mHeight / 2f) - (ePSXeViewGL.this.padSizeScreenLan2H[15] / 2.0f) };
             for (int i4 = 0; i4 < 8; i4++) {
                 ePSXeViewGL.this.padOffScreenLan2H[i4 * 2] = padOffScreenLan2Htmp[i4 * 2];
                 ePSXeViewGL.this.padOffScreenLan2H[(i4 * 2) + 1] = padOffScreenLan2Htmp[(i4 * 2) + 1];
             }
-            float[] padSizeScreenLan2Vtmp = {(ePSXeViewGL.this.mHeight * 228f) / ePSXeViewGL.this.mWidth, ((ePSXeViewGL.this.mWidth / 2f) * 228) / ePSXeViewGL.this.mHeight, (ePSXeViewGL.this.mHeight * 224f) / ePSXeViewGL.this.mWidth, ((ePSXeViewGL.this.mWidth / 2f) * 248) / ePSXeViewGL.this.mHeight, (ePSXeViewGL.this.mHeight * 66f) / ePSXeViewGL.this.mWidth, ((ePSXeViewGL.this.mWidth / 2f) * 40) / ePSXeViewGL.this.mHeight, (ePSXeViewGL.this.mHeight * 66f) / ePSXeViewGL.this.mWidth, ((ePSXeViewGL.this.mWidth / 2f) * 62) / ePSXeViewGL.this.mHeight, (ePSXeViewGL.this.mHeight * 64f) / ePSXeViewGL.this.mWidth, ((ePSXeViewGL.this.mWidth / 2f) * 60) / ePSXeViewGL.this.mHeight, (ePSXeViewGL.this.mHeight * 64f) / ePSXeViewGL.this.mWidth, ((ePSXeViewGL.this.mWidth / 2f) * 60) / ePSXeViewGL.this.mHeight, (ePSXeViewGL.this.mHeight * 64f) / ePSXeViewGL.this.mWidth, ((ePSXeViewGL.this.mWidth / 2f) * 60) / ePSXeViewGL.this.mHeight, (ePSXeViewGL.this.mHeight * 64f) / ePSXeViewGL.this.mWidth, ((ePSXeViewGL.this.mWidth / 2f) * 60) / ePSXeViewGL.this.mHeight};
+            float[] padSizeScreenLan2Vtmp = { (ePSXeViewGL.this.mHeight * 228f) / ePSXeViewGL.this.mWidth,
+                    ((ePSXeViewGL.this.mWidth / 2f) * 228) / ePSXeViewGL.this.mHeight,
+                    (ePSXeViewGL.this.mHeight * 224f) / ePSXeViewGL.this.mWidth,
+                    ((ePSXeViewGL.this.mWidth / 2f) * 248) / ePSXeViewGL.this.mHeight,
+                    (ePSXeViewGL.this.mHeight * 66f) / ePSXeViewGL.this.mWidth,
+                    ((ePSXeViewGL.this.mWidth / 2f) * 40) / ePSXeViewGL.this.mHeight,
+                    (ePSXeViewGL.this.mHeight * 66f) / ePSXeViewGL.this.mWidth,
+                    ((ePSXeViewGL.this.mWidth / 2f) * 62) / ePSXeViewGL.this.mHeight,
+                    (ePSXeViewGL.this.mHeight * 64f) / ePSXeViewGL.this.mWidth,
+                    ((ePSXeViewGL.this.mWidth / 2f) * 60) / ePSXeViewGL.this.mHeight,
+                    (ePSXeViewGL.this.mHeight * 64f) / ePSXeViewGL.this.mWidth,
+                    ((ePSXeViewGL.this.mWidth / 2f) * 60) / ePSXeViewGL.this.mHeight,
+                    (ePSXeViewGL.this.mHeight * 64f) / ePSXeViewGL.this.mWidth,
+                    ((ePSXeViewGL.this.mWidth / 2f) * 60) / ePSXeViewGL.this.mHeight,
+                    (ePSXeViewGL.this.mHeight * 64f) / ePSXeViewGL.this.mWidth,
+                    ((ePSXeViewGL.this.mWidth / 2f) * 60) / ePSXeViewGL.this.mHeight };
             for (int i5 = 0; i5 < 8; i5++) {
-                ePSXeViewGL.this.padSizeScreenLan2V[i5 * 2] = padSizeScreenLan2Vtmp[i5 * 2] * ePSXeViewGL.this.padResize;
-                ePSXeViewGL.this.padSizeScreenLan2V[(i5 * 2) + 1] = padSizeScreenLan2Vtmp[(i5 * 2) + 1] * ePSXeViewGL.this.padResize;
+                ePSXeViewGL.this.padSizeScreenLan2V[i5 * 2] = padSizeScreenLan2Vtmp[i5 * 2]
+                        * ePSXeViewGL.this.padResize;
+                ePSXeViewGL.this.padSizeScreenLan2V[(i5 * 2) + 1] = padSizeScreenLan2Vtmp[(i5 * 2) + 1]
+                        * ePSXeViewGL.this.padResize;
             }
-            float[] padOffScreenLan2Vtmp = {ePSXeViewGL.this.padSizeScreenLan2V[0] / 2.0f, ePSXeViewGL.this.padSizeScreenLan2V[1] / 2.0f, ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan2V[2] / 2.0f), ePSXeViewGL.this.padSizeScreenLan2V[3] / 2.0f, ((ePSXeViewGL.this.mHeight / 2f) - ePSXeViewGL.this.padSizeScreenLan2V[4]) - 30.0f, ePSXeViewGL.this.padSizeScreenLan2V[5] / 2.0f, (ePSXeViewGL.this.mHeight / 2f) + 30, ePSXeViewGL.this.padSizeScreenLan2V[7] / 2.0f, ePSXeViewGL.this.padSizeScreenLan2V[8] / 2.0f, (ePSXeViewGL.this.mWidth / 2f) - (ePSXeViewGL.this.padSizeScreenLan2V[9] / 2.0f), (ePSXeViewGL.this.padSizeScreenLan2V[10] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan2V[8], (ePSXeViewGL.this.mWidth / 2f) - (ePSXeViewGL.this.padSizeScreenLan2V[11] / 2.0f), ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan2V[12] / 2.0f), (ePSXeViewGL.this.mWidth / 2f) - (ePSXeViewGL.this.padSizeScreenLan2V[13] / 2.0f), (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan2V[14] / 2.0f)) - ePSXeViewGL.this.padSizeScreenLan2V[12], (ePSXeViewGL.this.mWidth / 2f) - (ePSXeViewGL.this.padSizeScreenLan2V[15] / 2.0f)};
+            float[] padOffScreenLan2Vtmp = { ePSXeViewGL.this.padSizeScreenLan2V[0] / 2.0f,
+                    ePSXeViewGL.this.padSizeScreenLan2V[1] / 2.0f,
+                    ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan2V[2] / 2.0f),
+                    ePSXeViewGL.this.padSizeScreenLan2V[3] / 2.0f,
+                    ((ePSXeViewGL.this.mHeight / 2f) - ePSXeViewGL.this.padSizeScreenLan2V[4]) - 30.0f,
+                    ePSXeViewGL.this.padSizeScreenLan2V[5] / 2.0f, (ePSXeViewGL.this.mHeight / 2f) + 30,
+                    ePSXeViewGL.this.padSizeScreenLan2V[7] / 2.0f, ePSXeViewGL.this.padSizeScreenLan2V[8] / 2.0f,
+                    (ePSXeViewGL.this.mWidth / 2f) - (ePSXeViewGL.this.padSizeScreenLan2V[9] / 2.0f),
+                    (ePSXeViewGL.this.padSizeScreenLan2V[10] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan2V[8],
+                    (ePSXeViewGL.this.mWidth / 2f) - (ePSXeViewGL.this.padSizeScreenLan2V[11] / 2.0f),
+                    ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan2V[12] / 2.0f),
+                    (ePSXeViewGL.this.mWidth / 2f) - (ePSXeViewGL.this.padSizeScreenLan2V[13] / 2.0f),
+                    (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan2V[14] / 2.0f))
+                            - ePSXeViewGL.this.padSizeScreenLan2V[12],
+                    (ePSXeViewGL.this.mWidth / 2f) - (ePSXeViewGL.this.padSizeScreenLan2V[15] / 2.0f) };
             for (int i6 = 0; i6 < 8; i6++) {
                 ePSXeViewGL.this.padOffScreenLan2V[i6 * 2] = padOffScreenLan2Vtmp[i6 * 2];
                 ePSXeViewGL.this.padOffScreenLan2V[(i6 * 2) + 1] = padOffScreenLan2Vtmp[(i6 * 2) + 1];
             }
             ePSXeViewGL.this.initvirtualPad = 0;
+        }
+
+        /**
+         * Устанавливает базовые размеры кнопок без применения padResize
+         * Используется при загрузке сохраненных настроек
+         */
+        private void setBasePadSizesWithoutResize() {
+            float[][] padSizeScreenLantmp = {
+                    new float[] { 228.0f, 228.0f, 224.0f, 248.0f, 66.0f, 50.0f, 66.0f, 62.0f, 64.0f, 60.0f, 64.0f,
+                            60.0f, 64.0f, 60.0f, 64.0f, 60.0f, 53.0f, 41.0f, 64.0f, 60.0f, 64.0f, 60.0f, 222.0f, 222.0f,
+                            222.0f, 222.0f, 71.0f, 71.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f,
+                            64.0f, 64.0f, 64.0f },
+                    new float[] { 228.0f, 228.0f, 224.0f, 248.0f, 66.0f, 50.0f, 66.0f, 62.0f, 64.0f, 60.0f, 64.0f,
+                            60.0f, 64.0f, 60.0f, 64.0f, 60.0f, 53.0f, 41.0f, 64.0f, 60.0f, 64.0f, 60.0f, 222.0f, 222.0f,
+                            222.0f, 222.0f, 71.0f, 71.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f, 64.0f,
+                            64.0f, 64.0f, 64.0f }
+            };
+
+            // Применяем базовые размеры БЕЗ padResize
+            for (int i = 0; i < 20; i++) {
+                ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2)
+                        + 0] = padSizeScreenLantmp[ePSXeViewGL.this.mode][(i * 2) + 0];
+                ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2)
+                        + 1] = padSizeScreenLantmp[ePSXeViewGL.this.mode][(i * 2) + 1];
+            }
+
+            // Устанавливаем базовые позиции
+            setBasePadPositions();
+        }
+
+        /**
+         * Устанавливает базовые позиции кнопок
+         */
+        private void setBasePadPositions() {
+            if (ePSXeViewGL.this.emu_screen_orientation == 1) {
+                if (ePSXeViewGL.this.emu_portrait_skin == 1) {
+                    setPortraitPadPositions();
+                }
+                return;
+            }
+            setLandscapePadPositions();
+        }
+
+        /**
+         * Устанавливает позиции для портретного режима
+         */
+        private void setPortraitPadPositions() {
+            float[][] padOffScreenLantmp = {
+                    new float[] { ePSXeViewGL.this.padSizeScreenLan[0][0] / 2.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[0][1] / 2.0f,
+                            ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][2] / 2.0f),
+                            ePSXeViewGL.this.padSizeScreenLan[0][3] / 2.0f,
+                            (((float) ePSXeViewGL.this.mWidth / 2) - ePSXeViewGL.this.padSizeScreenLan[0][4]) - 30.0f,
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][5] / 2.0f),
+                            ((float) ePSXeViewGL.this.mWidth / 2) + 30,
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][7] / 2.0f),
+                            ePSXeViewGL.this.padSizeScreenLan[0][8] / 2.0f,
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][9] / 2.0f),
+                            (ePSXeViewGL.this.padSizeScreenLan[0][10] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[0][8],
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][11] / 2.0f),
+                            ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][12] / 2.0f),
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][13] / 2.0f),
+                            (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][14] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[0][12],
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][15] / 2.0f),
+                            ((float) ePSXeViewGL.this.mWidth / 2) + 40 + ePSXeViewGL.this.padSizeScreenLan[0][6],
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][17] / 2.0f),
+                            (ePSXeViewGL.this.padSizeScreenLan[0][18] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[0][10]
+                                    + ePSXeViewGL.this.padSizeScreenLan[0][8],
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][19] / 2.0f),
+                            ((ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][20] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[0][12])
+                                    - ePSXeViewGL.this.padSizeScreenLan[0][14],
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[0][21] / 2.0f),
+                            ePSXeViewGL.this.padSizeScreenLan[0][22] / 2.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[0][23] / 2.0f,
+                            ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][24] / 2.0f),
+                            ePSXeViewGL.this.padSizeScreenLan[0][25] / 2.0f, 0.0f, 0.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[0][28] / 2.0f,
+                            ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[0][29] / 2.0f),
+                            (ePSXeViewGL.this.padSizeScreenLan[0][30] / 2.0f)
+                                    + ePSXeViewGL.this.padSizeScreenLan[0][28],
+                            ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[0][31] / 2.0f),
+                            (ePSXeViewGL.this.padSizeScreenLan[0][32] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[0][28]
+                                    + ePSXeViewGL.this.padSizeScreenLan[0][30],
+                            ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[0][33] / 2.0f),
+                            ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][34] / 2.0f),
+                            ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[0][35] / 2.0f),
+                            (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][36] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[0][34],
+                            ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[0][37] / 2.0f),
+                            ((ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][38] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[0][34])
+                                    - ePSXeViewGL.this.padSizeScreenLan[0][36],
+                            ((float) ePSXeViewGL.this.mHeight / 3)
+                                    - (ePSXeViewGL.this.padSizeScreenLan[0][39] / 2.0f) },
+                    new float[] {
+                            ((float) ePSXeViewGL.this.mWidth / 2)
+                                    - ((ePSXeViewGL.this.padSizeScreenLan[1][0] / 2.0f) * 0.76f),
+                            (float) ePSXeViewGL.this.mHeight / 4,
+                            ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][2] / 2.0f),
+                            ePSXeViewGL.this.padSizeScreenLan[1][3] / 2.0f,
+                            (((float) ePSXeViewGL.this.mWidth / 2) - ePSXeViewGL.this.padSizeScreenLan[1][4]) - 30.0f,
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[1][5] / 2.0f),
+                            ((float) ePSXeViewGL.this.mWidth / 2) + 30,
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[1][7] / 2.0f),
+                            ePSXeViewGL.this.padSizeScreenLan[1][8] / 2.0f,
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[1][9] / 2.0f),
+                            (ePSXeViewGL.this.padSizeScreenLan[1][10] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[0][8],
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[1][11] / 2.0f),
+                            ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][12] / 2.0f),
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[1][13] / 2.0f),
+                            (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][14] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[1][12],
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[1][15] / 2.0f),
+                            ((float) ePSXeViewGL.this.mWidth / 2) + 40 + ePSXeViewGL.this.padSizeScreenLan[1][6],
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[1][17] / 2.0f),
+                            (ePSXeViewGL.this.padSizeScreenLan[1][18] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[1][10]
+                                    + ePSXeViewGL.this.padSizeScreenLan[1][8],
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[1][19] / 2.0f),
+                            ((ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][20] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[1][12])
+                                    - ePSXeViewGL.this.padSizeScreenLan[1][14],
+                            ((float) ePSXeViewGL.this.mHeight / 2) - (ePSXeViewGL.this.padSizeScreenLan[1][21] / 2.0f),
+                            ePSXeViewGL.this.padSizeScreenLan[1][22] / 2.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[1][23] / 2.0f,
+                            ((float) ePSXeViewGL.this.mWidth / 2)
+                                    + ((ePSXeViewGL.this.padSizeScreenLan[1][24] / 2.0f) * 0.76f),
+                            (float) ePSXeViewGL.this.mHeight / 4, 0.0f, 0.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[1][28] / 2.0f,
+                            ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[1][29] / 2.0f),
+                            (ePSXeViewGL.this.padSizeScreenLan[1][30] / 2.0f)
+                                    + ePSXeViewGL.this.padSizeScreenLan[1][28],
+                            ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[1][31] / 2.0f),
+                            (ePSXeViewGL.this.padSizeScreenLan[1][32] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[1][28]
+                                    + ePSXeViewGL.this.padSizeScreenLan[1][30],
+                            ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[1][33] / 2.0f),
+                            ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][34] / 2.0f),
+                            ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[1][35] / 2.0f),
+                            (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][36] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[1][34],
+                            ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[1][37] / 2.0f),
+                            ((ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][38] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[1][34])
+                                    - ePSXeViewGL.this.padSizeScreenLan[1][36],
+                            ((float) ePSXeViewGL.this.mHeight / 3) - (ePSXeViewGL.this.padSizeScreenLan[1][39] / 2.0f) }
+            };
+            for (int i = 0; i < 20; i++) {
+                ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2)
+                        + 0] = padOffScreenLantmp[ePSXeViewGL.this.mode][(i * 2) + 0];
+                ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2)
+                        + 1] = padOffScreenLantmp[ePSXeViewGL.this.mode][(i * 2) + 1];
+            }
+        }
+
+        /**
+         * Устанавливает позиции для ландшафтного режима
+         */
+        private void setLandscapePadPositions() {
+            float[][] padOffScreenLantmp = {
+                    new float[] { ePSXeViewGL.this.padSizeScreenLan[0][0] / 2.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[0][1] / 2.0f,
+                            ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][2] / 2.0f),
+                            ePSXeViewGL.this.padSizeScreenLan[0][3] / 2.0f,
+                            (((float) ePSXeViewGL.this.mWidth / 2) - ePSXeViewGL.this.padSizeScreenLan[0][4]) - 30.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[0][5] / 2.0f, ((float) ePSXeViewGL.this.mWidth / 2) + 30,
+                            ePSXeViewGL.this.padSizeScreenLan[0][7] / 2.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[0][8] / 2.0f,
+                            ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][9] / 2.0f),
+                            (ePSXeViewGL.this.padSizeScreenLan[0][10] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[0][8],
+                            ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][11] / 2.0f),
+                            ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][12] / 2.0f),
+                            ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][13] / 2.0f),
+                            (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][14] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[0][12],
+                            ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][15] / 2.0f),
+                            ((float) ePSXeViewGL.this.mWidth / 2) + 40 + ePSXeViewGL.this.padSizeScreenLan[0][6],
+                            ePSXeViewGL.this.padSizeScreenLan[0][17] / 2.0f,
+                            (ePSXeViewGL.this.padSizeScreenLan[0][18] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[0][10]
+                                    + ePSXeViewGL.this.padSizeScreenLan[0][8],
+                            ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][19] / 2.0f),
+                            ((ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][20] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[0][12])
+                                    - ePSXeViewGL.this.padSizeScreenLan[0][14],
+                            ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][21] / 2.0f),
+                            ePSXeViewGL.this.padSizeScreenLan[0][22] / 2.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[0][23] / 2.0f,
+                            ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][24] / 2.0f),
+                            ePSXeViewGL.this.padSizeScreenLan[0][25] / 2.0f, 0.0f, 0.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[0][28] / 2.0f,
+                            (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][29] / 2.0f))
+                                    - (ePSXeViewGL.this.padSizeScreenLan[0][10] * 2.0f),
+                            (ePSXeViewGL.this.padSizeScreenLan[0][30] / 2.0f)
+                                    + ePSXeViewGL.this.padSizeScreenLan[0][28],
+                            (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][31] / 2.0f))
+                                    - (ePSXeViewGL.this.padSizeScreenLan[0][10] * 2.0f),
+                            (ePSXeViewGL.this.padSizeScreenLan[0][32] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[0][28]
+                                    + ePSXeViewGL.this.padSizeScreenLan[0][30],
+                            (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][33] / 2.0f))
+                                    - (ePSXeViewGL.this.padSizeScreenLan[0][10] * 2.0f),
+                            ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][34] / 2.0f),
+                            (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][35] / 2.0f))
+                                    - (ePSXeViewGL.this.padSizeScreenLan[0][10] * 2.0f),
+                            (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][36] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[0][34],
+                            (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][37] / 2.0f))
+                                    - (ePSXeViewGL.this.padSizeScreenLan[0][10] * 2.0f),
+                            ((ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[0][38] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[0][34])
+                                    - ePSXeViewGL.this.padSizeScreenLan[0][36],
+                            (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[0][39] / 2.0f))
+                                    - (ePSXeViewGL.this.padSizeScreenLan[0][10] * 2.0f) },
+                    new float[] {
+                            ((float) ePSXeViewGL.this.mWidth / 2)
+                                    - ((ePSXeViewGL.this.padSizeScreenLan[1][0] / 2.0f) * 0.76f),
+                            (float) ePSXeViewGL.this.mHeight / 2,
+                            ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][2] / 2.0f),
+                            ePSXeViewGL.this.padSizeScreenLan[1][3] / 2.0f,
+                            (((float) ePSXeViewGL.this.mWidth / 2) - ePSXeViewGL.this.padSizeScreenLan[1][4]) - 30.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[1][5] / 2.0f, ((float) ePSXeViewGL.this.mWidth / 2) + 30,
+                            ePSXeViewGL.this.padSizeScreenLan[1][7] / 2.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[1][8] / 2.0f,
+                            ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][9] / 2.0f),
+                            (ePSXeViewGL.this.padSizeScreenLan[1][10] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[1][8],
+                            ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][11] / 2.0f),
+                            ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][12] / 2.0f),
+                            ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][13] / 2.0f),
+                            (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][14] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[1][12],
+                            ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][15] / 2.0f),
+                            ((float) ePSXeViewGL.this.mWidth / 2) + 40 + ePSXeViewGL.this.padSizeScreenLan[1][6],
+                            ePSXeViewGL.this.padSizeScreenLan[1][17] / 2.0f,
+                            (ePSXeViewGL.this.padSizeScreenLan[1][18] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[1][10]
+                                    + ePSXeViewGL.this.padSizeScreenLan[1][8],
+                            ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][19] / 2.0f),
+                            ((ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][20] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[1][12])
+                                    - ePSXeViewGL.this.padSizeScreenLan[1][14],
+                            ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][21] / 2.0f),
+                            ePSXeViewGL.this.padSizeScreenLan[1][22] / 2.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[1][23] / 2.0f,
+                            ((float) ePSXeViewGL.this.mWidth / 2)
+                                    + ((ePSXeViewGL.this.padSizeScreenLan[1][24] / 2.0f) * 0.76f),
+                            (float) ePSXeViewGL.this.mHeight / 2, 0.0f, 0.0f,
+                            ePSXeViewGL.this.padSizeScreenLan[1][28] / 2.0f,
+                            (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][29] / 2.0f))
+                                    - (ePSXeViewGL.this.padSizeScreenLan[1][10] * 2.0f),
+                            (ePSXeViewGL.this.padSizeScreenLan[1][30] / 2.0f)
+                                    + ePSXeViewGL.this.padSizeScreenLan[1][28],
+                            (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][31] / 2.0f))
+                                    - (ePSXeViewGL.this.padSizeScreenLan[1][10] * 2.0f),
+                            (ePSXeViewGL.this.padSizeScreenLan[1][32] / 2.0f) + ePSXeViewGL.this.padSizeScreenLan[1][28]
+                                    + ePSXeViewGL.this.padSizeScreenLan[1][30],
+                            (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][33] / 2.0f))
+                                    - (ePSXeViewGL.this.padSizeScreenLan[1][10] * 2.0f),
+                            ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][34] / 2.0f),
+                            (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][35] / 2.0f))
+                                    - (ePSXeViewGL.this.padSizeScreenLan[1][10] * 2.0f),
+                            (ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][36] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[1][34],
+                            (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][37] / 2.0f))
+                                    - (ePSXeViewGL.this.padSizeScreenLan[1][10] * 2.0f),
+                            ((ePSXeViewGL.this.mWidth - (ePSXeViewGL.this.padSizeScreenLan[1][38] / 2.0f))
+                                    - ePSXeViewGL.this.padSizeScreenLan[1][34])
+                                    - ePSXeViewGL.this.padSizeScreenLan[1][36],
+                            (ePSXeViewGL.this.mHeight - (ePSXeViewGL.this.padSizeScreenLan[1][39] / 2.0f))
+                                    - (ePSXeViewGL.this.padSizeScreenLan[1][10] * 2.0f) }
+            };
+            for (int i = 0; i < 20; i++) {
+                ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2)
+                        + 0] = padOffScreenLantmp[ePSXeViewGL.this.mode][(i * 2) + 0];
+                ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2)
+                        + 1] = padOffScreenLantmp[ePSXeViewGL.this.mode][(i * 2) + 1];
+            }
+        }
+
+        /**
+         * Применяет финальное масштабирование к размерам и позициям после загрузки из
+         * XML
+         */
+        private void applyFinalScalingToPads() {
+            // Применяем padResize к размерам
+            for (int i = 0; i < 20; i++) {
+                ePSXeViewGL.this.padSizeScreenLan[0][(i * 2) + 0] *= ePSXeViewGL.this.padResize;
+                ePSXeViewGL.this.padSizeScreenLan[0][(i * 2) + 1] *= ePSXeViewGL.this.padResize;
+                ePSXeViewGL.this.padSizeScreenLan[1][(i * 2) + 0] *= ePSXeViewGL.this.padResize;
+                ePSXeViewGL.this.padSizeScreenLan[1][(i * 2) + 1] *= ePSXeViewGL.this.padResize;
+            }
+
+            // Применяем padResize к позициям
+            for (int i = 0; i < 20; i++) {
+                ePSXeViewGL.this.padOffScreenLan[0][(i * 2) + 0] *= ePSXeViewGL.this.padResize;
+                ePSXeViewGL.this.padOffScreenLan[0][(i * 2) + 1] *= ePSXeViewGL.this.padResize;
+                ePSXeViewGL.this.padOffScreenLan[1][(i * 2) + 0] *= ePSXeViewGL.this.padResize;
+                ePSXeViewGL.this.padOffScreenLan[1][(i * 2) + 1] *= ePSXeViewGL.this.padResize;
+            }
         }
 
         private void loadExtraButtons() {
@@ -3694,7 +5840,8 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                     ePSXeViewGL.this.padprofile = "";
                 }
                 for (int i = 0; i < 6; i++) {
-                    int val = ePSXeViewGL.this.mePSXeReadPreferences.getPadExtra(ePSXeViewGL.this.padprofile + "inputExtrasPref" + (i + 1));
+                    int val = ePSXeViewGL.this.mePSXeReadPreferences
+                            .getPadExtra(ePSXeViewGL.this.padprofile + "inputExtrasPref" + (i + 1));
                     if (val == 19) {
                         val = -1;
                     }
@@ -3753,7 +5900,10 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
             if (ePSXeViewGL.this.onPauseMode != 1) {
                 ePSXeViewGL.this.mWidth = width;
                 ePSXeViewGL.this.mHeight = height;
-                ePSXeViewGL.this.f165e.openglresize(width, height, ePSXeViewGL.this.emu_player_mode, ePSXeViewGL.this.emu_split_mode, ePSXeViewGL.this.emu_screen_ratio, ePSXeViewGL.this.emu_screen_orientation, ePSXeViewGL.this.emu_screen_vrmode, ePSXeViewGL.this.emu_screen_vrdistorsion);
+                ePSXeViewGL.this.f165e.openglresize(width, height, ePSXeViewGL.this.emu_player_mode,
+                        ePSXeViewGL.this.emu_split_mode, ePSXeViewGL.this.emu_screen_ratio,
+                        ePSXeViewGL.this.emu_screen_orientation, ePSXeViewGL.this.emu_screen_vrmode,
+                        ePSXeViewGL.this.emu_screen_vrdistorsion);
                 gl.glViewport(0, 0, width, height);
                 gl.glMatrixMode(5889);
                 gl.glLoadIdentity();
@@ -3766,16 +5916,26 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
             if (ePSXeViewGL.this.mePSXeReadPreferences == null) {
                 ePSXeViewGL.this.mePSXeReadPreferences = new ePSXeReadPreferences(ePSXeViewGL.this.mContext);
             }
-            if (ePSXeViewGL.this.mePSXeReadPreferences.getPadStatus(ePSXeViewGL.this.padprofile + "Pad1Status1") != -1 && ePSXeViewGL.this.emu_player_mode == 1 && (ePSXeViewGL.this.emu_screen_orientation != 1 || ePSXeViewGL.this.emu_portrait_skin == 1)) {
+            if (ePSXeViewGL.this.mePSXeReadPreferences.getPadStatus(ePSXeViewGL.this.padprofile + "Pad1Status1") != -1
+                    && ePSXeViewGL.this.emu_player_mode == 1
+                    && (ePSXeViewGL.this.emu_screen_orientation != 1 || ePSXeViewGL.this.emu_portrait_skin == 1)) {
                 Log.e("epsxeviewgl", "loading pad info from preferences");
+
+                // Сначала устанавливаем базовые размеры без масштабирования
                 int tmode = ePSXeViewGL.this.mode;
                 ePSXeViewGL.this.mode = 0;
-                resetPad1Values();
+                setBasePadSizesWithoutResize();
                 ePSXeViewGL.this.mode = 1;
-                resetPad1Values();
+                setBasePadSizesWithoutResize();
                 ePSXeViewGL.this.mode = tmode;
-                ePSXeViewGL.this.mWidthSaved = ePSXeViewGL.this.mePSXeReadPreferences.getPadWH(ePSXeViewGL.this.padprofile + "Pad1Width");
-                ePSXeViewGL.this.mHeightSaved = ePSXeViewGL.this.mePSXeReadPreferences.getPadWH(ePSXeViewGL.this.padprofile + "Pad1Height");
+
+                // Получаем сохраненные размеры экрана
+                ePSXeViewGL.this.mWidthSaved = ePSXeViewGL.this.mePSXeReadPreferences
+                        .getPadWH(ePSXeViewGL.this.padprofile + "Pad1Width");
+                ePSXeViewGL.this.mHeightSaved = ePSXeViewGL.this.mePSXeReadPreferences
+                        .getPadWH(ePSXeViewGL.this.padprofile + "Pad1Height");
+
+                // Вычисляем коэффициенты масштабирования для изменения разрешения
                 float resizeX = 1.0f;
                 float resizeY = 1.0f;
                 if (ePSXeViewGL.this.mWidthSaved != 0 && ePSXeViewGL.this.mWidthSaved != ePSXeViewGL.this.mWidth) {
@@ -3785,138 +5945,172 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                     resizeY = (float) ePSXeViewGL.this.mHeight / ePSXeViewGL.this.mHeightSaved;
                 }
                 for (int i = 1; i < 14; i++) {
-                    int val = ePSXeViewGL.this.mePSXeReadPreferences.getPadStatus(ePSXeViewGL.this.padprofile + "Pad1Status" + i);
+                    int val = ePSXeViewGL.this.mePSXeReadPreferences
+                            .getPadStatus(ePSXeViewGL.this.padprofile + "Pad1Status" + i);
                     if (val != -1) {
                         ePSXeViewGL.this.padScreenStatus[0][i - 1] = val;
                     }
                 }
                 for (int i2 = 14; i2 < 20; i2++) {
-                    int val2 = ePSXeViewGL.this.mePSXeReadPreferences.getPadStatus(ePSXeViewGL.this.padprofile + "Pad1Status" + i2);
+                    int val2 = ePSXeViewGL.this.mePSXeReadPreferences
+                            .getPadStatus(ePSXeViewGL.this.padprofile + "Pad1Status" + i2);
                     if (val2 != -1) {
                         ePSXeViewGL.this.padScreenStatus[0][i2] = val2;
                     }
                 }
                 for (int i3 = 1; i3 < 14; i3++) {
-                    int val3 = ePSXeViewGL.this.mePSXeReadPreferences.getPadStatus(ePSXeViewGL.this.padprofile + "Pad1StatusAnalog" + i3);
+                    int val3 = ePSXeViewGL.this.mePSXeReadPreferences
+                            .getPadStatus(ePSXeViewGL.this.padprofile + "Pad1StatusAnalog" + i3);
                     if (val3 != -1) {
                         ePSXeViewGL.this.padScreenStatus[1][i3 - 1] = val3;
                     }
                 }
                 for (int i4 = 14; i4 < 20; i4++) {
-                    int val4 = ePSXeViewGL.this.mePSXeReadPreferences.getPadStatus(ePSXeViewGL.this.padprofile + "Pad1StatusAnalog" + i4);
+                    int val4 = ePSXeViewGL.this.mePSXeReadPreferences
+                            .getPadStatus(ePSXeViewGL.this.padprofile + "Pad1StatusAnalog" + i4);
                     if (val4 != -1) {
                         ePSXeViewGL.this.padScreenStatus[1][i4] = val4;
                     }
                 }
                 for (int i5 = 1; i5 < 14; i5++) {
-                    float x = ePSXeViewGL.this.mePSXeReadPreferences.getPadSize(ePSXeViewGL.this.padprofile + "Pad1SizeX" + i5);
-                    float y = ePSXeViewGL.this.mePSXeReadPreferences.getPadSize(ePSXeViewGL.this.padprofile + "Pad1SizeY" + i5);
+                    float x = ePSXeViewGL.this.mePSXeReadPreferences
+                            .getPadSize(ePSXeViewGL.this.padprofile + "Pad1SizeX" + i5);
+                    float y = ePSXeViewGL.this.mePSXeReadPreferences
+                            .getPadSize(ePSXeViewGL.this.padprofile + "Pad1SizeY" + i5);
                     if (x != -1.0f) {
                         ePSXeViewGL.this.padSizeScreenLan[0][(i5 - 1) * 2] = x;
                         ePSXeViewGL.this.padSizeScreenLan[0][((i5 - 1) * 2) + 1] = y;
                     }
                 }
                 for (int i6 = 14; i6 < 20; i6++) {
-                    float x2 = ePSXeViewGL.this.mePSXeReadPreferences.getPadSize(ePSXeViewGL.this.padprofile + "Pad1SizeX" + i6);
-                    float y2 = ePSXeViewGL.this.mePSXeReadPreferences.getPadSize(ePSXeViewGL.this.padprofile + "Pad1SizeY" + i6);
+                    float x2 = ePSXeViewGL.this.mePSXeReadPreferences
+                            .getPadSize(ePSXeViewGL.this.padprofile + "Pad1SizeX" + i6);
+                    float y2 = ePSXeViewGL.this.mePSXeReadPreferences
+                            .getPadSize(ePSXeViewGL.this.padprofile + "Pad1SizeY" + i6);
                     if (x2 != -1.0f) {
                         ePSXeViewGL.this.padSizeScreenLan[0][i6 * 2] = x2;
                         ePSXeViewGL.this.padSizeScreenLan[0][(i6 * 2) + 1] = y2;
                     }
                 }
                 for (int i7 = 1; i7 < 14; i7++) {
-                    float x3 = ePSXeViewGL.this.mePSXeReadPreferences.getPadSize(ePSXeViewGL.this.padprofile + "Pad1SizeXAnalog" + i7);
-                    float y3 = ePSXeViewGL.this.mePSXeReadPreferences.getPadSize(ePSXeViewGL.this.padprofile + "Pad1SizeYAnalog" + i7);
+                    float x3 = ePSXeViewGL.this.mePSXeReadPreferences
+                            .getPadSize(ePSXeViewGL.this.padprofile + "Pad1SizeXAnalog" + i7);
+                    float y3 = ePSXeViewGL.this.mePSXeReadPreferences
+                            .getPadSize(ePSXeViewGL.this.padprofile + "Pad1SizeYAnalog" + i7);
                     if (x3 != -1.0f) {
                         ePSXeViewGL.this.padSizeScreenLan[1][(i7 - 1) * 2] = x3;
                         ePSXeViewGL.this.padSizeScreenLan[1][((i7 - 1) * 2) + 1] = y3;
                     }
                 }
                 for (int i8 = 14; i8 < 20; i8++) {
-                    float x4 = ePSXeViewGL.this.mePSXeReadPreferences.getPadSize(ePSXeViewGL.this.padprofile + "Pad1SizeXAnalog" + i8);
-                    float y4 = ePSXeViewGL.this.mePSXeReadPreferences.getPadSize(ePSXeViewGL.this.padprofile + "Pad1SizeYAnalog" + i8);
+                    float x4 = ePSXeViewGL.this.mePSXeReadPreferences
+                            .getPadSize(ePSXeViewGL.this.padprofile + "Pad1SizeXAnalog" + i8);
+                    float y4 = ePSXeViewGL.this.mePSXeReadPreferences
+                            .getPadSize(ePSXeViewGL.this.padprofile + "Pad1SizeYAnalog" + i8);
                     if (x4 != -1.0f) {
                         ePSXeViewGL.this.padSizeScreenLan[1][i8 * 2] = x4;
                         ePSXeViewGL.this.padSizeScreenLan[1][(i8 * 2) + 1] = y4;
                     }
                 }
                 for (int i9 = 1; i9 < 14; i9++) {
-                    float x5 = ePSXeViewGL.this.mePSXeReadPreferences.getPadSize(ePSXeViewGL.this.padprofile + "Pad1PosX" + i9);
-                    float y5 = ePSXeViewGL.this.mePSXeReadPreferences.getPadSize(ePSXeViewGL.this.padprofile + "Pad1PosY" + i9);
+                    float x5 = ePSXeViewGL.this.mePSXeReadPreferences
+                            .getPadSize(ePSXeViewGL.this.padprofile + "Pad1PosX" + i9);
+                    float y5 = ePSXeViewGL.this.mePSXeReadPreferences
+                            .getPadSize(ePSXeViewGL.this.padprofile + "Pad1PosY" + i9);
                     if (x5 != -1.0f) {
                         ePSXeViewGL.this.padOffScreenLan[0][(i9 - 1) * 2] = x5;
                         ePSXeViewGL.this.padOffScreenLan[0][((i9 - 1) * 2) + 1] = y5;
                     }
                 }
                 for (int i10 = 14; i10 < 20; i10++) {
-                    float x6 = ePSXeViewGL.this.mePSXeReadPreferences.getPadSize(ePSXeViewGL.this.padprofile + "Pad1PosX" + i10);
-                    float y6 = ePSXeViewGL.this.mePSXeReadPreferences.getPadSize(ePSXeViewGL.this.padprofile + "Pad1PosY" + i10);
+                    float x6 = ePSXeViewGL.this.mePSXeReadPreferences
+                            .getPadSize(ePSXeViewGL.this.padprofile + "Pad1PosX" + i10);
+                    float y6 = ePSXeViewGL.this.mePSXeReadPreferences
+                            .getPadSize(ePSXeViewGL.this.padprofile + "Pad1PosY" + i10);
                     if (x6 != -1.0f) {
                         ePSXeViewGL.this.padOffScreenLan[0][i10 * 2] = x6;
                         ePSXeViewGL.this.padOffScreenLan[0][(i10 * 2) + 1] = y6;
                     }
                 }
                 for (int i11 = 1; i11 < 14; i11++) {
-                    float x7 = ePSXeViewGL.this.mePSXeReadPreferences.getPadSize(ePSXeViewGL.this.padprofile + "Pad1PosXAnalog" + i11);
-                    float y7 = ePSXeViewGL.this.mePSXeReadPreferences.getPadSize(ePSXeViewGL.this.padprofile + "Pad1PosYAnalog" + i11);
+                    float x7 = ePSXeViewGL.this.mePSXeReadPreferences
+                            .getPadSize(ePSXeViewGL.this.padprofile + "Pad1PosXAnalog" + i11);
+                    float y7 = ePSXeViewGL.this.mePSXeReadPreferences
+                            .getPadSize(ePSXeViewGL.this.padprofile + "Pad1PosYAnalog" + i11);
                     if (x7 != -1.0f) {
                         ePSXeViewGL.this.padOffScreenLan[1][(i11 - 1) * 2] = x7;
                         ePSXeViewGL.this.padOffScreenLan[1][((i11 - 1) * 2) + 1] = y7;
                     }
                 }
                 for (int i12 = 14; i12 < 20; i12++) {
-                    float x8 = ePSXeViewGL.this.mePSXeReadPreferences.getPadSize(ePSXeViewGL.this.padprofile + "Pad1PosXAnalog" + i12);
-                    float y8 = ePSXeViewGL.this.mePSXeReadPreferences.getPadSize(ePSXeViewGL.this.padprofile + "Pad1PosYAnalog" + i12);
+                    float x8 = ePSXeViewGL.this.mePSXeReadPreferences
+                            .getPadSize(ePSXeViewGL.this.padprofile + "Pad1PosXAnalog" + i12);
+                    float y8 = ePSXeViewGL.this.mePSXeReadPreferences
+                            .getPadSize(ePSXeViewGL.this.padprofile + "Pad1PosYAnalog" + i12);
                     if (x8 != -1.0f) {
                         ePSXeViewGL.this.padOffScreenLan[1][i12 * 2] = x8;
                         ePSXeViewGL.this.padOffScreenLan[1][(i12 * 2) + 1] = y8;
                     }
                 }
                 for (int i13 = 1; i13 < 14; i13++) {
-                    float val5 = ePSXeViewGL.this.mePSXeReadPreferences.getPadResize(ePSXeViewGL.this.padprofile + "Pad1Resize" + i13);
+                    float val5 = ePSXeViewGL.this.mePSXeReadPreferences
+                            .getPadResize(ePSXeViewGL.this.padprofile + "Pad1Resize" + i13);
                     if (val5 != -1.0f) {
-                        float resizeMultiplier = (ePSXeViewGL.this.emu_screen_orientation != 1) ? 0.7f : 1.0f; // Уменьшаем в половину для ландшафтного режима
-                        ePSXeViewGL.this.padScreenResize[0][i13 - 1] = val5 * resizeMultiplier;
+                        ePSXeViewGL.this.padScreenResize[0][i13 - 1] = val5;
                     }
                 }
                 for (int i14 = 14; i14 < 20; i14++) {
-                    float val6 = ePSXeViewGL.this.mePSXeReadPreferences.getPadResize(ePSXeViewGL.this.padprofile + "Pad1Resize" + i14);
+                    float val6 = ePSXeViewGL.this.mePSXeReadPreferences
+                            .getPadResize(ePSXeViewGL.this.padprofile + "Pad1Resize" + i14);
                     if (val6 != -1.0f) {
-                        float resizeMultiplier = (ePSXeViewGL.this.emu_screen_orientation != 1) ? 0.7f : 1.0f; // Уменьшаем в половину для ландшафтного режима
-                        ePSXeViewGL.this.padScreenResize[0][i14] = val6 * resizeMultiplier;
+                        ePSXeViewGL.this.padScreenResize[0][i14] = val6;
                     }
                 }
                 for (int i15 = 1; i15 < 14; i15++) {
-                    float val7 = ePSXeViewGL.this.mePSXeReadPreferences.getPadResize(ePSXeViewGL.this.padprofile + "Pad1ResizeAnalog" + i15);
+                    float val7 = ePSXeViewGL.this.mePSXeReadPreferences
+                            .getPadResize(ePSXeViewGL.this.padprofile + "Pad1ResizeAnalog" + i15);
                     if (val7 != -1.0f) {
-                        float resizeMultiplier = (ePSXeViewGL.this.emu_screen_orientation != 1) ? 0.7f : 1.0f; // Уменьшаем в половину для ландшафтного режима
-                        ePSXeViewGL.this.padScreenResize[1][i15 - 1] = val7 * resizeMultiplier;
+                        ePSXeViewGL.this.padScreenResize[1][i15 - 1] = val7;
                     }
                 }
                 for (int i16 = 14; i16 < 20; i16++) {
-                    float val8 = ePSXeViewGL.this.mePSXeReadPreferences.getPadResize(ePSXeViewGL.this.padprofile + "Pad1ResizeAnalog" + i16);
+                    float val8 = ePSXeViewGL.this.mePSXeReadPreferences
+                            .getPadResize(ePSXeViewGL.this.padprofile + "Pad1ResizeAnalog" + i16);
                     if (val8 != -1.0f) {
-                        float resizeMultiplier = (ePSXeViewGL.this.emu_screen_orientation != 1) ? 0.7f : 1.0f; // Уменьшаем в половину для ландшафтного режима
-                        ePSXeViewGL.this.padScreenResize[1][i16] = val8 * resizeMultiplier;
+                        ePSXeViewGL.this.padScreenResize[1][i16] = val8;
                     }
                 }
+                // Применяем коррекцию разрешения к размерам и позициям
                 for (int i17 = 0; i17 < 20; i17++) {
-                    ePSXeViewGL.this.padSizeScreenLan[0][i17 * 2] = ePSXeViewGL.this.padSizeScreenLan[0][i17 * 2] * resizeX;
-                    ePSXeViewGL.this.padSizeScreenLan[0][(i17 * 2) + 1] = ePSXeViewGL.this.padSizeScreenLan[0][(i17 * 2) + 1] * resizeY;
-                    ePSXeViewGL.this.padSizeScreenLan[1][i17 * 2] = ePSXeViewGL.this.padSizeScreenLan[1][i17 * 2] * resizeX;
-                    ePSXeViewGL.this.padSizeScreenLan[1][(i17 * 2) + 1] = ePSXeViewGL.this.padSizeScreenLan[1][(i17 * 2) + 1] * resizeY;
+                    ePSXeViewGL.this.padSizeScreenLan[0][i17 * 2] = ePSXeViewGL.this.padSizeScreenLan[0][i17 * 2]
+                            * resizeX;
+                    ePSXeViewGL.this.padSizeScreenLan[0][(i17 * 2)
+                            + 1] = ePSXeViewGL.this.padSizeScreenLan[0][(i17 * 2) + 1] * resizeY;
+                    ePSXeViewGL.this.padSizeScreenLan[1][i17 * 2] = ePSXeViewGL.this.padSizeScreenLan[1][i17 * 2]
+                            * resizeX;
+                    ePSXeViewGL.this.padSizeScreenLan[1][(i17 * 2)
+                            + 1] = ePSXeViewGL.this.padSizeScreenLan[1][(i17 * 2) + 1] * resizeY;
                 }
                 for (int i18 = 0; i18 < 20; i18++) {
-                    ePSXeViewGL.this.padOffScreenLan[0][i18 * 2] = ePSXeViewGL.this.padOffScreenLan[0][i18 * 2] * resizeX;
-                    ePSXeViewGL.this.padOffScreenLan[0][(i18 * 2) + 1] = ePSXeViewGL.this.padOffScreenLan[0][(i18 * 2) + 1] * resizeY;
-                    ePSXeViewGL.this.padOffScreenLan[1][i18 * 2] = ePSXeViewGL.this.padOffScreenLan[1][i18 * 2] * resizeX;
-                    ePSXeViewGL.this.padOffScreenLan[1][(i18 * 2) + 1] = ePSXeViewGL.this.padOffScreenLan[1][(i18 * 2) + 1] * resizeY;
+                    ePSXeViewGL.this.padOffScreenLan[0][i18 * 2] = ePSXeViewGL.this.padOffScreenLan[0][i18 * 2]
+                            * resizeX;
+                    ePSXeViewGL.this.padOffScreenLan[0][(i18 * 2)
+                            + 1] = ePSXeViewGL.this.padOffScreenLan[0][(i18 * 2) + 1] * resizeY;
+                    ePSXeViewGL.this.padOffScreenLan[1][i18 * 2] = ePSXeViewGL.this.padOffScreenLan[1][i18 * 2]
+                            * resizeX;
+                    ePSXeViewGL.this.padOffScreenLan[1][(i18 * 2)
+                            + 1] = ePSXeViewGL.this.padOffScreenLan[1][(i18 * 2) + 1] * resizeY;
                 }
+
+                // Теперь применяем базовое масштабирование для текущего разрешения
+                calculateBasePadResize();
+                applyFinalScalingToPads();
                 loadExtraButtons();
                 loadExtraButtonsTextures(gl);
             } else {
                 Log.e("epsxepadeditor", "setting default pad info");
-                if (ePSXeViewGL.this.emu_player_mode != 1 || ePSXeViewGL.this.emu_screen_orientation != 1 || ePSXeViewGL.this.emu_portrait_skin != 0) {
+                if (ePSXeViewGL.this.emu_player_mode != 1 || ePSXeViewGL.this.emu_screen_orientation != 1
+                        || ePSXeViewGL.this.emu_portrait_skin != 0) {
                     int tmode2 = ePSXeViewGL.this.mode;
                     ePSXeViewGL.this.mode = 0;
                     resetPad1Values();
@@ -3942,7 +6136,8 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                     }
                 }
                 if (ePSXeViewGL.this.emu_pad_mode[0] == 3 || ePSXeViewGL.this.emu_pad_mode[0] == 8) {
-                    ePSXeViewGL.this.gun.initGun(ePSXeViewGL.this.mWidth, ePSXeViewGL.this.mHeight, ePSXeViewGL.this.emu_pad_type_selected);
+                    ePSXeViewGL.this.gun.initGun(ePSXeViewGL.this.mWidth, ePSXeViewGL.this.mHeight,
+                            ePSXeViewGL.this.emu_pad_type_selected);
                 }
             }
         }
@@ -3956,7 +6151,9 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                     }
                     this.wTexLan[i + 14] = this.padCoordsExtra[(j * 4) + 2] - this.padCoordsExtra[j * 4];
                     this.hTexLan[i + 14] = this.padCoordsExtra[(j * 4) + 3] - this.padCoordsExtra[(j * 4) + 1];
-                    this.textureRgnLan[i + 14] = new TextureRegion(this.wTextmp, this.hTextmp, this.padCoordsExtra[j * 4], this.padCoordsExtra[(j * 4) + 1], this.wTexLan[i + 14], this.hTexLan[i + 14]);
+                    this.textureRgnLan[i + 14] = new TextureRegion(this.wTextmp, this.hTextmp,
+                            this.padCoordsExtra[j * 4], this.padCoordsExtra[(j * 4) + 1], this.wTexLan[i + 14],
+                            this.hTexLan[i + 14]);
                     this.batchLan[i + 14] = new SpriteBatch(gl, 1);
                 }
             }
@@ -3967,52 +6164,55 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
             Log.e("ePSXeRenderer", "onSurfaceCreated");
             this.glText = new GLText(gl, ePSXeViewGL.this.mContext.getAssets());
             this.glText.load("Roboto-Regular.ttf", 28, 2, 2);
-            if (ePSXeViewGL.this.emu_player_mode != 1 || ePSXeViewGL.this.emu_screen_orientation != 1 || ePSXeViewGL.this.emu_portrait_skin != 0) {
+            if (ePSXeViewGL.this.emu_player_mode != 1 || ePSXeViewGL.this.emu_screen_orientation != 1
+                    || ePSXeViewGL.this.emu_portrait_skin != 0) {
                 if (ePSXeViewGL.this.emu_pad_mode[0] != 3) {
                     if (ePSXeViewGL.this.emu_pad_mode[0] == 8) {
-                        int[] padCoords = {384, 64, 448, 256, 448, 64, 511, 256};
+                        int[] padCoords = { 384, 64, 448, 256, 448, 64, 511, 256 };
                         this.mTexLan = loadTexture(gl, ePSXeViewGL.this.mContext, R.drawable.extra_buttons);
                         for (int i = 0; i < 2; i++) {
                             this.wTexLan[i] = padCoords[(i * 4) + 2] - padCoords[i * 4];
                             this.hTexLan[i] = padCoords[(i * 4) + 3] - padCoords[(i * 4) + 1];
-                            this.textureRgnLan[i] = new TextureRegion(this.wTextmp, this.hTextmp, padCoords[i * 4], padCoords[(i * 4) + 1], this.wTexLan[i], this.hTexLan[i]);
+                            this.textureRgnLan[i] = new TextureRegion(this.wTextmp, this.hTextmp, padCoords[i * 4],
+                                    padCoords[(i * 4) + 1], this.wTexLan[i], this.hTexLan[i]);
                             this.batchLan[i] = new SpriteBatch(gl, 1);
                         }
                         return;
                     }
                     int[] padCoords2 = {
-                        //x1,  y1,  x2,  y2
-                        2, 1, 224, 225, // Dpad Up, Down, Left, Right - keys
-                        1, 238, 223, 486, // Action keys
-                        253, 8, 309, 52, // Stop key
-                        372, 4, 433, 56, // Play key
-                        249, 80, 307, 132, // L1 key
-                        308, 80, 364, 132, // L2 key
-                        308, 144, 364, 196, // R1 key
-                        250, 144, 307, 196, // R2 key
-                        254, 208, 297, 239, // LED1
-                        365, 80, 421, 132, // L3 key
-                        365, 144, 422, 196, // R3 key
-                        289, 289, 511, 511, // Touch pad area
-                        289, 289, 511, 511, // ------"-------
-                        422, 144, 491, 215 // Some ball button
+                            // x1, y1, x2, y2
+                            2, 1, 224, 225, // Dpad Up, Down, Left, Right - keys
+                            1, 238, 223, 486, // Action keys
+                            253, 8, 309, 52, // Stop key
+                            372, 4, 433, 56, // Play key
+                            249, 80, 307, 132, // L1 key
+                            308, 80, 364, 132, // L2 key
+                            308, 144, 364, 196, // R1 key
+                            250, 144, 307, 196, // R2 key
+                            254, 208, 297, 239, // LED1
+                            365, 80, 421, 132, // L3 key
+                            365, 144, 422, 196, // R3 key
+                            289, 289, 511, 511, // Touch pad area
+                            289, 289, 511, 511, // ------"-------
+                            422, 144, 491, 215 // Some ball button
                     };
                     int[] padCoordsAction = {
-                        77, 244, 149, 316, // Action - triangle
-                        146, 328, 218, 400, // Action - circle
-                        77, 412, 149, 484, // Action - x
-                        6, 328, 78, 400 // Action - square
+                            77, 244, 149, 316, // Action - triangle
+                            146, 328, 218, 400, // Action - circle
+                            77, 412, 149, 484, // Action - x
+                            6, 328, 78, 400 // Action - square
                     };
                     int[] padCoordsDpad = {
-                        76, 7, 146, 94, // Dpad - up
-                        130, 80, 218, 149, // Dpad - right
-                        76, 134, 146, 220, // Dpad - down
-                        4, 80, 92, 149 // Dpad - left
+                            76, 7, 146, 94, // Dpad - up
+                            130, 80, 218, 149, // Dpad - right
+                            76, 134, 146, 220, // Dpad - down
+                            4, 80, 92, 149 // Dpad - left
                     };
                     if (ePSXeViewGL.this.emu_pad_draw_mode[0] == 4) {
                         File f = new File(ePSXeViewGL.this.skinName);
                         if (f.exists()) {
-                            this.mTexLan = loadTextureFromFile(gl, ePSXeViewGL.this.mContext, ePSXeViewGL.this.skinName);
+                            this.mTexLan = loadTextureFromFile(gl, ePSXeViewGL.this.mContext,
+                                    ePSXeViewGL.this.skinName);
                         } else {
                             ePSXeViewGL.this.emu_pad_draw_mode[0] = 0;
                         }
@@ -4025,10 +6225,12 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                             this.mTexLan = loadTexture(gl, ePSXeViewGL.this.mContext, R.drawable.pure_white_analog);
                             break;
                         case 10:
-                            this.mTexLan = loadTexture(gl, ePSXeViewGL.this.mContext, R.drawable.amethyst_crystal_digital);
+                            this.mTexLan = loadTexture(gl, ePSXeViewGL.this.mContext,
+                                    R.drawable.amethyst_crystal_digital);
                             break;
                         case 11:
-                            this.mTexLan = loadTexture(gl, ePSXeViewGL.this.mContext, R.drawable.amethyst_crystal_analog);
+                            this.mTexLan = loadTexture(gl, ePSXeViewGL.this.mContext,
+                                    R.drawable.amethyst_crystal_analog);
                             break;
                         case 12:
                             this.mTexLan = loadTexture(gl, ePSXeViewGL.this.mContext, R.drawable.binchotite_digital);
@@ -4079,16 +6281,19 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                             this.mTexLan = loadTexture(gl, ePSXeViewGL.this.mContext, R.drawable.bold_silk_analog);
                             break;
                         case 28:
-                            this.mTexLan = loadTexture(gl, ePSXeViewGL.this.mContext, R.drawable.bold_turquoise_digital);
+                            this.mTexLan = loadTexture(gl, ePSXeViewGL.this.mContext,
+                                    R.drawable.bold_turquoise_digital);
                             break;
                         case 29:
                             this.mTexLan = loadTexture(gl, ePSXeViewGL.this.mContext, R.drawable.bold_turquoise_analog);
                             break;
                         case 30:
-                            this.mTexLan = loadTexture(gl, ePSXeViewGL.this.mContext, R.drawable.emerald_crystal_digital);
+                            this.mTexLan = loadTexture(gl, ePSXeViewGL.this.mContext,
+                                    R.drawable.emerald_crystal_digital);
                             break;
                         case 31:
-                            this.mTexLan = loadTexture(gl, ePSXeViewGL.this.mContext, R.drawable.emerald_crystal_analog);
+                            this.mTexLan = loadTexture(gl, ePSXeViewGL.this.mContext,
+                                    R.drawable.emerald_crystal_analog);
                             break;
                         case 32:
                             this.mTexLan = loadTexture(gl, ePSXeViewGL.this.mContext, R.drawable.gold_crystal_digital);
@@ -4097,10 +6302,12 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                             this.mTexLan = loadTexture(gl, ePSXeViewGL.this.mContext, R.drawable.gold_crystal_analog);
                             break;
                         case 34:
-                            this.mTexLan = loadTexture(gl, ePSXeViewGL.this.mContext, R.drawable.negative_crystal_digital);
+                            this.mTexLan = loadTexture(gl, ePSXeViewGL.this.mContext,
+                                    R.drawable.negative_crystal_digital);
                             break;
                         case 35:
-                            this.mTexLan = loadTexture(gl, ePSXeViewGL.this.mContext, R.drawable.negative_crystal_analog);
+                            this.mTexLan = loadTexture(gl, ePSXeViewGL.this.mContext,
+                                    R.drawable.negative_crystal_analog);
                             break;
                         case 36:
                             this.mTexLan = loadTexture(gl, ePSXeViewGL.this.mContext, R.drawable.pink_crystal_digital);
@@ -4109,10 +6316,12 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                             this.mTexLan = loadTexture(gl, ePSXeViewGL.this.mContext, R.drawable.pink_crystal_analog);
                             break;
                         case 38:
-                            this.mTexLan = loadTexture(gl, ePSXeViewGL.this.mContext, R.drawable.sapphire_crystal_digital);
+                            this.mTexLan = loadTexture(gl, ePSXeViewGL.this.mContext,
+                                    R.drawable.sapphire_crystal_digital);
                             break;
                         case 39:
-                            this.mTexLan = loadTexture(gl, ePSXeViewGL.this.mContext, R.drawable.sapphire_crystal_analog);
+                            this.mTexLan = loadTexture(gl, ePSXeViewGL.this.mContext,
+                                    R.drawable.sapphire_crystal_analog);
                             break;
                         case 40:
                             this.mTexLan = loadTexture(gl, ePSXeViewGL.this.mContext, R.drawable.silk_crystal_digital);
@@ -4127,44 +6336,67 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                             this.mTexLan = loadTexture(gl, ePSXeViewGL.this.mContext, R.drawable.snow_analog);
                             break;
                         case 44:
-                            this.mTexLan = loadTexture(gl, ePSXeViewGL.this.mContext, R.drawable.turquoise_crystal_digital);
+                            this.mTexLan = loadTexture(gl, ePSXeViewGL.this.mContext,
+                                    R.drawable.turquoise_crystal_digital);
                             break;
                         case 45:
-                            this.mTexLan = loadTexture(gl, ePSXeViewGL.this.mContext, R.drawable.turquoise_crystal_analog);
+                            this.mTexLan = loadTexture(gl, ePSXeViewGL.this.mContext,
+                                    R.drawable.turquoise_crystal_analog);
                             break;
                         default:
                             if (ePSXeViewGL.this.emu_pad_draw_mode[0] != 4) {
-                                this.mTexLan = loadTexture(gl, ePSXeViewGL.this.mContext, R.drawable.pure_white_digital);
+                                this.mTexLan = loadTexture(gl, ePSXeViewGL.this.mContext,
+                                        R.drawable.pure_white_digital);
                             }
                     }
-                    if ((ePSXeViewGL.this.emu_pad_draw_mode[0] & 1) == 0 || (ePSXeViewGL.this.emu_pad_draw_mode[0] < 10 && ePSXeViewGL.this.emu_pad_draw_mode[0] != 1)) {
+                    if ((ePSXeViewGL.this.emu_pad_draw_mode[0] & 1) == 0 || (ePSXeViewGL.this.emu_pad_draw_mode[0] < 10
+                            && ePSXeViewGL.this.emu_pad_draw_mode[0] != 1)) {
                         ePSXeViewGL.this.dpadskin = 1;
                     }
                     for (int i2 = 0; i2 < 14; i2++) {
                         this.wTexLan[i2] = padCoords2[(i2 * 4) + 2] - padCoords2[i2 * 4]; // calculate width
                         this.hTexLan[i2] = padCoords2[(i2 * 4) + 3] - padCoords2[(i2 * 4) + 1]; // calculate height
-                        this.textureRgnLan[i2] = new TextureRegion(this.wTextmp, this.hTextmp, padCoords2[i2 * 4], padCoords2[(i2 * 4) + 1], this.wTexLan[i2], this.hTexLan[i2]);
+                        this.textureRgnLan[i2] = new TextureRegion(this.wTextmp, this.hTextmp, padCoords2[i2 * 4],
+                                padCoords2[(i2 * 4) + 1], this.wTexLan[i2], this.hTexLan[i2]);
                         this.batchLan[i2] = new SpriteBatch(gl, 1);
                     }
                     for (int i3 = 0; i3 < 4; i3++) {
                         this.wTexLanAction[i3] = padCoordsAction[(i3 * 4) + 2] - padCoordsAction[i3 * 4];
                         this.hTexLanAction[i3] = padCoordsAction[(i3 * 4) + 3] - padCoordsAction[(i3 * 4) + 1];
-                        this.textureRgnLanAction[i3] = new TextureRegion(this.wTextmp, this.hTextmp, padCoordsAction[i3 * 4], padCoordsAction[(i3 * 4) + 1], this.wTexLanAction[i3], this.hTexLanAction[i3]);
+                        this.textureRgnLanAction[i3] = new TextureRegion(this.wTextmp, this.hTextmp,
+                                padCoordsAction[i3 * 4], padCoordsAction[(i3 * 4) + 1], this.wTexLanAction[i3],
+                                this.hTexLanAction[i3]);
                         this.batchLanAction[i3] = new SpriteBatch(gl, 1);
-                        this.sizeActionX[i3] = (float) (padCoordsAction[(i3 * 4) + 2] - padCoordsAction[i3 * 4]) / (padCoords2[6] - padCoords2[4]); // width percent to action block width
-                        this.sizeActionY[i3] = (float) (padCoordsAction[(i3 * 4) + 3] - padCoordsAction[(i3 * 4) + 1]) / (padCoords2[7] - padCoords2[5]); // height percent to action block height
-                        this.offActionX[i3] = (float) ((padCoordsAction[i3 * 4] - padCoords2[4]) + ((padCoordsAction[(i3 * 4) + 2] - padCoordsAction[i3 * 4]) / 2)) / (padCoords2[6] - padCoords2[4]);
-                        this.offActionY[i3] = 1.0f - ((float) ((padCoordsAction[(i3 * 4) + 1] - padCoords2[5]) + ((padCoordsAction[(i3 * 4) + 3] - padCoordsAction[(i3 * 4) + 1]) / 2)) / (padCoords2[7] - padCoords2[5]));
+                        this.sizeActionX[i3] = (float) (padCoordsAction[(i3 * 4) + 2] - padCoordsAction[i3 * 4])
+                                / (padCoords2[6] - padCoords2[4]); // width percent to action block width
+                        this.sizeActionY[i3] = (float) (padCoordsAction[(i3 * 4) + 3] - padCoordsAction[(i3 * 4) + 1])
+                                / (padCoords2[7] - padCoords2[5]); // height percent to action block height
+                        this.offActionX[i3] = (float) ((padCoordsAction[i3 * 4] - padCoords2[4])
+                                + ((padCoordsAction[(i3 * 4) + 2] - padCoordsAction[i3 * 4]) / 2))
+                                / (padCoords2[6] - padCoords2[4]);
+                        this.offActionY[i3] = 1.0f - ((float) ((padCoordsAction[(i3 * 4) + 1] - padCoords2[5])
+                                + ((padCoordsAction[(i3 * 4) + 3] - padCoordsAction[(i3 * 4) + 1]) / 2))
+                                / (padCoords2[7] - padCoords2[5]));
                     }
                     for (int i4 = 0; i4 < 4; i4++) {
                         this.wTexLanDpad[i4] = padCoordsDpad[(i4 * 4) + 2] - padCoordsDpad[i4 * 4];
                         this.hTexLanDpad[i4] = padCoordsDpad[(i4 * 4) + 3] - padCoordsDpad[(i4 * 4) + 1];
-                        this.textureRgnLanDpad[i4] = new TextureRegion(this.wTextmp, this.hTextmp, padCoordsDpad[i4 * 4], padCoordsDpad[(i4 * 4) + 1], this.wTexLanDpad[i4], this.hTexLanDpad[i4]);
+                        this.textureRgnLanDpad[i4] = new TextureRegion(this.wTextmp, this.hTextmp,
+                                padCoordsDpad[i4 * 4], padCoordsDpad[(i4 * 4) + 1], this.wTexLanDpad[i4],
+                                this.hTexLanDpad[i4]);
                         this.batchLanDpad[i4] = new SpriteBatch(gl, 1);
-                        this.sizeDpadX[i4] = (float) ((padCoordsDpad[(i4 * 4) + 2] - padCoords2[0]) - (padCoordsDpad[i4 * 4] - padCoords2[0])) / (padCoords2[2] - padCoords2[0]);
-                        this.sizeDpadY[i4] = (float) ((padCoordsDpad[(i4 * 4) + 3] - padCoords2[1]) - (padCoordsDpad[(i4 * 4) + 1] - padCoords2[1])) / (padCoords2[3] - padCoords2[1]);
-                        this.offDpadX[i4] = (float) ((padCoordsDpad[i4 * 4] - padCoords2[0]) + (((padCoordsDpad[(i4 * 4) + 2] - padCoords2[0]) - (padCoordsDpad[i4 * 4] - padCoords2[0])) / 2)) / (padCoords2[2] - padCoords2[0]);
-                        this.offDpadY[i4] = 1.0f - ((float) ((padCoordsDpad[(i4 * 4) + 1] - padCoords2[1]) + (((padCoordsDpad[(i4 * 4) + 3] - padCoords2[1]) - (padCoordsDpad[(i4 * 4) + 1] - padCoords2[1])) / 2)) / (padCoords2[3] - padCoords2[1]));
+                        this.sizeDpadX[i4] = (float) ((padCoordsDpad[(i4 * 4) + 2] - padCoords2[0])
+                                - (padCoordsDpad[i4 * 4] - padCoords2[0])) / (padCoords2[2] - padCoords2[0]);
+                        this.sizeDpadY[i4] = (float) ((padCoordsDpad[(i4 * 4) + 3] - padCoords2[1])
+                                - (padCoordsDpad[(i4 * 4) + 1] - padCoords2[1])) / (padCoords2[3] - padCoords2[1]);
+                        this.offDpadX[i4] = (float) ((padCoordsDpad[i4 * 4] - padCoords2[0])
+                                + (((padCoordsDpad[(i4 * 4) + 2] - padCoords2[0])
+                                        - (padCoordsDpad[i4 * 4] - padCoords2[0])) / 2))
+                                / (padCoords2[2] - padCoords2[0]);
+                        this.offDpadY[i4] = 1.0f - ((float) ((padCoordsDpad[(i4 * 4) + 1] - padCoords2[1])
+                                + (((padCoordsDpad[(i4 * 4) + 3] - padCoords2[1])
+                                        - (padCoordsDpad[(i4 * 4) + 1] - padCoords2[1])) / 2))
+                                / (padCoords2[3] - padCoords2[1]));
                     }
                     loadExtraButtons();
                     this.mTexExtra = loadTexture(gl, ePSXeViewGL.this.mContext, R.drawable.extra_buttons);
@@ -4173,36 +6405,42 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                         int j = i5 + 24;
                         this.wTexLan[i5 + 20] = this.padCoordsExtra[(j * 4) + 2] - this.padCoordsExtra[j * 4];
                         this.hTexLan[i5 + 20] = this.padCoordsExtra[(j * 4) + 3] - this.padCoordsExtra[(j * 4) + 1];
-                        this.textureRgnLan[i5 + 20] = new TextureRegion(this.wTextmp, this.hTextmp, this.padCoordsExtra[j * 4], this.padCoordsExtra[(j * 4) + 1], this.wTexLan[i5 + 20], this.hTexLan[i5 + 20]);
+                        this.textureRgnLan[i5 + 20] = new TextureRegion(this.wTextmp, this.hTextmp,
+                                this.padCoordsExtra[j * 4], this.padCoordsExtra[(j * 4) + 1], this.wTexLan[i5 + 20],
+                                this.hTexLan[i5 + 20]);
                         this.batchLan[i5 + 20] = new SpriteBatch(gl, 1);
                     }
                     for (int i6 = 0; i6 < 4; i6++) {
                         int j2 = i6 + 32;
                         this.wTexLan[i6 + 24] = this.padCoordsExtra[(j2 * 4) + 2] - this.padCoordsExtra[j2 * 4];
                         this.hTexLan[i6 + 24] = this.padCoordsExtra[(j2 * 4) + 3] - this.padCoordsExtra[(j2 * 4) + 1];
-                        this.textureRgnLan[i6 + 24] = new TextureRegion(this.wTextmp, this.hTextmp, this.padCoordsExtra[j2 * 4], this.padCoordsExtra[(j2 * 4) + 1], this.wTexLan[i6 + 24], this.hTexLan[i6 + 24]);
+                        this.textureRgnLan[i6 + 24] = new TextureRegion(this.wTextmp, this.hTextmp,
+                                this.padCoordsExtra[j2 * 4], this.padCoordsExtra[(j2 * 4) + 1], this.wTexLan[i6 + 24],
+                                this.hTexLan[i6 + 24]);
                         this.batchLan[i6 + 24] = new SpriteBatch(gl, 1);
                     }
                     return;
                 }
                 int[] padCoords3 = {
-                    256, 64, 320, 256,
-                    320, 64, 384, 256
+                        256, 64, 320, 256,
+                        320, 64, 384, 256
                 };
                 this.mTexLan = loadTexture(gl, ePSXeViewGL.this.mContext, R.drawable.extra_buttons);
                 for (int i7 = 0; i7 < 2; i7++) {
                     this.wTexLan[i7] = padCoords3[(i7 * 4) + 2] - padCoords3[i7 * 4];
                     this.hTexLan[i7] = padCoords3[(i7 * 4) + 3] - padCoords3[(i7 * 4) + 1];
-                    this.textureRgnLan[i7] = new TextureRegion(this.wTextmp, this.hTextmp, padCoords3[i7 * 4], padCoords3[(i7 * 4) + 1], this.wTexLan[i7], this.hTexLan[i7]);
+                    this.textureRgnLan[i7] = new TextureRegion(this.wTextmp, this.hTextmp, padCoords3[i7 * 4],
+                            padCoords3[(i7 * 4) + 1], this.wTexLan[i7], this.hTexLan[i7]);
                     this.batchLan[i7] = new SpriteBatch(gl, 1);
                 }
                 return;
             }
-            int[] padCoords4 = {0, 0, 480, 400};
+            int[] padCoords4 = { 0, 0, 480, 400 };
             this.mTexPor = loadTexture(gl, ePSXeViewGL.this.mContext, R.drawable.portraitpad);
             this.wTexPor = padCoords4[2] - padCoords4[0];
             this.hTexPor = padCoords4[3] - padCoords4[1];
-            this.textureRgnPor = new TextureRegion(this.wTextmp, this.hTextmp, padCoords4[0], padCoords4[1], this.wTexPor, this.hTexPor);
+            this.textureRgnPor = new TextureRegion(this.wTextmp, this.hTextmp, padCoords4[0], padCoords4[1],
+                    this.wTexPor, this.hTexPor);
             this.batchPor = new SpriteBatch(gl, 1);
             loadExtraButtons();
             this.mTexExtra = loadTexture(gl, ePSXeViewGL.this.mContext, R.drawable.extra_buttons);
@@ -4211,14 +6449,16 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                 int j3 = i8 + 24;
                 this.wTexLan[i8 + 20] = this.padCoordsExtra[(j3 * 4) + 2] - this.padCoordsExtra[j3 * 4];
                 this.hTexLan[i8 + 20] = this.padCoordsExtra[(j3 * 4) + 3] - this.padCoordsExtra[(j3 * 4) + 1];
-                this.textureRgnLan[i8 + 20] = new TextureRegion(this.wTextmp, this.hTextmp, this.padCoordsExtra[j3 * 4], this.padCoordsExtra[(j3 * 4) + 1], this.wTexLan[i8 + 20], this.hTexLan[i8 + 20]);
+                this.textureRgnLan[i8 + 20] = new TextureRegion(this.wTextmp, this.hTextmp, this.padCoordsExtra[j3 * 4],
+                        this.padCoordsExtra[(j3 * 4) + 1], this.wTexLan[i8 + 20], this.hTexLan[i8 + 20]);
                 this.batchLan[i8 + 20] = new SpriteBatch(gl, 1);
             }
             for (int i9 = 0; i9 < 4; i9++) {
                 int j4 = i9 + 32;
                 this.wTexLan[i9 + 24] = this.padCoordsExtra[(j4 * 4) + 2] - this.padCoordsExtra[j4 * 4];
                 this.hTexLan[i9 + 24] = this.padCoordsExtra[(j4 * 4) + 3] - this.padCoordsExtra[(j4 * 4) + 1];
-                this.textureRgnLan[i9 + 24] = new TextureRegion(this.wTextmp, this.hTextmp, this.padCoordsExtra[j4 * 4], this.padCoordsExtra[(j4 * 4) + 1], this.wTexLan[i9 + 24], this.hTexLan[i9 + 24]);
+                this.textureRgnLan[i9 + 24] = new TextureRegion(this.wTextmp, this.hTextmp, this.padCoordsExtra[j4 * 4],
+                        this.padCoordsExtra[(j4 * 4) + 1], this.wTexLan[i9 + 24], this.hTexLan[i9 + 24]);
                 this.batchLan[i9 + 24] = new SpriteBatch(gl, 1);
             }
         }
