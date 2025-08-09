@@ -2262,24 +2262,28 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
      * Вычисляет оптимальный масштаб для виртуальных кнопок в ландшафтном режиме
      */
     public void calculateLandscapePadScale() {
-        // Базовые размеры для расчета (оригинальные размеры ePSXe)
         final float BASE_WIDTH = 800.0f;
         final float BASE_HEIGHT = 480.0f;
 
-        // Вычисляем коэффициенты масштабирования по осям
         float scaleX = (float) this.mWidth / BASE_WIDTH;
         float scaleY = (float) this.mHeight / BASE_HEIGHT;
 
-        // Используем минимальный коэффициент для сохранения пропорций
         float baseScale = Math.min(scaleX, scaleY);
+        
+        String mode = (this.mode == 0) ? "Digital" : "Analog";
 
-        // УМЕНЬШАЕМ кнопки в 2 раза - идеальный размер
-        baseScale = baseScale / 2.0f;
+        if (this.mode == 0) {
+            // ЦИФРОВОЙ режим 
+            baseScale = baseScale / 2.0f;
+        } else {
+            // АНАЛОГОВЫЙ режим 
+            if (baseScale > 1.0f) {
+                baseScale = 1.0f;
+            }
+        }
 
-        // Ограничиваем масштаб разумными пределами
-        if (baseScale > 1.0f) {
-            baseScale = 1.0f;
-        } else if (baseScale < 0.3f) {
+        // Ограничиваем минимум для обоих режимов
+        if (baseScale < 0.3f) {
             baseScale = 0.3f;
         }
 
@@ -2287,10 +2291,9 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
         this.padResize = baseScale;
 
         // Логирование для отладки
-        Log.d("PadScaling", String.format(
-                "Screen: %dx%d, ScaleX: %.2f, ScaleY: %.2f, FinalScale: %.2f (уменьшено в 3 раза)",
-                this.mWidth, this.mHeight,
-                scaleX, scaleY, this.padResize));
+        Log.d("PAD_DISPLAY", String.format(
+                "%s Mode (GL2) - Screen: %dx%d, ScaleX: %.3f, ScaleY: %.3f, Original: %.3f, Final: %.3f",
+                mode, this.mWidth, this.mHeight, scaleX, scaleY, Math.min(scaleX, scaleY), this.padResize));
     }
 
     private class ePSXeRenderer2 implements GLSurfaceView.Renderer {
@@ -3061,15 +3064,35 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
         }
 
         private void calculateBasePadResize() {
+            String mode = (ePSXeViewGL.this.mode == 0) ? "Digital" : "Analog";
+            
             if (ePSXeViewGL.this.emu_screen_orientation != 1) {
                 // Ландшафтный режим - улучшенное масштабирование
                 calculateLandscapePadScale();
+                Log.d("PAD_DISPLAY", String.format("%s Mode (GL2) - Landscape resize: %.3f", mode, ePSXeViewGL.this.padResize));
             } else if (ePSXeViewGL.this.emu_portrait_skin == 1) {
-                // Портретный режим - используем существующую логику
-                ePSXeViewGL.this.padResize = ePSXeViewGL.this.mWidth / 562.0f;
+                // Портретный режим
+                if (ePSXeViewGL.this.mode == 0) {
+                    // ЦИФРОВОЙ режим - уменьшаем в 2 раза
+                    ePSXeViewGL.this.padResize = (ePSXeViewGL.this.mWidth / 562.0f) / 2.0f;
+                } else {
+                    // АНАЛОГОВЫЙ режим - оставляем исходный размер
+                    ePSXeViewGL.this.padResize = ePSXeViewGL.this.mWidth / 562.0f;
+                    if (ePSXeViewGL.this.padResize > 1.0f) {
+                        ePSXeViewGL.this.padResize = 1.0f;
+                    }
+                }
+                Log.d("PAD_DISPLAY", String.format("%s Mode (GL2) - Portrait with skin resize: %.3f", mode, ePSXeViewGL.this.padResize));
             } else {
                 // Портретный режим без скина
-                ePSXeViewGL.this.padResize = 1.0f;
+                if (ePSXeViewGL.this.mode == 0) {
+                    // ЦИФРОВОЙ режим - уменьшаем в 2 раза
+                    ePSXeViewGL.this.padResize = 1.0f / 2.0f;
+                } else {
+                    // АНАЛОГОВЫЙ режим - оставляем исходный размер
+                    ePSXeViewGL.this.padResize = 1.0f;
+                }
+                Log.d("PAD_DISPLAY", String.format("%s Mode (GL2) - Portrait no skin resize: %.3f", mode, ePSXeViewGL.this.padResize));
             }
         }
 
@@ -5115,28 +5138,58 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
         }
 
         private void calculateBasePadResize() {
+            String mode = (ePSXeViewGL.this.mode == 0) ? "Digital" : "Analog";
+            
             if (ePSXeViewGL.this.emu_screen_orientation != 1) {
-                // Ландшафтный режим - простое масштабирование с уменьшением в 3 раза
+                // Ландшафтный режим
                 float baseWidth = 800.0f;
                 float scaleX = (float) ePSXeViewGL.this.mWidth / baseWidth;
                 float scaleY = (float) ePSXeViewGL.this.mHeight / 480.0f;
-                ePSXeViewGL.this.padResize = Math.min(scaleX, scaleY);
+                float originalScale = Math.min(scaleX, scaleY);
+                
+                Log.d("PAD_DISPLAY", String.format("%s Mode (GL1) - Screen: %dx%d, scaleX: %.3f, scaleY: %.3f, original: %.3f", 
+                    mode, ePSXeViewGL.this.mWidth, ePSXeViewGL.this.mHeight, scaleX, scaleY, originalScale));
 
-                // УМЕНЬШАЕМ кнопки в 2 раза - идеальный размер
-                ePSXeViewGL.this.padResize = ePSXeViewGL.this.padResize / 2.0f;
+                if (ePSXeViewGL.this.mode == 0) {
+                    // ЦИФРОВОЙ режим
+                    ePSXeViewGL.this.padResize = originalScale*1.6f;
+                } else {
+                    // АНАЛОГОВЫЙ режим
+                    ePSXeViewGL.this.padResize = originalScale;
+                    if (ePSXeViewGL.this.padResize > 1.0f) {
+                        ePSXeViewGL.this.padResize = 1.0f;
+                    }
+                }
 
-                // Ограничиваем разумными пределами
-                if (ePSXeViewGL.this.padResize > 1.0f) {
-                    ePSXeViewGL.this.padResize = 1.0f;
-                } else if (ePSXeViewGL.this.padResize < 0.3f) {
+                // Ограничиваем минимум для обоих режимов
+                if (ePSXeViewGL.this.padResize < 0.3f) {
+                    Log.d("PAD_DISPLAY", String.format("%s Mode (GL1) - Clamping %.3f to 0.3", mode, ePSXeViewGL.this.padResize));
                     ePSXeViewGL.this.padResize = 0.3f;
                 }
+                Log.d("PAD_DISPLAY", String.format("%s Mode (GL1) - Final landscape resize: %.3f", mode, ePSXeViewGL.this.padResize));
             } else if (ePSXeViewGL.this.emu_portrait_skin == 1) {
-                // Портретный режим - также уменьшаем в 2 раза
-                ePSXeViewGL.this.padResize = (ePSXeViewGL.this.mWidth / 562.0f) / 2.0f;
+                // Портретный режим
+                if (ePSXeViewGL.this.mode == 0) {
+                    // ЦИФРОВОЙ режим - уменьшаем в 2 раза
+                    ePSXeViewGL.this.padResize = (ePSXeViewGL.this.mWidth / 562.0f) / 2.0f;
+                } else {
+                    // АНАЛОГОВЫЙ режим - оставляем исходный размер
+                    ePSXeViewGL.this.padResize = ePSXeViewGL.this.mWidth / 562.0f;
+                    if (ePSXeViewGL.this.padResize > 1.0f) {
+                        ePSXeViewGL.this.padResize = 1.0f;
+                    }
+                }
+                Log.d("PAD_DISPLAY", String.format("%s Mode (GL1) - Portrait with skin resize: %.3f", mode, ePSXeViewGL.this.padResize));
             } else {
-                // Портретный режим без скина - уменьшаем в 2 раза
-                ePSXeViewGL.this.padResize = 1.0f / 2.0f;
+                // Портретный режим без скина
+                if (ePSXeViewGL.this.mode == 0) {
+                    // ЦИФРОВОЙ режим - уменьшаем в 2 раза
+                    ePSXeViewGL.this.padResize = 1.0f / 2.0f;
+                } else {
+                    // АНАЛОГОВЫЙ режим - оставляем исходный размер
+                    ePSXeViewGL.this.padResize = 1.0f;
+                }
+                Log.d("PAD_DISPLAY", String.format("%s Mode (GL1) - Portrait no skin resize: %.3f", mode, ePSXeViewGL.this.padResize));
             }
         }
 
@@ -5403,21 +5456,9 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
         }
 
         public void resetPadAllValues() {
-            if (ePSXeViewGL.this.emu_screen_orientation != 1) {
-                float baseWidth = 800.0f;
-                ePSXeViewGL.this.padResize = ePSXeViewGL.this.mWidth / baseWidth;
-                
-                // УМЕНЬШАЕМ кнопки в 2 раза - идеальный размер
-                ePSXeViewGL.this.padResize = ePSXeViewGL.this.padResize / 2.0f;
-                
-                if (ePSXeViewGL.this.padResize < 0.3f) {
-                    ePSXeViewGL.this.padResize = 0.3f;
-                } else if (ePSXeViewGL.this.padResize > 1.0f) {
-                    ePSXeViewGL.this.padResize = 1.0f;
-                }
-            } else if (ePSXeViewGL.this.emu_portrait_skin == 1) {
-                ePSXeViewGL.this.padResize = (ePSXeViewGL.this.mWidth / 562.0f) / 2.0f;
-            }
+            // НЕ пересчитываем padResize здесь - он уже правильно установлен в calculateBasePadResize()
+            String mode = (ePSXeViewGL.this.mode == 0) ? "Digital" : "Analog";
+            Log.d("PAD_DISPLAY", String.format("%s Mode (GL1) - Using padResize: %.3f", mode, ePSXeViewGL.this.padResize));
             float[] padSizeScreenPortmp = { ePSXeViewGL.this.mWidth, ePSXeViewGL.this.mHeight / 2f, 0.0f, 0.0f, 0.0f,
                     0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
                     0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, (ePSXeViewGL.this.mWidth * 64f) / 480,
