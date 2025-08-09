@@ -1045,6 +1045,21 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                     this.virtualPadPos[n][3] = ((int) (this.virtualPad[n][4] * this.padResize * this.padScreenResize[this.mode][buttonIndex])) + touchOffy;
                     this.virtualPadPos[n][4] = ((this.virtualPadPos[n][2] - this.virtualPadPos[n][0]) / 2) + this.virtualPadPos[n][0];
                     this.virtualPadPos[n][5] = ((this.virtualPadPos[n][3] - this.virtualPadPos[n][1]) / 2) + this.virtualPadPos[n][1];
+                } else if (buttonIndex == 1) {
+                    // Специальная обработка для Action buttons (треугольник, круг, квадрат, икс)
+                    int offx = ((int) centerX) - ((int) (buttonWidth / 2.0f));
+                    int offy = ((int) centerY) - ((int) (buttonHeight / 2.0f));
+                    
+                    // Инвертируем Y координату для touch событий (Android координаты начинаются сверху)
+                    float touchCenterY = this.mHeight - centerY;
+                    int touchOffy = ((int) touchCenterY) - ((int) (buttonHeight / 2.0f));
+                    
+                    this.virtualPadPos[n][0] = ((int) (this.virtualPad[n][1] * this.padResize * this.padScreenResize[this.mode][buttonIndex])) + offx;
+                    this.virtualPadPos[n][1] = ((int) (this.virtualPad[n][2] * this.padResize * this.padScreenResize[this.mode][buttonIndex])) + touchOffy;
+                    this.virtualPadPos[n][2] = ((int) (this.virtualPad[n][3] * this.padResize * this.padScreenResize[this.mode][buttonIndex])) + offx;
+                    this.virtualPadPos[n][3] = ((int) (this.virtualPad[n][4] * this.padResize * this.padScreenResize[this.mode][buttonIndex])) + touchOffy;
+                    this.virtualPadPos[n][4] = ((this.virtualPadPos[n][2] - this.virtualPadPos[n][0]) / 2) + this.virtualPadPos[n][0];
+                    this.virtualPadPos[n][5] = ((this.virtualPadPos[n][3] - this.virtualPadPos[n][1]) / 2) + this.virtualPadPos[n][1];
                 } else {
                     // Для остальных кнопок используем исправленную логику для правильного совпадения touch и визуальных областей
                     // Инвертируем Y координату для touch событий (Android координаты начинаются сверху)
@@ -1131,6 +1146,51 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                     this.virtualPadPos[n][1] = (int) (touchCenterY - (dpadButtonHeight / 2.0f));
                     this.virtualPadPos[n][2] = (int) (buttonCenterX + (dpadButtonWidth / 2.0f));
                     this.virtualPadPos[n][3] = (int) (touchCenterY + (dpadButtonHeight / 2.0f));
+                    this.virtualPadPos[n][4] = (int) buttonCenterX;
+                    this.virtualPadPos[n][5] = (int) touchCenterY;
+                }
+                
+                // Специальная обработка для отдельных Action кнопок (индексы 4-7: треугольник, круг, икс, квадрат)
+                if (n >= 4 && n <= 7 && buttonIndex == 1) {
+                    // Получаем центр основного Action блока
+                    float actionCenterX = this.padOffScreenLan[this.mode][2];
+                    float actionCenterY = this.padOffScreenLan[this.mode][3];
+                    float actionWidth = this.padSizeScreenLan[this.mode][2] * this.padScreenResize[this.mode][1];
+                    float actionHeight = this.padSizeScreenLan[this.mode][3] * this.padScreenResize[this.mode][1];
+                    
+                    // Вычисляем позицию каждой Action кнопки относительно центра
+                    float buttonOffsetX = 0, buttonOffsetY = 0;
+                    switch (n) {
+                        case 4: // Triangle (треугольник) - вверху
+                            buttonOffsetX = 0;
+                            buttonOffsetY = actionHeight * 0.25f; // Инвертируем для touch координат
+                            break;
+                        case 5: // Circle (круг) - справа
+                            buttonOffsetX = actionWidth * 0.25f;
+                            buttonOffsetY = 0;
+                            break;
+                        case 6: // X (икс) - внизу
+                            buttonOffsetX = 0;
+                            buttonOffsetY = -actionHeight * 0.25f; // Инвертируем для touch координат
+                            break;
+                        case 7: // Square (квадрат) - слева
+                            buttonOffsetX = -actionWidth * 0.25f;
+                            buttonOffsetY = 0;
+                            break;
+                    }
+                    
+                    float buttonCenterX = actionCenterX + buttonOffsetX;
+                    float buttonCenterY = actionCenterY + buttonOffsetY;
+                    float touchCenterY = this.mHeight - buttonCenterY;
+                    
+                    // Размер каждой Action кнопки
+                    float actionButtonWidth = actionWidth * 0.4f;
+                    float actionButtonHeight = actionHeight * 0.4f;
+                    
+                    this.virtualPadPos[n][0] = (int) (buttonCenterX - (actionButtonWidth / 2.0f));
+                    this.virtualPadPos[n][1] = (int) (touchCenterY - (actionButtonHeight / 2.0f));
+                    this.virtualPadPos[n][2] = (int) (buttonCenterX + (actionButtonWidth / 2.0f));
+                    this.virtualPadPos[n][3] = (int) (touchCenterY + (actionButtonHeight / 2.0f));
                     this.virtualPadPos[n][4] = (int) buttonCenterX;
                     this.virtualPadPos[n][5] = (int) touchCenterY;
                 }
@@ -2176,18 +2236,28 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                                             }
                                             float sx2 = ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2) + 0] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i];
                                             float sy2 = ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2) + 1] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i];
-                                            float ox2 = ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2) + 0] - (sx2 / 2.0f);
-                                            float oy2 = ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2) + 1] - (sy2 / 2.0f);
+                                            // Исправляем координаты для правильного центрирования action buttons
+                                            float centerX = ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2) + 0];
+                                            float centerY = ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2) + 1];
+                                            float ox2 = centerX - (sx2 / 2.0f);
+                                            float oy2 = centerY - (sy2 / 2.0f);
+                                            
                                             for (int p2 = 0; p2 < 4; p2++) {
+                                                // Вычисляем правильные позиции для каждой action кнопки
+                                                float buttonCenterX = (this.offActionX[p2] * sx2) + ox2;
+                                                float buttonCenterY = (this.offActionY[p2] * sy2) + oy2;
+                                                float buttonWidth = this.sizeActionX[p2] * sx2;
+                                                float buttonHeight = this.sizeActionY[p2] * sy2;
+                                                
                                                 if ((ePSXeViewGL.this.statebuttons & (16 << p2)) == 0) {
                                                     if (ePSXeViewGL.this.emu_pad_draw_mode[0] != 4) {
                                                         this.batchLanAction[p2].beginBatch(this.mTexLan);
-                                                        this.batchLanAction[p2].drawSprite(((this.offActionX[p2] * sx2) + ox2) / ePSXeViewGL.this.mWidth, ((this.offActionY[p2] * sy2) + oy2) / ePSXeViewGL.this.mHeight, (this.sizeActionX[p2] * sx2) / ePSXeViewGL.this.mWidth, (this.sizeActionY[p2] * sy2) / ePSXeViewGL.this.mHeight, this.textureRgnLanAction[p2]);
+                                                        this.batchLanAction[p2].drawSprite(buttonCenterX / ePSXeViewGL.this.mWidth, buttonCenterY / ePSXeViewGL.this.mHeight, buttonWidth / ePSXeViewGL.this.mWidth, buttonHeight / ePSXeViewGL.this.mHeight, this.textureRgnLanAction[p2]);
                                                         this.batchLanAction[p2].endBatch();
                                                     }
                                                 } else {
                                                     this.batchLanAction[p2].beginBatch(this.mTexLan);
-                                                    this.batchLanAction[p2].drawSprite(((this.offActionX[p2] * sx2) + ox2) / ePSXeViewGL.this.mWidth, ((this.offActionY[p2] * sy2) + oy2) / ePSXeViewGL.this.mHeight, ((this.sizeActionX[p2] * sx2) / ePSXeViewGL.this.mWidth) * ePSXeViewGL.this.buttonMag, ((this.sizeActionY[p2] * sy2) / ePSXeViewGL.this.mHeight) * ePSXeViewGL.this.buttonMag, this.textureRgnLanAction[p2]);
+                                                    this.batchLanAction[p2].drawSprite(buttonCenterX / ePSXeViewGL.this.mWidth, buttonCenterY / ePSXeViewGL.this.mHeight, (buttonWidth * ePSXeViewGL.this.buttonMag) / ePSXeViewGL.this.mWidth, (buttonHeight * ePSXeViewGL.this.buttonMag) / ePSXeViewGL.this.mHeight, this.textureRgnLanAction[p2]);
                                                     this.batchLanAction[p2].endBatch();
                                                 }
                                             }
@@ -3329,18 +3399,28 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                                             }
                                             float sx2 = ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2) + 0] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i];
                                             float sy2 = ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2) + 1] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i];
-                                            float ox2 = ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2) + 0] - (sx2 / 2.0f);
-                                            float oy2 = ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2) + 1] - (sy2 / 2.0f);
+                                            // Исправляем координаты для правильного центрирования action buttons
+                                            float centerX = ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2) + 0];
+                                            float centerY = ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2) + 1];
+                                            float ox2 = centerX - (sx2 / 2.0f);
+                                            float oy2 = centerY - (sy2 / 2.0f);
+                                            
                                             for (int p2 = 0; p2 < 4; p2++) {
+                                                // Вычисляем правильные позиции для каждой action кнопки
+                                                float buttonCenterX = (this.offActionX[p2] * sx2) + ox2;
+                                                float buttonCenterY = (this.offActionY[p2] * sy2) + oy2;
+                                                float buttonWidth = this.sizeActionX[p2] * sx2;
+                                                float buttonHeight = this.sizeActionY[p2] * sy2;
+                                                
                                                 if ((ePSXeViewGL.this.statebuttons & (16 << p2)) == 0) {
                                                     if (ePSXeViewGL.this.emu_pad_draw_mode[0] != 4) {
                                                         this.batchLanAction[p2].beginBatch();
-                                                        this.batchLanAction[p2].drawSprite((this.offActionX[p2] * sx2) + ox2, (this.offActionY[p2] * sy2) + oy2, this.sizeActionX[p2] * sx2, this.sizeActionY[p2] * sy2, this.textureRgnLanAction[p2]);
+                                                        this.batchLanAction[p2].drawSprite(buttonCenterX, buttonCenterY, buttonWidth, buttonHeight, this.textureRgnLanAction[p2]);
                                                         this.batchLanAction[p2].endBatch();
                                                     }
                                                 } else {
                                                     this.batchLanAction[p2].beginBatch();
-                                                    this.batchLanAction[p2].drawSprite((this.offActionX[p2] * sx2) + ox2, (this.offActionY[p2] * sy2) + oy2, this.sizeActionX[p2] * sx2 * ePSXeViewGL.this.buttonMag, this.sizeActionY[p2] * sy2 * ePSXeViewGL.this.buttonMag, this.textureRgnLanAction[p2]);
+                                                    this.batchLanAction[p2].drawSprite(buttonCenterX, buttonCenterY, buttonWidth * ePSXeViewGL.this.buttonMag, buttonHeight * ePSXeViewGL.this.buttonMag, this.textureRgnLanAction[p2]);
                                                     this.batchLanAction[p2].endBatch();
                                                 }
                                             }
