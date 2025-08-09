@@ -1019,25 +1019,47 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                 }
             } else {
                 // Исправленное вычисление позиций для ландшафтного режима
-                float buttonWidth = this.padSizeScreenLan[this.mode][this.virtualPad[n][0] * 2] * this.padScreenResize[this.mode][this.virtualPad[n][0]];
-                float buttonHeight = this.padSizeScreenLan[this.mode][(this.virtualPad[n][0] * 2) + 1] * this.padScreenResize[this.mode][this.virtualPad[n][0]];
+                int buttonIndex = this.virtualPad[n][0];
                 
-                // Центр кнопки на экране
-                float centerX = this.padOffScreenLan[this.mode][this.virtualPad[n][0] * 2];
-                float centerY = this.padOffScreenLan[this.mode][(this.virtualPad[n][0] * 2) + 1];
+                // Получаем размеры и позицию кнопки
+                float buttonWidth = this.padSizeScreenLan[this.mode][buttonIndex * 2] * this.padScreenResize[this.mode][buttonIndex];
+                float buttonHeight = this.padSizeScreenLan[this.mode][(buttonIndex * 2) + 1] * this.padScreenResize[this.mode][buttonIndex];
                 
-                // Инвертируем Y координату для touch событий (Android координаты начинаются сверху)
-                float touchCenterY = this.mHeight - centerY;
+                // Центр кнопки на экране (OpenGL координаты)
+                float centerX = this.padOffScreenLan[this.mode][buttonIndex * 2];
+                float centerY = this.padOffScreenLan[this.mode][(buttonIndex * 2) + 1];
                 
-                // Вычисляем границы touch области с учетом центрирования и инверсии Y
-                this.virtualPadPos[n][0] = (int) (centerX - (buttonWidth / 2.0f));
-                this.virtualPadPos[n][1] = (int) (touchCenterY - (buttonHeight / 2.0f));
-                this.virtualPadPos[n][2] = (int) (centerX + (buttonWidth / 2.0f));
-                this.virtualPadPos[n][3] = (int) (touchCenterY + (buttonHeight / 2.0f));
-                
-                // Центр touch области должен совпадать с центром визуальной кнопки
-                this.virtualPadPos[n][4] = (int) centerX;
-                this.virtualPadPos[n][5] = (int) touchCenterY;
+                // Для D-pad (индекс 0) и Action buttons (индекс 1) используем специальную логику
+                if (buttonIndex == 0 || buttonIndex == 1) {
+                    // Для D-pad и Action buttons используем исходную логику с коррекцией для правильного центрирования
+                    int offx = ((int) centerX) - ((int) (buttonWidth / 2.0f));
+                    int offy = ((int) centerY) - ((int) (buttonHeight / 2.0f));
+                    
+                    // Инвертируем Y координату для touch событий (Android координаты начинаются сверху)
+                    float touchCenterY = this.mHeight - centerY;
+                    int touchOffy = ((int) touchCenterY) - ((int) (buttonHeight / 2.0f));
+                    
+                    this.virtualPadPos[n][0] = ((int) (this.virtualPad[n][1] * this.padResize * this.padScreenResize[this.mode][buttonIndex])) + offx;
+                    this.virtualPadPos[n][1] = ((int) (this.virtualPad[n][2] * this.padResize * this.padScreenResize[this.mode][buttonIndex])) + touchOffy;
+                    this.virtualPadPos[n][2] = ((int) (this.virtualPad[n][3] * this.padResize * this.padScreenResize[this.mode][buttonIndex])) + offx;
+                    this.virtualPadPos[n][3] = ((int) (this.virtualPad[n][4] * this.padResize * this.padScreenResize[this.mode][buttonIndex])) + touchOffy;
+                    this.virtualPadPos[n][4] = ((this.virtualPadPos[n][2] - this.virtualPadPos[n][0]) / 2) + this.virtualPadPos[n][0];
+                    this.virtualPadPos[n][5] = ((this.virtualPadPos[n][3] - this.virtualPadPos[n][1]) / 2) + this.virtualPadPos[n][1];
+                } else {
+                    // Для остальных кнопок используем исправленную логику для правильного совпадения touch и визуальных областей
+                    // Инвертируем Y координату для touch событий (Android координаты начинаются сверху)
+                    float touchCenterY = this.mHeight - centerY;
+                    
+                    // Вычисляем границы touch области с учетом центрирования и инверсии Y
+                    this.virtualPadPos[n][0] = (int) (centerX - (buttonWidth / 2.0f));
+                    this.virtualPadPos[n][1] = (int) (touchCenterY - (buttonHeight / 2.0f));
+                    this.virtualPadPos[n][2] = (int) (centerX + (buttonWidth / 2.0f));
+                    this.virtualPadPos[n][3] = (int) (touchCenterY + (buttonHeight / 2.0f));
+                    
+                    // Центр touch области должен совпадать с центром визуальной кнопки
+                    this.virtualPadPos[n][4] = (int) centerX;
+                    this.virtualPadPos[n][5] = (int) touchCenterY;
+                }
                 
                 this.virtualPadBit[n] = this.virtualPad[n][5];
                 if (this.emu_pad_type_selected == 0) {
@@ -1046,13 +1068,71 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                 }
                 this.virtualPadId[n] = -1;
 
+                // Специальная обработка для аналоговых стиков
                 if (n == 20) {
-                    this.analog_values[0][0] = (int) centerX;
-                    this.analog_values[0][1] = (int) centerY; // Для отрисовки используем OpenGL координаты
+                    if (buttonIndex == 0 || buttonIndex == 1) {
+                        this.analog_values[0][0] = ((this.virtualPadPos[n][2] - this.virtualPadPos[n][0]) / 2) + this.virtualPadPos[n][0];
+                        this.analog_values[0][1] = this.mHeight - (((this.virtualPadPos[n][3] - this.virtualPadPos[n][1]) / 2) + this.virtualPadPos[n][1]);
+                    } else {
+                        this.analog_values[0][0] = (int) centerX;
+                        this.analog_values[0][1] = (int) centerY; // Для отрисовки используем OpenGL координаты
+                    }
                 }
                 if (n == 21) {
-                    this.analog_values[0][2] = (int) centerX;
-                    this.analog_values[0][3] = (int) centerY; // Для отрисовки используем OpenGL координаты
+                    if (buttonIndex == 0 || buttonIndex == 1) {
+                        this.analog_values[0][2] = ((this.virtualPadPos[n][2] - this.virtualPadPos[n][0]) / 2) + this.virtualPadPos[n][0];
+                        this.analog_values[0][3] = this.mHeight - (((this.virtualPadPos[n][3] - this.virtualPadPos[n][1]) / 2) + this.virtualPadPos[n][1]);
+                    } else {
+                        this.analog_values[0][2] = (int) centerX;
+                        this.analog_values[0][3] = (int) centerY; // Для отрисовки используем OpenGL координаты
+                    }
+                }
+                
+                // Специальная обработка для отдельных кнопок D-pad (индексы 12-15)
+                if (n >= 12 && n <= 15 && buttonIndex == 0) {
+                    // Для отдельных кнопок D-pad используем правильные touch координаты
+                    // Получаем центр основного D-pad
+                    float dpadCenterX = this.padOffScreenLan[this.mode][0];
+                    float dpadCenterY = this.padOffScreenLan[this.mode][1];
+                    float dpadWidth = this.padSizeScreenLan[this.mode][0] * this.padScreenResize[this.mode][0];
+                    float dpadHeight = this.padSizeScreenLan[this.mode][1] * this.padScreenResize[this.mode][0];
+                    
+                    // Вычисляем позицию каждой кнопки D-pad относительно центра
+                    // Учитываем что в OpenGL Y растет вверх, а в Android touch - вниз
+                    float buttonOffsetX = 0, buttonOffsetY = 0;
+                    switch (n) {
+                        case 12: // Up - в OpenGL координатах это +Y, но для touch нужно -Y
+                            buttonOffsetX = 0;
+                            buttonOffsetY = dpadHeight * 0.25f; // Инвертируем для touch координат
+                            break;
+                        case 13: // Right  
+                            buttonOffsetX = dpadWidth * 0.25f;
+                            buttonOffsetY = 0;
+                            break;
+                        case 14: // Down - в OpenGL координатах это -Y, но для touch нужно +Y
+                            buttonOffsetX = 0;
+                            buttonOffsetY = -dpadHeight * 0.25f; // Инвертируем для touch координат
+                            break;
+                        case 15: // Left
+                            buttonOffsetX = -dpadWidth * 0.25f;
+                            buttonOffsetY = 0;
+                            break;
+                    }
+                    
+                    float buttonCenterX = dpadCenterX + buttonOffsetX;
+                    float buttonCenterY = dpadCenterY + buttonOffsetY;
+                    float touchCenterY = this.mHeight - buttonCenterY;
+                    
+                    // Размер каждой кнопки D-pad
+                    float dpadButtonWidth = dpadWidth * 0.4f;
+                    float dpadButtonHeight = dpadHeight * 0.4f;
+                    
+                    this.virtualPadPos[n][0] = (int) (buttonCenterX - (dpadButtonWidth / 2.0f));
+                    this.virtualPadPos[n][1] = (int) (touchCenterY - (dpadButtonHeight / 2.0f));
+                    this.virtualPadPos[n][2] = (int) (buttonCenterX + (dpadButtonWidth / 2.0f));
+                    this.virtualPadPos[n][3] = (int) (touchCenterY + (dpadButtonHeight / 2.0f));
+                    this.virtualPadPos[n][4] = (int) buttonCenterX;
+                    this.virtualPadPos[n][5] = (int) touchCenterY;
                 }
             }
         }
@@ -3157,7 +3237,7 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                                                 this.batchLan[i].endBatch();
                                             }
                                         } else if (i == 0) {
-                                            // Drawing DPAD
+                                            // Drawing DPAD - исправленная отрисовка для правильного совпадения с touch областями
                                             if (ePSXeViewGL.this.emu_pad_draw_mode[0] == 4) {
                                                 this.batchLan[i].beginBatch();
                                                 this.batchLan[i].drawSprite(
@@ -3170,9 +3250,19 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                                             if (ePSXeViewGL.this.dpadskin == 1) {
                                                 float sx = ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2) + 0] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i];
                                                 float sy = ePSXeViewGL.this.padSizeScreenLan[ePSXeViewGL.this.mode][(i * 2) + 1] * ePSXeViewGL.this.padScreenResize[ePSXeViewGL.this.mode][i];
-                                                float ox = ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2) + 0] - (sx / 2.0f);
-                                                float oy = ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2) + 1] - (sy / 2.0f);
+                                                // Исправляем координаты для правильного центрирования d-pad
+                                                float centerX = ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2) + 0];
+                                                float centerY = ePSXeViewGL.this.padOffScreenLan[ePSXeViewGL.this.mode][(i * 2) + 1];
+                                                float ox = centerX - (sx / 2.0f);
+                                                float oy = centerY - (sy / 2.0f);
+                                                
                                                 for (int p = 0; p < 4; p++) {
+                                                    // Вычисляем правильные позиции для каждой кнопки d-pad
+                                                    // Используем исходную логику с правильными смещениями
+                                                    float buttonCenterX = (this.offDpadX[p] * sx) + ox;
+                                                    float buttonCenterY = (this.offDpadY[p] * sy) + oy;
+                                                    float buttonWidth = this.sizeDpadX[p] * sx;
+                                                    float buttonHeight = this.sizeDpadY[p] * sy;
 
                                                     if (ePSXeViewGL.this.isDpadTouchActive && ePSXeViewGL.this.animationButtonIndex != -1) {
                                                         int buttonMapping = -1;
@@ -3189,15 +3279,15 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                                                         if (buttonMapping == p) {
                                                             this.batchLanDpad[p].beginBatch();
                                                             this.batchLanDpad[p].drawSprite(
-                                                                    (this.offDpadX[p] * sx) + ox, (this.offDpadY[p] * sy) + oy,
-                                                                    this.sizeDpadX[p] * sx * ePSXeViewGL.this.buttonMag, this.sizeDpadY[p] * sy * ePSXeViewGL.this.buttonMag,
+                                                                    buttonCenterX, buttonCenterY,
+                                                                    buttonWidth * ePSXeViewGL.this.buttonMag, buttonHeight * ePSXeViewGL.this.buttonMag,
                                                                     this.textureRgnLanDpad[p]);
                                                             this.batchLanDpad[p].endBatch();
                                                         } else {
                                                             this.batchLanDpad[p].beginBatch();
                                                             this.batchLanDpad[p].drawSprite(
-                                                                    (this.offDpadX[p] * sx) + ox, (this.offDpadY[p] * sy) + oy,
-                                                                    this.sizeDpadX[p] * sx, this.sizeDpadY[p] * sy,
+                                                                    buttonCenterX, buttonCenterY,
+                                                                    buttonWidth, buttonHeight,
                                                                     this.textureRgnLanDpad[p]);
                                                             this.batchLanDpad[p].endBatch();
                                                         }
@@ -3206,16 +3296,16 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                                                             if (ePSXeViewGL.this.emu_pad_draw_mode[0] != 4) {
                                                                 this.batchLanDpad[p].beginBatch();
                                                                 this.batchLanDpad[p].drawSprite(
-                                                                        (this.offDpadX[p] * sx) + ox, (this.offDpadY[p] * sy) + oy,
-                                                                        this.sizeDpadX[p] * sx, this.sizeDpadY[p] * sy,
+                                                                        buttonCenterX, buttonCenterY,
+                                                                        buttonWidth, buttonHeight,
                                                                         this.textureRgnLanDpad[p]);
                                                                 this.batchLanDpad[p].endBatch();
                                                             }
                                                         } else {
                                                             this.batchLanDpad[p].beginBatch();
                                                             this.batchLanDpad[p].drawSprite(
-                                                                    (this.offDpadX[p] * sx) + ox, (this.offDpadY[p] * sy) + oy,
-                                                                    this.sizeDpadX[p] * sx * ePSXeViewGL.this.buttonMag, this.sizeDpadY[p] * sy * ePSXeViewGL.this.buttonMag,
+                                                                    buttonCenterX, buttonCenterY,
+                                                                    buttonWidth * ePSXeViewGL.this.buttonMag, buttonHeight * ePSXeViewGL.this.buttonMag,
                                                                     this.textureRgnLanDpad[p]);
                                                             this.batchLanDpad[p].endBatch();
                                                         }
