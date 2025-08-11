@@ -10,7 +10,6 @@ import com.epsxe.ePSXe.sharedpreference.SharedPreferencesHelper;
 import com.epsxe.ePSXe.sharedpreference.SharedPreferencesImpl;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 
 /**
@@ -25,27 +24,22 @@ public class ePSXeApplication extends Application {
 
    @Override
    public void onCreate() {
-      Log.d("ePSXeDebug", "=== ePSXeApplication.onCreate() STARTED ===");
       super.onCreate();
 
-      Log.d("ePSXeDebug", "ePSXeApplication: BuildConfig.DEBUG = " + BuildConfig.DEBUG);
+      // Create preferences file for debug version (for configuration purposes)
       if (BuildConfig.DEBUG) {
-         Log.d("ePSXeDebug", "ePSXeApplication: Creating prefs file for debug");
          createPrefsFile();
       }
 
       mEPSXeApplication = this;
-      Log.d("ePSXeDebug", "=== ePSXeApplication.onCreate() FINISHED ===");
    }
 
    private File createPrefsFile() {
       File prefsFile = new File("/storage/emulated/0/Download/ePSXe_prefs.xml");
+
       if (!prefsFile.exists()) {
-         try {
-            Log.d("ePSXeDebug", "ePSXeApplication: Create ePSXe_prefs.xml: " + prefsFile.createNewFile());
-         } catch (IOException e) {
-            Log.e("ePSXeDebug", "ePSXeApplication: Unable to create preferences file", e);
-         }
+          // Copy assets/ePSXe_prefs.xml to debug location for initial configuration
+          copyAssetsPrefsToDebugFile(prefsFile);
       }
 
       return prefsFile;
@@ -57,36 +51,105 @@ public class ePSXeApplication extends Application {
 
    @Override
    public SharedPreferences getSharedPreferences(String name, int mode) {
-      if (!BuildConfig.DEBUG || !SharedPreferencesHelper.canUseCustomSp()) {
+      if (BuildConfig.DEBUG) {
+         // Debug: Use external file for configuration (read/write)
+         if (!SharedPreferencesHelper.canUseCustomSp()) {
+            return super.getSharedPreferences(name, mode);
+         }
+
+         SharedPreferencesImpl sp;
+         synchronized (sSharedPrefs) {
+            sp = sSharedPrefs.get(name);
+            if (sp == null) {
+               File prefsFile = createPrefsFile();
+               sp = new SharedPreferencesImpl(prefsFile, mode);
+               sSharedPrefs.put(name, sp);
+               return sp;
+            }
+         }
+
+         if ((mode & Context.MODE_MULTI_PROCESS) != 0) {
+            sp.startReloadIfChangedUnexpectedly();
+         }
+
+         return sp;
+      } else {
+         // Release: Use standard SharedPreferences
          return super.getSharedPreferences(name, mode);
       }
-
-      SharedPreferencesImpl sp;
-      synchronized (sSharedPrefs) {
-         sp = sSharedPrefs.get(name);
-         if (sp == null) {
-            File prefsFile = createPrefsFile();
-            sp = new SharedPreferencesImpl(prefsFile, mode);
-            sSharedPrefs.put(name, sp);
-            return sp;
-         }
-      }
-
-      if ((mode & Context.MODE_MULTI_PROCESS) != 0) {
-         // If somebody else (some other process) changed the prefs
-         // file behind our back, we reload it.  This has been the
-         // historical (if undocumented) behavior.
-         sp.startReloadIfChangedUnexpectedly();
-      }
-
-      return sp;
    }
 
    public static SharedPreferences getDefaultSharedPreferences(Context context) {
       if (BuildConfig.DEBUG) {
-         return context.getApplicationContext().getSharedPreferences("default", Context.MODE_PRIVATE);
+         // Debug: Use the same external file as getSharedPreferences for consistency
+         try {
+            File prefsFile = new File("/storage/emulated/0/Download/ePSXe_prefs.xml");
+            if (!prefsFile.exists()) {
+               // Create initial file from assets if it doesn't exist
+               ePSXeApplication app = (ePSXeApplication) context.getApplicationContext();
+               app.copyAssetsPrefsToDebugFile(prefsFile);
+            }
+            return new com.epsxe.ePSXe.sharedpreference.SharedPreferencesImpl(prefsFile, Context.MODE_PRIVATE);
+         } catch (Exception e) {
+            // Fallback to standard SharedPreferences
+            return PreferenceManager.getDefaultSharedPreferences(context);
+         }
       } else {
+         // Release: Use assets file for consistent settings (read-only)
+         return getSharedPreferencesFromAssets(context);
+      }
+   }
+   
+   private static SharedPreferences getSharedPreferencesFromAssets(Context context) {
+      try {
+         // Create a temporary file from assets
+         File tempFile = new File(context.getCacheDir(), "ePSXe_prefs_from_assets.xml");
+         
+         // Copy assets file to cache for reading
+         java.io.InputStream inputStream = context.getAssets().open("ePSXe_prefs.xml");
+         java.io.FileOutputStream outputStream = new java.io.FileOutputStream(tempFile);
+         
+         byte[] buffer = new byte[1024];
+         int length;
+         while ((length = inputStream.read(buffer)) > 0) {
+            outputStream.write(buffer, 0, length);
+         }
+         
+         inputStream.close();
+         outputStream.close();
+         
+
+         
+         // Return SharedPreferences based on assets file
+         return new com.epsxe.ePSXe.sharedpreference.SharedPreferencesImpl(tempFile, Context.MODE_PRIVATE);
+         
+      } catch (Exception e) {
+         // Fallback to standard SharedPreferences if assets reading fails
+         Log.e("ASSETS_PREFS", "Failed to read from assets, using standard SharedPreferences", e);
          return PreferenceManager.getDefaultSharedPreferences(context);
+      }
+   }
+   
+   public void copyAssetsPrefsToDebugFile(File debugFile) {
+      try {
+         // Open assets/ePSXe_prefs.xml
+         java.io.InputStream inputStream = getAssets().open("ePSXe_prefs.xml");
+         java.io.FileOutputStream outputStream = new java.io.FileOutputStream(debugFile);
+         
+         // Copy file content
+         byte[] buffer = new byte[1024];
+         int length;
+         while ((length = inputStream.read(buffer)) > 0) {
+            outputStream.write(buffer, 0, length);
+         }
+         
+         inputStream.close();
+         outputStream.close();
+         
+
+         
+      } catch (Exception e) {
+         // Silently handle error
       }
    }
 }
