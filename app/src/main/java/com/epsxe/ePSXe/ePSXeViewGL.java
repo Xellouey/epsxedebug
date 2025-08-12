@@ -147,6 +147,11 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
     public void setHidePad(boolean hide) {
         hidePad = hide;
     }
+    
+    // Публичный метод для внешнего вызова очистки касаний
+    public void forceReleaseAllTouches() {
+        clearAllStuckTouches();
+    }
 
     @Override
     public boolean isInTouch() {
@@ -922,6 +927,18 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
     }
 
     public void init_motionevent_2playerH(int swap) {
+        // Защита от залипания кнопок - сброс всех активных касаний
+        for (int i = 0; i < MAX_TOUCHES; i++) {
+            this.activeTouchIds[i] = -1;
+            this.touchButtonIds[i] = -1;
+        }
+        
+        // Сброс состояния D-pad и анимации
+        this.isDpadTouchActive = false;
+        this.animationButtonIndex = -1;
+        this.lastTouchX = -1;
+        this.lastTouchY = -1;
+        
         for (int n = 0; n < 20; n++) {
             if (this.virtualPad[n][0] == -1) {
                 this.virtualPadBit[n] = 0;
@@ -998,6 +1015,18 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
     }
 
     public void init_motionevent_2playerV() {
+        // Защита от залипания кнопок - сброс всех активных касаний
+        for (int i = 0; i < MAX_TOUCHES; i++) {
+            this.activeTouchIds[i] = -1;
+            this.touchButtonIds[i] = -1;
+        }
+        
+        // Сброс состояния D-pad и анимации
+        this.isDpadTouchActive = false;
+        this.animationButtonIndex = -1;
+        this.lastTouchX = -1;
+        this.lastTouchY = -1;
+        
         for (int n = 0; n < 20; n++) {
             if (this.virtualPad[n][0] == -1) {
                 this.virtualPadBit[n] = 0;
@@ -1078,6 +1107,18 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
     }
 
     public void init_motionevent_1playerPortrait() {
+        // Защита от залипания кнопок - сброс всех активных касаний
+        for (int i = 0; i < MAX_TOUCHES; i++) {
+            this.activeTouchIds[i] = -1;
+            this.touchButtonIds[i] = -1;
+        }
+        
+        // Сброс состояния D-pad и анимации
+        this.isDpadTouchActive = false;
+        this.animationButtonIndex = -1;
+        this.lastTouchX = -1;
+        this.lastTouchY = -1;
+        
         for (int n = 0; n < 29; n++) {
             if (n > 22) {
                 if (this.padScreenFunc[n - 23] == 2) {
@@ -1144,6 +1185,18 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
     }
 
     public void init_motionevent_1playerLandscape() {
+        // Защита от залипания кнопок - сброс всех активных касаний
+        for (int i = 0; i < MAX_TOUCHES; i++) {
+            this.activeTouchIds[i] = -1;
+            this.touchButtonIds[i] = -1;
+        }
+        
+        // Сброс состояния D-pad и анимации
+        this.isDpadTouchActive = false;
+        this.animationButtonIndex = -1;
+        this.lastTouchX = -1;
+        this.lastTouchY = -1;
+        
         for (int n = 0; n < 29; n++) {
             if (n > 22) {
                 if (this.padScreenFunc[n - 23] == 2) {
@@ -1229,6 +1282,14 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                 }
             }
         }
+        
+        // Финальная защита от залипания - убеждаемся что все virtualPadId сброшены
+        for (int n = 0; n < this.virtualPadId.length; n++) {
+            if (this.virtualPadId[n] != -1) {
+                this.virtualPadId[n] = -1;
+            }
+        }
+        
         this.initvirtualPad = 1;
     }
 
@@ -1243,6 +1304,9 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
     }
 
     public void inittouchscreenevent() {
+        // Принудительная очистка всех "зависших" касаний при инициализации
+        clearAllStuckTouches();
+        
         if (this.emu_player_mode == 1) {
             if (this.emu_screen_orientation == 1 && this.emu_portrait_skin == 0) {
                 init_motionevent_1playerPortrait();
@@ -1287,11 +1351,63 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
         }
     }
 
+    // Метод для принудительной очистки всех "зависших" касаний
+    public void clearAllStuckTouches() {
+        // Очищаем все активные касания
+        for (int i = 0; i < MAX_TOUCHES; i++) {
+            this.activeTouchIds[i] = -1;
+            this.touchButtonIds[i] = -1;
+        }
+        
+        // Очищаем все виртуальные кнопки
+        for (int i = 0; i < this.virtualPadId.length; i++) {
+            this.virtualPadId[i] = -1;
+        }
+        
+        // Сбрасываем состояние аналоговых стиков
+        this.analogStickPointerId = -1;
+        this.analogStickIndex = -1;
+        
+        // Сбрасываем состояние D-pad и анимации
+        this.isDpadTouchActive = false;
+        this.animationButtonIndex = -1;
+        this.lastTouchX = -1;
+        this.lastTouchY = -1;
+        
+        // Отправляем команду на сброс всех кнопок в эмулятор
+        if (this.f165e != null) {
+            this.f165e.setPadDataUp(0xFFFF, 0); // Сбрасываем все кнопки порта 0
+            this.f165e.setPadDataUp(0, 0xFFFF); // Сбрасываем все кнопки порта 1
+            
+            // Сбрасываем аналоговые стики
+            this.f165e.setpadanalog(0, 0, 0, 0); // Левый стик порта 0
+            this.f165e.setpadanalog(0, 1, 0, 0); // Правый стик порта 0
+            this.f165e.setpadanalog(1, 0, 0, 0); // Левый стик порта 1
+            this.f165e.setpadanalog(1, 1, 0, 0); // Правый стик порта 1
+        }
+        
+        // Сбрасываем состояние кнопок
+        this.statebuttons = 0;
+    }
+
     private int analogStickPointerId = -1;
     private int analogStickIndex = -1;
 
     public int touchscreenevent(long eventTime, int action, int xi, int yi, float pressure, float size, int deviceId,
             int Id) {
+        // Дополнительная защита от залипания - проверка и очистка "мертвых" касаний
+        if (action == MotionEvent.ACTION_DOWN || action == MotionEvent.ACTION_POINTER_DOWN) {
+            // При новом касании проверяем, не занят ли уже этот ID
+            for (int i = 0; i < MAX_TOUCHES; i++) {
+                if (this.activeTouchIds[i] == Id) {
+                    // ID уже используется, сбрасываем старое касание
+                    this.activeTouchIds[i] = -1;
+                    this.touchButtonIds[i] = -1;
+                    break;
+                }
+            }
+        }
+        
         int ret = 0;
         int xa;
         int ya;
@@ -1445,6 +1561,15 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
         }
         if (action == 1 && this.virtualPadId[Id] != -1) {
             int but = this.virtualPadId[Id];
+            
+            // Дополнительная защита - очищаем касание из массива активных касаний
+            for (int i = 0; i < MAX_TOUCHES; i++) {
+                if (this.activeTouchIds[i] == Id) {
+                    this.activeTouchIds[i] = -1;
+                    this.touchButtonIds[i] = -1;
+                    break;
+                }
+            }
 
             boolean shouldRelease = true;
             for (int i = 0; i < MAX_TOUCHES; i++) {
@@ -1671,11 +1796,25 @@ class ePSXeViewGL extends GLSurfaceView implements ePSXeView {
                     }
                 }
                 this.virtualPadId[Id] = ind;
+                
+                // Защита от дублирования - сначала проверяем, не добавлен ли уже этот ID
+                boolean alreadyAdded = false;
                 for (int i = 0; i < MAX_TOUCHES; i++) {
-                    if (this.activeTouchIds[i] == -1) {
-                        this.activeTouchIds[i] = Id;
-                        this.touchButtonIds[i] = ind;
+                    if (this.activeTouchIds[i] == Id) {
+                        this.touchButtonIds[i] = ind; // Обновляем кнопку для существующего ID
+                        alreadyAdded = true;
                         break;
+                    }
+                }
+                
+                // Если ID еще не добавлен, добавляем его в первый свободный слот
+                if (!alreadyAdded) {
+                    for (int i = 0; i < MAX_TOUCHES; i++) {
+                        if (this.activeTouchIds[i] == -1) {
+                            this.activeTouchIds[i] = Id;
+                            this.touchButtonIds[i] = ind;
+                            break;
+                        }
                     }
                 }
                 ret = (action == 2 && pressed == ind) ? 0 : 1;

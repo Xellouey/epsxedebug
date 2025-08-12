@@ -55,7 +55,7 @@
     <string name="analog3hatPref">0</string>
     <string name="PF3inputExtrasPref4">19</string>
     <string name="inputExtrasPref4">19</string>
-    <float name="Pad1PosYAnalog19" value="810.0" />
+    <float name="Pad1PosYAnalog19" value="816.0" />
     <string name="inputExtrasPref5">19</string>
     <float name="Pad1PosYAnalog18" value="810.0" />
     <string name="inputExtrasPref6">19</string>
@@ -66,19 +66,19 @@
     <string name="inputExtrasPref3">19</string>
     <string name="inputAutofirebutton11Pref">0</string>
     <float name="Pad1PosYAnalog11" value="1026.0" />
-    <float name="Pad1PosYAnalog10" value="1026.0" />
+    <float name="Pad1PosYAnalog10" value="800.0" />
     <string name="soundQAPref">1</string>
     <string name="analog1leftyPref">-1</string>
     <float name="Pad1PosYAnalog15" value="810.0" />
     <float name="Pad1PosYAnalog14" value="810.0" />
     <float name="Pad1PosYAnalog13" value="540.0" />
-    <float name="Pad1PosYAnalog12" value="301.2449" />
+    <float name="Pad1PosYAnalog12" value="265.33493" />
     <string name="screenDepthPref">16</string>
     <string name="videoFilterhwPref">1</string>
     <string name="PF3inputExtrasPref1">19</string>
     <string name="analog2leftxPref">-1</string>
     <string name="PF3inputExtrasPref2">19</string>
-    <int name="Pad1Width" value="2241" />
+    <int name="Pad1Width" value="2290" />
     <float name="Pad1SizeY18" value="108.0" />
     <float name="Pad1SizeY17" value="108.0" />
     <float name="Pad1SizeY19" value="108.0" />
@@ -95,26 +95,25 @@
     <float name="Pad1PosY13" value="199.79999" />
     <float name="Pad1PosY12" value="199.79999" />
     <float name="Pad1PosY15" value="810.0" />
-    <string name="inputPadModePref">1</string>
+    <string name="inputPadModePref">4</string>
     <float name="Pad1PosY14" value="810.0" />
-    <float name="Pad1PosY11" value="1026.0" />
-    <float name="Pad1PosY10" value="1026.0" />
+    <float name="Pad1PosY11" value="842.0" />
+    <float name="Pad1PosY10" value="805.0" />
     <string name="analog4leftxPref">-1</string>
     <string name="isoPath">/data/user/0/com.epsxe.ePSXe.avtotonus.hercsadventures.debug/cache/Game</string>
     <string name="analog1r2Pref">48</string>
     <string name="miscuimenuPref">2</string>
-    <int name="IDSCount" value="10" />
-    <float name="Pad1Resize9" value="1.3599997" />
-    <float name="Pad1Resize8" value="1.0" />
-    <float name="Pad1Resize7" value="1.0" />
+    <float name="Pad1Resize9" value="1.5699995" />
+    <float name="Pad1Resize8" value="1.5999994" />
+    <float name="Pad1Resize7" value="1.5099995" />
     <string name="mcrFileMode">0</string>
-    <float name="Pad1Resize6" value="1.0" />
-    <float name="Pad1Resize5" value="1.0" />
-    <float name="Pad1Resize4" value="1.0" />
+    <float name="Pad1Resize6" value="1.4499996" />
+    <float name="Pad1Resize5" value="1.5999994" />
+    <float name="Pad1Resize4" value="1.5399995" />
     <string name="inputDynamicpadPref">0</string>
-    <float name="Pad1Resize3" value="1.0" />
+    <float name="Pad1Resize3" value="1.5699995" />
     <string name="inputHidePref">0</string>
-    <float name="Pad1Resize2" value="1.4199996" />
+    <float name="Pad1Resize2" value="1.5099995" />
     <string name="analog4rightyPref">-1</string>
     <int name="Pad1Status5" value="1" />
     <boolean name="uiconfirmexitdialogPref" value="true" />
@@ -130,50 +129,50 @@
     <int name="Pad1Status8" value="1" />
     <string name="analog2hatPref">0</string>
     <float name="Pad1SizeX4" value="118.799995" />
-    <float name="Pad1PosYAnalog6" value="1026.0" />
+    <float name="Pad1PosYAnalog6" value="1000.08" />
     <float name="Pad1SizeX3" value="118.799995" />
-    <float name="Pad1PosYAnalog5" value="1026.0" />
+    <float name="Pad1PosYAnalog5" value="1000.08" />
     <float name="Pad1SizeX2" value="403.19998" />
-    <float name="Pad1PosYAnalog4" value="55.5" />
+    <float name="Pad1PosYAnalog4" value="87.13497" />
     <float name="Pad1SizeX1" value="410.4" />
-    <float name="Pad1PosYAnalog3" value="45.0" />
+    <float name="Pad1PosYAnalog3" value="66.599976" />
     <float name="Pad1SizeX8" value="115.2" />
-    <float name="Pad1PosX18" value="2079.0" />
+    <float name="Pad1PosX18" value="2128.0" />
     <string name="analog4leftyPref">-1</string>
     <float name="Pad1SizeX7" value="115.2" />
-    <float name="Pad1PosX17" value="2187.0" />
-    <float name="Pad1PosYAnalog9" value="36.899998" />
+    <float name="Pad1PosX17" value="2236.0" />
+    <float name="Pad1PosYAnalog9" value="71.20998" />
     <float name="Pad1SizeX6" value="115.2" />
-    <float name="Pad1PosYAnalog8" value="1026.0" />
+    <float name="Pad1PosYAnalog8" value="998.46" />
     <float name="Pad1SizeX5" value="115.2" />
-    <float name="Pad1PosX19" value="1971.0" />
-    <float name="Pad1PosYAnalog7" value="1026.0" />
+    <float name="Pad1PosX19" value="2020.0" />
+    <float name="Pad1PosYAnalog7" value="1001.7" />
     <float name="Pad1PosX14" value="54.0" />
     <string name="PF2inputExtrasPref1">19</string>
-    <float name="Pad1PosX13" value="2041.2" />
+    <float name="Pad1PosX13" value="2090.2" />
     <string name="PF2inputExtrasPref2">19</string>
     <float name="Pad1PosX16" value="270.0" />
     <string name="PF2inputExtrasPref3">19</string>
     <float name="Pad1PosX15" value="162.0" />
     <string name="inputVibratePref">0</string>
     <float name="Pad1SizeX0" value="800.0" />
-    <float name="Pad1PosX10" value="288.0" />
+    <float name="Pad1PosX10" value="637.0" />
     <float name="Pad1PosX12" value="199.79999" />
     <string name="inputPadAccPref">0</string>
-    <float name="Pad1PosX11" value="1953.0" />
+    <float name="Pad1PosX11" value="1444.0" />
     <float name="Pad1SizeXAnalog9" value="95.399994" />
-    <float name="Pad1ResizeAnalog6" value="1.0" />
-    <float name="Pad1ResizeAnalog7" value="1.0" />
-    <float name="Pad1ResizeAnalog8" value="1.0" />
+    <float name="Pad1ResizeAnalog6" value="1.4799995" />
+    <float name="Pad1ResizeAnalog7" value="1.4499996" />
+    <float name="Pad1ResizeAnalog8" value="1.5099995" />
     <string name="gpuNamePref">2</string>
-    <float name="Pad1ResizeAnalog9" value="1.0" />
+    <float name="Pad1ResizeAnalog9" value="1.5399995" />
     <string name="PF2inputExtrasPref4">19</string>
-    <float name="Pad1ResizeAnalog2" value="1.4799995" />
+    <float name="Pad1ResizeAnalog2" value="1.4199996" />
     <string name="PF2inputExtrasPref5">19</string>
-    <float name="Pad1ResizeAnalog3" value="1.0" />
+    <float name="Pad1ResizeAnalog3" value="1.4799995" />
     <string name="PF2inputExtrasPref6">19</string>
-    <float name="Pad1ResizeAnalog4" value="1.0" />
-    <float name="Pad1ResizeAnalog5" value="1.0" />
+    <float name="Pad1ResizeAnalog4" value="1.5699995" />
+    <float name="Pad1ResizeAnalog5" value="1.4799995" />
     <string name="inputDetectGamepadPref">1</string>
     <string name="analog1leftxPref">-1</string>
     <float name="Pad1SizeX9" value="95.399994" />
@@ -193,7 +192,7 @@
     <float name="Pad1SizeXAnalog3" value="118.799995" />
     <float name="Pad1ResizeAnalog0" value="1.0" />
     <float name="Pad1SizeXAnalog4" value="118.799995" />
-    <float name="Pad1ResizeAnalog1" value="0.58000016" />
+    <float name="Pad1ResizeAnalog1" value="0.6700001" />
     <float name="Pad1SizeY1" value="410.4" />
     <float name="Pad1SizeXAnalog5" value="115.2" />
     <float name="Pad1SizeY0" value="120.0" />
@@ -202,25 +201,25 @@
     <float name="Pad1SizeXAnalog8" value="115.2" />
     <string name="gpuMtPref">1</string>
     <string name="PF4inputExtrasPref1">19</string>
-    <float name="Pad1PosY7" value="1026.0" />
-    <float name="Pad1PosY8" value="1026.0" />
-    <float name="Pad1PosY9" value="49.639988" />
+    <float name="Pad1PosY7" value="998.46" />
+    <float name="Pad1PosY8" value="993.60004" />
+    <float name="Pad1PosY9" value="65.30498" />
     <string name="miscBrowsermodePref">1</string>
-    <float name="Pad1PosY3" value="45.0" />
-    <float name="Pad1PosY4" value="55.8" />
-    <float name="Pad1PosY5" value="1026.0" />
-    <float name="Pad1PosY6" value="1026.0" />
+    <float name="Pad1PosY3" value="74.64998" />
+    <float name="Pad1PosY4" value="85.46997" />
+    <float name="Pad1PosY5" value="993.60004" />
+    <float name="Pad1PosY6" value="994.0" />
     <float name="Pad1PosY0" value="1020.0" />
-    <float name="Pad1PosY1" value="334.14987" />
-    <float name="Pad1PosY2" value="316.6599" />
+    <float name="Pad1PosY1" value="321.84988" />
+    <float name="Pad1PosY2" value="336.7299" />
     <string name="videoRendererPref">1</string>
     <string name="cpuMMEPref">1</string>
     <string name="analog1profilePref">icade</string>
     <string name="inputPaintPadModePref">0</string>
     <string name="analog1l2Pref">48</string>
     <boolean name="uishowmsgPref" value="true" />
-    <float name="Pad1PosYAnalog2" value="330.0399" />
-    <float name="Pad1PosYAnalog1" value="732.0" />
+    <float name="Pad1PosYAnalog2" value="316.6599" />
+    <float name="Pad1PosYAnalog1" value="739.0" />
     <float name="Pad1PosYAnalog0" value="1020.0" />
     <float name="Pad1Resize17" value="1.0" />
     <float name="Pad1Resize18" value="1.0" />
@@ -235,12 +234,11 @@
     <float name="Pad1Resize12" value="1.0" />
     <string name="PF4inputExtrasPref6">19</string>
     <float name="Pad1Resize13" value="1.0" />
-    <string name="analog1paddescPref">Экранный геймпад</string>
     <float name="Pad1Resize14" value="1.0" />
     <float name="Pad1Resize15" value="1.0" />
     <string name="analog4rangePref">0</string>
     <float name="Pad1Resize16" value="1.0" />
-    <float name="Pad1Resize1" value="1.6299994" />
+    <float name="Pad1Resize1" value="1.5699995" />
     <float name="Pad1Resize0" value="1.0" />
     <string name="analog2l2Pref">48</string>
     <float name="Pad1SizeYAnalog11" value="108.0" />
@@ -264,17 +262,17 @@
     <int name="Pad1Height" value="1080" />
     <string name="analog3rightyPref">-1</string>
     <boolean name="uipausesupportdialogPref" value="false" />
-    <float name="Pad1PosX6" value="172.79999" />
-    <float name="Pad1PosX7" value="2183.4" />
+    <float name="Pad1PosX6" value="288.8" />
+    <float name="Pad1PosX7" value="2203.175" />
     <string name="gpuSoftMtPref">0</string>
-    <float name="Pad1PosX8" value="2068.2" />
-    <float name="Pad1PosX9" value="1295.3" />
-    <float name="Pad1PosX2" value="1954.8701" />
-    <float name="Pad1PosX3" value="971.7" />
-    <float name="Pad1PosX4" value="1150.5" />
-    <float name="Pad1PosX5" value="57.6" />
-    <float name="Pad1PosX0" value="1120.5" />
-    <float name="Pad1PosX1" value="334.14987" />
+    <float name="Pad1PosX8" value="1979.2" />
+    <float name="Pad1PosX9" value="1401.8" />
+    <float name="Pad1PosX2" value="1985.7351" />
+    <float name="Pad1PosX3" value="911.19995" />
+    <float name="Pad1PosX4" value="1175.0" />
+    <float name="Pad1PosX5" value="91.99997" />
+    <float name="Pad1PosX0" value="1145.0" />
+    <float name="Pad1PosX1" value="321.84988" />
     <string name="gpuIresolutioPref">1</string>
     <string name="analog4rightxPref">-1</string>
     <string name="analog3r2Pref">48</string>
@@ -288,15 +286,15 @@
     <float name="Pad1PosXAnalog15" value="162.0" />
     <string name="analog4r2Pref">48</string>
     <float name="Pad1PosXAnalog16" value="270.0" />
-    <float name="Pad1PosXAnalog13" value="1271.348" />
+    <float name="Pad1PosXAnalog13" value="1296.848" />
     <float name="Pad1PosXAnalog14" value="54.0" />
-    <float name="Pad1PosXAnalog11" value="1953.0" />
-    <float name="Pad1PosXAnalog12" value="301.2449" />
-    <float name="Pad1PosXAnalog10" value="288.0" />
+    <float name="Pad1PosXAnalog11" value="2002.0" />
+    <float name="Pad1PosXAnalog12" value="265.33493" />
+    <float name="Pad1PosXAnalog10" value="507.0" />
     <string name="analog3leftxPref">-1</string>
-    <float name="Pad1PosXAnalog19" value="1971.0" />
-    <float name="Pad1PosXAnalog17" value="2187.0" />
-    <float name="Pad1PosXAnalog18" value="2079.0" />
+    <float name="Pad1PosXAnalog19" value="2014.0" />
+    <float name="Pad1PosXAnalog17" value="2236.0" />
+    <float name="Pad1PosXAnalog18" value="2128.0" />
     <float name="Pad1ResizeAnalog19" value="1.0" />
     <float name="Pad1ResizeAnalog17" value="1.0" />
     <boolean name="uiresumedialogPref" value="true" />
@@ -304,7 +302,7 @@
     <string name="analog3rangePref">0</string>
     <int name="Pad1Status10" value="2" />
     <float name="Pad1ResizeAnalog11" value="1.0" />
-    <float name="Pad1ResizeAnalog12" value="1.5099995" />
+    <float name="Pad1ResizeAnalog12" value="1.3299997" />
     <float name="Pad1ResizeAnalog10" value="1.0" />
     <string name="analog2rightxPref">-1</string>
     <float name="Pad1ResizeAnalog15" value="1.0" />
@@ -320,7 +318,6 @@
     <int name="Pad1Status13" value="4" />
     <int name="Pad1Status14" value="2" />
     <int name="Pad1Status15" value="2" />
-    <string name="analog1padvpIdPref">-1:-1</string>
     <int name="Pad1Status16" value="2" />
     <int name="Pad1Status17" value="2" />
     <int name="Pad1Status18" value="2" />
@@ -328,16 +325,16 @@
     <string name="analog1hatPref">0</string>
     <string name="inputPad4ModePref">1</string>
     <boolean name="screenVrdistorsionPref" value="true" />
-    <float name="Pad1PosXAnalog4" value="1129.5" />
-    <float name="Pad1PosXAnalog5" value="57.6" />
+    <float name="Pad1PosXAnalog4" value="1141.0" />
+    <float name="Pad1PosXAnalog5" value="85.099976" />
     <int name="Pad1StatusAnalog19" value="2" />
-    <float name="Pad1PosXAnalog2" value="1942.78" />
-    <float name="Pad1PosXAnalog3" value="971.7" />
-    <float name="Pad1PosXAnalog8" value="2068.2" />
-    <float name="Pad1PosXAnalog9" value="1279.3" />
-    <float name="Pad1PosXAnalog6" value="172.79999" />
+    <float name="Pad1PosXAnalog2" value="2003.8701" />
+    <float name="Pad1PosXAnalog3" value="914.19995" />
+    <float name="Pad1PosXAnalog8" value="2028.2" />
+    <float name="Pad1PosXAnalog9" value="1359.8" />
+    <float name="Pad1PosXAnalog6" value="296.8" />
     <string name="analog1rightyPref">-1</string>
-    <float name="Pad1PosXAnalog7" value="2183.4" />
+    <float name="Pad1PosXAnalog7" value="2206.625" />
     <int name="Pad1StatusAnalog13" value="0" />
     <int name="Pad1StatusAnalog14" value="2" />
     <int name="Pad1StatusAnalog11" value="0" />
@@ -349,9 +346,8 @@
     <string name="analog2leftyPref">-1</string>
     <string name="gpuPerspectiveCorrectionPref">0</string>
     <int name="Pad1StatusAnalog10" value="0" />
-    <string name="analog1padidPref">virtual</string>
-    <float name="Pad1PosXAnalog0" value="1120.5" />
-    <float name="Pad1PosXAnalog1" value="522.548" />
+    <float name="Pad1PosXAnalog0" value="1145.0" />
+    <float name="Pad1PosXAnalog1" value="283.04797" />
     <int name="Pad1StatusAnalog8" value="1" />
     <int name="Pad1StatusAnalog9" value="1" />
     <int name="Pad1StatusAnalog6" value="1" />
